@@ -1,0 +1,165 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>绘图</title>
+		
+		<script src="./js/jq.js"></script>
+		<script src="./js/vconsole.js"></script>
+		<script>new VConsole();</script>
+<style>
+			
+</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="1000" height="1000" style="border:1px inset #aaa;"></canvas><br/>
+		无背景（透明）：<input type="checkbox" checked="true" onchange="change();" id="noBackground" /><br/>
+		背景颜色：<input type="color" value="#ffffff" disabled="true" id="background" /><br/>
+		边缘坐标系：<input type="checkbox" checked="true" name="line" /><br/>
+		十字坐标系：<input type="checkbox" checked="true" name="line" /><br/>
+		网格坐标系：<input type="checkbox" name="line" /><br/>
+		<button onclick="init();">初始化</button><br/>
+		<hr/>
+		公式：f(x)=<input id="input" /><br/>
+		x∈[<input id="start" value="-10" style="width: 36px;" />,<input id="end" value="10" style="width: 36px;" />]<br/>
+		图像颜色：<input type="color" value="#ff6666" id="color" /><br/>
+		精度：<input type="range" id="every" min="-4" max="0" step="0.01" /><br>
+		<button onclick="draw();">开始绘图</button><br/>
+		<hr/>
+		下载：<br/>
+		<button onclick="downLoad(saveAsPNG(document.getElementById('canvas')));">保存为png（支持背景透明）</button><br/>
+		<button onclick="downLoad(saveAsJPG(document.getElementById('canvas')));">保存为jpg（默认背景为黑色）</button><br/>
+		<button onclick="downLoad(saveAsBMP(document.getElementById('canvas')));">保存为bmp（目前浏览器支持性不好）</button>
+<script>
+function change(){
+	document.getElementById("background").disabled=document.getElementById("noBackground").checked;
+}
+function draw(){
+	var input = document.getElementById('input').value;
+	var start = Number(document.getElementById('start').value);
+	var end = Number(document.getElementById('end').value);
+	var color = document.getElementById('color').value;
+	var every = Math.pow(10, document.getElementById('every').value);
+	
+	ctx.beginPath();
+	var x = start;
+	ctx.moveTo(start, eval(`
+		try{
+			with(Math){
+				${input}
+			}
+		}catch(err){
+			alert(err);
+		}
+	`));
+	ctx.strokeStyle = color;
+	for (x=start; x<=end; x+=every){
+		ctx.lineTo(x, eval(`
+			try{
+				with(Math){
+					${input}
+				}
+			}catch(err){
+				alert(err);
+			}
+		`));
+	}
+	ctx.stroke();
+}
+
+var c = document.getElementById("canvas");
+var ctx = c.getContext("2d");
+init();
+function init(){
+	document.getElementById("canvas").width="1000";
+	
+	if (document.getElementsByName("line")[0].checked){
+		ctx.beginPath();
+		var sW = 1;
+		var lW = 4;
+		var spacing = 10;
+		for (var x=0; x<c.width; x+=spacing) {
+			ctx.moveTo(x, 0);
+			if(x % (spacing * 5) === 0){
+				ctx.lineTo(x, lW);
+			}else{
+				ctx.lineTo(x, sW);
+			}
+		}
+		for (var y=0; y<c.height; y+=spacing) {
+			ctx.moveTo(0, y);
+			if (y % (spacing * 5) === 0){
+				ctx.lineTo(lW, y);
+			}else{
+				ctx.lineTo(sW, y);
+			}
+		}
+		ctx.stroke();
+	}
+	
+	ctx.transform(50,0,0,-50,500,500);
+	ctx.lineWidth = 1/50;
+	
+	if (!document.getElementById("noBackground").checked){
+		ctx.beginPath();
+		ctx.fillStyle = document.getElementById("background").value;
+		ctx.rect(-10, -10, 20, 20);
+		ctx.fill();
+	}
+	
+	if (document.getElementsByName("line")[1].checked){
+		ctx.beginPath();
+		ctx.strokeStyle = "#000000";
+		
+		ctx.moveTo(-10,0);
+		ctx.lineTo(10,0);
+		ctx.stroke();
+		
+		ctx.moveTo(0,-10);
+		ctx.lineTo(0,10);
+		ctx.stroke();
+	}
+	
+	if (document.getElementsByName("line")[2].checked){
+		ctx.beginPath();
+		ctx.lineWidth = 1/2666;
+		ctx.strokeStyle = "#000000";
+		for (var x=-9; x<10; x++){
+			ctx.moveTo(x,-10);
+			ctx.lineTo(x,10);
+			ctx.stroke();
+		}
+		for (var y=-9; y<10; y++){
+			ctx.moveTo(-10,y);
+			ctx.lineTo(10,y);
+			ctx.stroke();
+		}
+		ctx.lineWidth = 1/50;
+	}
+}
+
+// 保存成png格式的图片
+function saveAsPNG(canvas) {
+	return canvas.toDataURL("image/png");
+}
+// 保存成jpg格式的图片
+function saveAsJPG(canvas) {
+	return canvas.toDataURL("image/jpeg");
+}
+// 保存成bmp格式的图片  目前浏览器支持性不好
+function saveAsBMP(canvas) {
+	return canvas.toDataURL("image/bmp");
+}
+ 
+function downLoad(url){
+	var oA = document.createElement("a");
+	oA.download = '函数图像';// 设置下载的文件名，默认是'下载'
+	oA.href = url;
+	document.body.appendChild(oA);
+	oA.click();
+	oA.remove(); // 下载之后把创建的元素删除
+}
+</script>
+
+	</body>
+</html>
