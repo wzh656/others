@@ -61,18 +61,24 @@
      */
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(width, height);//设置渲染区域尺寸
-    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    renderer.setClearColor(0xffffff, 1); //设置背景颜色
     document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
     //执行渲染操作   指定场景、相机作为参数
     renderer.render(scene, camera);
 	
+	let T0 = new Date();//上次时间
 	function render() {
-		renderer.render(scene,camera);//执行渲染操作
-		mesh.rotateY(0.01);//每次绕y轴旋转0.01弧度
-		mesh.rotateX(0.01);//每次绕x轴旋转0.01弧度
-	}
+        let t = new Date()-T0;//时间差
+        T0 = new Date();//把本次时间赋值给上次时间
+        requestAnimationFrame(render);
+        renderer.render(scene,camera);//执行渲染操作
+        mesh.rotateY(0.001*t);//旋转角速度0.001弧度每毫秒
+    }
+	render()
 	// 间隔30ms周期性调用函数fun
-	setInterval("render()",30)
+	//setInterval("render()",16.7)
+	var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+	controls.addEventListener('change', render);//监听鼠标、键盘事件
   </script>
 </body>
 </html>
