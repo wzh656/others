@@ -25,6 +25,7 @@
 		公式：f(x)=<input id="input" /><br/>
 		x∈[<input id="start" value="-10" style="width: 36px;" />,<input id="end" value="10" style="width: 36px;" />]<br/>
 		图像颜色：<input type="color" value="#ff6666" id="color" /><br/>
+		粗细：（细）<input type="range" id="width" min="-0.5" max="0.5" step="0.01" />（粗）<br>
 		精度：（高）<input type="range" id="every" min="-4" max="0" step="0.01" />（低）<br>
 		<button onclick="draw();">开始绘图</button><br/>
 		
@@ -169,6 +170,8 @@ function draw(){
 	var end = Number(document.getElementById('end').value);
 	var color = document.getElementById('color').value;
 	var every = Math.pow(10, document.getElementById('every').value);
+	
+	ctx.lineWidth = Math.pow(10, document.getElementById('width').value)/50;
 	
 	ctx.beginPath();
 	var x = start;
