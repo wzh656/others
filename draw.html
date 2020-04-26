@@ -19,17 +19,146 @@
 		十字坐标系：<input type="checkbox" checked="true" name="line" /><br/>
 		网格坐标系：<input type="checkbox" name="line" /><br/>
 		<button onclick="init();">初始化</button><br/>
+		
 		<hr/>
+		
 		公式：f(x)=<input id="input" /><br/>
 		x∈[<input id="start" value="-10" style="width: 36px;" />,<input id="end" value="10" style="width: 36px;" />]<br/>
 		图像颜色：<input type="color" value="#ff6666" id="color" /><br/>
-		精度：<input type="range" id="every" min="-4" max="0" step="0.01" /><br>
+		精度：（高）<input type="range" id="every" min="-4" max="0" step="0.01" />（低）<br>
 		<button onclick="draw();">开始绘图</button><br/>
+		
 		<hr/>
+		
 		下载：<br/>
 		<button onclick="downLoad(saveAsPNG(document.getElementById('canvas')));">保存为png（支持背景透明）</button><br/>
 		<button onclick="downLoad(saveAsJPG(document.getElementById('canvas')));">保存为jpg（默认背景为黑色）</button><br/>
 		<button onclick="downLoad(saveAsBMP(document.getElementById('canvas')));">保存为bmp（目前浏览器支持性不好）</button>
+		
+		<hr/>
+		
+		<h3>公式属性/方法</h3>
+		<table border="2">
+		<tbody>
+			<tr>
+			<th width="20%" align="left">属性</th>
+				<th width="80%" align="left">描述</th>
+			  </tr>
+			<tr>
+			<td><a>E</a></td>
+				<td>返回算术常量 e，即自然对数的底数（约等于2.718）。</td>
+			  </tr>
+			<tr>
+			<td><a>LN2</a></td>
+				<td>返回 2 的自然对数（约等于0.693）。</td>
+			  </tr>
+			<tr>
+			<td><a>LN10</a></td>
+				<td>返回 10 的自然对数（约等于2.302）。</td>
+			  </tr>
+			<tr>
+			<td><a>LOG2E</a></td>
+				<td>返回以 2 为底的 e 的对数（约等于 1.4426950408889634）。</td>
+			  </tr>
+			<tr>
+			<td><a>LOG10E</a></td>
+				<td>返回以 10 为底的 e 的对数（约等于0.434）。</td>
+			  </tr>
+			<tr>
+			<td><a>PI</a></td>
+				<td>返回圆周率（约等于3.14159）。</td>
+			  </tr>
+			<tr>
+			<td><a>SQRT1_2</a></td>
+				<td>返回 2 的平方根的倒数（约等于 0.707）。</td>
+			  </tr>
+			<tr>
+			<td><a>SQRT2</a></td>
+				<td>返回 2 的平方根（约等于 1.414）。</td>
+			  </tr>
+		</tbody>
+		</table>
+		<table border="2">
+		<tbody>
+		<tr>
+			<th width="20%" align="left">方法</th>
+				<th width="80%" align="left">描述</th>
+			  </tr>
+			<tr>
+			<td><a>abs(x)</a></td>
+				<td>返回 x 的绝对值。</td>
+			  </tr>
+			<tr>
+			<td><a>acos(x)</a></td>
+				<td>返回 x 的反余弦值。</td>
+			  </tr>
+			<tr>
+			<td><a>asin(x)</a></td>
+				<td>返回 x 的反正弦值。</td>
+			  </tr>
+			<tr>
+			<td><a>atan(x)</a></td>
+				<td>以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。</td>
+			  </tr>
+			<tr>
+			<td><a>atan2(y,x)</a></td>
+				<td>返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。</td>
+			  </tr>
+			<tr>
+			<td><a>ceil(x)</a></td>
+				<td>对数进行上舍入。</td>
+			  </tr>
+			<tr>
+			<td><a>cos(x)</a></td>
+				<td>返回数的余弦。</td>
+			  </tr>
+			<tr>
+			<td><a>exp(x)</a></td>
+				<td>返回  E<sup>x</sup> 的指数。
+			</td>
+			  </tr>
+			<tr>
+			<td><a>floor(x)</a></td>
+				<td>对 x 进行下舍入。</td>
+			  </tr>
+			<tr>
+			<td><a>log(x)</a></td>
+				<td>返回数的自然对数（底为e）。</td>
+			  </tr>
+			<tr>
+			<td><a>max(x,y,z,...,n)</a></td>
+				<td>返回 x,y,z,...,n 中的最高值。</td>
+			  </tr>
+			<tr>
+			<td><a>min(x,y,z,...,n)</a></td>
+				<td>返回 x,y,z,...,n中的最低值。</td>
+			  </tr>
+			<tr>
+			<td><a>pow(x,y)</a></td>
+				<td>返回 x 的 y 次幂。</td>
+			  </tr>
+			<tr>
+			<td><a>random()</a></td>
+				<td>返回 0 ~ 1 之间的随机数。</td>
+			  </tr>
+			<tr>
+			<td><a>round(x)</a></td>
+				<td>四舍五入。</td>
+			  </tr>
+			<tr>
+			<td><a>sin(x)</a></td>
+				<td>返回数的正弦。</td>
+			  </tr>
+			<tr>
+			<td><a>sqrt(x)</a></td>
+				<td>返回数的平方根。</td>
+			  </tr>
+			<tr>
+			<td><a>tan(x)</a></td>
+				<td>返回角的正切。</td>
+			  </tr>
+		</tbody>
+		</table>
 <script>
 function change(){
 	document.getElementById("background").disabled=document.getElementById("noBackground").checked;
