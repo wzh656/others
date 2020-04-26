@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ThreeBody模拟</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      /* 隐藏body窗口区域滚动条 */
+    }
+  </style>
+  <script src="./stats.min.js"></script>
+  <!--引入three.js三维引擎-->
+  <script src="https://wzh656.github.io/notice/js/three.min.js"></script>
+  <!-- <script src="./three.js"></script> -->
+  <!-- <script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script> -->
+  <!-- <script src="http://www.yanhuangxueyuan.com/threejs/build/three.js"></script> -->
+</head>
+
+<!-- <span id="fps" style="position:absolute;"></span> -->
+
+<body>
+  <script>
+    /**
+     * 创建场景对象Scene
+     */
+    var scene = new THREE.Scene();
+	
+	var body_geometry = new Array;
+	var body_material = new Array;
+	var body = new Array;
+	var G = 6.67259*Math.pow(10,-11); //6.67259×10^-11
+	var m = 0.708333333333*1.9891*Math.pow(10,30); //0.708333333333*1.9891*10^30 （fact: 1.1, 0.9, 0.125）
+	
+    /**
+     * 创建网格模型
+     */
+	
+	body_geometry[0] = new THREE.SphereGeometry(100, 36, 36); //创建一个球体几何对象
+	body_material[0] = new THREE.MeshLambertMaterial({
+      color: 0xff0000
+    }); //材质对象body_material
+    body[0] = new THREE.Mesh(body_geometry[0], body_material[0]); //网格模型对象Mesh
+	body[0].position.x = 366;
+    scene.add(body[0]); //网格模型添加到场景中
+	
+	body_geometry[1] = new THREE.SphereGeometry(100, 36, 36); //创建一个球体几何对象
+	body_material[1] = new THREE.MeshLambertMaterial({
+      color: 0xffff00
+    }); //材质对象body_material
+    body[1] = new THREE.Mesh(body_geometry[1], body_material[1]); //网格模型对象Mesh
+	body[1].position.y = 366;
+    scene.add(body[1]); //网格模型添加到场景中
+	
+	body_geometry[2] = new THREE.SphereGeometry(100, 36, 36); //创建一个球体几何对象
+	body_material[2] = new THREE.MeshLambertMaterial({
+      color: 0xff00ff
+    }); //材质对象body_material
+    body[2] = new THREE.Mesh(body_geometry[2], body_material[2]); //网格模型对象Mesh
+	body[2].position.z = 366;
+    scene.add(body[2]); //网格模型添加到场景中
+	
+    /**
+     * 光源设置
+     */
+    //点光源
+    var point = new THREE.PointLight(0xffffff);
+    point.position.set(400, 200, 300); //点光源位置
+    scene.add(point); //点光源添加到场景中
+    //环境光
+    var ambient = new THREE.AmbientLight(0x444444);
+    scene.add(ambient);
+    console.log(scene)
+    console.log(scene.children)
+	
+    /**
+     * 相机设置
+     */
+    var width = window.innerWidth; //窗口宽度
+    var height = window.innerHeight; //窗口高度
+    var k = width / height; //窗口宽高比
+    var s = 666; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    //创建相机对象
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+    camera.position.set(600, 600, 600); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    
+	/**
+     * 创建渲染器对象
+     */
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0x000000, 1); //设置背景颜色
+    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    //执行渲染操作   指定场景、相机作为参数
+    renderer.render(scene, camera);
+	
+	var stats = new Stats();
+	stats.showPanel(0);
+	document.body.appendChild(stats.dom);
+	
+	let T0 = new Date();//上次时间
+	function render() {
+        let t = new Date()-T0;//时间差
+        T0 = new Date();//把本次时间赋值给上次时间
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);//执行渲染操作
+        
+		// F = G*(m1*m2)/r^2
+		// F = ma  =>  a = F/m = G*(m^2)/r^2/m = G*m/r^2
+		for (let i in body){
+			let a = new Array;
+			for (let j in body){
+				let r;
+				if (i != j){
+					r = Math.sqrt(
+						Math.pow(body[i].position.x-body[j].position.x, 2)+
+						Math.pow(body[i].position.y-body[j].position.y, 2)+
+						Math.pow(body[i].position.z-body[j].position.z, 2)
+					);
+				}
+				a[j]
+			}
+		}
+		
+		stats.update();
+    }
+	render();
+	// 间隔30ms周期性调用函数fun
+	//setInterval("render()",16.7)
+	
+	document.onkeydown = function (e){
+		console.log(e.keyCode);
+		if (e.keyCode == 87 | e.keyCode == 38){
+			camera.position.x -= 10;
+		}
+		if (e.keyCode == 83 | e.keyCode == 40){
+			camera.position.x += 10;
+		}
+		if (e.keyCode == 65 | e.keyCode == 37){
+			camera.position.z += 10;
+		}
+		if (e.keyCode == 68 | e.keyCode == 39){
+			camera.position.z -= 10;
+		}
+	}
+	/*document.onmousemove = function (e){
+		console.log(e.pageX, e.pageY);
+		camera.lookAt(e.pageX, e);
+	}*/
+  </script>
+</body>
+</html>
