@@ -1,110 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>ThreeBody模拟</title>
-	<style>
-		body {
+	<head>
+		<meta charset="UTF-8">
+		<title>我的世界</title>
+		<style>
+			body{
 			margin: 0;
 			overflow: hidden;
 			/* 隐藏body窗口区域滚动条 */
-		}
-	</style>
-	<script src="./node_modules/stats.js/build/stats.min.js"></script>
-	<script src="./node_modules/dat.gui/build/dat.gui.min.js"></script>
-	<script src="./node_modules/three/build/three.min.js"></script>
-</head>
-
-<!-- <span id="fps" style="position:absolute;"></span> -->
-
-<body bgcolor="black">
-	<script>
-	var gui = new dat.GUI({
-		name: "信息",
-		useLocalStorage: true, // 使用LocalStorage来存储
-		closeOnTop: true // 关闭按钮是否在顶部
-	});
-	var kt = 0; //时间比例系数
-	gui.add(window, "kt", 0, 1, 0.01);
-	
-	/**
-	 * 创建场景对象Scene
-	 */
-	var scene = new THREE.Scene();
-	scene.fog = 0.1;
-	
-	var body_geometry = new THREE.SphereGeometry(100, 36, 36); //创建一个球体几何对象
-	var body_material = [];
-	var body = [];
-	var G = 6.67259e-11;
-	var m = 324708023181860.25 //0.708333333333*1.9891*10^30 （fact: 1.1, 0.9, 0.125）
-	var stars = [];
-	
-	
-	/**
-	 * 创建网格模型
-	 */
-	var stars_folder = gui.addFolder("恒星");
-	stars_folder.open();
-	function new_starts(color, m, pos){
-		body_material.push(
-			new THREE.MeshLambertMaterial({
-				color
-			}) //材质对象Material
-		);
-		body.push(
-			new THREE.Mesh(body_geometry, body_material[body_material.length-1]) //网格模型对象Mesh
-		);
-		body[body.length-1].position.x = pos.x;
-		body[body.length-1].position.y = pos.y;
-		body[body.length-1].position.z = pos.z;
-		scene.add(body[body.length-1]); //网格模型添加到场景中
-		
-		stars.push({
-			m,
-			color: body_material[body_material.length-1].color,
-			pos: body[body.length-1].position,
-			v: {
-				x: 0,
-				y: 0,
-				z: 0
 			}
+		</style>
+		<script src="./node_modules/stats.js/build/stats.min.js"></script>
+		<script src="./node_modules/dat.gui/build/dat.gui.min.js"></script>
+		<script src="./node_modules/three/build/three.min.js"></script>
+		<script src="./node_modules/three/examples/js/controls/OrbitControls.js"></script>
+	</head>
+
+	<body>
+<script>
+var scene, camera;
+window.onload = function (){
+	/**
+	* 创建场景对象Scene
+	*/
+	scene = new THREE.Scene();
+
+	/**
+	* 创建网格模型
+	*/
+	/* var geometry = new THREE.BoxGeometry(100, 200, 300); //创建一个立方体几何对象Geometry
+	var material = new THREE.MeshLambertMaterial({
+	color: 0x66ff88
+	}); //材质对象Material
+	var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+	mesh.position.x = 1;
+	scene.add(mesh); //网格模型添加到场景中 */
+	
+	// 纹理贴图映射到一个矩形平面上
+	var geometry = new THREE.BoxGeometry(100, 100, 100); //矩形平面
+	// TextureLoader创建一个纹理加载器对象，可以加载图片作为几何体纹理
+	var textureLoader_草方块_top = new THREE.TextureLoader();
+	var textureLoader_草方块_front = new THREE.TextureLoader();
+	// 执行load方法，加载纹理贴图成功后，返回一个纹理对象Texture
+	textureLoader_草方块_top.load('./img/block/草方块/top.png', function (texture_草方块_top){
+		textureLoader_草方块_front.load('./img/block/草方块/front.png', function (texture_草方块_front){
+			var material = [
+				new THREE.MeshLambertMaterial({ map: texture_草方块_front }),
+				new THREE.MeshLambertMaterial({ map: texture_草方块_front }),
+				new THREE.MeshLambertMaterial({ map: texture_草方块_front }),
+				new THREE.MeshLambertMaterial({ map: texture_草方块_front }),
+				new THREE.MeshLambertMaterial({ map: texture_草方块_top }),
+				new THREE.MeshLambertMaterial({ color: "#66aa88" })
+			]; //材质对象Material
+			var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+			// 由于平地添加后默认是在正前方 所以需要旋转一下
+			mesh.rotation.x = -0.5 * Math.PI;
+			mesh.position.y = -10;
+			scene.add(mesh); //网格模型添加到场景中
+			
+			//纹理贴图加载成功后，调用渲染函数执行渲染操作
+			render();
 		});
-		
-		var folder = stars_folder.addFolder(body.length);
-		folder.open();
-			var stars_position_folder = folder.addFolder("位置");
-				stars_position_folder.open();
-				stars_position_folder.add(stars[stars.length-1].pos, "x", 600-1000, 600+1000).listen();
-				stars_position_folder.add(stars[stars.length-1].pos, "y", 600-1000, 600+1000).listen();
-				stars_position_folder.add(stars[stars.length-1].pos, "z", 600-1000, 600+1000).listen();
-			var stars_v_folder = folder.addFolder("速度");
-				stars_v_folder.open();
-				stars_v_folder.add(stars[stars.length-1].v, "x", -200, 200).listen();
-				stars_v_folder.add(stars[stars.length-1].v, "y", -200, 200).listen();
-				stars_v_folder.add(stars[stars.length-1].v, "z", -200, 200).listen();
-			var stars_color_folder = folder.addFolder("颜色");
-				stars_color_folder.add(stars[stars.length-1].color, "r", 0, 1);
-				stars_color_folder.add(stars[stars.length-1].color, "g", 0, 1);
-				stars_color_folder.add(stars[stars.length-1].color, "b", 0, 1);
-		folder.add(stars[stars.length-1], "m", Math.pow(10,29), Math.pow(10,31));
-	}
-	new_starts(0xff0000, m, {
-		x: 0,
-		y: 100,
-		z: 1000
 	});
-	new_starts(0x00ff00, m, {
-		x: -666,
-		y: 0,
-		z: 0
-	});
-	new_starts(0x0000ff, m, {
-		x: 666,
-		y: -300,
-		z: 0
-	});
+	
+	/* var floor_geometry = new THREE.PlaneGeometry(1000, 1000, 6, 6);
+	var floor_material = new THREE.MeshBasicMaterial({ color:"#66ff88"});
+	//floor_material.wireframe = true; //仅框架
+	floor_mesh = new THREE.Mesh(floor_geometry, floor_material);
+	// 由于平地添加后默认是在正前方 所以需要旋转一下
+	floor_mesh.rotation.x = -0.5 * Math.PI;
+	floor_mesh.position.y = -10;
+	scene.add(floor_mesh); */
 	
 	
 	var line = [];
@@ -138,9 +104,10 @@
 	line[2] = new THREE.Line(line_geometry[2], line_material[2]);
 	scene.add(line[2]);
 	
+	
 	/**
-	 * 光源设置
-	 */
+	* 光源设置
+	*/
 	//点光源
 	var point = new THREE.PointLight(0xffffff);
 	point.position.set(400, 200, 300); //点光源位置
@@ -148,60 +115,37 @@
 	//环境光
 	var ambient = new THREE.AmbientLight(0x444444);
 	scene.add(ambient);
+	console.log(scene)
+	console.log(scene.children)
 	
 	
 	/**
-	 * 相机设置
-	 */
+	* 相机设置
+	*/
 	var width = window.innerWidth; //窗口宽度
 	var height = window.innerHeight; //窗口高度
 	var k = width / height; //窗口宽高比
-	var s = 1066; //三维场景显示范围控制系数，系数越大，显示的范围越大
+	var s = 266; //三维场景显示范围控制系数，系数越大，显示的范围越大
 	//创建相机对象
-	var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
-	camera.position.set(1066, 1066, 1066); //设置相机位置
+	camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+	camera.position.set(200, 300, 0); //设置相机位置
 	camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
 	
+	
 	/**
-	 * 创建渲染器对象
-	 */
+	* 创建渲染器对象
+	*/
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(width, height);//设置渲染区域尺寸
 	renderer.setClearColor(0x000000, 1); //设置背景颜色
 	document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
 	//执行渲染操作   指定场景、相机作为参数
 	renderer.render(scene, camera);
-	
-	
-	
+
 	var stats = new Stats();
 	stats.showPanel(0);
 	document.body.appendChild(stats.dom);
-	
-	var element = document.documentElement;
-	//全屏
-	/* document.body.onclick = function (){
-		if (element.requestFullscreen){
-			element.requestFullscreen();
-		}else if (element.mozRequestFullScreen){ // 兼容火狐
-			element.mozRequestFullScreen();
-		}else if (element.webkitRequestFullscreen){ // 兼容谷歌
-			element.webkitRequestFullscreen();
-		}else if (element.msRequestFullscreen){ // 兼容IE
-			element.msRequestFullscreen();
-		}
-	} */
-	//退出全屏
-	/* if (document.exitFullscreen){
-		document.exitFullscreen();
-	}else if (document.mozCancelFullScreen){ // 兼容火狐
-		document.mozCancelFullScreen();
-	}else if (document.webkitCancelFullScreen){ // 兼容谷歌
-		document.webkitCancelFullScreen();
-	}else if (document.msExitFullscreen){ // 兼容IE
-		document.msExitFullscreen();
-	} */
-	
+
 	var watcher = {
 		v: {
 			x: 0,
@@ -214,64 +158,13 @@
 			top_bottom: -30
 		}
 	};
-	var watcher_folder = gui.addFolder("观察者");
-	watcher_folder.open();
-		var watcher_position_folder = watcher_folder.addFolder("位置");
-		watcher_position_folder.open();
-			watcher_position_folder.add(watcher.pos, "x", 600-1000, 600+1000).listen();
-			watcher_position_folder.add(watcher.pos, "y", 600-1000, 600+1000).listen();
-			watcher_position_folder.add(watcher.pos, "z", 600-1000, 600+1000).listen();
-		var watcher_v_folder = watcher_folder.addFolder("速度");
-		watcher_v_folder.open();
-			watcher_v_folder.add(watcher.v, "x", -200, 200).listen();
-			watcher_v_folder.add(watcher.v, "y", -200, 200).listen();
-			watcher_v_folder.add(watcher.v, "z", -200, 200).listen();
-		var watcher_onto_folder = watcher_folder.addFolder("朝向");
-			watcher_onto_folder.add(watcher.lookAt, "left_right", 0, 360).listen();
-			watcher_onto_folder.add(watcher.lookAt, "top_bottom", -180, 180).listen();
-	
-	document.body.appendChild(gui.domElement); //添加dat.gui元素
-	gui.domElement.style.position = "fixed";
-	gui.domElement.style.right = "0";
-	gui.domElement.style.top = "0";
-	
-	/**
-	 * 渲染
-	 */
+
 	let T0 = new Date();//上次时间
 	function render() {
 		let t = new Date()-T0;//时间差
 		T0 = new Date();//把本次时间赋值给上次时间
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);//执行渲染操作
-		
-		//  F = G*(m1*m2)/r^2
-		//    F = ma
-		// => a = F/m1
-		// => a = G*m2/r^2
-		for (let i in stars){
-			let a = {
-				x: 0,
-				y: 0,
-				z: 0
-			};
-			for (let j in stars){
-				if (i != j){
-					let l = Math.sqrt(
-						Math.pow(stars[j].pos.x-stars[i].pos.x, 2)+
-						Math.pow(stars[j].pos.y-stars[i].pos.y, 2)+
-						Math.pow(stars[j].pos.z-stars[i].pos.z, 2)
-					);
-					let a0 = G*stars[j].m/l/l;
-					a.x += (stars[j].pos.x-stars[i].pos.x)/l*a0;
-					a.y += (stars[j].pos.y-stars[i].pos.y)/l*a0;
-					a.z += (stars[j].pos.z-stars[i].pos.z)/l*a0;
-				}
-			}
-			stars[i].v.x += a.x*kt;
-			stars[i].v.y += a.y*kt;
-			stars[i].v.z += a.z*kt;
-		}
 		
 		let x =
 			Math.cos(watcher.lookAt.left_right/180*Math.PI)*
@@ -284,22 +177,15 @@
 		let y = Math.sin(watcher.lookAt.top_bottom/180*Math.PI);
 		camera.lookAt(watcher.pos.x+x, watcher.pos.y+y, watcher.pos.z+z);
 		
-		for (let i in stars){
-			stars[i].pos.x += stars[i].v.x*kt;
-			stars[i].pos.y += stars[i].v.y*kt;
-			stars[i].pos.z += stars[i].v.z*kt;
-		}
-		
-		watcher.pos.x += t/1000*watcher.v.x;
-		watcher.pos.y += t/1000*watcher.v.y;
-		watcher.pos.z += t/1000*watcher.v.z;
-		
 		stats.update();
 	}
-	render();
+	// render();
 	// 间隔30ms周期性调用函数fun
 	//setInterval("render()",16.7)
-	
+
+	/* var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+	controls.addEventListener('change', render);//监听鼠标、键盘事件 */
+
 	document.onkeydown = function (e){
 		console.log(e.keyCode);
 		let x=0, y=0, z=0;
@@ -373,10 +259,7 @@
 		watcher.pos.y += y;
 		watcher.pos.z += z;
 	}
-	/*document.onmousemove = function (e){
-		console.log(e.pageX, e.pageY);
-		camera.lookAt(e.pageX, e);
-	}*/
+	
 	let x0 = null, y0 = null;
 	document.getElementsByTagName("canvas")[0].onmousedown = function (e){
 		console.log("down:", e.screenX, e.screenY);
@@ -407,11 +290,12 @@
 	document.onmouseup = function (){
 		x0 = null, y0 = null;
 	}
-	
-	//屏蔽选择文字
-	document.onselectstart = function (){
-		return false;
-	};
-  </script>
-</body>
+}
+
+//屏蔽选择文字
+document.onselectstart = function (){
+	return false;
+};
+</script>
+	</body>
 </html>
