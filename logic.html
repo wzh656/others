@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<title>Logic</title>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>
+eruda.init();
+console.log('控制台打印信息');
+</script>
+</head>
+<body>
+
+<h1>Logic(JavaScript)</h1>
+<textarea id="js" rows="66" cols="100"></textarea><br>
+<button onclick="run(document.getElementById('js').value);">
+	start
+</button>
+<button onclick="save(document.getElementById('js').value);">
+    save
+</button>
+
+<script>
+function run(__value__){
+	var __code__ = `var names = [];`;
+	var __lines__ = __value__.split("\n============\n");
+	for (var i in __lines__){
+		var words = String(__lines__[i]).split("\n\n");
+		for (var i=3;i<words.length;i++)
+			words[2] += words[i];
+		__code__ += `
+names.push("${words[0]}");
+function ${words[0]}(...args){
+    for (var i in ${words[0]}.last)
+        if (${words[0]}.last[i].toString() == args.toString())
+            return false;
+	${words[0]}.last.push(args);
+	//事实
+	for (var i in ${words[0]}.fact)
+		if (${words[0]}.fact[i].slice(0,-1).toString() == args.toString())
+			return ${words[0]}.fact[i][ ${words[0]}.fact[i].length-1 ];
+	//条件
+    return (
+        ${words[2]}
+    );
+}
+${words[0]}.last = [];
+${words[0]}.fact = [
+`;
+		for (var i in words[1].split("\n")){
+			__code__ += `[${words[1].split("\n")[i]}],`;
+		}
+		__code__ = String(__code__).substring(0,__code__.length-1)+`];`;
+	}
+	__code__ += `
+var input;
+while (input = prompt("请输入命令")){
+	alert(eval(input));
+	for (var i in names)
+		eval(names[i]+".last = [];");
+}
+`;
+	alert(__code__);
+	try{
+		eval(__code__);
+	}catch(err){
+		alert(err);
+	}
+}
+function save(__value__){
+	localStorage.setItem("Logic.backup",__value__);
+}
+document.getElementById('js').value = localStorage.getItem("Logic.backup");
+</script>
+
+</body>
+</html>

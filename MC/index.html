@@ -488,21 +488,21 @@ window.onload = function (){
 	});
 	
 	
-	/* var raycaster = new THREE.RayCaster();//光线投射，用于确定鼠标点击位置
-	var mouse = new THREE.Vector2();//创建二维平面
+	let raycaster = new THREE.Raycaster();//光线投射，用于确定鼠标点击位置
+	let mouse = new THREE.Vector2();//创建二维平面
 	window.addEventListener("mousedown", function (e){
 		//将html坐标系转化为webgl坐标系，并确定鼠标点击位置
-		mouse.x =  e.clientX / renderer.domElement.clientWidth*2-1;
-		mouse.y =  -(e.clientY / renderer.domElement.clientHeight*2)+1;
+		mouse.x = 0;
+		mouse.y = 0;
 		//以camera为z坐标，确定所点击物体的3D空间位置
 		raycaster.setFromCamera(mouse,camera);
 		//确定所点击位置上的物体数量
-		var intersects = raycaster.intersectObjects(scene.children);
+		let intersects = raycaster.intersectObjects(scene.children);
 		//选中后进行的操作
 		if(intersects.length){
 			debugger;
 		}
-	}); */
+	});
 }
 
 //屏蔽选择文字
