@@ -292,6 +292,55 @@ function downLoad(url){
 	oA.remove(); // 下载之后把创建的元素删除
 }
 </script>
+<script type="text/javascript">
+function fade(t){
+	return Math.pow(t,3) * (t * (t * 6 - 15) + 10); // 6t^5 - 15t^4 + 10t^3
+}
+function lerp(from, to, t){
+	return from + (from-to) * t;
+}
+function noise(x0, y0, z0){
+	var x=x0%1,
+		y=y0%1,
+		z=z0%1
+	; //小数部分
+	var v = [];
+	for (var i in [0,1]){
+		for (var j in [0,1]){
+			for (var k in [0,1]){ //立方体顶点(i,j,k)
+				var r1 = Math.random()*Math.PI; //角度（上下）/弧度
+				var r2 = Math.random()*Math.PI; //角度（左右）/弧度
+				var grad = {
+					x: Math.cos(r1)*Math.cos(r2),
+					y: Math.sin(r1),
+					z: Math.cos(r1)*Math.sin(r2)
+				}; //梯度向量
+				var dist = {
+					x: x-i,
+					y: y-j,
+					z: z-k
+				}; //长度向量
+				v.push(
+					grad.x*dist.x+
+					grad.y*dist.y+
+					grad.z*dist.z
+				);
+			}
+		}
+	}
+	var x1 = lerp(v[0], v[1], x);
+	var x2 = lerp(v[2], v[3], x);
+	var x3 = lerp(v[4], v[5], x);
+	var x4 = lerp(v[6], v[7], x);
+	
+	var y1 = lerp(x1, x2, y);
+	var y2 = lerp(x3, x4, y);
+	
+	var z1 = lerp(y1, y2, z);
+	
+	return z1;
+}
+</script>
 
 	</body>
 </html>
