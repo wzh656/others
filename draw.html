@@ -1,164 +1,180 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<title>绘图</title>
-		
-		<!-- <script src="./js/jq.js"></script> -->
-		<script src="./node_modules/simplex-noise/simplex-noise.js"></script>
-		<script src="./node_modules/vconsole/dist/vconsole.min.js"></script>
-		<script>new VConsole();</script>
-	</head>
-	<body>
-		<canvas id="canvas" width="1000" height="1000" style="border:1px inset #aaa;"></canvas><br/>
-		无背景（透明）：<input type="checkbox" checked="true" onchange="change();" id="noBackground" /><br/>
-		背景颜色：<input type="color" value="#ffffff" disabled="true" id="background" /><br/>
-		边缘坐标系：<input type="checkbox" checked="true" name="line" /><br/>
-		十字坐标系：<input type="checkbox" checked="true" name="line" /><br/>
-		网格坐标系：<input type="checkbox" name="line" /><br/>
-		<button onclick="init();">初始化</button><br/>
-		
-		<hr/>
-		
-		公式：f(x)=<input id="input" /><br/>
-		x∈[<input id="start" value="-10" style="width: 36px;" />,<input id="end" value="10" style="width: 36px;" />]<br/>
-		图像颜色：<input type="color" value="#ff6666" id="color" /><br/>
-		粗细：（细）<input type="range" id="width" min="-0.5" max="0.5" step="0.01" />（粗）<br>
-		精度：（高）<input type="range" id="every" min="-4" max="0" step="0.01" />（低）<br>
-		<button onclick="draw();">开始绘图</button><br/>
-		
-		<hr/>
-		
-		下载：<br/>
-		<button onclick="downLoad(saveAsPNG(document.getElementById('canvas')));">保存为png（支持背景透明）</button><br/>
-		<button onclick="downLoad(saveAsJPG(document.getElementById('canvas')));">保存为jpg（默认背景为黑色）</button><br/>
-		<button onclick="downLoad(saveAsBMP(document.getElementById('canvas')));">保存为bmp（目前浏览器支持性不好）</button>
-		
-		<hr/>
-		
-		<h3>公式属性/方法</h3>
-		<table border="2">
-			<tbody>
-				<tr>
-					<th width="20%" align="left">属性</th>
-					<th width="80%" align="left">描述</th>
-				</tr>
-				<tr>
-					<td><a>E</a></td>
-					<td>返回算术常量 e，即自然对数的底数（约等于2.718）。</td>
-				</tr>
-				<tr>
-					<td><a>LN2</a></td>
-					<td>返回 2 的自然对数（约等于0.693）。</td>
-				</tr>
-				<tr>
-					<td><a>LN10</a></td>
-					<td>返回 10 的自然对数（约等于2.302）。</td>
-				</tr>
-				<tr>
-					<td><a>LOG2E</a></td>
-					<td>返回以 2 为底的 e 的对数（约等于 1.4426950408889634）。</td>
-				</tr>
-				<tr>
-					<td><a>LOG10E</a></td>
-					<td>返回以 10 为底的 e 的对数（约等于0.434）。</td>
-				</tr>
-				<tr>
-					<td><a>PI</a></td>
-					<td>返回圆周率（约等于3.14159）。</td>
-				</tr>
-				<tr>
-					<td><a>SQRT1_2</a></td>
-					<td>返回 2 的平方根的倒数（约等于 0.707）。</td>
-				</tr>
-				<tr>
-					<td><a>SQRT2</a></td>
-					<td>返回 2 的平方根（约等于 1.414）。</td>
-				</tr>
-			</tbody>
-		</table>
-		<table border="2">
-			<tbody>
-				<tr>
-					<th width="20%" align="left">方法</th>
-					<th width="80%" align="left">描述</th>
-				</tr>
-				<tr>
-					<td><a>abs(x)<br/>绝对值(x)</a></td>
-					<td>返回 x 的绝对值。</td>
-				</tr>
-				<tr>
-					<td><a>acos(x)</a></td>
-					<td>返回 x 的反余弦值。</td>
-				</tr>
-				<tr>
-					<td><a>asin(x)</a></td>
-					<td>返回 x 的反正弦值。</td>
-				</tr>
-				<tr>
-					<td><a>atan(x)</a></td>
-					<td>以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。</td>
-				</tr>
-				<tr>
-					<td><a>atan2(y,x)</a></td>
-					<td>返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。</td>
-				</tr>
-				<tr>
-					<td><a>ceil(x)<br/>五入(x)<br/>向上舍入(x)</a></td>
-					<td>对数进行上舍入。</td>
-				</tr>
-				<tr>
-					<td><a>cos(x)</a></td>
-					<td>返回数的余弦。</td>
-				</tr>
-				<tr>
-					<td><a>exp(x)</a></td>
-					<td>返回 E<sup>x</sup> 的指数。
-					</td>
-				</tr>
-				<tr>
-					<td><a>floor(x)<br/>四舍(x)<br/>向下舍入(x)</a></td>
-					<td>对 x 进行下舍入。</td>
-				</tr>
-				<tr>
-					<td><a>log(x)<br/>对数(x)</a></td>
-					<td>返回数的自然对数（底为e）。</td>
-				</tr>
-				<tr>
-					<td><a>max(x,y,z,...,n)<br/>最大值(x,y,z,...,n)</a></td>
-					<td>返回 x,y,z,...,n 中的最高值。</td>
-				</tr>
-				<tr>
-					<td><a>min(x,y,z,...,n)<br/>最小值(x,y,z,...,n)</a></td>
-					<td>返回 x,y,z,...,n中的最低值。</td>
-				</tr>
-				<tr>
-					<td><a>pow(x,y)<br/>乘方(x,y)</a></td>
-					<td>返回 x 的 y 次幂。</td>
-				</tr>
-				<tr>
-					<td><a>random()<br/>随机数()</a></td>
-					<td>返回 0 ~ 1 之间的随机数。</td>
-				</tr>
-				<tr>
-					<td><a>round(x)<br/>四舍五入(x)</a></td>
-					<td>四舍五入。</td>
-				</tr>
-				<tr>
-					<td><a>sin(x)</a></td>
-					<td>返回数的正弦。</td>
-				</tr>
-				<tr>
-					<td><a>sqrt(x)<br/>算术平方根(x)</a></td>
-					<td>返回数的平方根。</td>
-				</tr>
-				<tr>
-					<td><a>tan(x)</a></td>
-					<td>返回角的正切。</td>
-				</tr>
-			</tbody>
-		</table>
-		
+<head>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes" name="viewport" />
+	<title>绘图</title>
+
+	<!-- <script src="./js/jq.js"></script> -->
+	<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+	<script>new VConsole();</script>
+	<script src="./node_modules/simplex-noise/simplex-noise.js"></script>
+</head>
+<body>
+	<h1 style="text-align: center;">高级函数绘图</h1>
+	<canvas id="canvas" width="1000" height="1000" style="border:1px inset #aaa;"></canvas><br/>
+	
+	<h3>初始化</h3>
+	无背景（透明）：<input type="checkbox" checked="true" onchange="change();" id="noBackground" /><br/>
+	背景颜色：<input type="color" value="#ffffff" disabled="true" id="background" /><br/>
+	边缘坐标系：<input type="checkbox" checked="true" name="line" /><br/>
+	十字坐标系：<input type="checkbox" checked="true" name="line" /><br/>
+	网格坐标系：<input type="checkbox" name="line" /><br/>
+	<button onclick="init();">初始化</button><br/>
+
+	<hr/>
+	
+	<h3>线性绘图(y,x)</h3>
+	公式：f(x)=<input id="input" /><br/>
+	x∈[<input id="start" value="-10" style="width: 36px;" />,<input id="end" value="10" style="width: 36px;" />]<br/>
+	图像颜色：<input type="color" value="#ff6666" id="color" /><br/>
+	粗细：（细）<input type="range" id="width" min="-0.5" max="0.5" step="0.01" />（粗）<br>
+	精度：（高）<input type="range" id="every1" min="-4" max="0" step="0.01" />（低）<br>
+	<button onclick="draw();">开始绘图</button><br/>
+	
+	<hr/>
+	<h3>平面绘图({r,g,b,a},x,y)</h3>
+	公式：<br/>
+		R：<input id="input_r" value="0" /><br/>
+		G：<input id="input_g" value="(x+10)*255/20" /><br/>
+		B：<input id="input_b" value="(y+10)*255/20" /><br/>
+		A：<input id="input_a" value="1" /><br/>
+	精度：（高）<input type="range" id="every2" min="-3" max="1" step="0.01" />（低）<br>
+	<button onclick="draw2();">开始绘图</button><br/>
+	
+	
+	<hr/>
+
+	<h3>下载<h3/>
+	<button onclick="downLoad(saveAsPNG(document.getElementById('canvas')));">保存为png（支持背景透明）</button><br/>
+	<button onclick="downLoad(saveAsJPG(document.getElementById('canvas')));">保存为jpg（默认背景为黑色）</button><br/>
+	<button onclick="downLoad(saveAsBMP(document.getElementById('canvas')));">保存为bmp（目前浏览器支持性不好）</button>
+
+	<hr/>
+
+	<h3>公式属性/方法</h3>
+	<table border="2">
+	  <tbody>
+		<tr>
+		  <th width="20%" align="left">属性</th>
+		  <th width="80%" align="left">描述</th>
+		</tr>
+		<tr>
+		  <td><a>E</a></td>
+		  <td>返回算术常量 e，即自然对数的底数（约等于2.718）。</td>
+		</tr>
+		<tr>
+		  <td><a>LN2</a></td>
+		  <td>返回 2 的自然对数（约等于0.693）。</td>
+		</tr>
+		<tr>
+		  <td><a>LN10</a></td>
+		  <td>返回 10 的自然对数（约等于2.302）。</td>
+		</tr>
+		<tr>
+		  <td><a>LOG2E</a></td>
+		  <td>返回以 2 为底的 e 的对数（约等于 1.4426950408889634）。</td>
+		</tr>
+		<tr>
+		  <td><a>LOG10E</a></td>
+		  <td>返回以 10 为底的 e 的对数（约等于0.434）。</td>
+		</tr>
+		<tr>
+		  <td><a>PI</a></td>
+		  <td>返回圆周率（约等于3.14159）。</td>
+		</tr>
+		<tr>
+		  <td><a>SQRT1_2</a></td>
+		  <td>返回 2 的平方根的倒数（约等于 0.707）。</td>
+		</tr>
+		<tr>
+		  <td><a>SQRT2</a></td>
+		  <td>返回 2 的平方根（约等于 1.414）。</td>
+		</tr>
+	  </tbody>
+	</table>
+	<table border="2">
+	  <tbody>
+		<tr>
+		  <th width="20%" align="left">方法</th>
+		  <th width="80%" align="left">描述</th>
+		</tr>
+		<tr>
+		  <td><a>abs(x)<br/>绝对值(x)</a></td>
+		  <td>返回 x 的绝对值。</td>
+		</tr>
+		<tr>
+		  <td><a>acos(x)</a></td>
+		  <td>返回 x 的反余弦值。</td>
+		</tr>
+		<tr>
+		  <td><a>asin(x)</a></td>
+		  <td>返回 x 的反正弦值。</td>
+		</tr>
+		<tr>
+		  <td><a>atan(x)</a></td>
+		  <td>以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。</td>
+		</tr>
+		<tr>
+		  <td><a>atan2(y,x)</a></td>
+		  <td>返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。</td>
+		</tr>
+		<tr>
+		  <td><a>ceil(x)<br/>五入(x)<br/>向上舍入(x)</a></td>
+		  <td>对数进行上舍入。</td>
+		</tr>
+		<tr>
+		  <td><a>cos(x)</a></td>
+		  <td>返回数的余弦。</td>
+		</tr>
+		<tr>
+		  <td><a>exp(x)</a></td>
+		  <td>返回 E<sup>x</sup> 的指数。
+		  </td>
+		</tr>
+		<tr>
+		  <td><a>floor(x)<br/>四舍(x)<br/>向下舍入(x)</a></td>
+		  <td>对 x 进行下舍入。</td>
+		</tr>
+		<tr>
+		  <td><a>log(x)<br/>对数(x)</a></td>
+		  <td>返回数的自然对数（底为e）。</td>
+		</tr>
+		<tr>
+		  <td><a>max(x,y,z,...,n)<br/>最大值(x,y,z,...,n)</a></td>
+		  <td>返回 x,y,z,...,n 中的最高值。</td>
+		</tr>
+		<tr>
+		  <td><a>min(x,y,z,...,n)<br/>最小值(x,y,z,...,n)</a></td>
+		  <td>返回 x,y,z,...,n中的最低值。</td>
+		</tr>
+		<tr>
+		  <td><a>pow(x,y)<br/>乘方(x,y)</a></td>
+		  <td>返回 x 的 y 次幂。</td>
+		</tr>
+		<tr>
+		  <td><a>random()<br/>随机数()</a></td>
+		  <td>返回 0 ~ 1 之间的随机数。</td>
+		</tr>
+		<tr>
+		  <td><a>round(x)<br/>四舍五入(x)</a></td>
+		  <td>四舍五入。</td>
+		</tr>
+		<tr>
+		  <td><a>sin(x)</a></td>
+		  <td>返回数的正弦。</td>
+		</tr>
+		<tr>
+		  <td><a>sqrt(x)<br/>算术平方根(x)</a></td>
+		  <td>返回数的平方根。</td>
+		</tr>
+		<tr>
+		  <td><a>tan(x)</a></td>
+		  <td>返回角的正切。</td>
+		</tr>
+	  </tbody>
+	</table>
+
 <script>
 Math.乘方 = Math.pow;
 Math.算术平方根 = Math.sqrt;
@@ -183,7 +199,7 @@ function draw(){
 	var start = Number(document.getElementById('start').value);
 	var end = Number(document.getElementById('end').value);
 	var color = document.getElementById('color').value;
-	var every = Math.pow(10, document.getElementById('every').value);
+	var every = Math.pow(10, document.getElementById('every1').value);
 	
 	ctx.lineWidth = Math.pow(10, document.getElementById('width').value)/50;
 	
@@ -212,6 +228,64 @@ function draw(){
 	}
 	ctx.stroke();
 }
+
+function draw2(){
+	var input = {
+		r: document.getElementById('input_r').value,
+		g: document.getElementById('input_g').value,
+		b: document.getElementById('input_b').value,
+		a: document.getElementById('input_a').value
+	};
+	var every = Math.pow(10, document.getElementById('every2').value);
+	
+	ctx.beginPath();
+	//console.log(input);
+	for (var x=-10; x<10; x+=every){
+		for (var y=-10; y<10; y+=every){
+			var r = Math.round(eval(`
+				try{
+					with(Math){
+						${input.r}
+					}
+				}catch(err){
+					alert(err);
+				}
+			`));
+			var g = Math.round(eval(`
+				try{
+					with(Math){
+						${input.g}
+					}
+				}catch(err){
+					alert(err);
+				}
+			`));
+			var b = Math.round(eval(`
+				try{
+					with(Math){
+						${input.b}
+					}
+				}catch(err){
+					alert(err);
+				}
+			`));
+			var a = Math.round(eval(`
+				try{
+					with(Math){
+						${input.a}
+					}
+				}catch(err){
+					alert(err);
+				}
+			`));
+			ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+			//console.log(x, y, `rgba(${r}, ${g}, ${b}, ${a})`);
+			ctx.fillRect(x, y, every, every);
+		}
+	}
+	ctx.stroke();
+}
+
 
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
@@ -356,5 +430,5 @@ function noise(x0, y0, z0){
 }
 </script>
 
-	</body>
+  </body>
 </html>
