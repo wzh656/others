@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+<title>天气预报</title>
+<style>
+html{
+	height: 100%;
+	max-height: 100%;
+}
+body{
+	/*color: white;*/
+	min-height: 100%;
+	background: #1b2036 url("/storage/emulated/0/Pictures/杂志锁屏/magazine-unlock-05-2.3.2052-57FACD6FA1C025D08A5E7C5BA2DA9862.jpg") no-repeat fixed center;
+	background-size: cover;
+	max-width: 100%;
+	margin: auto;
+	text-align: center;
+}
+</style>
+<!--<script src="../jq.js"></script>-->
+<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+<script>new VConsole();</script>
+</head>
+<body>
+
+<h1>天气预报1</h1>
+<div id="he-plugin-standard" style="position:absolute; left:0; margin:0;"></div>
+<script>
+WIDGET = {
+	CONFIG: {
+		"layout": 2,
+		"width": innerWidth,
+		"height": innerHeight,
+		"background": 1,
+		"dataColor": "auto",
+		"borderRadius": 5,
+		"city": "CN101240704",
+		"key": "50e4419d503f428cb1b02253ed5f6d4a"
+	}
+}
+</script>
+<script src="https://widget.heweather.net/standard/static/js/he-standard-common.js?v=1.1"></script>
+
+<hr/>
+
+<h1>天气预报2</h1>
+<p>当前城市：</p>
+<iframe style="width:100%; height:600px; border:none; margin:0;" src="https://widget-page.heweather.net/h5/index.html?bg=1&md=0123456&lc=accu&key=d2523ad11c0146a58488ea9c27412565"></iframe>
+<p>南康：</p>
+<iframe style="width:100%; height:600px; border:none; margin:0;" src="https://widget-page.heweather.net/h5/index.html?bg=1&md=0123456&lc=CN101240704&key=d2523ad11c0146a58488ea9c27412565"></iframe>
+
+<hr/>
+
+<h1>天气预报3</h1>
+<div id="weather3">加载中……</div>
+<script>
+function ajax(opt) {
+    opt = opt || {};
+    opt.method = opt.method.toUpperCase() || 'POST';
+    opt.url = opt.url || '';
+    opt.async = opt.async || true;
+    opt.data = opt.data || null;
+    opt.success = opt.success || function () {};
+    var xmlHttp = null;
+    if (XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {
+        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+    }var params = [];
+    for (var key in opt.data){
+        params.push(key + '=' + opt.data[key]);
+    }
+    var postData = params.join('&');
+    if (opt.method.toUpperCase() === 'POST') {
+        xmlHttp.open(opt.method, opt.url, opt.async);
+        xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+        xmlHttp.send(postData);
+    }
+    else if (opt.method.toUpperCase() === 'GET') {
+        xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async);
+        xmlHttp.send(null);
+    } 
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            opt.success(JSON.parse( xmlHttp.responseText));
+        }
+    };
+}
+ajax({
+	method: 'GET',
+	url: 'http://api.jirengu.com/getWeather.php',
+	success: function (result){
+		console.log(result);
+		out = "";
+			out+=("<p>当前日期："+result.date+"</p>");
+			out+=("<p>城市："+result.results[0].currentCity+"</p>");
+			out+=("<p>PM2.5指标："+result.results[0].pm25+"</p>");
+			console.log(result.results[0]);
+			
+			out+=("<table border='2'>");
+			out+=("<tr>");
+				out+=("<th>日期</th><th>天气</th><th>温度</th><th>风向</th>");
+			out+=("</tr>");
+			for (var i in result.results[0].weather_data){
+				out+=("<tr>");
+					out+=("<td>"+result.results[0].weather_data[i].date+"</td>");
+					out+=("<td>");
+						out+=(result.results[0].weather_data[i].weather);
+						out+=("<img src='"+result.results[0].weather_data[i].nightPictureUrl+"' alt='夜晚天气图片' style='float:right;'/>");
+						out+=("<img src='"+result.results[0].weather_data[i].dayPictureUrl+"' alt='白天天气图片' style='float:right;'/>");
+					out+=("</td>");
+					out+=("<td>"+result.results[0].weather_data[i].temperature+"</td>");
+					out+=("<td>"+result.results[0].weather_data[i].wind+"</td>");
+				out+=("</tr>");
+			}
+			out+=("</table>");
+			
+			out+=("<table border='2'>");
+			out+=("<tr>");
+				out+=("<th>类型</th><th>指数</th><th>建议</th>");
+			out+=("</tr>");
+			for (var i in result.results[0].index){
+				out+=("<tr>");
+					out+=("<td>"+result.results[0].index[i].tipt+"</td>");
+					out+=("<td>"+result.results[0].index[i].zs+"</td>");
+					out+=("<td>"+result.results[0].index[i].des+"</td>");
+				out+=("</tr>");
+			}
+			out+=("</table>");
+		document.getElementById("weather3").innerHTML = out;
+	}
+});
+
+</script>
+
+</body>
+</html>
