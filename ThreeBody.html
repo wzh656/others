@@ -11,9 +11,12 @@
 			/* 隐藏body窗口区域滚动条 */
 		}
 	</style>
-	<script src="./node_modules/stats.js/build/stats.min.js"></script>
+	<script src="./js/stats.min.js"></script>
+	<script src="./js/dat.gui.min.js"></script>
+	<script src="./js/three.min.js"></script>
+	<!-- <script src="./node_modules/stats.js/build/stats.min.js"></script>
 	<script src="./node_modules/dat.gui/build/dat.gui.min.js"></script>
-	<script src="./node_modules/three/build/three.min.js"></script>
+	<script src="./node_modules/three/build/three.min.js"></script> -->
 </head>
 
 <!-- <span id="fps" style="position:absolute;"></span> -->
@@ -26,13 +29,13 @@
 		closeOnTop: true // 关闭按钮是否在顶部
 	});
 	var kt = 0; //时间比例系数
-	gui.add(window, "kt", 0, 1, 0.01);
+	gui.add(window, "kt", 0, 10, 0.01);
 	
 	/**
 	 * 创建场景对象Scene
 	 */
 	var scene = new THREE.Scene();
-	scene.fog = 0.1;
+	// scene.fog = 0.1;
 	
 	var body_geometry = new THREE.SphereGeometry(100, 36, 36); //创建一个球体几何对象
 	var body_material = [];
@@ -47,7 +50,7 @@
 	 */
 	var stars_folder = gui.addFolder("恒星");
 	stars_folder.open();
-	function new_starts(color, m, pos){
+	function new_starts(color, m, pos, v){
 		body_material.push(
 			new THREE.MeshLambertMaterial({
 				color
@@ -66,9 +69,9 @@
 			color: body_material[body_material.length-1].color,
 			pos: body[body.length-1].position,
 			v: {
-				x: 0,
-				y: 0,
-				z: 0
+				x: v.x,
+				y: v.y,
+				z: v.z
 			}
 		});
 		
@@ -91,19 +94,31 @@
 		folder.add(stars[stars.length-1], "m", Math.pow(10,29), Math.pow(10,31));
 	}
 	new_starts(0xff0000, m, {
-		x: 0,
-		y: 100,
-		z: 1000
+		x: Math.random()*3000-1500,
+		y: Math.random()*3000-1500,
+		z: Math.random()*3000-1500
+	},{
+		x: Math.random()*10-5,
+		y: Math.random()*10-5,
+		z: Math.random()*10-5
 	});
 	new_starts(0x00ff00, m, {
-		x: -666,
-		y: 0,
-		z: 0
+		x: Math.random()*3000-1500,
+		y: Math.random()*3000-1500,
+		z: Math.random()*3000-1500
+	},{
+		x: Math.random()*10-5,
+		y: Math.random()*10-5,
+		z: Math.random()*10-5
 	});
 	new_starts(0x0000ff, m, {
-		x: 666,
-		y: -300,
-		z: 0
+		x: Math.random()*3000-1500,
+		y: Math.random()*3000-1500,
+		z: Math.random()*3000-1500
+	},{
+		x: Math.random()*10-5,
+		y: Math.random()*10-5,
+		z: Math.random()*10-5
 	});
 	
 	
@@ -112,8 +127,8 @@
 	var line_material = [];
 	
 	line_geometry[0] = new THREE.Geometry();
-	line_geometry[0].vertices.push(new THREE.Vector3( -1000, 0, 0) );
-	line_geometry[0].vertices.push(new THREE.Vector3( 1000, 0, 0) );
+	line_geometry[0].vertices.push(new THREE.Vector3( -10000, 0, 0) );
+	line_geometry[0].vertices.push(new THREE.Vector3( 10000, 0, 0) );
 	line_material[0] = new THREE.LineBasicMaterial({
 		color: 0xffffff
 	});
@@ -121,8 +136,8 @@
 	scene.add(line[0]);
 	
 	line_geometry[1] = new THREE.Geometry();
-	line_geometry[1].vertices.push(new THREE.Vector3( 0, 1000, 0) );
-	line_geometry[1].vertices.push(new THREE.Vector3( 0, -1000, 0) );
+	line_geometry[1].vertices.push(new THREE.Vector3( 0, 10000, 0) );
+	line_geometry[1].vertices.push(new THREE.Vector3( 0, -10000, 0) );
 	line_material[1] = new THREE.LineBasicMaterial({
 		color: 0xffffff
 	});
@@ -130,8 +145,8 @@
 	scene.add(line[1]);
 	
 	line_geometry[2] = new THREE.Geometry();
-	line_geometry[2].vertices.push(new THREE.Vector3( 0, 0, 1000) );
-	line_geometry[2].vertices.push(new THREE.Vector3( 0, 0, -1000) );
+	line_geometry[2].vertices.push(new THREE.Vector3( 0, 0, 10000) );
+	line_geometry[2].vertices.push(new THREE.Vector3( 0, 0, -10000) );
 	line_material[2] = new THREE.LineBasicMaterial({
 		color: 0xffffff
 	});
@@ -155,11 +170,11 @@
 	 */
 	var width = window.innerWidth; //窗口宽度
 	var height = window.innerHeight; //窗口高度
-	var k = width / height; //窗口宽高比
-	var s = 1066; //三维场景显示范围控制系数，系数越大，显示的范围越大
+	//var k = width / height; //窗口宽高比
+	//var s = 1066; //三维场景显示范围控制系数，系数越大，显示的范围越大
 	//创建相机对象
-	var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
-	camera.position.set(1066, 1066, 1066); //设置相机位置
+	var camera = new THREE.PerspectiveCamera(45, width/height, 1, 666666*100*1000);
+	camera.position.set(6666, 6666, 6666); //设置相机位置
 	camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
 	
 	/**
@@ -218,9 +233,9 @@
 	watcher_folder.open();
 		var watcher_position_folder = watcher_folder.addFolder("位置");
 		watcher_position_folder.open();
-			watcher_position_folder.add(watcher.pos, "x", 600-1000, 600+1000).listen();
-			watcher_position_folder.add(watcher.pos, "y", 600-1000, 600+1000).listen();
-			watcher_position_folder.add(watcher.pos, "z", 600-1000, 600+1000).listen();
+			watcher_position_folder.add(watcher.pos, "x", -10000, 10000).listen();
+			watcher_position_folder.add(watcher.pos, "y", -10000, 10000).listen();
+			watcher_position_folder.add(watcher.pos, "z", -10000, 10000).listen();
 		var watcher_v_folder = watcher_folder.addFolder("速度");
 		watcher_v_folder.open();
 			watcher_v_folder.add(watcher.v, "x", -200, 200).listen();
