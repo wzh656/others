@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Copyright © 2020 by wzh -->
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>图片编辑</title>
+		
+		<style>
+			canvas{
+				border: 1px solid black;
+			}
+		</style>
+		<script src="./js/jquery.min.js"></script>
+		<script>
+		if (typeof(require) != "undefined")
+			window.$ = window.jQuery = require("./js/jquery.min.js");
+		</script>
+	</head>
+	<body>
+		<canvas width="16" height="16">你的浏览器不支持canvas绘图</canvas><br/>
+		<input class="load_picture" placeholder="图片地址" />
+		<button class="load_picture">加载图片</button><br/>
+		color1:<input class="replace_color" type="color" />
+		color2:<input class="replace_color" type="color" />
+		<button class="replace_color">替换颜色</button><br/>
+<script>
+/**
+ * @author web得胜
+ * @param {String} url 需要下载的文件地址
+ * */
+function downLoad(url){
+    var oA = document.createElement("a");
+    oA.download = '';// 设置下载的文件名，默认是'下载'
+    oA.href = url;
+    document.body.appendChild(oA);
+    oA.click();
+    oA.remove(); // 下载之后把创建的元素删除
+}
+// 保存成png格式的图片
+function saveAsPNG(canvas) {
+    return canvas.toDataURL("image/png");
+}
+	
+var ctx = $("canvas")[0].getContext("2d");
+$("button.load_picture").click(function(){
+	let img = new Image();
+	img.src = $("input.load_picture").val();
+	ctx.drawImage(img, 0, 0);
+});
+$("button.replace_color").click(function(){
+	const WIDTH = $("canvas")[0].width,
+		HEIGHT = $("canvas")[0].height;
+	let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
+	for (let i=0; i<imgData.data.length; i+=4){
+		if (
+			imgData.data[i] == 255 &&
+			imgData.data[i+1] == 255 &&
+			imgData.data[i+2] == 255
+		){
+			debugger
+			imgData.data[i+3] = 0;
+		}
+	}
+	ctx.putImageData(imgData, 0, 0);
+	downLoad(saveAsPNG( $("canvas")[0] ));
+});
+</script>
+	</body>
+</html>
