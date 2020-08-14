@@ -19,11 +19,16 @@
 	</head>
 	<body>
 		<canvas width="16" height="16">你的浏览器不支持canvas绘图</canvas><br/>
-		<input class="load_picture" placeholder="图片地址" />
+		<canvas width="32" height="32">你的浏览器不支持canvas绘图</canvas><br/>
+		<input class="load_picture" placeholder="图片地址" /><br/>
+		x:<input class="load_picture_scale" value="32" /><br/>
+		y:<input class="load_picture_scale" value="32" /><br/>
 		<button class="load_picture">加载图片</button><br/>
 		color1:<input class="replace_color" type="color" />
 		color2:<input class="replace_color" type="color" />
 		<button class="replace_color">替换颜色</button><br/>
+		<button class="download">下载1</button>
+		<button class="download">下载2</button><br/>
 <script>
 /**
  * @author web得胜
@@ -43,14 +48,36 @@ function saveAsPNG(canvas) {
 }
 	
 var ctx = $("canvas")[0].getContext("2d");
+//http://127.0.0.1:8848/www/MinecraftWeb/img/blocks/3/side.png
 $("button.load_picture").click(function(){
 	let img = new Image();
 	img.src = $("input.load_picture").val();
-	ctx.drawImage(img, 0, 0);
+	img.onload = function(){
+		ctx.drawImage(img, 0, 0, 16, 16);
+		let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
+		let x_scale = Number( $(".load_picture_scale:eq(0)").val() )/WIDTH;
+		let y_scale = Number( $(".load_picture_scale:eq(1)").val() )/HEIGHT;
+		$("canvas")[1].width = Number( $(".load_picture_scale:eq(0)").val() );
+		$("canvas")[1].height = Number( $(".load_picture_scale:eq(1)").val() );
+		let ctx2 = $("canvas")[1].getContext("2d");
+		let x=0, y=0;
+		for (let i=0; i<imgData.data.length; i+=4){
+			let r = imgData.data[i+0];
+			let g = imgData.data[i+1];
+			let b = imgData.data[i+2];
+			let a = imgData.data[i+3];
+			ctx2.fillStyle = `rgba(${r},${g},${b},${a})`;
+			ctx2.fillRect(x*x_scale, y*y_scale, x_scale, y_scale);
+			if (++x >= WIDTH){
+				y++;
+				x = 0;
+			}
+		}
+	};
 });
+const WIDTH = $("canvas")[0].width,
+	HEIGHT = $("canvas")[0].height;
 $("button.replace_color").click(function(){
-	const WIDTH = $("canvas")[0].width,
-		HEIGHT = $("canvas")[0].height;
 	let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
 	for (let i=0; i<imgData.data.length; i+=4){
 		if (
@@ -58,13 +85,18 @@ $("button.replace_color").click(function(){
 			imgData.data[i+1] == 255 &&
 			imgData.data[i+2] == 255
 		){
-			debugger
 			imgData.data[i+3] = 0;
 		}
 	}
 	ctx.putImageData(imgData, 0, 0);
-	downLoad(saveAsPNG( $("canvas")[0] ));
 });
+
+$(".download:eq(0)").click(function(){
+	downLoad(saveAsPNG( $("canvas")[0] ));
+})
+$(".download:eq(1)").click(function(){
+	downLoad(saveAsPNG( $("canvas")[1] ));
+})
 </script>
 	</body>
 </html>
