@@ -407,7 +407,11 @@
 		watcher.lookAt.left_right -= dx/document.getElementsByTagName("canvas")[0].offsetWidth*180;
 		watcher.lookAt.top_bottom += dy/document.getElementsByTagName("canvas")[0].offsetHeight*180;
 		
-		if (watcher.lookAt.left_right > 360)
+		watcher.lookAt.left_right %= 360;
+		while (watcher.lookAt.left_right < 0)
+			watcher.lookAt.left_right += 360;
+		watcher.lookAt.top_bottom = Math.min(180, Math.max(watcher.lookAt.top_bottom, -180) );
+		/* if (watcher.lookAt.left_right > 360)
 			while (watcher.lookAt.left_right > 360)
 				watcher.lookAt.left_right -= 360;
 		if (watcher.lookAt.left_right < 0)
@@ -417,7 +421,7 @@
 		if (watcher.lookAt.top_bottom > 180)
 			watcher.lookAt.top_bottom = 180;
 		if (watcher.lookAt.top_bottom < -180)
-			watcher.lookAt.top_bottom = -180;
+			watcher.lookAt.top_bottom = -180; */
 	};
 	document.onmouseup = function (){
 		x0 = null, y0 = null;
