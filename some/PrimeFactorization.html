@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>分解质因数</title>
+<style>
+body,input,button{
+	background-color: #fffae8;
+}
+h1{
+	text-align: center;
+	color: #aa6;
+	text-shadow:
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3,
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3;
+}
+input{
+	border-radius: 1vw;
+}
+input:focus, p:active, button:active{
+	background-color: #e0edd3;
+}
+div{
+	overflow-x: auto;
+}
+div > p{
+	border: 0.6vw inset #e0edd3;
+	border-radius: 2vw;
+	padding: 1vw;
+	margin: 1vw;
+}
+div > p:last-child{
+	background-color: #e0edd3;
+}
+</style>
+	</head>
+	<body>	
+		<h1>分解质因数</h1>
+		<p><label for="number">请输入欲分解质因数的一个正整数：</label></p>
+		<input id="number" value="209354896357" />
+		<button onclick="start(number.value);">开始</button>
+		<hr/>
+		<div id="result"></div>
+<script>
+function start(n){
+	n = Number(n);
+	if (n <= 0 || n == NaN)
+		return alert("请输入一个正整数！");
+	result.innerHTML = "";
+	let results = new Set();
+	for (let i=2; i<=n**0.5; i++){
+		if (n%i == 0){
+			results.add(i);
+			results.add(n/i);
+			result.innerHTML += `<p>${n}=${i}*${n/i}<br>当前所以质因数：｛${[...results].join(",<wbr>")}｝（共${results.size}个）</p>`;
+			alert(`${n}=${i}*${n/i}\n当前所以质因数：\n${[...results].join("\n")}\n（共${results.size}个）`);
+		}
+	}
+	result.innerHTML += `<p>共计${results.size}个质因数：｛${[...results].join(",<wbr>")}｝<br>（共${results.size}个）</p>`;
+	alert(`分解质因数完毕，共计${results.size}个质因数`);
+}
+</script>
+	</body>
+</html>
