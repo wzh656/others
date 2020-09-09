@@ -107,9 +107,9 @@ function run(n){
 		if (n%i == 0){
 			results.add(i);
 			results.add(n/i);
-			result.innerHTML += `<p>${n}=${i}*${n/i}<br>当前所以质因数：｛${[...results].join(",<wbr>")}｝<wbr>（共${results.size}个）</p>`;
+			result.innerHTML += `<p>${n}=${i}*${n/i}<br>当前所有质因数：｛${[...results].join(",<wbr>")}｝<wbr>（共${results.size}个）</p>`;
 			if (msg)
-				msg = confirm(`${n}=${i}*${n/i}\n当前所以质因数：\n${[...results].join("\n")}\n（共${results.size}个）`);
+				msg = confirm(`${n}=${i}*${n/i}\n当前所有质因数：\n${[...results].join("\n")}\n（共${results.size}个）`);
 		}
 	}
 	let t = new Date-t0;
@@ -139,8 +139,8 @@ function oula(start, end){
 			msg = confirm(`${result[0].size+result[1].size}. ${x}=>${value}\n（${prime?"是":"不是"}质数）\n（第${prime? result[0].size+"个质数": result[1].size+"个合数"}）`);
 	}
 	let t = new Date-t0;
-	result2.innerHTML += `<p>共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",<wbr>")}｝<br>质数${result[0].size}个：｛${[...result[0]].join(",<wbr>")}｝<br>合数${result[1].size}个：｛${[...result[1]].join(",<wbr>")}｝<br>质数比：${100*result[0].size/(result[0].size+result[1].size)}%<br>合数比：${100*result[1].size/(result[0].size+result[1].size)}%<br>耗时：${t}ms</p>`;
-	alert(`共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",")}｝\n质数${result[0].size}个：｛${[...result[0]].join(",")}｝\n合数${result[1].size}个：｛${[...result[1]].join(",")}｝\n质数比：${100*result[0].size/(result[0].size+result[1].size)}%\n合数比：${100*result[1].size/(result[0].size+result[1].size)}%\n耗时：${t}ms`);
+	result2.innerHTML += `<p>共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",<wbr>")}｝<br>质数${result[0].size}个：｛${[...result[0]].join(",<wbr>")}｝<br>合数${result[1].size}个：｛${[...result[1]].join(",<wbr>")}｝<br>质数比（正确性）：${100*result[0].size/(result[0].size+result[1].size)}%<br>合数比：${100*result[1].size/(result[0].size+result[1].size)}%<br>质合比：${100*result[0].size/result[1].size}%<br>耗时：${t}ms</p>`;
+	alert(`共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",")}｝\n质数${result[0].size}个：｛${[...result[0]].join(",")}｝\n合数${result[1].size}个：｛${[...result[1]].join(",")}｝\n质数比（正确性）：${100*result[0].size/(result[0].size+result[1].size)}%\n合数比：${100*result[1].size/(result[0].size+result[1].size)}%\n质合比：${100*result[0].size/result[1].size}%\n耗时：${t}ms`);
 }
 </script>
 	</body>
