@@ -4,8 +4,24 @@
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>分解质因数</title>
 <style>
-body,input,button{
+body,input,button,body>label{
 	background-color: #fffae8;
+}
+input[type="radio"]{
+	display: none;
+}
+input:not(:checked) + div{
+	display: none;
+}
+nav{
+	width: 100%;
+}
+nav label{
+	text-align: center;
+	display: inline-block;
+	color: #876;
+	width: 46%;
+	border: 0.6vw outset #876;
 }
 h1{
 	text-align: center;
@@ -27,47 +43,108 @@ h1{
 input{
 	border-radius: 1vw;
 }
-input:focus, p:active, button:active{
+input:focus, p:active, button:active, label:active{
 	background-color: #e0edd3;
 }
-div{
+body>div div{
 	overflow-x: auto;
 }
-div > p{
+body>div div > p{
 	border: 0.6vw inset #e0edd3;
 	border-radius: 2vw;
 	padding: 1vw;
 	margin: 1vw;
 }
-div > p:last-child{
+#result > p:last-child{
 	background-color: #e0edd3;
 }
+#result2 > p.p{
+	background-color: #e0edd3;
+}
+#result2 > p.h{
+	background-color: #ede0d3;
+}
+input:not([type]){
+	width: 80%;
+}
 </style>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+	<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+	<script>eruda.init();</script>
+	<script>new VConsole();</script>
 	</head>
-	<body>	
-		<h1>分解质因数</h1>
-		<p><label for="number">请输入欲分解质因数的一个正整数：</label></p>
-		<input id="number" value="209354896357" />
-		<button onclick="start(number.value);">开始</button>
-		<hr/>
-		<div id="result"></div>
+	<body>
+		<nav>
+			<label for="first">分解质因数</label>
+			<label for="second">欧拉质数公式</label>
+		</nav>
+		<input id="first" name="choice" type="radio" checked />
+		<div>
+			<h1>分解质因数</h1>
+			<p><label for="number">请输入欲分解质因数的一个正整数：</label></p>
+			<input id="number" value="209354896357" />
+			<button onclick="run(number.value);">开始</button>
+			<hr/>
+			<div id="result"></div>
+		</div>
+		<input id="second" name="choice" type="radio" />
+		<div>
+			<h1>欧拉质数公式</h1>
+			<p><label for="start">请输入开始数：</label></p>
+			<input id="start" value="1" />
+			<p><label for="end">请输入结束数：</label></p>
+			<input id="end" value="100" />
+			<button onclick="oula(start.value, end.value);">开始</button>
+			<hr/>
+			<div id="result2"></div>
+		</div>
 <script>
-function start(n){
+function run(n){
 	n = Number(n);
-	if (n <= 0 || n == NaN)
+	if (n <= 0 || isNaN(n))
 		return alert("请输入一个正整数！");
+	let msg = confirm("是否弹窗？");
+	let t0 = +new Date;
 	result.innerHTML = "";
-	let results = new Set();
+	let results = new Set;
 	for (let i=2; i<=n**0.5; i++){
 		if (n%i == 0){
 			results.add(i);
 			results.add(n/i);
-			result.innerHTML += `<p>${n}=${i}*${n/i}<br>当前所以质因数：｛${[...results].join(",<wbr>")}｝（共${results.size}个）</p>`;
-			alert(`${n}=${i}*${n/i}\n当前所以质因数：\n${[...results].join("\n")}\n（共${results.size}个）`);
+			result.innerHTML += `<p>${n}=${i}*${n/i}<br>当前所以质因数：｛${[...results].join(",<wbr>")}｝<wbr>（共${results.size}个）</p>`;
+			if (msg)
+				msg = confirm(`${n}=${i}*${n/i}\n当前所以质因数：\n${[...results].join("\n")}\n（共${results.size}个）`);
 		}
 	}
-	result.innerHTML += `<p>共计${results.size}个质因数：｛${[...results].join(",<wbr>")}｝<br>（共${results.size}个）</p>`;
-	alert(`分解质因数完毕，共计${results.size}个质因数`);
+	let t = new Date-t0;
+	result.innerHTML += `<p>共计${results.size}个质因数：｛${[...results].join(",<wbr>")}｝<br>（共${results.size}个）<br>耗时：${t}ms</p>`;
+	alert(`分解质因数完毕，共计${results.size}个质因数\n耗时：${t}ms`);
+}
+function oula(start, end){
+	[start, end] = [start, end].map(Math.round);
+	if (isNaN(start) || isNaN(end))
+		return alert("请输入整数！");
+	let msg = confirm("是否弹窗？");
+	let t0 = +new Date;
+	if (start > end) [start, end] = [end, start];
+	result2.innerHTML = "";
+	let result = [new Set, new Set];
+	for (let x=start; x<=end; x++){
+		let value = x*x - x + 41;
+		let prime = true;
+		for (let i=2; i<=value**0.5; i++)
+			if (value%i == 0){
+				prime = false;
+				break;
+			}
+		result[prime?0:1].add(value);
+		result2.innerHTML += `<p class="${prime?"p":"h"}">${result[0].size+result[1].size}. ${x}=>${value}<wbr>（${prime?"是":"不是"}质数）<wbr>（第${prime? result[0].size+"个质数": result[1].size+"个合数"}）</p>`;
+		if (msg)
+			msg = confirm(`${result[0].size+result[1].size}. ${x}=>${value}\n（${prime?"是":"不是"}质数）\n（第${prime? result[0].size+"个质数": result[1].size+"个合数"}）`);
+	}
+	let t = new Date-t0;
+	result2.innerHTML += `<p>共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",<wbr>")}｝<br>质数${result[0].size}个：｛${[...result[0]].join(",<wbr>")}｝<br>合数${result[1].size}个：｛${[...result[1]].join(",<wbr>")}｝<br>质数比：${100*result[0].size/(result[0].size+result[1].size)}%<br>合数比：${100*result[1].size/(result[0].size+result[1].size)}%<br>耗时：${t}ms</p>`;
+	alert(`共${result[0].size+result[1].size}个数：｛${[...result[0],...result[1]].join(",")}｝\n质数${result[0].size}个：｛${[...result[0]].join(",")}｝\n合数${result[1].size}个：｛${[...result[1]].join(",")}｝\n质数比：${100*result[0].size/(result[0].size+result[1].size)}%\n合数比：${100*result[1].size/(result[0].size+result[1].size)}%\n耗时：${t}ms`);
 }
 </script>
 	</body>
