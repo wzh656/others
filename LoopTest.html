@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes" name="viewport" />
+	<title>循环TEST</title>
+</head>
+<body>
+
+<h1 style="text-align: center;">for正序、for倒序、for-in、while 循环性能TEST</h1>
+<button onclick="test();" style="width: 50vw;height: 10vh; margin: 0 auto;display: block;">START TEST</button>
+<hr/>
+<h2>RESULT</h2>
+<table id="result" border="2"></table>
+<script type="text/javascript">
+function test(){
+	let len = Number(prompt("请输入一个较大的数test以凸显差异\n（这里默认值为壹佰万）", 1000*1000)),
+	count = Number(prompt("请输入重复test的次数",10)),
+	data = [];
+	for (let j=0; j<=count; j++){
+		let arr = [];
+		for (let i=0; i<len; i++)
+			arr.push(Math.random());
+		
+		data[j] = [];
+		data[j][0] = {};
+		data[j][0].start = +new Date(),
+		data[j][0].result = 0;
+		for (let i=0; i<=arr.length; i++)
+			if (arr[i] <= 0.5)
+				data[j][0].result++;
+		data[j][0].time = new Date()-data[j][0].start;
+		
+		data[j][1] = {};
+		data[j][1].start = +new Date(),
+		data[j][1].result = 0;
+		for (let i=0; i<=arr.length; i++)
+			if (arr[i] <= 0.5)
+				data[j][1].result++;
+		data[j][1].time = new Date()-data[j][1].start;
+		
+		data[j][2] = {};
+		data[j][2].start = +new Date(),
+		data[j][2].result = 0;
+		for (let i in arr)
+			if (arr[i] <= 0.5)
+				data[j][2].result++;
+		data[j][2].time = new Date()-data[j][2].start;
+		
+		data[j][3] = {};
+		data[j][3].start = +new Date(),
+		data[j][3].result = 0,
+		i = arr.length;
+		while (i--)
+			if (arr[i] <= 0.5)
+				data[j][3].result++;
+		data[j][3].time = new Date()-data[j][3].start;
+	}
+	data.splice(0,1);
+	let msg = "运行结束！（第一轮数据已去除）\n",
+		innerHTML = "<tr>"+
+			"<th>轮数（第一轮数据已去除）</th>"+
+			"<th>for正序</th>"+
+			"<th>for倒序</th>"+
+			"<th>for-in</th>"+
+			"<th>while</th>"+
+		"</tr>";
+	for (let j in data){
+		msg += "	第"+(+j+1)+"/"+count+"轮：\n"+
+			"		正序循环：\n"+
+			"			结果："+data[j][0].result+"\n"+
+			"			用时："+data[j][0].time+"ms\n"+
+			"		倒序循环：\n"+
+			"			结果："+data[j][1].result+"\n"+
+			"			用时："+data[j][1].time+"ms\n"+
+			"		for-in循环：\n"+
+			"			结果："+data[j][2].result+"\n"+
+			"			用时："+data[j][2].time+"ms\n"+
+			"		while循环：\n"+
+			"			结果："+data[j][3].result+"\n"+
+			"			用时："+data[j][3].time+"ms\n"
+		;
+		innerHTML += "<tr>"+
+			"<td>"+(+j+1)+"/"+count+"</td>"+
+			"<td>"+data[j][0].result+" / "+data[j][0].time+"ms</td>"+
+			"<td>"+data[j][1].result+" / "+data[j][1].time+"ms</td>"+
+			"<td>"+data[j][2].result+" / "+data[j][2].time+"ms</td>"+
+			"<td>"+data[j][3].result+" / "+data[j][3].time+"ms</td>"+
+		"</tr>";
+	}
+	msg += "【统计】\n"+
+		"	正序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
+		"	倒序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
+		"	for-in序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
+		"	while循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"
+	;
+	alert(msg);
+	console.info(msg);
+	result.innerHTML = innerHTML;
+	document.body.innerHTML += msg.replace(/\n/g,"<br>").replace(/\t/g, "&emsp;&emsp;&emsp;&emsp;");
+}
+</script>
+</body>
+</html>
