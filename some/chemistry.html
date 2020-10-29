@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zn">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>chemistry</title>
+		<script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
+		<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
+<style>
+body,input,button,body>label{
+	background-color: #fffae8;
+}
+input[type="radio"]{
+	display: none;
+}
+input:not(:checked) + div{
+	display: none;
+}
+nav{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+nav label{
+	text-align: center;
+	display: inline-block;
+	color: #876;
+	width: 100%;
+	margin: 0 1vw;
+	border: 0.6vw outset #876;
+}
+h1{
+	text-align: center;
+	color: #aa6;
+	text-shadow:
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3,
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3;
+}
+input{
+	border-radius: 1vw;
+}
+input:focus, p:active, button:active, label:active{
+	background-color: #e0edd3;
+}
+body>div div{
+	overflow-x: auto;
+}
+body>div div > p{
+	border: 0.6vw inset #e0edd3;
+	border-radius: 2vw;
+	padding: 1vw;
+	margin: 1vw;
+}
+#result > p:last-child{
+	background-color: #e0edd3;
+}
+#result2 > p.p{
+	background-color: #e0edd3;
+}
+#result2 > p.h{
+	background-color: #ede0d3;
+}
+input:not([type]){
+	width: 80%;
+}
+</style>
+	</head>
+	<body>
+		<nav>
+			<label for="first">化学方程式</label>
+			<!--<label for="second">娆ф媺璐ㄦ暟鍏紡</label>-->
+		</nav>
+		<input id="first" name="choice" type="radio" checked />
+		<div>
+			<h1>化学方程式</h1>
+			<p><label for="number">请输入化学方程式：</label></p>
+			<input id="expression" value="KClO3==KCl+O2" />
+			<button>计算</button>
+			<hr/>
+			<div id="result"></div>
+		</div>
+		<!--<input id="second" name="choice" type="radio" />
+		<div>
+			<h1>娆ф媺璐ㄦ暟鍏紡</h1>
+			<p><label for="start">璇疯緭鍏ュ紑濮嬫暟锛�</label></p>
+			<input id="start" value="1" />
+			<p><label for="end">璇疯緭鍏ョ粨鏉熸暟锛�</label></p>
+			<input id="end" value="100" />
+			<button onclick="oula(start.value, end.value);">寮€濮�</button>
+			<hr/>
+			<div id="result2"></div>
+		</div>-->
+<script>
+$(function(){
+	$("#expression").next("button").click(function(){
+		let exp = $("#expression").val();
+		let args = {
+			b: exp.split("==")[0].split("+"),
+			a: exp.split("==")[1].split("+")
+		};
+		for (let i in args.b){ //姣忕鍙嶅簲鐗�
+			console.log(args.b[i], args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
+			args.b[i] = args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
+			for (let j in args.b[i]){
+				console.log(args.b[i][j], args.b[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1));
+				let t = args.b[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1);
+				args.b[i][j] = {
+					n: t[0],
+					s: t[1]||1
+				}
+			}
+		}
+		for (let i in args.a){ //姣忕鐢熸垚鐗�
+			// console.log(args.a[i], args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
+			args.a[i] = args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
+			for (let j in args.a[i]){
+				console.log(args.a[i][j], args.a[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1));
+				let t = args.a[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1);
+				args.a[i][j] = {
+					n: t[0],
+					s: t[1]||1
+				}
+			}
+		}
+		console.log(exp, args)
+		
+		let js = "let v=[];", chars = "abcdefghlmnopqrstuvwxyz鍚存娴�".split(""), index=0;
+		let choice = {b:[], a:[], ib:0, ia:0};
+		if (args.a.length + args.b.length > chars.length) return alert("鍙嶅簲鐗╀笌鐢熸垚鐗╄繃澶氾紒");
+		for (let i in args.b){
+			let char = chars[index++];
+			choice.b.push(char);
+			js += `for (v.${char}=1; v.${char}<10; v.${char}++)`;
+		}
+		for (let j in args.a){
+			let char2 = chars[index++];
+			choice.a.push(char2);
+			js += `for (v.${char2}=1; v.${char2}<10; v.${char2}++)`;
+		}
+		js += `{
+	choice.ia = choice.ib = 0;
+	let s = {};
+	for (let i in args.b){
+		for (let j in args.b[i]){
+			s[args.b[i][j].n] = (s[args.b[i][j].n]||0) + args.b[i][j].s * v[choice.b[choice.ib]];
+		}
+		choice.ib++;
+	}
+	for (let i in args.a){
+		for (let j in args.a[i]){
+			s[args.a[i][j].n] = (s[args.a[i][j].n]||0) - args.a[i][j].s * v[choice.a[choice.ia]];
+		}
+		choice.ia++;
+	}
+	let bool = true;
+	for (let i in s) if (s[i] != 0) bool=false;
+	if (bool) output(s,v);
+
+}`
+		console.log(js);
+		let output = (...e)=>console.info(...e);
+		eval(js);
+	});
+});
+</script>
+	</body>
+</html>
