@@ -3,25 +3,24 @@
 	<head>
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>chemistry</title>
-		<script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
-		<script>new VConsole();</script>
 		<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
 <style>
-body,input,button,body>label{
+body,input,button,body>label{ /* 背景色 */
 	background-color: #fffae8;
 }
-input[type="radio"]{
+input[type="radio"]{ /* 隐藏选择 */
 	display: none;
 }
-input:not(:checked) + div{
+input:not(:checked) + div{ /* 仅选择的显示 */
 	display: none;
 }
-nav{
+
+nav{ /* 导航栏 */
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
 }
-nav label{
+nav label{ /* 导航栏选项 */
 	text-align: center;
 	display: inline-block;
 	color: #876;
@@ -31,7 +30,11 @@ nav label{
 }
 h1{
 	text-align: center;
+	margin-left: 0;
+}
+h1, h2, h3{ /* 标题 */
 	color: #aa6;
+	margin-left: 6px;
 	text-shadow:
 		0px 0px 6px #e0edd3,
 		0px 0px 12px #e0edd3,
@@ -46,69 +49,91 @@ h1{
 		0px 0px 36px #e0edd3,
 		0px 0px 42px #e0edd3;
 }
-input{
+button{ /* 按钮 */
 	border-radius: 1vw;
 }
-input:focus, p:active, button:active, label:active{
+input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 	background-color: #e0edd3;
 }
-body>div div{
+
+input:not([type]){ /* 输入文本框 */
+	width: 80%;
+	border-radius: 1vw;
+}
+
+ul{ /* 结果列表 */
+	display: block;
+	padding: 0;
 	overflow-x: auto;
 }
-body>div div > p{
+ul > li{ /* 结果列表项 */
+	display: block;
 	border: 0.6vw inset #e0edd3;
 	border-radius: 2vw;
 	padding: 1vw;
 	margin: 1vw;
 }
-#result > p:last-child{
+ul > li:first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-#result2 > p.p{
-	background-color: #e0edd3;
-}
-#result2 > p.h{
-	background-color: #ede0d3;
-}
-input:not([type]){
-	width: 80%;
+ul > li:first-of-type:before{
+	content: "最简：";
+	font-weight: bold;
 }
 </style>
 	</head>
 	<body>
 		<nav>
 			<label for="first">化学方程式</label>
-			<!--<label for="second">娆ф媺璐ㄦ暟鍏紡</label>-->
+			<!--<label for="second">欧拉质数公式</label>-->
 		</nav>
 		<input id="first" name="choice" type="radio" checked />
 		<div>
 			<h1>化学方程式</h1>
-			<p><label for="number">请输入化学方程式：</label></p>
-			<input id="expression" value="KClO3==KCl+O2" />
-			<button>计算</button>
+			<p><label for="expression">请输入化学方程式：</label></p>
+			<input id="expression" value="KClO3--KCl+O2" />
+			<button>开始</button>
 			<hr/>
-			<div id="result"></div>
+			<ul><h3>结果</h3></ul>
+			<hr/>
+			<div>
+				<h2>使用规范与注意事项</h2>
+				<ol>
+					<li>输入时，短线应该写作两个横线（“--”）</li>
+					<li>输入时，不必输入反应条件与上下箭头“↑”“↓”；<b>但作答时必须写上！</b></li>
+					<li>输入时，原子下标应该输入普通数字。如：“H₂O”写作“H2O”</li>
+					<li>输入时，<b>原子团</b>必须用乘法分配律分配，不允许输入括号。如：“Ca(OH)2”必须写作“CaO2H2”</li>
+				</ol>
+			</div>
 		</div>
 		<!--<input id="second" name="choice" type="radio" />
 		<div>
-			<h1>娆ф媺璐ㄦ暟鍏紡</h1>
-			<p><label for="start">璇疯緭鍏ュ紑濮嬫暟锛�</label></p>
+			<h1>欧拉质数公式</h1>
+			<p><label for="start">请输入开始数：</label></p>
 			<input id="start" value="1" />
-			<p><label for="end">璇疯緭鍏ョ粨鏉熸暟锛�</label></p>
+			<p><label for="end">请输入结束数：</label></p>
 			<input id="end" value="100" />
-			<button onclick="oula(start.value, end.value);">寮€濮�</button>
+			<button onclick="oula(start.value, end.value);">开始</button>
 			<hr/>
 			<div id="result2"></div>
 		</div>-->
 <script>
+function small(number){
+	return String(number).split("").map(v => small.c[v]).join("");
+}
+function omit(number){
+	return number==1? "": number;
+}
+small.c = "₀₁₂₃₄₅₆₇₈₉".split("");
 $(function(){
-	$("#expression").next("button").click(function(){
+	$("#expression ~ button").click(function(){
+		$("#expression ~ ul")[0].innerHTML = "<h3>结果：</h3>";
 		let exp = $("#expression").val();
 		let args = {
-			b: exp.split("==")[0].split("+"),
-			a: exp.split("==")[1].split("+")
+			b: exp.split("--")[0].split("+"),
+			a: exp.split("--")[1].split("+")
 		};
-		for (let i in args.b){ //姣忕鍙嶅簲鐗�
+		for (let i in args.b){ //每种反应物
 			console.log(args.b[i], args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
 			args.b[i] = args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
 			for (let j in args.b[i]){
@@ -120,7 +145,7 @@ $(function(){
 				}
 			}
 		}
-		for (let i in args.a){ //姣忕鐢熸垚鐗�
+		for (let i in args.a){ //每种生成物
 			// console.log(args.a[i], args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
 			args.a[i] = args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
 			for (let j in args.a[i]){
@@ -134,9 +159,9 @@ $(function(){
 		}
 		console.log(exp, args)
 		
-		let js = "let v=[];", chars = "abcdefghlmnopqrstuvwxyz鍚存娴�".split(""), index=0;
+		let js = "let v={};", chars = "bcfghlmnopqrstuvwxzMadeByWZH_COPYRIGHT".split(""), index=0;
 		let choice = {b:[], a:[], ib:0, ia:0};
-		if (args.a.length + args.b.length > chars.length) return alert("鍙嶅簲鐗╀笌鐢熸垚鐗╄繃澶氾紒");
+		if (args.a.length + args.b.length > chars.length) return alert("反应物与生成物过多！");
 		for (let i in args.b){
 			let char = chars[index++];
 			choice.b.push(char);
@@ -164,11 +189,25 @@ $(function(){
 	}
 	let bool = true;
 	for (let i in s) if (s[i] != 0) bool=false;
-	if (bool) output(s,v);
-
+	choice.ia = choice.ib = 0;
+	if (bool) output(
+		args.b.map(
+			deep1 =>
+				omit( v[choice.b[choice.ib++]] )+
+				deep1.map(deep2 => deep2.n+small(omit(deep2.s))).join("")
+			).join("+")
+		+"=="+args.a.map(
+			deep1 =>
+				omit( v[choice.a[choice.ia++]] )+
+				deep1.map(deep2 => deep2.n+small(omit(deep2.s))).join("")
+			).join("+")
+		);
 }`
 		console.log(js);
-		let output = (...e)=>console.info(...e);
+		let output = (e)=>{
+			console.info(e);
+			$("#expression ~ ul")[0].innerHTML += `<li>${e}</li>`;
+		};
 		eval(js);
 	});
 });
