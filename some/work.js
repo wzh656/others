@@ -86,15 +86,15 @@ if (bool) self.postMessage(
 		deep1 =>
 			omit( v[choice.b[choice.ib++]] )+
 			deep1.map(deep2 => deep2.n+small(omit(deep2.s))).join("")
-		).join("+")
+	).join("+")
 	+"=="+args.a.map(
 		deep1 =>
 			omit( v[choice.a[choice.ia++]] )+
 			deep1.map(deep2 => deep2.n+small(omit(deep2.s))).join("")
-		).join("+")
-	);
+	).join("+")
+);
 };
-self.close();`
+self.postMessage(null);`
 			eval(js);
 			break;
 		default:
