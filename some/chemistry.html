@@ -171,11 +171,8 @@ footer{
 		</div>
 <script>
 $(function(){
-	$("#expression ~ button").click(function(){
+	let expression_event = ()=>{
 		$("#expression ~ ul")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
-		$("#expression ~ button")
-			.css("background-color", "#edd3e0")
-			.attr("disabled", "true");
 		let worker = new Worker("./work.js");
 		worker.onmessage = function(e){
 			console.info(e.data);
@@ -185,14 +182,19 @@ $(function(){
 				$("#expression ~ ul > h3").html("结果：");
 				$("#expression ~ button")
 					.css("background-color", "#fffae8")
-					.removeAttr("disabled");
+					.html("配平")
+					[0].onclick = ()=>expression_event;
 			}else{
 				$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
 			}
 		}
 		worker.postMessage({type: "expression", value: $("#expression").val()});
+		$("#expression ~ button")
+			.css("background-color", "#edd3e0")
+			.html("停止")
+			[0].onclick = ()=>worker.terminate();
 		console.log(worker)
-	});
+	};
 });
 </script>
 	</body>
