@@ -174,7 +174,6 @@ footer{
 			<footer>Copyright © 2020 by WZH 保留一切权利</footer>
 		</div>
 <script>
-$(function(){
 	let expression_event = ()=>{
 		$("#expression ~ ul")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
 		let worker = new Worker("./work.js");
@@ -187,7 +186,7 @@ $(function(){
 				$("#expression ~ button")
 					.css("background-color", "#fffae8")
 					.html("配平")
-					[0].onclick = ()=>expression_event;
+					[0].onclick = expression_event;
 			}else{
 				$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
 			}
@@ -196,11 +195,10 @@ $(function(){
 		$("#expression ~ button")
 			.css("background-color", "#edd3e0")
 			.html("停止")
-			[0].onclick = ()=>worker.terminate();
+			[0].onclick = ()=>{worker.terminate()};
 		console.log(worker)
 	};
 	$("#expression ~ button")[0].onclick = ()=>expression_event;
-});
 </script>
 	</body>
 </html>
