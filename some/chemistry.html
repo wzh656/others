@@ -98,6 +98,10 @@ ul > li{ /* 结果列表项 */
 div > ul > li:first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 }
+div > ul > li:last-of-type{ /* 高亮最后 */
+	background-color: #d3ede0;
+	text-align: center;
+}
 div > ul > li:first-of-type:before{
 	content: "最简：";
 	font-weight: bold;
@@ -172,7 +176,12 @@ $(function(){
 		let worker = new Worker("./work.js");
 		worker.onmessage = function(e){
 			console.info(e.data);
-			$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
+			if (e.data === null){
+				worker.terminate();
+				$("#expression ~ ul")[0].innerHTML += `<li>线程执行完成</li>`;
+			}else{
+				$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
+			}
 		}
 		worker.postMessage({type: "expression", value: $("#expression").val()});
 		console.log(worker)
