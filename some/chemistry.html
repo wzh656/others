@@ -98,7 +98,7 @@ ul > li{ /* 结果列表项 */
 div > ul > li:first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-div > ul > li:last-of-type{ /* 高亮最后 */
+div > ul > li.finish:last-of-type{ /* 高亮最后 */
 	background-color: #d3ede0;
 	text-align: center;
 }
@@ -172,13 +172,20 @@ footer{
 <script>
 $(function(){
 	$("#expression ~ button").click(function(){
-		$("#expression ~ ul")[0].innerHTML = "<h3>结果：</h3>";
+		$("#expression ~ ul")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
+		$("#expression ~ button")
+			.css("background-color", "#edd3e0")
+			.attr("disabled", "true");
 		let worker = new Worker("./work.js");
 		worker.onmessage = function(e){
 			console.info(e.data);
 			if (e.data === null){
 				worker.terminate();
-				$("#expression ~ ul")[0].innerHTML += `<li>线程执行完成</li>`;
+				$("#expression ~ ul")[0].innerHTML += `<li class="finish">线程执行完成</li>`;
+				$("#expression ~ ul > h3").html("结果：");
+				$("#expression ~ button")
+					.css("background-color", "#fffae8")
+					.removeAttr("disabled");
 			}else{
 				$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
 			}
