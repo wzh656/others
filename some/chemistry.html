@@ -77,6 +77,7 @@ p{
 }
 button{ /* 按钮 */
 	border-radius: 1vw;
+	margin-top: 0.6vh;
 }
 input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 	background-color: #e0edd3;
@@ -131,9 +132,10 @@ footer{
 	<body>
 		<nav>
 			<label for="expression_page">化学方程式</label>
+			<label for="mass_page">相对质量计算</label>
 			<label for="about_page">关于</label>
 		</nav>
-		<input id="expression_page" name="choice" type="radio" checked />
+		<input id="expression_page" name="nav" type="radio" checked />
 		<div>
 			<h1>化学方程式</h1>
 			<p><label for="expression">请输入化学方程式：</label></p>
@@ -145,14 +147,39 @@ footer{
 			<div>
 				<h2>使用规范与注意事项</h2>
 				<ol>
-					<li>输入时，短线应该写作两个横线（“--”）</li>
-					<li>输入时，不必输入反应条件与上下箭头“↑”“↓”；<b>但作答时必须写上！</b></li>
-					<li>输入时，原子下标应该输入普通数字。如：“H₂O”写作“H2O”</li>
+					<li>输入时，反应短线应该写作两个横线（“--”）</li>
+					<li>输入时，不应输入反应条件与上下箭头“↑”“↓”；<b>但作答时必须写上！</b></li>
+					<li>输入时，原子下标应该<b>输入普通数字，不应使用下标</b>。如：“H₂O”写作“H2O”</li>
 					<li>输入时，<b>原子团</b>必须用乘法分配律分配，不允许输入括号（其实是懒得添加支持）。如：“Ca(OH)2”必须写作“CaO2H2”</li>
 				</ol>
 			</div>
 		</div>
-		<input id="about_page" name="choice" type="radio" />
+		<input id="mass_page" name="nav" type="radio" />
+		<div>
+			<h1>相对质量计算</h1>
+			<p><label for="formula">请输入化学式：</label></p>
+			<input id="formula" value="2CO2" /><br/>
+			<button disabled>计算相对质量（未开发完成）</button>
+			<hr/>
+			<h3>结果</h3>
+			<div></div>
+			<hr/>
+			<div>
+				<h2>使用规范与注意事项</h2>
+				<ol>
+					<li>输入时，原子下标应该<b>输入普通数字，不应使用下标</b>。如：“H₂O”写作“H2O”</li>
+					<li>输入时，<b>原子团</b>必须用乘法分配律分配，不允许输入括号（其实是懒得添加支持）。如：“Ca(OH)2”必须写作“CaO2H2”</li>
+					<li>输入时，<b>离子</b>不应输入电性。如：“Na⁺”必须写作“Na”</li>
+					<li>
+						<h3>一些支持的元素</h3>
+						<table border=2>
+							<tr><th>原子序数</th><th>名称</th><th>相对质量</th></tr>
+						</table>
+					</li>
+				</ol>
+			</div>
+		</div>
+		<input id="about_page" name="nav" type="radio" />
 		<div>
 			<h1>关于</h1>
 			<p>作者：WZH</p>
@@ -184,6 +211,8 @@ footer{
 			<footer>Copyright © 2020 by WZH 保留一切权利</footer>
 		</div>
 <script>
+$(function(){
+	/* 配平化学方程式 */
 	let expression_event = ()=>{
 		$("#expression ~ ul")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
 		let worker = new Worker("./work.js");
@@ -216,6 +245,42 @@ footer{
 		console.log(worker)
 	};
 	$("#expression ~ button")[0].onclick = expression_event;
+	
+	/* 相对质量计算 */
+	const ATOMS = [
+		{name: "H", mass: 1},
+		{name: "He", mass: 4},
+		{name: "Li", mass: 7},
+		{name: "Be", mass: 9},
+		{name: "B", mass: 11},
+		{name: "C", mass: 12},
+		{name: "N", mass: 14},
+		{name: "O", mass: 16},
+		{name: "F", mass: 19},
+		{name: "Ne", mass: 20},
+		{name: "Na", mass: 23},
+		{name: "Mg", mass: 24},
+		{name: "Al", mass: 27},
+		{name: "Si", mass: 28},
+		{name: "P", mass: 31},
+		{name: "S", mass: 32},
+		{name: "Cl", mass: 35},
+		{name: "Ar", mass: 40},
+		{name: "K", mass: 39},
+		{name: "Ca", mass: 40}
+	];
+	for (let i in ATOMS){
+		$("#formula ~ div > ol > li > table").append(
+			$("<tr></tr>")
+				.append( $(`<td>${+i+1}</td>`) )
+				.append( $(`<td>${ATOMS[i].name}</td>`) )
+				.append( $(`<td>${ATOMS[i].mass}</td>`) )
+		);
+	}
+	$("#formula ~ button").click(function(){
+		
+	});
+});
 </script>
 	</body>
 </html>
