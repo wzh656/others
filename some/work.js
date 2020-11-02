@@ -1,11 +1,12 @@
 /*
+work.js 化学Helper 后台工作线程
 　┐ ├┬─┐ ┌──┼┼┐
 　│ ││　 ┌──┼┼┐
 │╯├─┐ ╭──┴╯			W
 └╯│   ┌────┐			Z
 　│　├─┐ ├────┤		H
 　╰┘└　 └────╯
-Copyright © 2020 by wzh
+化学Helper Copyright © 2020 by wzh
 保留一切权利
 */
 function omit(n){
