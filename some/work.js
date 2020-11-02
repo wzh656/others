@@ -12,6 +12,7 @@ function omit(n){
 	return n==1? "": n;
 }
 function small(n){
+	//return "<sub>"+n+"</sub>";
 	return [...String(n)].map(v => small.c[v]).join("");
 }
 small.c = "₀₁₂₃₄₅₆₇₈₉";
