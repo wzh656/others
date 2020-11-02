@@ -90,7 +90,7 @@ input:not([type]){ /* 输入文本框 */
 ul{ /* 结果列表 */
 	display: block;
 	padding: 0;
-	overflow-x: auto;
+	/*overflow-x: auto;*/
 }
 ul > li{ /* 结果列表项 */
 	display: block;
@@ -98,32 +98,42 @@ ul > li{ /* 结果列表项 */
 	border-radius: 2vw;
 	padding: 1vw;
 	margin: 1vw;
+	overflow-x: auto;
 }
-div > ul > li:first-of-type{ /* 高亮第一 */
+div > ul > li:first-of-type:not(.msg){ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-div > ul > li.finish:last-of-type{ /* 高亮最后 */
-	background-color: #d3ede0;
-	text-align: center;
-}
-div > ul > li:first-of-type:before{
+div > ul > li:first-of-type:not(.msg):before{
 	content: "最简：";
 	font-weight: bold;
 }
+div > ul > li:first-of-type:not(.msg):after{
+	content: "\a（请添加反应条件及上下键）";
+	white-space: pre;
+	font-weight: bold;
+}
+div > ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
+	background-color: #d3ede0;
+	text-align: center;
+}
+div > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
+	background-color: #ede0d3;
+	text-align: center;
+}
 footer{
 	width: 100%;
-	position: absolute;
-	bottom: 0;
+	position: fixed;
+	bottom: 1vh;
 	text-align: center;
 }
 </style>
 	</head>
 	<body>
 		<nav>
-			<label for="first">化学方程式</label>
-			<label for="second">关于</label>
+			<label for="expression_page">化学方程式</label>
+			<label for="about_page">关于</label>
 		</nav>
-		<input id="first" name="choice" type="radio" checked />
+		<input id="expression_page" name="choice" type="radio" checked />
 		<div>
 			<h1>化学方程式</h1>
 			<p><label for="expression">请输入化学方程式：</label></p>
@@ -142,7 +152,7 @@ footer{
 				</ol>
 			</div>
 		</div>
-		<input id="second" name="choice" type="radio" />
+		<input id="about_page" name="choice" type="radio" />
 		<div>
 			<h1>关于</h1>
 			<p>作者：WZH</p>
@@ -181,7 +191,7 @@ footer{
 			console.info(e.data);
 			if (e.data === null){
 				worker.terminate();
-				$("#expression ~ ul")[0].innerHTML += `<li class="finish">线程执行完成</li>`;
+				$("#expression ~ ul")[0].innerHTML += `<li class="msg finished">线程执行完成</li>`;
 				$("#expression ~ ul > h3").html("结果：");
 				$("#expression ~ button")
 					.css("background-color", "#fffae8")
@@ -197,6 +207,11 @@ footer{
 			.html("停止")
 			[0].onclick = ()=>{
 				worker.terminate();
+				$("#expression ~ ul")[0].innerHTML += `<li class="msg stopped">线程已停止</li>`;
+				$("#expression ~ button")
+					.css("background-color", "#fffae8")
+					.html("配平")
+					[0].onclick = expression_event;
 			};
 		console.log(worker)
 	};
