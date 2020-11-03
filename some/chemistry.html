@@ -14,6 +14,11 @@
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>化学Helper</title>
 		<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
+		
+		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+ 		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+ 		<script>eruda.init();</script>
+ 		<script>new VConsole();</script>
 <style>
 body, input, button, body>label{ /* 背景色 */
 	background-color: #fffae8;
@@ -38,6 +43,7 @@ nav label{ /* 导航栏选项 */
 	width: 30vw;
 	margin: 0 1vw;
 	border: 0.6vw outset #876;
+	border-radius: 1vw;
 }
 h1{
 	text-align: center;
@@ -118,14 +124,27 @@ div > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 	text-align: center;
 }
 
-#formula ~ div:not(:empty):after{
+#formula{
+	width: 86vw;
+}
+#formula ~ div:not(:empty):first-of-type{
+	border: 0.6vw inset #e0edd3;
+	border-radius: 2vw;
+	padding: 1vw;
+	margin: 1vw;
+	overflow-x: auto;
+	background-color: #e0edd3;
+}
+#formula + div:not(:empty):after{
 	content: "（单位：1）";
 	font-weight: bold;
 }
+
+#about_page + div > div{
+	height: 80vh;
+	overflow-y: auto;
+}
 footer{
-	width: 100%;
-	position: fixed;
-	bottom: 1vh;
 	text-align: center;
 }
 </style>
@@ -182,34 +201,36 @@ footer{
 		</div>
 		<input id="about_page" name="nav" type="radio" />
 		<div>
-			<h1>关于 化学Helper</h1>
-			<p>作者：WZH</p>
-			<p>QQ：1826632591</p>
-			<p>有改进意见等欢迎加QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1826632591&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1826632591:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
-			<p>邮箱：<a href="mailto:1826632591@qq.com?subject=来自《化学方程式》程序">1826632591@qq.com</a></p>
-			<details>
-				<summary>同开发者的其他程序</summary>
-				<ul>
-					<li>
-						<details>
-							<summary>我的世界（仿）</summary>
-							<ul>
-								<li><a href="https://github.com/wzh656/MinecraftWeb/releases/download/v2.0.0-alpha/Minecraft.apk">手机APK版</a></li>
-								<li><a href="https://wzh656.github.io/MinecraftWeb/home.html">网页版（网速慢者无法打开）</a></li>
-							</ul>
-						</details>
-					</li>
-					<li>
-						<details>
-							<summary>五子棋</summary>
-							<ul>
-								<li><a href="https://wzh656.github.io/gobang/">网页版</a></li>
-							</ul>
-						</details>
-					</li>
-				</ul>
-			</details>
-			<footer>化学Helper Copyright © 2020 by WZH 保留一切权利</footer>
+			<div>
+				<h1>关于 化学Helper</h1>
+				<p>作者：WZH</p>
+				<p>QQ：1826632591</p>
+				<p>有改进意见等欢迎加QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1826632591&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1826632591:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
+				<p>邮箱：<a href="mailto:1826632591@qq.com?subject=来自《化学方程式》程序">1826632591@qq.com</a></p>
+				<details>
+					<summary>同开发者的其他程序</summary>
+					<ul>
+						<li>
+							<details>
+								<summary>我的世界（仿）</summary>
+								<ul>
+									<li><a href="https://github.com/wzh656/MinecraftWeb/releases/download/v2.0.0-alpha/Minecraft.apk">手机APK版</a></li>
+									<li><a href="https://wzh656.github.io/MinecraftWeb/home.html">网页版（网速慢者无法打开）</a></li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details>
+								<summary>五子棋</summary>
+								<ul>
+									<li><a href="https://wzh656.github.io/gobang/">网页版</a></li>
+								</ul>
+							</details>
+						</li>
+					</ul>
+				</details>
+			</div>
+			<footer><hr/>化学Helper Copyright © 2020 by WZH 保留一切权利</footer>
 		</div>
 <script>
 $(function(){
