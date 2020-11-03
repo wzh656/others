@@ -117,6 +117,11 @@ div > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
+
+#formula ~ div:not(:empty):after{
+	content: "（单位：1）";
+	font-weight: bold;
+}
 footer{
 	width: 100%;
 	position: fixed;
@@ -154,8 +159,8 @@ footer{
 		<div>
 			<h1>相对质量计算</h1>
 			<p><label for="formula">请输入化学式：</label></p>
-			<input id="formula" value="2CO2" /><br/>
-			<button disabled>计算相对质量（未开发完成）</button>
+			<input id="formula" value="6Al2O3" /><br/>
+			<button>计算相对质量</button>
 			<hr/>
 			<h3>结果</h3>
 			<div></div>
@@ -274,7 +279,24 @@ $(function(){
 		);
 	}
 	$("#formula ~ button").click(function(){
-		
+		let formula = $("#formula").val();
+		let args = [
+			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[0],
+			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[1]
+				.replace(/([A-Z][a-z]*[0-9]*)/, "$1\n").split("\n")
+					.map(v => {return{
+						n: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[0],
+						s: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[1]
+					}})
+		];
+		let mass = eval(
+			args[1]
+				.map(v => v.s*ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)].mass)
+				.join("+")
+		);
+		console.log(args, mass*args[0]);
+		$("#formula ~ div")[0].innerHTML = `相对质量：${args[0]}*${mass}=${args[0]*mass}`;
+		$("#formula ~ h3").html("结果：");
 	});
 });
 </script>
