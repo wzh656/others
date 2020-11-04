@@ -191,7 +191,7 @@ footer{
 					<li>
 						<h3>一些支持的元素</h3>
 						<table border=2>
-							<tr><th>原子序数</th><th>名称</th><th>相对质量</th></tr>
+							<tr><th>原子序数</th><th>元素符号</th><th>相对质量</th></tr>
 						</table>
 					</li>
 				</ol>
@@ -311,7 +311,7 @@ $(function(){
 		);
 	}
 	$("#formula ~ button").click(function(){
-		("#formula ~ ul")[0].innerHTML = "<h3>结果：</h3>";
+		$("#formula ~ ul")[0].innerHTML = "<h3>结果：</h3>";
 		let formula = $("#formula").val();
 		let args = [
 			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[0] || 1,
