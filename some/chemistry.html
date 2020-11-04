@@ -102,23 +102,23 @@ ul > li{ /* 结果列表项 */
 	overflow-x: auto;
 }
 
-#expression ~ ul > li:first-of-type:not(.msg){ /* 高亮第一 */
+#expression ~ ul > li:not(.msg):first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-#expression ~ > ul > li:first-of-type:not(.msg):before{
+#expression ~ ul > li:not(.msg):first-of-type:before{
 	content: "最简：";
 	font-weight: bold;
 }
-#expression ~ > ul > li:first-of-type:not(.msg):after{
+#expression ~ ul > li:not(.msg):first-of-type:after{
 	content: "\a（请添加反应条件及上下键）";
 	white-space: pre;
 	font-weight: bold;
 }
-#expression ~ > ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
+#expression ~ ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
 	background-color: #d3ede0;
 	text-align: center;
 }
-#expression ~ > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
+#expression ~ ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
@@ -130,15 +130,6 @@ ul > li{ /* 结果列表项 */
 	background-color: #e0edd3;
 	font-weight: bold;
 }
-/*#formula ~ > ul > li:last-of-type:before{
-	content: "最简：";
-	font-weight: bold;
-}
-#formula ~ > ul > li:last-of-type:after{
-	content: "\a（请添加反应条件及上下键）";
-	white-space: pre;
-	font-weight: bold;
-}*/
 
 #about_page + div > div{
 	height: 80vh;
