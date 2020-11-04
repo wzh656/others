@@ -38,7 +38,7 @@ nav label{ /* 导航栏选项 */
 	width: 30vw;
 	margin: 0 1vw;
 	border: 0.6vw outset #876;
-	border-radius: 1vw;
+	border-radius: 1vw; 
 }
 h1{
 	text-align: center;
@@ -98,23 +98,24 @@ ul > li{ /* 结果列表项 */
 	margin: 1vw;
 	overflow-x: auto;
 }
-div > ul > li:first-of-type:not(.msg){ /* 高亮第一 */
+
+#expression ~ ul > li:first-of-type:not(.msg){ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-div > ul > li:first-of-type:not(.msg):before{
+#expression ~ > ul > li:first-of-type:not(.msg):before{
 	content: "最简：";
 	font-weight: bold;
 }
-div > ul > li:first-of-type:not(.msg):after{
+#expression ~ > ul > li:first-of-type:not(.msg):after{
 	content: "\a（请添加反应条件及上下键）";
 	white-space: pre;
 	font-weight: bold;
 }
-div > ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
+#expression ~ > ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
 	background-color: #d3ede0;
 	text-align: center;
 }
-div > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
+#expression ~ > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
@@ -122,18 +123,19 @@ div > ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 #formula{
 	width: 86vw;
 }
-#formula ~ div:not(:empty):first-of-type{
-	border: 0.6vw inset #e0edd3;
-	border-radius: 2vw;
-	padding: 1vw;
-	margin: 1vw;
-	overflow-x: auto;
+#formula ~ ul > li:last-of-type{ /* 高亮最后 */
 	background-color: #e0edd3;
-}
-#formula + div:not(:empty):after{
-	content: "（单位：1）";
 	font-weight: bold;
 }
+/*#formula ~ > ul > li:last-of-type:before{
+	content: "最简：";
+	font-weight: bold;
+}
+#formula ~ > ul > li:last-of-type:after{
+	content: "\a（请添加反应条件及上下键）";
+	white-space: pre;
+	font-weight: bold;
+}*/
 
 #about_page + div > div{
 	height: 80vh;
@@ -176,8 +178,9 @@ footer{
 			<input id="formula" value="6Al2O3" /><br/>
 			<button>计算相对质量</button>
 			<hr/>
-			<h3>结果</h3>
-			<div></div>
+			<ul>
+				<h3>结果</h3>
+			</ul>
 			<hr/>
 			<div>
 				<h2>使用规范与注意事项</h2>
@@ -228,6 +231,9 @@ footer{
 			<footer><hr/>化学Helper Copyright © 2020 by WZH 保留一切权利</footer>
 		</div>
 <script>
+function small(n){
+	return "<sub>"+n+"</sub>";
+}
 $(function(){
 	/* 配平化学方程式 */
 	let expression_event = ()=>{
@@ -284,7 +290,17 @@ $(function(){
 		{name: "Cl", mass: 35},
 		{name: "Ar", mass: 40},
 		{name: "K", mass: 39},
-		{name: "Ca", mass: 40}
+		{name: "Ca", mass: 40},
+		{name: "Sc", mass: 45},
+		{name: "Ti", mass: 46},
+		{name: "V", mass: 51},
+		{name: "Cr", mass: 52},
+		{name: "Mn", mass: 54},
+		{name: "Fe", mass: 56},
+		{name: "Co", mass: 56},
+		{name: "Ni", mass: 59},
+		{name: "Cu", mass: 64},
+		{name: "Zn", mass: 65}
 	];
 	for (let i in ATOMS){
 		$("#formula ~ div > ol > li > table").append(
@@ -295,24 +311,43 @@ $(function(){
 		);
 	}
 	$("#formula ~ button").click(function(){
+		("#formula ~ ul")[0].innerHTML = "<h3>结果：</h3>";
 		let formula = $("#formula").val();
 		let args = [
-			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[0],
+			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[0] || 1,
 			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[1]
-				.replace(/([A-Z][a-z]*[0-9]*)/, "$1\n").split("\n")
+				.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1)
 					.map(v => {return{
 						n: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[0],
-						s: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[1]
+						s: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[1] || 1
 					}})
 		];
 		let mass = eval(
 			args[1]
-				.map(v => v.s*ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)].mass)
+				.map(
+					v =>
+						v.s * (
+							ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)] || {mass:prompt(`请输入${v.n}元素的相对原子质量`)}
+						).mass
+				)
 				.join("+")
 		);
+		args[1]
+			.map(
+				v => {
+					let m = (
+						ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)] || {mass:prompt(`请输入${v.n}元素的相对原子质量`)}
+					).mass;
+					$("#formula ~ ul").append(
+						$("<li></li>").html(`${v.n}元素相对质量m${small(v.n)}=${v.s}*${m}=${v.s*m}（单位：1）<br/>${v.n}元素质量分数m${small(v.n)}%=${v.s*m}/${mass}*100%=${Math.round(v.s*m/mass*100*10)/10}%`)
+					);
+					return v.s*m;
+				}
+			);
 		console.log(args, mass*args[0]);
-		$("#formula ~ div")[0].innerHTML = `相对质量：${args[0]}*${mass}=${args[0]*mass}`;
-		$("#formula ~ h3").html("结果：");
+		$("#formula ~ ul").append(
+			$("<li></li>").html(`相对质量m=${args[0]}*${mass}=${args[0]*mass}（单位：1）`)
+		);
 	});
 });
 </script>
