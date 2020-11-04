@@ -13,10 +13,10 @@ function omit(n){
 	return n==1? "": n;
 }
 function small(n){
-	//return "<sub>"+n+"</sub>";
-	return [...String(n)].map(v => small.c[v]).join("");
+	return "<sub>"+n+"</sub>";
+	//return [...String(n)].map(v => small.c[v]).join("");
 }
-small.c = "₀₁₂₃₄₅₆₇₈₉";
+//small.c = "₀₁₂₃₄₅₆₇₈₉";
 self.onmessage = function(e){
 	let type = e.data.type;
 	switch (type){
