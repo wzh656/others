@@ -30,9 +30,10 @@ input:not(:checked) + div{ /* 仅选择的显示 */
 
 nav{ /* 导航栏 */
 	width: 100%;
-	overflow-x: scroll;
-	display: flex;
-	justify-content: space-around;
+	overflow-x: auto;
+	white-space: nowrap;
+	/*display: flex;
+	justify-content: space-around;*/
 }
 nav label{ /* 导航栏选项 */
 	text-align: center;
@@ -84,7 +85,7 @@ input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 }
 
 input:not([type]){ /* 输入文本框 */
-	width: 80%;
+	width: 86%;
 	border-radius: 1vw;
 }
 
@@ -102,14 +103,14 @@ ul > li{ /* 结果列表项 */
 	overflow-x: auto;
 }
 
-#expression ~ ul > li:not(.msg):first-of-type{ /* 高亮第一 */
+#expression ~ ul > li:first-of-type:not(.msg){ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-#expression ~ ul > li:not(.msg):first-of-type:before{
+#expression ~ ul > li:first-of-type:not(.msg):before{
 	content: "最简：";
 	font-weight: bold;
 }
-#expression ~ ul > li:not(.msg):first-of-type:after{
+#expression ~ ul > lifirst-of-type:not(.msg):after{
 	content: "\a（请添加反应条件及上下键）";
 	white-space: pre;
 	font-weight: bold;
@@ -123,20 +124,33 @@ ul > li{ /* 结果列表项 */
 	text-align: center;
 }
 
-#formula{
-	width: 86vw;
-}
-#formula ~ ul > li:last-of-type{ /* 高亮最后 */
+#formula ~ ul > li:first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 	font-weight: bold;
 }
 
+#javascript ~ div:first-of-type:not(.empty){
+	display: block;
+	border: 0.6vw inset #e0edd3;
+	border-radius: 2vw;
+	padding: 1vw;
+	margin: 1vw;
+	overflow-x: auto;
+}
+#javascript ~ div:first-of-type:not(.empty):before{
+	content: "计算结果：";
+}
+#javascript ~ div:first-of-type:not(.empty):active{
+	background-color: #e0edd3;
+}
+
 #about_page + div > div{
-	height: 80vh;
+	height: 86.6vh;
 	overflow-y: auto;
 }
 footer{
 	text-align: center;
+	font-size: 0.6em;
 }
 </style>
 	</head>
@@ -144,13 +158,14 @@ footer{
 		<nav>
 			<label for="expression_page">化学方程式</label>
 			<label for="mass_page">相对质量计算</label>
+			<label for="calculator_page">计算器</label>
 			<label for="about_page">关于</label>
 		</nav>
 		<input id="expression_page" name="nav" type="radio" checked />
 		<div>
 			<h1>化学方程式</h1>
 			<p><label for="expression">请输入化学方程式：</label></p>
-			<input id="expression" value="KClO3--KCl+O2" />
+			<input id="expression" value="KClO3--KCl+O2" /><br/>
 			<button>配平</button>
 			<hr/>
 			<ul><h3>结果</h3></ul>
@@ -191,6 +206,22 @@ footer{
 				</ol>
 			</div>
 		</div>
+		<input id="calculator_page" name="nav" type="radio" />
+		<div>
+			<h1>计算器</h1>
+			<p><label for="javascript">请输入表达式：</label></p>
+			<input id="javascript" value="3**2+sin(0.1/180*PI)" />
+			<button>计算</button>
+			<hr/>
+			<h3>结果</h3>
+			<div></div>
+			<hr/>
+			<div>
+				<h2>使用规范与注意事项</h2>
+				<ol>
+				</ol>
+			</div>
+		</div>
 		<input id="about_page" name="nav" type="radio" />
 		<div>
 			<div>
@@ -202,6 +233,30 @@ footer{
 				<details>
 					<summary>同开发者的其他程序</summary>
 					<ul>
+						<li>
+							<details>
+								<summary>绘图</summary>
+								<ul>
+									<li><a href="https://wzh656.github.io/others/draw.html">网页版</a></li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details>
+								<summary>ThreeBody模拟</summary>
+								<ul>
+									<li><a href="https://wzh656.github.io/others/ThreeBody.html">网页版</a></li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details>
+								<summary>分解质因数及欧拉质数公式</summary>
+								<ul>
+									<li><a href="https://wzh656.github.io/others/some/PrimeFactorization.html">网页版</a></li>
+								</ul>
+							</details>
+						</li>
 						<li>
 							<details>
 								<summary>我的世界（仿）</summary>
@@ -216,6 +271,14 @@ footer{
 								<summary>五子棋</summary>
 								<ul>
 									<li><a href="https://wzh656.github.io/gobang/">网页版</a></li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details>
+								<summary>天气预报</summary>
+								<ul>
+									<li><a href="https://wzh656.github.io/others/weather.html">网页版</a></li>
 								</ul>
 							</details>
 						</li>
@@ -326,6 +389,10 @@ $(function(){
 				)
 				.join("+")
 		);
+		console.log(args, mass*args[0]);
+		$("#formula ~ ul").append(
+			$("<li></li>").html(`相对质量m=${args[0]}*${mass}=${args[0]*mass}（单位：1）`)
+		);
 		args[1]
 			.map(
 				v => {
@@ -338,9 +405,11 @@ $(function(){
 					return v.s*m;
 				}
 			);
-		console.log(args, mass*args[0]);
-		$("#formula ~ ul").append(
-			$("<li></li>").html(`相对质量m=${args[0]}*${mass}=${args[0]*mass}（单位：1）`)
+	});
+	$("#javascript + button").click(function(){
+		console.log( $("#javascript").val() );
+		$("#javascript ~ div:eq(0)").html(
+			eval(`with(Math){ ${ $("#javascript").val() } }`)
 		);
 	});
 });
