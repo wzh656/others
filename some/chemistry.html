@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 　┐ ├┬─┐ ┌──┼┼┐
@@ -24,12 +25,24 @@ body, input, button, body>label{ /* 背景色 */
 input[type="radio"]{ /* 隐藏选择 */
 	display: none;
 }
-input:not(:checked) + div{ /* 仅选择的显示 */
-	display: none;
+input[name="nav"]:not(:checked) + div{ /* 仅选择的显示 */
+	display: none !important;
 }
 
+
+body{
+	display: flex;
+	/*height: 97.34vh;*/
+	flex-direction: column-reverse;
+	/*margin: 1.33vh;*/
+}
+/*body > div{
+	height: 100%;
+	flex-shrink: 1;
+}*/
 nav{ /* 导航栏 */
 	width: 100%;
+	/*height: 8vw;*/
 	overflow-x: auto;
 	white-space: nowrap;
 	/*display: flex;
@@ -44,6 +57,14 @@ nav label{ /* 导航栏选项 */
 	border: 0.6vw outset #876;
 	border-radius: 1vw; 
 }
+#expression_page:checked ~ nav > label[for="expression_page"],
+#mass_page:checked ~ nav > label[for="mass_page"],
+#calculator_page:checked ~ nav > label[for="calculator_page"],
+#about_page:checked ~ nav > label[for="about_page"]{
+	background-color: #e0edd3;
+	color: #0f021c;
+}
+
 h1{
 	text-align: center;
 	margin-left: 0;
@@ -85,7 +106,7 @@ input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 }
 
 input:not([type]){ /* 输入文本框 */
-	width: 86%;
+	width: 96%;
 	border-radius: 1vw;
 }
 
@@ -144,9 +165,13 @@ ul > li{ /* 结果列表项 */
 	background-color: #e0edd3;
 }
 
-#about_page + div > div{
-	height: 86.6vh;
-	overflow-y: auto;
+#about_page + div{
+	display: flex;
+	height: 92vh;
+	flex-direction: column;
+}
+#about_page + div > details{
+	flex-grow: 1;
 }
 footer{
 	text-align: center;
@@ -155,12 +180,6 @@ footer{
 </style>
 	</head>
 	<body>
-		<nav>
-			<label for="expression_page">化学方程式</label>
-			<label for="mass_page">相对质量计算</label>
-			<label for="calculator_page">计算器</label>
-			<label for="about_page">关于</label>
-		</nav>
 		<input id="expression_page" name="nav" type="radio" checked />
 		<div>
 			<h1>化学方程式</h1>
@@ -200,7 +219,7 @@ footer{
 					<li>
 						<h3>一些支持的元素</h3>
 						<table border=2>
-							<tr><th>原子序数</th><th>元素符号</th><th>相对质量</th></tr>
+							<tr><th>原子序数</th><th>元素名称</th><th>元素符号</th><th>相对质量</th></tr>
 						</table>
 					</li>
 				</ol>
@@ -224,69 +243,73 @@ footer{
 		</div>
 		<input id="about_page" name="nav" type="radio" />
 		<div>
-			<div>
-				<h1>关于 化学Helper</h1>
-				<p>作者：WZH</p>
-				<p>QQ：1826632591</p>
-				<p>有改进意见等欢迎加QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1826632591&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1826632591:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
-				<p>邮箱：<a href="mailto:1826632591@qq.com?subject=来自《化学方程式》程序">1826632591@qq.com</a></p>
-				<details>
-					<summary>同开发者的其他程序</summary>
-					<ul>
-						<li>
-							<details>
-								<summary>绘图</summary>
-								<ul>
-									<li><a href="https://wzh656.github.io/others/draw.html">网页版</a></li>
+			<h1>关于 化学Helper</h1>
+			<p>作者：WZH</p>
+			<p>QQ：1826632591</p>
+			<p>有改进意见等欢迎加QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1826632591&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1826632591:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
+			<p>邮箱：<a href="mailto:1826632591@qq.com?subject=来自《化学方程式》程序">1826632591@qq.com</a></p>
+			<details>
+				<summary>同开发者的其他程序</summary>
+				<ul>
+					<li>
+						<details>
+							<summary>绘图</summary>
+							<ul>
+								<li><a href="https://wzh656.github.io/others/draw.html">网页版</a></li>
+							</ul>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>ThreeBody模拟</summary>
+							<ul>
+								<li><a href="https://wzh656.github.io/others/ThreeBody.html">网页版</a></li>
+							</ul>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>分解质因数及欧拉质数公式</summary>
+							<ul>
+								<li><a href="https://wzh656.github.io/others/some/PrimeFactorization.html">网页版</a></li>
+							</ul>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>我的世界（仿）</summary>
+							<ul>
+								<li><a href="https://github.com/wzh656/MinecraftWeb/releases/download/v2.0.0-alpha/Minecraft.apk">手机APK版</a></li>
+								<li><a href="https://wzh656.github.io/MinecraftWeb/home.html">网页版（网速慢者无法打开）</a></li>
+							</ul>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>五子棋</summary>
+							<ul>
+								<li><a href="https://wzh656.github.io/gobang/">网页版</a></li>
 								</ul>
-							</details>
-						</li>
-						<li>
-							<details>
-								<summary>ThreeBody模拟</summary>
-								<ul>
-									<li><a href="https://wzh656.github.io/others/ThreeBody.html">网页版</a></li>
-								</ul>
-							</details>
-						</li>
-						<li>
-							<details>
-								<summary>分解质因数及欧拉质数公式</summary>
-								<ul>
-									<li><a href="https://wzh656.github.io/others/some/PrimeFactorization.html">网页版</a></li>
-								</ul>
-							</details>
-						</li>
-						<li>
-							<details>
-								<summary>我的世界（仿）</summary>
-								<ul>
-									<li><a href="https://github.com/wzh656/MinecraftWeb/releases/download/v2.0.0-alpha/Minecraft.apk">手机APK版</a></li>
-									<li><a href="https://wzh656.github.io/MinecraftWeb/home.html">网页版（网速慢者无法打开）</a></li>
-								</ul>
-							</details>
-						</li>
-						<li>
-							<details>
-								<summary>五子棋</summary>
-								<ul>
-									<li><a href="https://wzh656.github.io/gobang/">网页版</a></li>
-								</ul>
-							</details>
-						</li>
-						<li>
-							<details>
-								<summary>天气预报</summary>
-								<ul>
-									<li><a href="https://wzh656.github.io/others/weather.html">网页版</a></li>
-								</ul>
-							</details>
-						</li>
-					</ul>
-				</details>
-			</div>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>天气预报</summary>
+							<ul>
+								<li><a href="https://wzh656.github.io/others/weather.html">网页版</a></li>
+							</ul>
+						</details>
+					</li>
+				</ul>
+			</details>
 			<footer><hr/>化学Helper Copyright © 2020 by WZH 保留一切权利</footer>
 		</div>
+		<nav>
+			<label for="expression_page">化学方程式</label>
+			<label for="mass_page">相对质量计算</label>
+			<label for="calculator_page">计算器</label>
+			<label for="about_page">关于</label>
+		</nav>
 <script>
 function small(n){
 	return "<sub>"+n+"</sub>";
@@ -328,43 +351,52 @@ $(function(){
 	
 	/* 相对质量计算 */
 	const ATOMS = [
-		{name: "H", mass: 1},
-		{name: "He", mass: 4},
-		{name: "Li", mass: 7},
-		{name: "Be", mass: 9},
-		{name: "B", mass: 11},
-		{name: "C", mass: 12},
-		{name: "N", mass: 14},
-		{name: "O", mass: 16},
-		{name: "F", mass: 19},
-		{name: "Ne", mass: 20},
-		{name: "Na", mass: 23},
-		{name: "Mg", mass: 24},
-		{name: "Al", mass: 27},
-		{name: "Si", mass: 28},
-		{name: "P", mass: 31},
-		{name: "S", mass: 32},
-		{name: "Cl", mass: 35},
-		{name: "Ar", mass: 40},
-		{name: "K", mass: 39},
-		{name: "Ca", mass: 40},
-		{name: "Sc", mass: 45},
-		{name: "Ti", mass: 46},
-		{name: "V", mass: 51},
-		{name: "Cr", mass: 52},
-		{name: "Mn", mass: 54},
-		{name: "Fe", mass: 56},
-		{name: "Co", mass: 56},
-		{name: "Ni", mass: 59},
-		{name: "Cu", mass: 64},
-		{name: "Zn", mass: 65}
+		{name: "氢", symbol: "H", mass: 1},
+		{name: "氦", symbol: "He", mass: 4},
+		{name: "锂", symbol: "Li", mass: 7},
+		{name: "铍", symbol: "Be", mass: 9},
+		{name: "硼", symbol: "B", mass: 11},
+		{name: "碳", symbol: "C", mass: 12},
+		{name: "氮", symbol: "N", mass: 14},
+		{name: "氧", symbol: "O", mass: 16},
+		{name: "氟", symbol: "F", mass: 19},
+		{name: "氖", symbol: "Ne", mass: 20},
+		{name: "钠", symbol: "Na", mass: 23},
+		{name: "镁", symbol: "Mg", mass: 24},
+		{name: "铝", symbol: "Al", mass: 27},
+		{name: "硅", symbol: "Si", mass: 28},
+		{name: "磷", symbol: "P", mass: 31},
+		{name: "硫", symbol: "S", mass: 32},
+		{name: "氯", symbol: "Cl", mass: 35.5},
+		{name: "氩", symbol: "Ar", mass: 40},
+		{name: "钾", symbol: "K", mass: 39},
+		{name: "钙", symbol: "Ca", mass: 40},
+		{name: "钪", symbol: "Sc", mass: 45},
+		{name: "钛", symbol: "Ti", mass: 48},
+		{name: "钒", symbol: "V", mass: 51},
+		{name: "铬", symbol: "Cr", mass: 52},
+		{name: "锰", symbol: "Mn", mass: 55},
+		{name: "铁", symbol: "Fe", mass: 56},
+		{name: "钴", symbol: "Co", mass: 59},
+		{name: "镍", symbol: "Ni", mass: 59},
+		{name: "铜", symbol: "Cu", mass: 63.5},
+		{name: "锌", symbol: "Zn", mass: 65}
 	];
 	for (let i in ATOMS){
 		$("#formula ~ div > ol > li > table").append(
 			$("<tr></tr>")
 				.append( $(`<td>${+i+1}</td>`) )
 				.append( $(`<td>${ATOMS[i].name}</td>`) )
-				.append( $(`<td>${ATOMS[i].mass}</td>`) )
+				.append( $(`<td>${ATOMS[i].symbol}</td>`) )
+				.append( $(`<td></td>`).append(
+					$("<input/>")
+						.val(ATOMS[i].mass)
+						.css("width", "10vw")
+						.change(function(){
+							if (+this.value) ATOMS[i].mass = +this.value;
+							console.log(ATOMS);
+						})
+				) )
 		);
 	}
 	$("#formula ~ button").click(function(){
@@ -379,12 +411,19 @@ $(function(){
 						s: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[1] || 1
 					}})
 		];
+		const atoms_tmp = [];
 		let mass = eval(
 			args[1]
 				.map(
 					v =>
 						v.s * (
-							ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)] || {mass:prompt(`请输入${v.n}元素的相对原子质量`)}
+							ATOMS[ATOMS.map(vv => vv.symbol).indexOf(v.n)] ||
+								{
+									mass: [
+										atoms_tmp.push( {symbol: v.n, mass: +prompt(`请输入${v.n}元素的相对原子质量`)} ),
+										atoms_tmp[ atoms_tmp.map(v=>v.symbol).indexOf(v.n) ].mass
+									][1]
+								}
 						).mass
 				)
 				.join("+")
@@ -397,7 +436,7 @@ $(function(){
 			.map(
 				v => {
 					let m = (
-						ATOMS[ATOMS.map(vv => vv.name).indexOf(v.n)] || {mass:prompt(`请输入${v.n}元素的相对原子质量`)}
+						ATOMS[ATOMS.map(vv => vv.symbol).indexOf(v.n)] || atoms_tmp[atoms_tmp.map(vv => vv.symbol).indexOf(v.n)]
 					).mass;
 					$("#formula ~ ul").append(
 						$("<li></li>").html(`${v.n}元素相对质量m${small(v.n)}=${v.s}*${m}=${v.s*m}（单位：1）<br/>${v.n}元素质量分数m${small(v.n)}%=${v.s*m}/${mass}*100%=${Math.round(v.s*m/mass*100*10)/10}%`)
