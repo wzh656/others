@@ -13,13 +13,42 @@ function omit(n){
 	return n==1? "": n;
 }
 function small(n){
-	return "<sub>"+n+"</sub>";
-	//return [...String(n)].map(v => small.c[v]).join("");
+	//return "<sub>"+n+"</sub>";
+	return [...String(n)].map(v => small.c[v]).join("");
 }
-//small.c = "₀₁₂₃₄₅₆₇₈₉";
+function* range(r){
+	switch (r){
+		case "Z+": {
+			let i = 1;
+			while (true)
+				yield i++;
+			break;
+			}
+		case "Z-": {
+			let i = -1;
+			while (true)
+				yield i--;
+			break;
+			}
+		case "Q+": {
+			let total = 2;
+			while (total++)
+				for (let x=1; x<total; x++)
+					yield x/(total-x);
+			break;
+			}
+		case "Q-": {
+			let total = 2;
+			while (total++)
+				for (let x=1; x<total; x++)
+					yield -x/(total-x);
+			break;
+		}
+	}
+}
+small.c = "₀₁₂₃₄₅₆₇₈₉";
 self.onmessage = function(e){
-	let type = e.data.type;
-	switch (type){
+	switch (e.data.type){
 		case "expression":
 			let exp = e.data.value;
 			let args = {
@@ -98,6 +127,14 @@ if (bool) self.postMessage(
 };
 self.postMessage(null);`
 			eval(js);
+			break;
+		case "equation":
+			let r = range(e.data.range);
+			r.next();
+			setInterval(()=>{
+				let x = r.next().value;
+				self.postMessage({x, e:eval(e.data.equation)});
+			}, 66);
 			break;
 		default:
 			throw "type ERROR:"+type;
