@@ -60,6 +60,7 @@ nav label{ /* 导航栏选项 */
 #expression_page:checked ~ nav > label[for="expression_page"],
 #mass_page:checked ~ nav > label[for="mass_page"],
 #calculator_page:checked ~ nav > label[for="calculator_page"],
+#equation_page:checked ~ nav > label[for="equation_page"],
 #about_page:checked ~ nav > label[for="about_page"]{
 	background-color: #e0edd3;
 	color: #0f021c;
@@ -106,7 +107,7 @@ input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 }
 
 input:not([type]){ /* 输入文本框 */
-	width: 96%;
+	width: 90%;
 	border-radius: 1vw;
 }
 
@@ -163,6 +164,26 @@ ul > li{ /* 结果列表项 */
 }
 #javascript ~ div:first-of-type:not(.empty):active{
 	background-color: #e0edd3;
+}
+
+#equation ~ ul > li:first-of-type:not(.stopped){ /* 高亮第一 */
+	background-color: #e0edd3;
+}
+#equation ~ ul > li:first-of-type:not(.stopped):before{
+	content: "方程的近似解：\a";
+	white-space: pre;
+}
+#equation ~ ul > li.finished{ /* 高亮结果 */
+	background-color: #e0edd3;
+	font-weight: bold;
+}
+#equation ~ ul > li.finished:before{
+	content: "方程的一个根：\a";
+	white-space: pre;
+}
+#equation ~ ul > li.stopped:last-of-type{ /* 高亮最后停止信息 */
+	background-color: #ede0d3;
+	text-align: center;
 }
 
 #about_page + div{
@@ -273,6 +294,21 @@ noscript{
 				</ol>
 			</div>
 		</div>
+		<input id="equation_page" name="nav" type="radio" />
+		<div>
+			<h1>超级解方程</h1>
+			<p><label for="equation">请输入关于x的方程：</label></p>
+			<input id="equation" value="x*x+2*x-3" autofocus />=0
+			<button>解方程</button>
+			<hr/>
+			<ul><h3>结果</h3></ul>
+			<hr/>
+			<div>
+				<h2>使用规范与注意事项</h2>
+				<ol>
+				</ol>
+			</div>
+		</div>
 		<input id="about_page" name="nav" type="radio" />
 		<div>
 			<h1>关于 化学Helper</h1>
@@ -344,6 +380,7 @@ noscript{
 			<label for="expression_page">化学方程式</label>
 			<label for="mass_page">相对质量计算</label>
 			<label for="calculator_page">计算器</label>
+			<label for="equation_page">解方程</label>
 			<label for="about_page">关于</label>
 		</nav>
 		<dialog open><center style="font-weight: bold;">JavaScript运行错误！</center><br/>请重新<a href="javascript:location.reload();">加载网页</a>，如仍错误请切换/升级浏览器</dialog>
@@ -489,6 +526,46 @@ $(function(){
 			eval(`with(Math){ ${ $("#javascript").val() } }`)
 		);
 	});
+	let equation_event = function(){
+		console.log( $("#equation").val() );
+		let results = [];
+		let worker1 = new Worker("./work.js"),
+			worker2 = new Worker("./work.js");
+		worker1.onmessage = worker2.onmessage = function(e){
+			console.info(e.data);
+			
+			results.push(e.data);
+			results.sort((a,b) => Math.abs(a.e) -Math.abs(b.e));
+			$("#equation ~ ul")[0].innerHTML = "<h3>结果（线程遍历全体有理数中）：</h3>";
+			for (let i of results)
+				$("#equation ~ ul").append(
+					$("<li></li>").html(`x=${i.x}, 误差e=${i.e}`).addClass(i.e == 0? "finished": "")
+				);
+		}
+		worker1.postMessage({
+			type: "equation",
+			equation: $("#equation").val(),
+			range: "Q+"
+		});
+		worker2.postMessage({
+			type: "equation",
+			equation: $("#equation").val(),
+			range: "Q-"
+		});
+		$("#equation ~ button")
+			.css("background-color", "#edd3e0")
+			.html("停止")
+			[0].onclick = ()=>{
+				worker1.terminate();
+				worker2.terminate();
+				$("#equation ~ ul")[0].innerHTML += `<li class="stopped">线程已停止</li>`;
+				$("#equation ~ button")
+					.css("background-color", "#fffae8")
+					.html("解方程")
+					[0].onclick = equation_event;
+			};
+	};
+	$("#equation + button")[0].onclick = equation_event;
 });
 $("dialog").remove();
 </script>
