@@ -13,9 +13,10 @@ function omit(n){
 	return n==1? "": n;
 }
 function small(n){
-	//return "<sub>"+n+"</sub>";
-	return [...String(n)].map(v => small.c[v]).join("");
+	return "<sub>"+n+"</sub>";
+	//return [...String(n)].map(v => small.c[v]).join("");
 }
+small.c = "₀₁₂₃₄₅₆₇₈₉";
 function* range(r){
 	switch (r){
 		case "N+": {
@@ -46,40 +47,32 @@ function* range(r){
 		}
 	}
 }
-small.c = "₀₁₂₃₄₅₆₇₈₉";
 self.onmessage = function(e){
 	switch (e.data.type){
 		case "expression":
-			let exp = e.data.value;
+			let {value:exp, start, end} = e.data;
 			let args = {
-				b: exp.split("--")[0].split("+"),
-				a: exp.split("--")[1].split("+")
+				b: [ // b: KClO3
+					...exp.split("--")[0].split("+").map(f => [ // f: KClO3
+						...f.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: O3
+							return {
+								n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: O
+								s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 3
+							};
+						})
+					])
+				],
+				a: [ // a: KCl+O2
+					...exp.split("--")[1].split("+").map(f => [ // f: KCl
+						...f.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: K
+							return {
+								n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: K
+								s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 1
+							};
+						})
+					])
+				]
 			};
-			for (let i in args.b){ //每种反应物
-				console.log(args.b[i], args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
-				args.b[i] = args.b[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
-				for (let j in args.b[i]){
-					console.log(args.b[i][j], args.b[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1));
-					let t = args.b[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1);
-					args.b[i][j] = {
-						n: t[0],
-						s: t[1]||1
-					}
-				}
-			}
-			for (let i in args.a){ //每种生成物
-				// console.log(args.a[i], args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1));
-				args.a[i] = args.a[i].replace(/([A-Z][0-9a-z]*)/g, "$1\n").split("\n").slice(0,-1);
-				for (let j in args.a[i]){
-					console.log(args.a[i][j], args.a[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1));
-					let t = args.a[i][j].replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1);
-					args.a[i][j] = {
-						n: t[0],
-						s: t[1]||1
-					}
-				}
-			}
-			console.log(exp, args)
 			
 			let js = "let v={};", chars = "bcfghlmnopqrstuvwxzMadeByWZH_COPYRIGHT".split(""), index=0;
 			let choice = {b:[], a:[], ib:0, ia:0};
@@ -87,12 +80,12 @@ self.onmessage = function(e){
 			for (let i in args.b){
 				let char = chars[index++];
 				choice.b.push(char);
-				js += `for (v.${char}=1; v.${char}<10; v.${char}++)`;
+				js += `for (v.${char}=${start}; v.${char}<${end}; v.${char}++)`;
 			}
 			for (let j in args.a){
 				let char2 = chars[index++];
 				choice.a.push(char2);
-				js += `for (v.${char2}=1; v.${char2}<10; v.${char2}++)`;
+				js += `for (v.${char2}=${start}; v.${char2}<${end}; v.${char2}++)`;
 			}
 			js += `{
 choice.ia = choice.ib = 0;
