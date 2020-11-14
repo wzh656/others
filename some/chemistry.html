@@ -178,11 +178,15 @@ ul > li{ /* 结果列表项 */
 	font-weight: bold;
 }
 #equation ~ ul > li.finished:before{
-	content: "方程的一个根：\a";
+	content: "方程的一个根：\a" !important;
 	white-space: pre;
 }
 #equation ~ ul > li.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
+	text-align: center;
+}
+#equation ~ ul > li.omited{ /* 高亮省略 */
+	background-color: #ede0a3;
 	text-align: center;
 }
 
@@ -299,7 +303,16 @@ noscript{
 			<h1>超级解方程</h1>
 			<p><label for="equation">请输入关于x的方程：</label></p>
 			<input id="equation" value="x*x+2*x-3" autofocus />=0
-			<button>解方程</button>
+			<fieldset>
+				<legend>范围</legend>
+				<input type="checkbox" value="0" checked />0
+				<input type="checkbox" value="N+" />正整数/自然数(N⁺)
+				<input type="checkbox" value="-N+" />负整数(-N⁺)
+				<input type="checkbox" value="+Q" checked />正有理数(+|Q|)
+				<input type="checkbox" value="-Q" checked />负有理数(-|Q|)
+				<br/>
+				<button>解方程</button>
+			</fieldset>
 			<hr/>
 			<ul><h3>结果</h3></ul>
 			<hr/>
@@ -528,44 +541,65 @@ $(function(){
 	});
 	let equation_event = function(){
 		console.log( $("#equation").val() );
-		let results = [];
-		let worker1 = new Worker("./work.js"),
-			worker2 = new Worker("./work.js");
-		worker1.onmessage = worker2.onmessage = function(e){
-			console.info(e.data);
-			
-			results.push(e.data);
-			results.sort((a,b) => Math.abs(a.e) -Math.abs(b.e));
-			$("#equation ~ ul")[0].innerHTML = "<h3>结果（线程遍历全体有理数中）：</h3>";
-			for (let i of results)
-				$("#equation ~ ul").append(
-					$("<li></li>").html(`x=${i.x}, 误差e=${i.e}`).addClass(i.e == 0? "finished": "")
-				);
-		}
-		worker1.postMessage({
-			type: "equation",
-			equation: $("#equation").val(),
-			range: "Q+"
+		results = [], workers=[], total=0;
+		[...$("#equation ~ fieldset > input")].map(function(that){
+			console.log(that.checked);
+			if (!that.checked) return;
+			let worker = new Worker("./work.js");
+			worker.onmessage = function(e){
+				//console.info(e.data);
+				
+				results.push(e.data);
+				if (e.data.s === undefined && e.data.p === undefined){
+					total = Math.abs(e.data.x);
+				}else{
+					if (Math.abs(e.data.s)+e.data.p > total) total = Math.abs(e.data.s)+e.data.p;
+				}
+			};
+			worker.postMessage({
+				type: "equation",
+				equation: $("#equation").val(),
+				range: that.value
+			});
+			workers.push(worker);
 		});
-		worker2.postMessage({
-			type: "equation",
-			equation: $("#equation").val(),
-			range: "Q-"
-		});
-		$("#equation ~ button")
+		let updater = (/*needUpdate = true*/)=>{
+			results.sort((a,b) => Math.abs(a.e) - Math.abs(b.e));
+			results = results.filter((item, index, arr) => !arr.slice(0,index).some(v => item? v.x==item.x: false ))
+					.map((item, index, arr) => (index<=66 || index>=arr.length-66)? item: undefined);
+			let innerHTML = "<h3>结果（线程遍历集合中/"+total+"）：</h3>",
+				omited = false;
+			for (let i in results){
+				if (results[i]){
+					let v = results[i];
+					innerHTML += `<li${v.e==0? ' class="finished"': ''}>x${(v.s&&v.p)? "="+v.s+"/"+v.p: ""}=${Math.round(v.x*1e6)/1e6}， 误差e=${Math.round(v.e*1e6)/1e6}</li>`;
+				}else if (!omited){
+					innerHTML += `<li class="omited">……（被省略）</li>`;
+					omited = true;
+				}else{
+					results.splice(i, 1);
+				}
+			}
+			$("#equation ~ ul")[0].innerHTML = innerHTML;
+			/*if (needUpdate) */interval = setTimeout(updater, 100);
+		};
+		let interval = setTimeout(updater, 100);
+		$("#equation ~ fieldset > button")
 			.css("background-color", "#edd3e0")
 			.html("停止")
 			[0].onclick = ()=>{
-				worker1.terminate();
-				worker2.terminate();
+				workers.map(v => v.terminate());
+				clearInterval(interval);
+				//updater(false);
+				$("#equation ~ ul > h3").html("结果：");
 				$("#equation ~ ul")[0].innerHTML += `<li class="stopped">线程已停止</li>`;
-				$("#equation ~ button")
+				$("#equation ~ fieldset > button")
 					.css("background-color", "#fffae8")
 					.html("解方程")
 					[0].onclick = equation_event;
 			};
 	};
-	$("#equation + button")[0].onclick = equation_event;
+	$("#equation ~ fieldset > button")[0].onclick = equation_event;
 });
 $("dialog").remove();
 </script>
