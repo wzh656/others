@@ -106,8 +106,8 @@ input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
 	background-color: #e0edd3;
 }
 
-input:not([type]){ /* 输入文本框 */
-	width: 90%;
+input:not([type]), input[type="number"]{ /* 输入文本框 */
+	width: 86%;
 	border-radius: 1vw;
 }
 
@@ -241,18 +241,38 @@ noscript{
 		<div>
 			<h1>化学方程式</h1>
 			<p><label for="expression">请输入化学方程式：</label></p>
-			<input id="expression" value="KClO3--KCl+O2" autofocus /><br/>
-			<button>配平</button>
+			<input id="expression" value="KClO3--KCl+O2" pattern="^[0-9]{0,1}([A-Z][a-z]*[0-9]*[\+]{0,1})+[\-\-|==][0-9]{0,1}([A-Z][a-z]*[0-9]*[\+]{0,1})+$" autofocus /><br/>
+			<fieldset>
+				<legend>化学方程式配平</legend>
+				化学计量数尝试范围：<br/>
+				<span>1</span><input type="range" min="1" max="10" step="1" value="1" onchange="$(this).siblings('input:eq(0)').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" /><span>10</span>
+				<input type="number" min="1" max="10" step="1" value="1" onchange="$(this).siblings('input:eq(0)').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" style="width: 36px;" /><br/>
+				～
+				<span>1</span><input type="range" min="1" max="100" step="1" value="10" onchange="$(this).siblings('input:eq(2)').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" /><span>100</span>
+				<input type="number" min="1" max="100" step="1" value="10" onchange="$(this).siblings('input:eq(2)').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" style="width: 36px;" /><br/>
+				<button>配平</button>
+			</fieldset>
+			<fieldset>
+				<legend>推算反应中各物质质量</legend>
+				已知物质<input value="O2" style="width: 30px;" />
+				质量为<input type="number" value="32" style="width: 36px;" />个单位质量
+				<br/>
+				<button>推算</button>
+			</fieldset>
 			<hr/>
 			<ul><h3>结果</h3></ul>
 			<hr/>
 			<div>
 				<h2>使用规范与注意事项</h2>
 				<ol>
-					<li>输入时，反应短线应该写作两个横线（“--”）</li>
-					<li>输入时，不应输入反应条件与上下箭头“↑”“↓”；<b>但作答时必须写上！</b></li>
+					<li>
+						<i>输入未配平方程式时（欲配平）</i>，反应<b>短线</b>应该写作两个横线（“--”）；<br/>
+						<i>输入已配平方程式时（欲推算反应中各物质质量）</i>，反应<b>等号</b>应该写作两个等号（“==”）
+					</li>
+					<li><i>输入已配平或未配平的方程式时</i>，不应输入反应条件与上下箭头“↑”“↓”，<b>但作答时必须写上！</b></li>
 					<li>输入时，原子下标应该<b>输入普通数字，不应使用下标</b>。如：“H₂O”写作“H2O”</li>
 					<li>输入时，<b>原子团</b>必须用乘法分配律分配，不允许输入括号（其实是懒得添加支持）。如：“Ca(OH)2”必须写作“CaO2H2”</li>
+					<li><i>根据单个物质质量推算反应中各物质质量时</i>，不应输入质量的单位，<b>但作答时必须写上！</b></li>
 				</ol>
 			</div>
 		</div>
@@ -386,7 +406,7 @@ noscript{
 			<footer>
 				<hr/>
 				化学Helper Copyright © 2020 by WZH 保留一切权利
-				<script language="javascript" src="http://count24.51yes.com/click.aspx?id=247971575&logo=1" charset="gb2312"></script>
+				<script language="javascript" src="http://count24.51yes.com/click.aspx?id=247971575&logo=12" charset="gb2312"></script>
 			</footer>
 		</div>
 		<nav>
@@ -402,6 +422,38 @@ noscript{
 function small(n){
 	return "<sub>"+n+"</sub>";
 }
+function parse(exp){
+	return {
+		b: [ // b: 2KClO3
+			...exp.split("--")[0].split("+").map(f => [ // f: 2KClO3
+				f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[0], // 2
+				[
+					...f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[1] //KClO3
+						.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: O3
+						return {
+							n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: O
+							s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 3
+						};
+					})
+				]
+			])
+		],
+		a: [ // b: 2KCl+3O2
+			...exp.split("--")[1].split("+").map(f => [ // f: 2KCl
+				f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[0], // 2
+				[
+					...f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[1] // KCl
+						.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: Cl
+							return {
+								n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: Cl
+								s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 1
+							};
+						})
+				]
+			])
+		]
+	};
+}
 $(function(){
 	/* 配平化学方程式 */
 	let expression_event = ()=>{
@@ -412,30 +464,42 @@ $(function(){
 			if (e.data === null){
 				worker.terminate();
 				$("#expression ~ ul")[0].innerHTML += `<li class="msg finished">线程执行完成</li>`;
-				$("#expression ~ ul > h3").html("结果：");
-				$("#expression ~ button")
+				$("#expression ~ ul > h3").html("结果（双击输入）：");
+				$("#expression ~ fieldset:eq(0) > button")
 					.css("background-color", "#fffae8")
 					.html("配平")
 					[0].onclick = expression_event;
 			}else{
-				$("#expression ~ ul")[0].innerHTML += `<li>${e.data}</li>`;
+				$("#expression ~ ul")[0].innerHTML += `<li ondblclick="$('#expression').val(this.innerText).focus();">${e.data}</li>`;
 			}
 		}
-		worker.postMessage({type: "expression", value: $("#expression").val()});
-		$("#expression ~ button")
+		worker.postMessage({
+			type: "expression",
+			value: $("#expression").val(),
+			start: $("#expression ~ fieldset:eq(0) > input[type='number']:eq(0)").val(),
+			end: $("#expression ~ fieldset:eq(0) > input[type='number']:eq(1)").val()
+		});
+		$("#expression ~ fieldset:eq(0) > button")
 			.css("background-color", "#edd3e0")
 			.html("停止")
 			[0].onclick = ()=>{
 				worker.terminate();
 				$("#expression ~ ul")[0].innerHTML += `<li class="msg stopped">线程已停止</li>`;
-				$("#expression ~ button")
+				$("#expression ~ fieldset:eq(0) > button")
 					.css("background-color", "#fffae8")
 					.html("配平")
 					[0].onclick = expression_event;
 			};
 		console.log(worker)
 	};
-	$("#expression ~ button")[0].onclick = expression_event;
+	$("#expression ~ fieldset:eq(0) > button")[0].onclick = expression_event;
+	
+	/* 推算质量 */
+	$("#expression ~ fieldset:eq(1) > button")[0].click(function(){
+		let args = prase($("#expression").val());
+		console.log(args)
+	});
+	
 	
 	/* 相对质量计算 */
 	const ATOMS = [
@@ -494,7 +558,7 @@ $(function(){
 		{name: "碘", symbol: "I", mass: 127},
 		{name: "氙", symbol: "Xe", mass: 131},
 		{name: "铯", symbol: "Cs", mass: 133},
-		{name: "钡", symbol: "Ba", mass: 137}
+		{name: "钡 ", symbol: "Ba", mass: 137}
 	];
 	for (let i in ATOMS){
 		$("#formula ~ div > ol > li > table").append(
@@ -559,12 +623,18 @@ $(function(){
 				}
 			);
 	});
+	
+	
+	/* 计算器 */
 	$("#javascript + button").click(function(){
 		console.log( $("#javascript").val() );
 		$("#javascript ~ div:eq(0)").html(
 			eval(`with(Math){ ${ $("#javascript").val() } }`)
 		);
 	});
+	
+	
+	/* 解方程 */
 	let equation_event = function(){
 		console.log( $("#equation").val() );
 		results = [], workers=[], total=0;
