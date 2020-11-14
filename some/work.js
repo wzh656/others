@@ -18,30 +18,30 @@ function small(n){
 }
 function* range(r){
 	switch (r){
-		case "Z+": {
+		case "N+": {
 			let i = 1;
 			while (true)
-				yield i++;
+				yield {x: i++};
 			break;
 			}
-		case "Z-": {
+		case "-N+": {
 			let i = -1;
 			while (true)
-				yield i--;
+				yield {x: i--};
 			break;
 			}
-		case "Q+": {
+		case "+Q": {
 			let total = 2;
 			while (total++)
 				for (let x=1; x<total; x++)
-					yield x/(total-x);
+					yield {x: x/(total-x), s: x, p: total-x};
 			break;
 			}
-		case "Q-": {
+		case "-Q": {
 			let total = 2;
 			while (total++)
 				for (let x=1; x<total; x++)
-					yield -x/(total-x);
+					yield {x: -x/(total-x), s: -x, p: total-x};
 			break;
 		}
 	}
@@ -129,12 +129,18 @@ self.postMessage(null);`
 			eval(js);
 			break;
 		case "equation":
+			if (e.data.range == "0"){
+				let x = 0;
+				self.postMessage({x, e:eval(e.data.equation)});
+				self.close();
+			}
 			let r = range(e.data.range);
 			r.next();
 			setInterval(()=>{
-				let x = r.next().value;
-				self.postMessage({x, e:eval(e.data.equation)});
-			}, 66);
+				let {x,s,p} = r.next().value; 
+				if (s/p == Math.round(s/p)) s = p = null;
+				self.postMessage({x, s, p, e:eval(e.data.equation)});
+			}, 0);
 			break;
 		default:
 			throw "type ERROR:"+type;
