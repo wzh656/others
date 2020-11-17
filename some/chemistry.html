@@ -11,7 +11,7 @@
 -->
 <html lang="zh">
 	<head>
-		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta content="always" name="referrer">
 		<title>化学Helper</title>
 <style>
@@ -110,12 +110,12 @@ input:not([type]), input[type="number"]{ /* 输入文本框 */
 	border-radius: 1vw;
 }
 
-ul{ /* 结果列表 */
+ul, #about_page + div > details > ol{ /* 结果列表 */
 	display: block;
 	padding: 0;
 	/*overflow-x: auto;*/
 }
-ul > li{ /* 结果列表项 */
+ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	display: block;
 	border: 0.6vw inset #e0edd3;
 	border-radius: 2vw;
@@ -127,22 +127,32 @@ ul > li{ /* 结果列表项 */
 #expression ~ ul > li:first-of-type:not(.msg){ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-#expression ~ ul > li:first-of-type:not(.msg):before{
+#expression ~ ul:not(.mass) > li:first-of-type:not(.msg):before{
 	content: "最简：";
 	font-weight: bold;
 }
-#expression ~ ul > lifirst-of-type:not(.msg):after{
+#expression ~ ul:not(.mass) > li:first-of-type:not(.msg):not(.mass):after{
 	content: "\a（请添加反应条件及上下键）";
 	white-space: pre;
 	font-weight: bold;
 }
-#expression ~ ul > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
+#expression ~ ul:not(.mass) > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
 	background-color: #d3ede0;
 	text-align: center;
 }
-#expression ~ ul > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
+#expression ~ ul:not(.mass) > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
+}
+
+#expression ~ ul.mass > li:first-of-type:before{
+	content: "总述：";
+	font-weight: bold;
+}
+#expression ~ ul.mass > li:first-of-type:after{
+	content: "\a（请自行对齐，上为相对质量，下为实际质量）";
+	white-space: pre;
+	font-weight: bold;
 }
 
 #formula ~ ul > li:first-of-type{ /* 高亮第一 */
@@ -197,6 +207,15 @@ ul > li{ /* 结果列表项 */
 #about_page + div > details{
 	flex-grow: 1;
 }
+#about_page + div > details > ol{
+	display: flex;
+	flex-direction: column-reverse;
+	counter-reset: version;
+}
+#about_page + div > details > ol > li:before{
+	counter-increment: version;
+	 content: counter(version)". ";
+}
 footer{
 	text-align: center;
 	font-size: 0.6em;
@@ -238,13 +257,13 @@ noscript{
 		<link rel="stylesheet" type="text/css" href="./css/layx.min.css" />
 		<script src="./js/layx.min.js"></script>
 <script>
-if (!localStorage.getItem("version") || +localStorage.getItem("version") < 10){
-	localStorage.setItem("version", 10);
+if (!localStorage.getItem("version") || +localStorage.getItem("version") < 11){
+	localStorage.setItem("version", 11);
 	setTimeout(function(){
 		layx.notice({
 			title: "版本更新通知",
 			type: "info",
-			message: "2020/11/15\n更新了DaoVoice联系作者（不是聊天室）功能，可以在右下角或关于处联系作者"
+			message: "2020/11/17\n新增了“化学方程式”的“推算反应中各物质质量”功能"
 		});
 	},1000);
 }
@@ -275,8 +294,13 @@ daovoice('update');
 			</fieldset>
 			<fieldset>
 				<legend>推算反应中各物质质量</legend>
-				已知物质<input value="O2" style="width: 30px;" />
-				质量为<input type="number" value="32" style="width: 36px;" />个单位质量
+				已知物质
+				<select>
+					<option value="KClO3">KClO3</option>
+					<option value="KCl">KCl</option>
+					<option value="O2">O2</option>
+				</select>
+				质量为<input type="number" value="32" style="width: 36px;" />(单位)
 				<br/>
 				<button>推算</button>
 			</fieldset>
@@ -294,6 +318,8 @@ daovoice('update');
 					<li>输入时，原子下标应该<b>输入普通数字，不应使用下标</b>。如：“H₂O”写作“H2O”</li>
 					<li>输入时，<b>原子团</b>必须用乘法分配律分配，不允许输入括号（其实是懒得添加支持）。如：“Ca(OH)2”必须写作“CaO2H2”</li>
 					<li><i>根据单个物质质量推算反应中各物质质量时</i>，不应输入质量的单位，<b>但作答时必须写上！</b></li>
+					<li><i>根据单个物质质量推算反应中各物质质量时</i>，可能没有对齐，<b>但作答时必须自行对齐！</b></li>
+					<li>小技巧：输入没有配平的化学方程式，点击配平后双击结果可以快速插入至文本框，以便推算反应中各物质质量</li>
 				</ol>
 			</div>
 		</div>
@@ -372,6 +398,22 @@ daovoice('update');
 			<p>有改进意见等欢迎加QQ：1826632591<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1826632591&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1826632591:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
 			<p>邮箱：<a href="mailto:1826632591@qq.com?subject=来自《化学方程式》程序">1826632591@qq.com</a></p>
 			<details>
+				<summary>时光机（更新日志）</summary>
+				<ol>
+					<li>v1.0.0 2020/10/29 偶然的灵感一动，萌发了第一个版本，可以自动配平化学方程式</li>
+					<li>v1.0.1 使用后台线程work.js配平化学方程式</li>
+					<li>v1.1.0 新增功能：“相对质量计算”</li>
+					<li>v1.2.0 新增功能：“关于”</li>
+					<li>v1.3.0 新增功能：“计算器”</li>
+					<li>v1.4.0 2020/11/8 新增功能：流量（访问人数）统计，可以在关于页面下方进入查看综合统计数据</li>
+					<li>v1.5.0 2020/11 新增功能：“解方程”</li>
+					<li>v1.5.1 2020/11 增加了一些元素 和 元素名称</li>
+					<li>v1.5.1 2020/11/13 优化了“解方程”的运行速度 和 显示界面</li>
+					<li>v1.6.0 2020/11/15 新增功能：DaoVoice联系作者（不是聊天室），可以在右下角进入反馈改进意见</li>
+					<li>v1.7.0 2020/11/17 新增了“化学方程式”的“推算反应中各物质质量”功能</li>
+				</ol>
+			</details>
+			<details>
 				<summary>同开发者的其他程序</summary>
 				<ul>
 					<li>
@@ -441,44 +483,145 @@ daovoice('update');
 		<dialog open><center style="font-weight: bold;">JavaScript运行错误！</center><br/>请重新<a href="javascript:location.reload();">加载网页</a>，如仍错误请切换/升级浏览器</dialog>
 		<noscript><h1>你的浏览器不支持JavaScript，网页将无法正常运行，请允许JavaScript或切换/升级浏览器</h1></noscript>
 <script>
+const ATOMS = [
+	{name: "氢", symbol: "H", mass: 1},
+	{name: "氦", symbol: "He", mass: 4},
+	{name: "锂", symbol: "Li", mass: 7},
+	{name: "铍", symbol: "Be", mass: 9},
+	{name: "硼", symbol: "B", mass: 11},
+	{name: "碳", symbol: "C", mass: 12},
+	{name: "氮", symbol: "N", mass: 14},
+	{name: "氧", symbol: "O", mass: 16},
+	{name: "氟", symbol: "F", mass: 19},
+	{name: "氖", symbol: "Ne", mass: 20},
+	{name: "钠", symbol: "Na", mass: 23},
+	{name: "镁", symbol: "Mg", mass: 24},
+	{name: "铝", symbol: "Al", mass: 27},
+	{name: "硅", symbol: "Si", mass: 28},
+	{name: "磷", symbol: "P", mass: 31},
+	{name: "硫", symbol: "S", mass: 32},
+	{name: "氯", symbol: "Cl", mass: 35.5},
+	{name: "氩", symbol: "Ar", mass: 40},
+	{name: "钾", symbol: "K", mass: 39},
+	{name: "钙", symbol: "Ca", mass: 40},
+	{name: "钪", symbol: "Sc", mass: 45},
+	{name: "钛", symbol: "Ti", mass: 48},
+	{name: "钒", symbol: "V", mass: 51},
+	{name: "铬", symbol: "Cr", mass: 52},
+	{name: "锰", symbol: "Mn", mass: 55},
+	{name: "铁", symbol: "Fe", mass: 56},
+	{name: "钴", symbol: "Co", mass: 59},
+	{name: "镍", symbol: "Ni", mass: 59},
+	{name: "铜", symbol: "Cu", mass: 63.5},
+	{name: "锌", symbol: "Zn", mass: 65},
+	{name: "镓", symbol: "Ga", mass: 70},
+	{name: "锗", symbol: "Ge", mass: 72.5},
+	{name: "砷", symbol: "As", mass: 75},
+	{name: "硒", symbol: "Se", mass: 79},
+	{name: "溴", symbol: "Br", mass: 80},
+	{name: "氪", symbol: "Kr", mass: 84},
+	{name: "铷", symbol: "Rb", mass: 85.5},
+	{name: "锶", symbol: "Sr", mass: 87.5},
+	{name: "钇", symbol: "Y", mass: 89},
+	{name: "锆", symbol: "Zr", mass: 91},
+	{name: "铌", symbol: "Nb", mass: 93},
+	{name: "钼", symbol: "Mo", mass: 96},
+	{name: "锝", symbol: "Tc", mass: 98},
+	{name: "钌", symbol: "Ru", mass: 101},
+	{name: "铑", symbol: "Rh", mass: 103},
+	{name: "钯", symbol: "Pd", mass: 106.5},
+	{name: "银", symbol: "Ag", mass: 108},
+	{name: "镉", symbol: "Cd", mass: 112},
+	{name: "铟", symbol: "In", mass: 115},
+	{name: "锡", symbol: "Sn", mass: 119},
+	{name: "锑", symbol: "Sb", mass: 122},
+	{name: "碲", symbol: "Te", mass: 127.5},
+	{name: "碘", symbol: "I", mass: 127},
+	{name: "氙", symbol: "Xe", mass: 131},
+	{name: "铯", symbol: "Cs", mass: 133},
+	{name: "钡 ", symbol: "Ba", mass: 137}
+];
+for (let i in ATOMS)
+	$("#formula ~ div > ol > li > table").append(
+		$("<tr></tr>")
+			.append( $(`<td>${+i+1}</td>`) )
+			.append( $(`<td>${ATOMS[i].name}</td>`) )
+			.append( $(`<td>${ATOMS[i].symbol}</td>`) )
+			.append( $(`<td></td>`).append(
+				$("<input/>")
+					.val(ATOMS[i].mass)
+					.css("width", "10vw")
+					.change(function(){
+						if (+this.value) ATOMS[i].mass = +this.value;
+							console.log(ATOMS);
+					})
+			) )
+	);
+
+function omit(n){
+	return n==1? "": n;
+}
+function round(n, s=1){
+	return Math.round(n *10**s) /10**s;
+}
 function small(n){
 	return "<sub>"+n+"</sub>";
 }
 function parse(exp){
-	return {
-		b: [ // b: 2KClO3
-			...exp.split("--")[0].split("+").map(f => [ // f: 2KClO3
-				f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[0], // 2
-				[
-					...f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[1] //KClO3
-						.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: O3
-						return {
-							n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: O
-							s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 3
-						};
-					})
-				]
-			])
-		],
-		a: [ // b: 2KCl+3O2
-			...exp.split("--")[1].split("+").map(f => [ // f: 2KCl
-				f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[0], // 2
-				[
-					...f.replace(/[A-Z]/, "\n$1").split("\n").slice(0,-1)[1] // KCl
-						.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: Cl
-							return {
-								n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: Cl
-								s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 1
-							};
-						})
-				]
-			])
-		]
-	};
+	return [ // exp: 2KClO3+MnO2
+		...exp.split("+").map(f => [ // f: 2KClO3
+			f.replace(/([A-Z])/, "\n$1").split("\n")[0] || 1, // 2
+			[
+				...f.replace(/([A-Z])/, "\n$1").split("\n")[1] //KClO3
+					.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1).map(v => { // v: O3
+					return {
+						n: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[0], // n: O
+						s: v.replace(/([0-9]*$)/g, "\n$1").split("\n").slice(0,-1)[1] || 1 // s: 3
+					};
+				})
+			]
+		])
+	];
 }
+function get_mass(json){
+	const atoms_tmp = [];
+	let mass = eval(
+		json.map( f => 
+			f[0] * eval(
+				f[1].map( v =>
+					v.s * (
+							ATOMS[ATOMS.map(vv => vv.symbol).indexOf(v.n)] ||
+							{
+								mass: [
+									atoms_tmp.push( {symbol: v.n, mass: +prompt(`请输入${v.n}元素的相对原子质量`)} ),
+									atoms_tmp[ atoms_tmp.map(v=>v.symbol).indexOf(v.n) ].mass
+								][1]
+							}
+					).mass
+				).join("+")
+			)
+		).join("+")
+	);
+	return {mass, atoms: atoms_tmp};
+}
+
+
 $(function(){
 	/* 配平化学方程式 */
 	let expression_event = ()=>{
+		if ($("#expression").val().split("--").length < 2){
+			return layx.notice({
+				title: "错误的化学方程式",
+				type: "error",
+				message: "无法配平化学方程式“"+$("#expression").val()+"”，请输入未配平的化学方程式，短线请用“--”表示，具体详见下方注意事项，如仍错误可以反馈给作者wzh"
+			});
+		}else if ($("#expression").val().split("--").length != 2){
+			return layx.notice({
+				title: "错误的化学方程式",
+				type: "error",
+				message: "无法配平化学方程式“"+$("#expression").val()+"”，请正确输入化学方程式，短线请用“--”表示（只有2根小横线），具体详见下方注意事项，如仍错误可以反馈给作者wzh"
+			});
+		}
 		$("#expression ~ ul")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
 		let worker = new Worker("./work.js");
 		worker.onmessage = function(e){
@@ -517,122 +660,114 @@ $(function(){
 	$("#expression ~ fieldset:eq(0) > button")[0].onclick = expression_event;
 	
 	/* 推算质量 */
-	$("#expression ~ fieldset:eq(1) > button")[0].click(function(){
-		let args = prase($("#expression").val());
-		console.log(args)
+	$("#expression").on("change", function(){
+		$("#expression ~ fieldset:eq(1) > select")[0].innerHTML = "";
+		const args = {
+				b: parse ($("#expression").val().split("==")[0] ),
+				a: parse ($("#expression").val().split("==")[1] )
+			},
+			fs = [...args.b, ...args.a];
+		for (const f of fs)
+			$("#expression ~ fieldset:eq(1) > select").append(
+				$("<option></option>")
+					.html( f[1].map(v => v.n+small(omit(v.s))).join("") )
+					.attr("value", f[1].map(v => v.n+omit(v.s)).join("") )
+			);
+	});
+	$("#expression ~ fieldset:eq(1) > button").click(function(){
+		if ($("#expression").val().split("==").length < 2){
+			return layx.notice({
+				title: "错误的化学方程式",
+				type: "error",
+				message: "“"+$("#expression").val()+"”不是正确的化学方程式，请输入已配平的化学方程式，配平横线请用“==”表示（2个等号），具体详见下方注意事项，如仍错误可以反馈给作者wzh"
+			});
+		}else if ($("#expression").val().split("==").length != 2){
+			return layx.notice({
+				title: "错误的化学方程式",
+				type: "error",
+				message: "“"+$("#expression").val()+"”不是正确的化学方程式，请正确输入化学方程式，短线请用“==”表示（只有2根小横线），具体详见下方注意事项，如仍错误可以反馈给作者wzh"
+			});
+		}
+		const args = {
+				b: parse ($("#expression").val().split("==")[0] ),
+				a: parse ($("#expression").val().split("==")[1] )
+			},
+			fs = [...args.b, ...args.a];
+		let [name, mass] = [$("#expression ~ fieldset:eq(1) > select").val(), $("#expression ~ fieldset:eq(1) > input").val()],
+			relative, index;
+		console.log(args, name, mass, [...args.b, ...args.a]);
+		if (!fs.some((f,i) => {
+			if (f[1].map(v => v.n+omit(v.s)).join("") == name){
+				relative = get_mass([f]).mass;
+				index = i;
+				console.log(relative);
+				return true;
+			}
+		}))
+			return layx.notice({
+				title: "错误的已知物质名称",
+				type: "error",
+				message: "未找到输入的已知物质名称“"+name+"”，具体详见下方注意事项，如仍错误可以反馈给作者wzh"
+			});
+		$("#expression ~ ul").addClass("mass")[0].innerHTML = "<h3>结果：</h3>";
+		// 总述
+		$("#expression ~ ul").append(
+			$("<li></li>").append(
+				$("<pre>"+
+					$("#expression").val()+"<br/>"+
+					fs.map(f =>
+						get_mass([f]).mass + "\t"
+					).join("").trim()+"<br/>"+
+					fs.map(f =>
+						 round( mass / relative * get_mass([f]).mass ) + "(单位)\t"
+					).join("").trim()+
+					"</pre>")
+				.css("display", "inline")
+				.css("margin", "0")
+				.css("font-size", "16px")
+			)
+		);
+		// 分述
+		for (let i in fs){
+			if (i == index) continue;
+			$("#expression ~ ul").append(
+				$("<li></li>").html(
+					`解：设参加反应的物质${fs[i][1].map(v => v.n+small(omit(v.s))).join("")}质量为x。<br/>`
+				).append(
+					$(
+						"<pre>"+
+						$("#expression").val()+"<br/>"+
+						fs.map((f, j) =>
+							( (j == i || j == index)? get_mass([f]).mass: "" ) + "\t"
+						).join("").trim()+"<br>"+
+						fs.map((f, j) =>
+							(j == index? mass+"(单位)": j == i? "x": "") + "\t"
+						).join("").trim()+"<br>"+
+						"</pre>"
+					).css("display", "inline")
+					.css("margin", "0")
+					.css("font-size", "16px")
+				).append(
+					`${ get_mass([fs[index]]).mass } / ${ get_mass([fs[i]]).mass } = x / ${ mass }(单位)<br/>`+
+					`x = ${ get_mass([fs[index]]).mass } / ${ get_mass([fs[i]]).mass } * ${ mass }(单位) = ${round( get_mass([fs[index]]).mass / get_mass([fs[i]]).mass * mass )}(单位)<br/>`+
+					`答：物质${omit(fs[i][0])+fs[i][1].map(v => v.n+small(omit(v.s))).join("")}质量为${round( get_mass([fs[index]]).mass / get_mass([fs[i]]).mass * mass )}(单位)`
+				)
+			)
+		}
 	});
 	
 	
 	/* 相对质量计算 */
-	const ATOMS = [
-		{name: "氢", symbol: "H", mass: 1},
-		{name: "氦", symbol: "He", mass: 4},
-		{name: "锂", symbol: "Li", mass: 7},
-		{name: "铍", symbol: "Be", mass: 9},
-		{name: "硼", symbol: "B", mass: 11},
-		{name: "碳", symbol: "C", mass: 12},
-		{name: "氮", symbol: "N", mass: 14},
-		{name: "氧", symbol: "O", mass: 16},
-		{name: "氟", symbol: "F", mass: 19},
-		{name: "氖", symbol: "Ne", mass: 20},
-		{name: "钠", symbol: "Na", mass: 23},
-		{name: "镁", symbol: "Mg", mass: 24},
-		{name: "铝", symbol: "Al", mass: 27},
-		{name: "硅", symbol: "Si", mass: 28},
-		{name: "磷", symbol: "P", mass: 31},
-		{name: "硫", symbol: "S", mass: 32},
-		{name: "氯", symbol: "Cl", mass: 35.5},
-		{name: "氩", symbol: "Ar", mass: 40},
-		{name: "钾", symbol: "K", mass: 39},
-		{name: "钙", symbol: "Ca", mass: 40},
-		{name: "钪", symbol: "Sc", mass: 45},
-		{name: "钛", symbol: "Ti", mass: 48},
-		{name: "钒", symbol: "V", mass: 51},
-		{name: "铬", symbol: "Cr", mass: 52},
-		{name: "锰", symbol: "Mn", mass: 55},
-		{name: "铁", symbol: "Fe", mass: 56},
-		{name: "钴", symbol: "Co", mass: 59},
-		{name: "镍", symbol: "Ni", mass: 59},
-		{name: "铜", symbol: "Cu", mass: 63.5},
-		{name: "锌", symbol: "Zn", mass: 65},
-		{name: "镓", symbol: "Ga", mass: 70},
-		{name: "锗", symbol: "Ge", mass: 72.5},
-		{name: "砷", symbol: "As", mass: 75},
-		{name: "硒", symbol: "Se", mass: 79},
-		{name: "溴", symbol: "Br", mass: 80},
-		{name: "氪", symbol: "Kr", mass: 84},
-		{name: "铷", symbol: "Rb", mass: 85.5},
-		{name: "锶", symbol: "Sr", mass: 87.5},
-		{name: "钇", symbol: "Y", mass: 89},
-		{name: "锆", symbol: "Zr", mass: 91},
-		{name: "铌", symbol: "Nb", mass: 93},
-		{name: "钼", symbol: "Mo", mass: 96},
-		{name: "锝", symbol: "Tc", mass: 98},
-		{name: "钌", symbol: "Ru", mass: 101},
-		{name: "铑", symbol: "Rh", mass: 103},
-		{name: "钯", symbol: "Pd", mass: 106.5},
-		{name: "银", symbol: "Ag", mass: 108},
-		{name: "镉", symbol: "Cd", mass: 112},
-		{name: "铟", symbol: "In", mass: 115},
-		{name: "锡", symbol: "Sn", mass: 119},
-		{name: "锑", symbol: "Sb", mass: 122},
-		{name: "碲", symbol: "Te", mass: 127.5},
-		{name: "碘", symbol: "I", mass: 127},
-		{name: "氙", symbol: "Xe", mass: 131},
-		{name: "铯", symbol: "Cs", mass: 133},
-		{name: "钡 ", symbol: "Ba", mass: 137}
-	];
-	for (let i in ATOMS){
-		$("#formula ~ div > ol > li > table").append(
-			$("<tr></tr>")
-				.append( $(`<td>${+i+1}</td>`) )
-				.append( $(`<td>${ATOMS[i].name}</td>`) )
-				.append( $(`<td>${ATOMS[i].symbol}</td>`) )
-				.append( $(`<td></td>`).append(
-					$("<input/>")
-						.val(ATOMS[i].mass)
-						.css("width", "10vw")
-						.change(function(){
-							if (+this.value) ATOMS[i].mass = +this.value;
-							console.log(ATOMS);
-						})
-				) )
-		);
-	}
 	$("#formula ~ button").click(function(){
 		$("#formula ~ ul")[0].innerHTML = "<h3>结果：</h3>";
-		let formula = $("#formula").val();
-		let args = [
-			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[0] || 1,
-			formula.replace(/([0-9]*(?=[A-Z]))/, "$1\n").split("\n")[1]
-				.replace(/([A-Z][a-z]*[0-9]*)/g, "$1\n").split("\n").slice(0,-1)
-					.map(v => {return{
-						n: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[0],
-						s: v.replace(/([A-Z][a-z]*)/, "$1\n").split("\n")[1] || 1
-					}})
-		];
-		const atoms_tmp = [];
-		let mass = eval(
-			args[1]
-				.map(
-					v =>
-						v.s * (
-							ATOMS[ATOMS.map(vv => vv.symbol).indexOf(v.n)] ||
-								{
-									mass: [
-										atoms_tmp.push( {symbol: v.n, mass: +prompt(`请输入${v.n}元素的相对原子质量`)} ),
-										atoms_tmp[ atoms_tmp.map(v=>v.symbol).indexOf(v.n) ].mass
-									][1]
-								}
-						).mass
-				)
-				.join("+")
-		);
-		console.log(args, mass*args[0]);
+		let parsing = [parse(formula.value)[0]];
+		let {mass, atoms:atoms_tmp} = get_mass(parsing);
+		mass /= parsing[0][0];
+		console.log(parsing, mass, atoms_tmp);
 		$("#formula ~ ul").append(
-			$("<li></li>").html(`相对质量m=${args[0]}*${mass}=${args[0]*mass}（单位：1）`)
-		);
-		args[1]
+			$("<li></li>").html(`相对质量m=${parsing[0][0]}*${mass}=${parsing[0][0]*mass}（单位：1）`)
+		); 
+		parsing[0][1]
 			.map(
 				v => {
 					let m = (
