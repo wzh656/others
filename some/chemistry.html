@@ -660,7 +660,7 @@ $(function(){
 	$("#expression ~ fieldset:eq(0) > button")[0].onclick = expression_event;
 	
 	/* 推算质量 */
-	$("#expression").on("change", function(){
+	let selection_updater = function(){
 		try{
 			$("#expression ~ fieldset:eq(1) > select")[0].innerHTML = "";
 			const args = {
@@ -677,7 +677,8 @@ $(function(){
 		}catch(err){
 			console.error(err);
 		}
-	});
+	};
+	$("#expression")[0].onchange = selection_updater;
 	$("#expression ~ fieldset:eq(1) > button").click(function(){
 		if ($("#expression").val().split("==").length < 2){
 			return layx.notice({
