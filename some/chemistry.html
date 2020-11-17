@@ -661,18 +661,22 @@ $(function(){
 	
 	/* 推算质量 */
 	$("#expression").on("change", function(){
-		$("#expression ~ fieldset:eq(1) > select")[0].innerHTML = "";
-		const args = {
-				b: parse ($("#expression").val().split("==")[0] ),
-				a: parse ($("#expression").val().split("==")[1] )
-			},
-			fs = [...args.b, ...args.a];
-		for (const f of fs)
-			$("#expression ~ fieldset:eq(1) > select").append(
-				$("<option></option>")
-					.html( f[1].map(v => v.n+small(omit(v.s))).join("") )
-					.attr("value", f[1].map(v => v.n+omit(v.s)).join("") )
-			);
+		try{
+			$("#expression ~ fieldset:eq(1) > select")[0].innerHTML = "";
+			const args = {
+					b: parse ($("#expression").val().split("==")[0] ),
+					a: parse ($("#expression").val().split("==")[1] )
+				},
+				fs = [...args.b, ...args.a];
+			for (const f of fs)
+				$("#expression ~ fieldset:eq(1) > select").append(
+					$("<option></option>")
+						.html( f[1].map(v => v.n+small(omit(v.s))).join("") )
+						.attr("value", f[1].map(v => v.n+omit(v.s)).join("") )
+				);
+		}catch(err){
+			console.error(err);
+		}
 	});
 	$("#expression ~ fieldset:eq(1) > button").click(function(){
 		if ($("#expression").val().split("==").length < 2){
