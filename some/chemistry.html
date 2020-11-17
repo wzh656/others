@@ -679,6 +679,7 @@ $(function(){
 		}
 	};
 	$("#expression")[0].onchange = selection_updater;
+	setInterval(selection_updater, 1000);
 	$("#expression ~ fieldset:eq(1) > button").click(function(){
 		if ($("#expression").val().split("==").length < 2){
 			return layx.notice({
