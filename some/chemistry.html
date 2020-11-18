@@ -662,10 +662,12 @@ $(function(){
 	/* 推算质量 */
 	let selection_updater = function(){
 		try{
+			if ( $("#expression").val().split("==").length < 2 ) return;
+			if ( $("#expression").val().split("==").length != 2 ) return;
 			$("#expression ~ fieldset:eq(1) > select")[0].innerHTML = "";
 			const args = {
-					b: parse ($("#expression").val().split("==")[0] ),
-					a: parse ($("#expression").val().split("==")[1] )
+					b: parse( $("#expression").val().split("==")[0] ),
+					a: parse( $("#expression").val().split("==")[1] )
 				},
 				fs = [...args.b, ...args.a];
 			for (const f of fs)
@@ -678,25 +680,26 @@ $(function(){
 			console.error(err);
 		}
 	};
-	$("#expression")[0].onchange = selection_updater;
-	setInterval(selection_updater, 1000);
+	$("#expression")
+		.change(selection_updater)
+		.focus(selection_updater)
+		.blur(selection_updater);
 	$("#expression ~ fieldset:eq(1) > button").click(function(){
-		if ($("#expression").val().split("==").length < 2){
+		if ($("#expression").val().split("==").length < 2)
 			return layx.notice({
 				title: "错误的化学方程式",
 				type: "error",
 				message: "“"+$("#expression").val()+"”不是正确的化学方程式，请输入已配平的化学方程式，配平横线请用“==”表示（2个等号），具体详见下方注意事项，如仍错误可以反馈给作者wzh"
 			});
-		}else if ($("#expression").val().split("==").length != 2){
+		if ($("#expression").val().split("==").length != 2)
 			return layx.notice({
 				title: "错误的化学方程式",
 				type: "error",
 				message: "“"+$("#expression").val()+"”不是正确的化学方程式，请正确输入化学方程式，短线请用“==”表示（只有2根小横线），具体详见下方注意事项，如仍错误可以反馈给作者wzh"
 			});
-		}
 		const args = {
-				b: parse ($("#expression").val().split("==")[0] ),
-				a: parse ($("#expression").val().split("==")[1] )
+				b: parse( $("#expression").val().split("==")[0] ),
+				a: parse( $("#expression").val().split("==")[1] )
 			},
 			fs = [...args.b, ...args.a];
 		let [name, mass] = [$("#expression ~ fieldset:eq(1) > select").val(), $("#expression ~ fieldset:eq(1) > input").val()],
@@ -734,11 +737,11 @@ $(function(){
 			)
 		);
 		// 分述
-		for (let i in fs){
+		for (let i in fs){ //i: 要求； index: 已知
 			if (i == index) continue;
 			$("#expression ~ ul").append(
 				$("<li></li>").html(
-					`解：设参加反应的物质${fs[i][1].map(v => v.n+small(omit(v.s))).join("")}质量为x。<br/>`
+					`解：设参加反应的物质${fs[i][1].map(v => v.n+small(omit(v.s))).join("")}的质量为x。<br/>`
 				).append(
 					$(
 						"<pre>"+
@@ -754,9 +757,9 @@ $(function(){
 					.css("margin", "0")
 					.css("font-size", "16px")
 				).append(
-					`${ get_mass([fs[index]]).mass } / ${ get_mass([fs[i]]).mass } = x / ${ mass }(单位)<br/>`+
-					`x = ${ get_mass([fs[index]]).mass } / ${ get_mass([fs[i]]).mass } * ${ mass }(单位) = ${round( get_mass([fs[index]]).mass / get_mass([fs[i]]).mass * mass )}(单位)<br/>`+
-					`答：物质${omit(fs[i][0])+fs[i][1].map(v => v.n+small(omit(v.s))).join("")}质量为${round( get_mass([fs[index]]).mass / get_mass([fs[i]]).mass * mass )}(单位)`
+					`${ get_mass([fs[i]]).mass } / ${ get_mass([fs[index]]).mass } = x / ${ mass }(单位)<br/>`+
+					`x = ${ get_mass([fs[i]]).mass } / ${ get_mass([fs[index]]).mass } * ${ mass }(单位) = ${round( get_mass([fs[i]]).mass / get_mass([fs[index]]).mass * mass )}(单位)<br/>`+
+					`答：参加反应的物质${fs[i][1].map(v => v.n+small(omit(v.s))).join("")}的质量为${round( get_mass([fs[i]]).mass / get_mass([fs[index]]).mass * mass )}(单位)。`
 				)
 			)
 		}
