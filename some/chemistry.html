@@ -21,10 +21,10 @@
 body, input, button, body>label{ /* 背景色 */
 	background-color: #fffae8;
 }
-input[type="radio"]{ /* 隐藏选择 */
+body > input[type="radio"]{ /* 隐藏选择 */
 	display: none;
 }
-input[name="nav"]:not(:checked) + div{ /* 仅选择的显示 */
+body > input[name="nav"]:not(:checked) + div{ /* 仅选择的显示 */
 	display: none !important;
 }
 
@@ -86,7 +86,26 @@ h1, h2, h3{ /* 标题 */
 		0px 0px 36px #e0edd3,
 		0px 0px 42px #e0edd3;
 }
-p{
+button{ /* 按钮 */
+	border-radius: 1vw;
+	margin-top: 0.6vh;
+}
+input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
+	background-color: #e0edd3;
+}
+
+input:not([type]){ /* 文本输入框 */
+	width: 86%;
+	border-radius: 1vw;
+}
+input[type="number"]{ /* 数字输入框 */
+	width: 16vw;
+	border-radius: 1vw;
+}
+div p{
+	margin: 0;
+}
+div > p{
 	text-shadow:
 		0px 0px 6px #e0edd3,
 		0px 0px 12px #e0edd3,
@@ -96,18 +115,6 @@ p{
 	border-bottom: 1px solid black;
 	margin: 3vw;
 	padding: 3vw;
-}
-button{ /* 按钮 */
-	border-radius: 1vw;
-	margin-top: 0.6vh;
-}
-input:focus, li:active, button:active, label:active{ /* 被点击高亮 */
-	background-color: #e0edd3;
-}
-
-input:not([type]), input[type="number"]{ /* 输入文本框 */
-	width: 86%;
-	border-radius: 1vw;
 }
 
 ul, #about_page + div > details > ol{ /* 结果列表 */
@@ -123,6 +130,7 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	margin: 1vw;
 	overflow-x: auto;
 }
+
 
 #expression ~ ul > li:first-of-type:not(.msg){ /* 高亮第一 */
 	background-color: #e0edd3;
@@ -146,7 +154,7 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 }
 
 #expression ~ ul.mass > li:first-of-type:before{
-	content: "总述：";
+	content: "总表：";
 	font-weight: bold;
 }
 #expression ~ ul.mass > li:first-of-type:after{
@@ -155,10 +163,12 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	font-weight: bold;
 }
 
+
 #formula ~ ul > li:first-of-type{ /* 高亮第一 */
 	background-color: #e0edd3;
 	font-weight: bold;
 }
+
 
 #javascript ~ div:first-of-type:not(.empty){
 	display: block;
@@ -175,29 +185,36 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	background-color: #e0edd3;
 }
 
+
 #equation ~ ul > li:first-of-type:not(.stopped){ /* 高亮第一 */
 	background-color: #e0edd3;
 }
-#equation ~ ul > li:first-of-type:not(.stopped):before{
+
+#equation ~ ul.violence > li:first-of-type:not(.stopped):before{
 	content: "方程的近似解：\a";
 	white-space: pre;
 }
-#equation ~ ul > li.finished{ /* 高亮结果 */
+#equation ~ ul.violence > li.finished{ /* 高亮结果 */
 	background-color: #e0edd3;
 	font-weight: bold;
 }
-#equation ~ ul > li.finished:before{
+#equation ~ ul.violence > li.finished:before{
 	content: "方程的一个根：\a" !important;
 	white-space: pre;
 }
-#equation ~ ul > li.stopped:last-of-type{ /* 高亮最后停止信息 */
+#equation ~ ul.violence > li.stopped:last-of-type{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
-#equation ~ ul > li.omited{ /* 高亮省略 */
+#equation ~ ul.violence > li.omited{ /* 高亮省略 */
 	background-color: #ede0a3;
 	text-align: center;
 }
+
+#equation ~ ul.dichotomy > li.successful{ /* 高亮结果 */
+	background-color: #e0edd3;
+}
+
 
 #about_page + div{
 	display: flex;
@@ -220,6 +237,7 @@ footer{
 	text-align: center;
 	font-size: 0.6em;
 }
+
 
 @keyframes fadeIn{
 	from {
@@ -368,10 +386,24 @@ daovoice('update');
 		<input id="equation_page" name="nav" type="radio" />
 		<div>
 			<h1>超级解方程</h1>
-			<p><label for="equation">请输入关于x的方程：</label></p>
+			<p><label for="equation">请输入关于x的一元方程：</label></p>
 			<input id="equation" value="x*x+2*x-3" autofocus />=0
 			<fieldset>
-				<legend>范围</legend>
+				<legend>二分法</legend>
+				<p>范围：</p>
+				<fieldset>
+					<legend><input type="radio" name="dichotomy_range" checked />随机</legend>
+					尝试次数：<input type="number" value="16"/>
+				</fieldset>
+				<fieldset>
+					<legend><input type="radio" name="dichotomy_range" />手动</legend>
+					<input type="number" value="-100" />～<input type="number" value="1000" />
+				</fieldset>
+				<button>解方程</button>
+			</fieldset>
+			<fieldset>
+				<legend>暴力算法</legend>
+				<p>范围：</p>
 				<input type="checkbox" value="0" checked />0
 				<input type="checkbox" value="N+" />正整数/自然数(N⁺)
 				<input type="checkbox" value="-N+" />负整数(-N⁺)
@@ -801,10 +833,58 @@ $(function(){
 	
 	
 	/* 解方程 */
+	// 二分法
+	$("#equation ~ fieldset:eq(0) > button").click(function(){
+		if ( $("#equation ~ fieldset:eq(0) input[name='dichotomy_range']")[0].checked ){
+			// 随机范围
+			let tryTimes = $("#equation ~ fieldset:eq(0) > fieldset:eq(0) > input:eq(0)").val();
+			console.log(tryTimes)
+			let results = [];
+			$("#equation ~ ul").removeClass("violence").addClass("dichotomy")[0].innerHTML = "<h3>结果（如果解得根的数量较少可以增加尝试次数或重复尝试）：</h3>";
+			while (tryTimes-- > 0){
+				let low=0, high=0, x=0, low_value=0, high_value=0, exp=$("#equation").val();
+				while (Math.abs(high-low) < 30 || low_value*high_value >= 0){
+					[low, high] = [-1000*Math.log(1/Math.random()-1), -1000*Math.log(1/Math.random()-1)];
+					x = low;
+					low_value = eval(exp);
+					x = high;
+					high_value =eval(exp);
+				}
+				if (low > high) [low, high] = [high,low];
+				let value=1, last=[];
+				while (Math.abs(value) > 1e-3){
+					x = (low+high)/2;
+					value = eval(exp);
+					if (value*low_value >= 0){
+						[low, high] = [low, x];
+					}else{
+						[low, high] = [x, high];
+					}
+					last.push(value);
+					if (last.length > 6)
+						last.splice(0, 1);
+					if (
+						last.length >= 6 &&
+						last.every((v,i, arr) => arr[i+1]? arr[i+1]-v>0: true)
+					) break;
+				}
+				results.push({x, e:eval(exp)})
+			}
+			results.sort((a,b) => Math.abs(a.e) - Math.abs(b.e));
+			for (let i of results)
+				$("#equation ~ ul").append(
+					$(`<li><b>x=${round(i.x, 6)}≈${round(i.x, 2)}</b>， e=${round(i.e, 6)}</li>`).addClass(Math.abs(i.e) <= 1e-3? "successful": "")
+				);
+		}else{
+			// 手动输入
+		}
+	});
+	// 暴力算法
 	let equation_event = function(){
 		console.log( $("#equation").val() );
+		$("#equation ~ ul").removeClass("dichotomy").addClass("violence");
 		results = [], workers=[], total=0;
-		[...$("#equation ~ fieldset > input")].map(function(that){
+		[...$("#equation ~ fieldset:eq(1) > input")].map(function(that){
 			console.log(that.checked);
 			if (!that.checked) return;
 			let worker = new Worker("./work.js");
@@ -819,7 +899,7 @@ $(function(){
 				}
 			};
 			worker.postMessage({
-				type: "equation",
+				type: "equation_violence",
 				equation: $("#equation").val(),
 				range: that.value
 			});
@@ -834,7 +914,7 @@ $(function(){
 			for (let i in results){
 				if (results[i]){
 					let v = results[i];
-					innerHTML += `<li${v.e==0? ' class="finished"': ''}>x${(v.s&&v.p)? "="+v.s+"/"+v.p: ""}=${Math.round(v.x*1e6)/1e6}， 误差e=${Math.round(v.e*1e6)/1e6}</li>`;
+					innerHTML += `<li${v.e==0? ' class="finished"': ''}>x${(v.s&&v.p)? "="+v.s+"/"+v.p: ""}=${round(v.x, 6)}， 误差e=${round(v.e, 6)}</li>`;
 				}else if (!omited){
 					innerHTML += `<li class="omited">……（被省略）</li>`;
 					omited = true;
@@ -846,7 +926,7 @@ $(function(){
 			/*if (needUpdate) */interval = setTimeout(updater, 100);
 		};
 		let interval = setTimeout(updater, 100);
-		$("#equation ~ fieldset > button")
+		$("#equation ~ fieldset:eq(1) > button")
 			.css("background-color", "#edd3e0")
 			.html("停止")
 			[0].onclick = ()=>{
@@ -855,13 +935,13 @@ $(function(){
 				//updater(false);
 				$("#equation ~ ul > h3").html("结果：");
 				$("#equation ~ ul")[0].innerHTML += `<li class="stopped">线程已停止</li>`;
-				$("#equation ~ fieldset > button")
+				$("#equation ~ fieldset:eq(1) > button")
 					.css("background-color", "#fffae8")
 					.html("解方程")
 					[0].onclick = equation_event;
 			};
 	};
-	$("#equation ~ fieldset > button")[0].onclick = equation_event;
+	$("#equation ~ fieldset:eq(1) > button")[0].onclick = equation_event;
 });
 $("dialog").remove();
 </script>
