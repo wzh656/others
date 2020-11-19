@@ -271,17 +271,22 @@ noscript{
 	animation: 3s fadeIn;
 }
 </style>
+		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+		<script>eruda.init();</script>
+		<script>new VConsole();</script>
+		
 		<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/layx.min.css" />
 		<script src="./js/layx.min.js"></script>
 <script>
-if (!localStorage.getItem("version") || +localStorage.getItem("version") < 11){
-	localStorage.setItem("version", 11);
+if (!localStorage.getItem("version") || +localStorage.getItem("version") < 12){
+	localStorage.setItem("version", 12);
 	setTimeout(function(){
 		layx.notice({
 			title: "版本更新通知",
 			type: "info",
-			message: "2020/11/17\n新增了“化学方程式”的“推算反应中各物质质量”功能"
+			message: "2020/11/19\n新增了“解方程”的“二分法解方程”功能"
 		});
 	},1000);
 }
@@ -443,6 +448,7 @@ daovoice('update');
 					<li>v1.5.1 2020/11/13 优化了“解方程”的运行速度 和 显示界面</li>
 					<li>v1.6.0 2020/11/15 新增功能：DaoVoice联系作者（不是聊天室），可以在右下角进入反馈改进意见</li>
 					<li>v1.7.0 2020/11/17 新增了“化学方程式”的“推算反应中各物质质量”功能</li>
+					<li>v1.8.0 2020/11/19 新增了“解方程”的“二分法解方程”功能</li>
 				</ol>
 			</details>
 			<details>
