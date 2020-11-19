@@ -121,7 +121,9 @@ if (bool) self.postMessage(
 self.postMessage(null);`
 			eval(js);
 			break;
-		case "equation":
+		case "equation_dichotomy":
+			
+		case "equation_violence":
 			if (e.data.range == "0"){
 				let x = 0;
 				self.postMessage({x, e:eval(e.data.equation)});
