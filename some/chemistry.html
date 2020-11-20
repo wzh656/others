@@ -99,7 +99,7 @@ input:not([type]){ /* 文本输入框 */
 	border-radius: 1vw;
 }
 input[type="number"]{ /* 数字输入框 */
-	width: 16vw;
+	width: 16%;
 	border-radius: 1vw;
 }
 div p{
@@ -122,7 +122,7 @@ ul, #about_page + div > details > ol{ /* 结果列表 */
 	padding: 0;
 	/*overflow-x: auto;*/
 }
-ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
+ul:not(.noStyle) > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	display: block;
 	border: 0.6vw inset #e0edd3;
 	border-radius: 2vw;
@@ -170,6 +170,9 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 }
 
 
+#javascript ~ ul > li{
+	margin: 3vw;
+}
 #javascript ~ div:first-of-type:not(.empty){
 	display: block;
 	border: 0.6vw inset #e0edd3;
@@ -178,11 +181,14 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 	margin: 1vw;
 	overflow-x: auto;
 }
-#javascript ~ div:first-of-type:not(.empty):before{
+#javascript ~ div:first-of-type:before{
 	content: "计算结果：";
 }
-#javascript ~ div:first-of-type:not(.empty):active{
+#javascript ~ div:first-of-type:not(:empty){ /* 正确高亮 */
 	background-color: #e0edd3;
+}
+#javascript ~ div.error:first-of-type:not(:empty){ /* 运算错误 */
+	background-color: #edd3e0;
 }
 
 
@@ -223,6 +229,7 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 }
 #about_page + div > details{
 	flex-grow: 1;
+	border-bottom: 1px solid black;
 }
 #about_page + div > details > ol{
 	display: flex;
@@ -231,7 +238,7 @@ ul > li, #about_page + div > details > ol > li{ /* 结果列表项 */
 }
 #about_page + div > details > ol > li:before{
 	counter-increment: version;
-	 content: counter(version)". ";
+	content: counter(version)". ";
 }
 footer{
 	text-align: center;
@@ -271,22 +278,17 @@ noscript{
 	animation: 3s fadeIn;
 }
 </style>
-		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
-		<script>eruda.init();</script>
-		<script>new VConsole();</script>
-		
 		<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/layx.min.css" />
 		<script src="./js/layx.min.js"></script>
 <script>
-if (!localStorage.getItem("version") || +localStorage.getItem("version") < 12){
-	localStorage.setItem("version", 12);
+if (!localStorage.getItem("version") || +localStorage.getItem("version") < 13){
+	localStorage.setItem("version", 13);
 	setTimeout(function(){
 		layx.notice({
 			title: "版本更新通知",
 			type: "info",
-			message: "2020/11/19\n新增了“解方程”的“二分法解方程”功能"
+			message: "v1.9.0 2020/11/20\n新增了“计算”的“公式计算”功能。\n并加入了弧长、扇形面积、圆锥侧面积及全面积、圆锥展开扇形面积及圆心角度、身高体重BMI指数等计算公式。"
 		});
 	},1000);
 }
@@ -374,10 +376,57 @@ daovoice('update');
 		</div>
 		<input id="calculator_page" name="nav" type="radio" />
 		<div>
-			<h1>计算器</h1>
+			<h1>计算</h1>
+			<h3>直接计算（计算器）</h3>
 			<p><label for="javascript">请输入表达式：</label></p>
 			<input id="javascript" value="3**2+sin(0.1/180*PI)" autofocus />
 			<button>计算</button>
+			<hr/>
+			<h3>通用公式计算</h3>
+			<ul class="noStyle">
+				<li>
+					弧长：<input value="n*PI*r/180" /><br/>
+					n=<input type="number" name="n" data-name="n" value="60" />,
+					r=<input type="number" name="r" value="2" />
+					<button>计算</button>
+				</li>
+				<li>
+					扇形面积1：<input value="n*PI*r**2/360" /><br/>
+					n=<input type="number" name="n" value="60" />,
+					r=<input type="number" name="r" value="2" />
+					<button>计算</button>
+				</li>
+				<li>
+					扇形面积2：<input value="1/2*l*r" /><br/>
+					l=<input type="number" name="l" value="3.14" />,
+					r=<input type="number" name="r" value="2" />
+					<button>计算</button>
+				</li>
+				<li>
+					圆锥侧面积（展开扇形面积）：<input value="PI*r*l" /><br/>
+					l=<input type="number" name="l" value="10" />,
+					r=<input type="number" name="r" value="3" />
+					<button>计算</button>
+				</li>
+				<li>
+					圆锥全面积（侧面积+底面积）：<input value="PI*r*l+PI*r*r" /><br/>
+					l=<input type="number" name="l" value="10" />,
+					r=<input type="number" name="r" value="3" />
+					<button>计算</button>
+				</li>
+				<li>
+					圆锥展开扇形圆心角：<input value="360*r/l" /><br/>
+					l=<input type="number" name="l" value="10" />,
+					r=<input type="number" name="r" value="3" />
+					<button>计算</button>
+				</li>
+				<li>
+					身高体重BMI指数：<input value="m/l/l" /><br/>
+					身高l=<input type="number" name="l" value="1.8" />/m,
+					体重m=<input type="number" name="m" value="60" />/kg
+					<button>计算</button>
+				</li>
+			</ul>
 			<hr/>
 			<h3>结果</h3>
 			<div></div>
@@ -437,18 +486,19 @@ daovoice('update');
 			<details>
 				<summary>时光机（更新日志）</summary>
 				<ol>
-					<li>v1.0.0 2020/10/29 偶然的灵感一动，萌发了第一个版本，可以自动配平化学方程式</li>
-					<li>v1.0.1 使用后台线程work.js配平化学方程式</li>
-					<li>v1.1.0 新增功能：“相对质量计算”</li>
-					<li>v1.2.0 新增功能：“关于”</li>
-					<li>v1.3.0 新增功能：“计算器”</li>
-					<li>v1.4.0 2020/11/8 新增功能：流量（访问人数）统计，可以在关于页面下方进入查看综合统计数据</li>
-					<li>v1.5.0 2020/11 新增功能：“解方程”</li>
-					<li>v1.5.1 2020/11 增加了一些元素 和 元素名称</li>
-					<li>v1.5.1 2020/11/13 优化了“解方程”的运行速度 和 显示界面</li>
-					<li>v1.6.0 2020/11/15 新增功能：DaoVoice联系作者（不是聊天室），可以在右下角进入反馈改进意见</li>
-					<li>v1.7.0 2020/11/17 新增了“化学方程式”的“推算反应中各物质质量”功能</li>
-					<li>v1.8.0 2020/11/19 新增了“解方程”的“二分法解方程”功能</li>
+					<li>v1.0.0 2020/10/29<br/>偶然的灵感一动，萌发了第一个版本，可以自动配平化学方程式</li>
+					<li>v1.0.1<br/>使用后台线程work.js配平化学方程式</li>
+					<li>v1.1.0<br/>新增功能：“相对质量计算”</li>
+					<li>v1.2.0<br/>新增功能：“关于”</li>
+					<li>v1.3.0<br/>新增功能：“计算器”</li>
+					<li>v1.4.0 2020/11/8<br/>新增功能：流量（访问人数）统计，可以在关于页面下方进入查看综合统计数据</li>
+					<li>v1.5.0 2020/11<br/>新增功能：“解方程”</li>
+					<li>v1.5.1 2020/11<br/>增加了一些元素 和 元素名称</li>
+					<li>v1.5.1 2020/11/13<br/>优化了“解方程”的运行速度 和 显示界面</li>
+					<li>v1.6.0 2020/11/15<br/>新增功能：DaoVoice联系作者（不是聊天室），可以在右下角进入反馈改进意见</li>
+					<li>v1.7.0 2020/11/17<br/>新增了“化学方程式”的“推算反应中各物质质量”功能</li>
+					<li>v1.8.0 2020/11/19<br/>新增了“解方程”的“二分法解方程”功能</li>
+					<li>v1.9.0 2020/11/20<br/>新增了“计算”的“公式计算”功能，并加入了弧长、扇形面积、圆锥侧面积及全面积、圆锥展开扇形面积及圆心角度、身高体重BMI指数等计算公式</li>
 				</ol>
 			</details>
 			<details>
@@ -514,7 +564,7 @@ daovoice('update');
 		<nav>
 			<label for="expression_page">化学方程式</label>
 			<label for="mass_page">相对质量计算</label>
-			<label for="calculator_page">计算器</label>
+			<label for="calculator_page">计算</label>
 			<label for="equation_page">解方程</label>
 			<label for="about_page">关于</label>
 		</nav>
@@ -829,12 +879,34 @@ $(function(){
 	});
 	
 	
-	/* 计算器 */
+	/* 公式计算 */
+	// 计算器
 	$("#javascript + button").click(function(){
 		console.log( $("#javascript").val() );
-		$("#javascript ~ div:eq(0)").html(
-			eval(`with(Math){ ${ $("#javascript").val() } }`)
-		);
+		try{
+			$("#javascript ~ div:eq(0)").removeClass("error").html(
+				eval(`with(Math){ ${ $("#javascript").val() } }`)
+			);
+		}catch(err){
+			$("#javascript ~ div:eq(0)").addClass("error").html( err );
+		};
+	});
+	// 公式计算
+	Math.r = v => v/180*Math.PI;
+	Math.d = v => v/Math.PI*180;
+	$("#javascript ~ ul > li > button").click(function(){
+		let exp = $(this).parent().children("input:not([name])").val();
+		for (let {name, value} of $(this).parent().children("input[name]")){
+			exp = `let ${name}=${value};${exp}`;
+		}
+		console.log(`with(Math){ ${exp} }`)
+		try{
+			$("#javascript ~ div:eq(0)").removeClass("error").html(
+				eval(`with(Math){ ${exp} }`)
+			);
+		}catch(err){
+			$("#javascript ~ div:eq(0)").addClass("error").html( err );
+		}
 	});
 	
 	
