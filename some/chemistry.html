@@ -144,11 +144,11 @@ ul:not(.noStyle) > li, #about_page + div > details > ol > li{ /* 结果列表项
 	white-space: pre;
 	font-weight: bold;
 }
-#expression ~ ul:not(.mass) > li.msg.finished:last-of-type{ /* 高亮最后完成信息 */
+#expression ~ ul:not(.mass) > li.msg:last-of-type.finished{ /* 高亮最后完成信息 */
 	background-color: #d3ede0;
 	text-align: center;
 }
-#expression ~ ul:not(.mass) > li.msg.stopped:last-of-type{ /* 高亮最后停止信息 */
+#expression ~ ul:not(.mass) > li.msg:last-of-type.stopped{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
@@ -208,7 +208,7 @@ ul:not(.noStyle) > li, #about_page + div > details > ol > li{ /* 结果列表项
 	content: "方程的一个根：\a" !important;
 	white-space: pre;
 }
-#equation ~ ul.violence > li.stopped:last-of-type{ /* 高亮最后停止信息 */
+#equation ~ ul.violence > li:last-of-type.stopped{ /* 高亮最后停止信息 */
 	background-color: #ede0d3;
 	text-align: center;
 }
@@ -219,6 +219,26 @@ ul:not(.noStyle) > li, #about_page + div > details > ol > li{ /* 结果列表项
 
 #equation ~ ul.dichotomy > li.successful{ /* 高亮结果 */
 	background-color: #e0edd3;
+}
+#equation ~ ul.dichotomy > li:active span:not(.detail){ /* 点击 隐藏 简略 */
+	display: none;
+}
+#equation ~ ul.dichotomy > li:active span.detail{ /* 点击 显示 详细 */
+	display: inline;
+}
+#equation ~ ul.dichotomy > li:not(:active) span:not(.detail){ /* 不点击 显示 简略 */
+	display: inline;
+}
+#equation ~ ul.dichotomy > li:not(:active) span.detail{ /* 不点击 隐藏 详细 */
+	display: none;
+}
+#equation ~ ul.dichotomy > li:last-of-type.finished{ /* 高亮最后完成信息 */
+	background-color: #d3ede0;
+	text-align: center;
+}
+#equation ~ ul.dichotomy > li:last-of-type.stopped{ /* 高亮最后停止信息 */
+	background-color: #ede0d3;
+	text-align: center;
 }
 
 
@@ -282,13 +302,13 @@ noscript{
 		<link rel="stylesheet" type="text/css" href="./css/layx.min.css" />
 		<script src="./js/layx.min.js"></script>
 <script>
-if (!localStorage.getItem("version") || +localStorage.getItem("version") < 13){
-	localStorage.setItem("version", 13);
+if (!localStorage.getItem("version") || +localStorage.getItem("version") < 14){
+	localStorage.setItem("version", 14);
 	setTimeout(function(){
 		layx.notice({
 			title: "版本更新通知",
 			type: "info",
-			message: "v1.9.0 2020/11/20\n新增了“计算”的“公式计算”功能。\n并加入了弧长、扇形面积、圆锥侧面积及全面积、圆锥展开扇形面积及圆心角度、身高体重BMI指数等计算公式。"
+			message: "v1.9.1 2020/11/22\n使用后台线程work.js二分法解方程，并加入了精度参数"
 		});
 	},1000);
 }
@@ -310,11 +330,11 @@ daovoice('update');
 			<fieldset>
 				<legend>化学方程式配平</legend>
 				化学计量数尝试范围：<br/>
-				<span>1</span><input type="range" min="1" max="10" step="1" value="1" onchange="$(this).siblings('input:eq(0)').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" /><span>10</span>
-				<input type="number" min="1" max="10" step="1" value="1" onchange="$(this).siblings('input:eq(0)').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" style="width: 36px;" /><br/>
+				<span>1</span><input type="range" min="1" max="10" step="1" value="1" onchange="$(this).next('input').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" /><span>10</span>
+				<input type="number" min="1" max="10" step="1" value="1" onchange="$(this).prev('input').val(this.value) .parent().children(`input[type='range']:eq(1),input[type='number']:eq(1)`).attr('min', this.value) .siblings('span:eq(2)').html(this.value);" style="width: 36px;" /><br/>
 				～
-				<span>1</span><input type="range" min="1" max="100" step="1" value="10" onchange="$(this).siblings('input:eq(2)').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" /><span>100</span>
-				<input type="number" min="1" max="100" step="1" value="10" onchange="$(this).siblings('input:eq(2)').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" style="width: 36px;" /><br/>
+				<span>1</span><input type="range" min="1" max="100" step="1" value="10" onchange="$(this).next('input').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" /><span>100</span>
+				<input type="number" min="1" max="100" step="1" value="10" onchange="$(this).prev('input').val(this.value) .parent().children(`input[type='range']:eq(0),input[type='number']:eq(0)`).attr('max', this.value) .siblings('span:eq(1)').html(this.value);" style="width: 36px;" /><br/>
 				<button>配平</button>
 			</fieldset>
 			<fieldset>
@@ -447,10 +467,12 @@ daovoice('update');
 				<p>范围：</p>
 				<fieldset>
 					<legend><input type="radio" name="dichotomy_range" checked />随机</legend>
-					尝试次数：<input type="number" value="16"/>
+					尝试次数：<input type="number" value="16"/><br/>
+					精度：0<input type="range" min="0" max="10" step="1" value="3" onchange="$(this).next('input').val(this.value);" />10
+					<input type="number" value="3" onchange="$(this).prev('input').val(this.value);" />
 				</fieldset>
 				<fieldset>
-					<legend><input type="radio" name="dichotomy_range" />手动</legend>
+					<legend><input type="radio" name="dichotomy_range" disabled />手动</legend>
 					<input type="number" value="-100" />～<input type="number" value="1000" />
 				</fieldset>
 				<button>解方程</button>
@@ -472,6 +494,7 @@ daovoice('update');
 			<div>
 				<h2>使用规范与注意事项</h2>
 				<ol>
+					<li>小技巧：长按结果项目可以查看详细的解（不一定完全正确，与精度有关）</li>
 				</ol>
 			</div>
 		</div>
@@ -499,6 +522,7 @@ daovoice('update');
 					<li>v1.7.0 2020/11/17<br/>新增了“化学方程式”的“推算反应中各物质质量”功能</li>
 					<li>v1.8.0 2020/11/19<br/>新增了“解方程”的“二分法解方程”功能</li>
 					<li>v1.9.0 2020/11/20<br/>新增了“计算”的“公式计算”功能，并加入了弧长、扇形面积、圆锥侧面积及全面积、圆锥展开扇形面积及圆心角度、身高体重BMI指数等计算公式</li>
+					<li>v1.9.1 2020/11/22<br/>使用后台线程work.js二分法解方程，并加入了精度参数</li>
 				</ol>
 			</details>
 			<details>
@@ -912,53 +936,65 @@ $(function(){
 	
 	/* 解方程 */
 	// 二分法
-	$("#equation ~ fieldset:eq(0) > button").click(function(){
+	let equation_dichotomy_event = function(){
 		if ( $("#equation ~ fieldset:eq(0) input[name='dichotomy_range']")[0].checked ){
 			// 随机范围
-			let tryTimes = $("#equation ~ fieldset:eq(0) > fieldset:eq(0) > input:eq(0)").val();
-			console.log(tryTimes)
-			let results = [];
-			$("#equation ~ ul").removeClass("violence").addClass("dichotomy")[0].innerHTML = "<h3>结果（如果解得根的数量较少可以增加尝试次数或重复尝试）：</h3>";
+			let exp=$("#equation").val(),
+				tryTimes = $("#equation ~ fieldset:eq(0) > fieldset:eq(0) > input:eq(0)").val(),
+				accuracy = $("#equation ~ fieldset:eq(0) > fieldset:eq(0) > input:eq(2)").val(),
+				results = [],
+				workers = [],
+				num = 0;
+			$("#equation ~ ul").removeClass("violence").addClass("dichotomy")[0].innerHTML = "<h3>结果（线程执行中）：</h3>";
 			while (tryTimes-- > 0){
-				let low=0, high=0, x=0, low_value=0, high_value=0, exp=$("#equation").val();
-				while (Math.abs(high-low) < 30 || low_value*high_value >= 0){
-					[low, high] = [-1000*Math.log(1/Math.random()-1), -1000*Math.log(1/Math.random()-1)];
-					x = low;
-					low_value = eval(exp);
-					x = high;
-					high_value =eval(exp);
-				}
-				if (low > high) [low, high] = [high,low];
-				let value=1, last=[];
-				while (Math.abs(value) > 1e-3){
-					x = (low+high)/2;
-					value = eval(exp);
-					if (value*low_value >= 0){
-						[low, high] = [low, x];
-					}else{
-						[low, high] = [x, high];
+				let worker = new Worker("./work.js");
+				worker.onmessage = function(e){
+					console.info(e.data);
+					
+					results.push(e.data)
+					results.sort((a,b) => Math.abs(a.e) - Math.abs(b.e));
+					let innerHTML = "<h3>结果（线程执行中）：</h3>";
+					for (let i of results)
+						innerHTML += `<li${Math.abs(i.e) <= accuracy? " class='successful' ": ""}><b>x=<span>${round(i.x, 6)}</span><span class="detail">${i.x}</span>≈${round(i.x, 2)}</b>， e=${round(i.e, 6)}</li>`
+					$("#equation ~ ul")[0].innerHTML = innerHTML;
+					worker.terminate();
+					if (--num <= 0){
+						$("#equation ~ ul > h3").html("结果（如果解得根的数量较少可以增加尝试次数或重复尝试）：");
+						$("#equation ~ ul")[0].innerHTML += `<li class="finished">线程执行完毕</li>`;
+						$("#equation ~ fieldset:eq(0) > button")
+							.css("background-color", "#fffae8")
+							.html("解方程")
+							[0].onclick = equation_dichotomy_event;
 					}
-					last.push(value);
-					if (last.length > 6)
-						last.splice(0, 1);
-					if (
-						last.length >= 6 &&
-						last.every((v,i, arr) => arr[i+1]? arr[i+1]-v>0: true)
-					) break;
 				}
-				results.push({x, e:eval(exp)})
+				worker.postMessage({
+					type: "equation_dichotomy",
+					exp,
+					accuracy: -accuracy
+				});
+				workers.push(worker);
+				num++;
 			}
-			results.sort((a,b) => Math.abs(a.e) - Math.abs(b.e));
-			for (let i of results)
-				$("#equation ~ ul").append(
-					$(`<li><b>x=${round(i.x, 6)}≈${round(i.x, 2)}</b>， e=${round(i.e, 6)}</li>`).addClass(Math.abs(i.e) <= 1e-3? "successful": "")
-				);
+ 			$("#equation ~ fieldset:eq(0) > button")
+				.css("background-color", "#edd3e0")
+				.html("停止")
+				[0].onclick = ()=>{
+					workers.map(v => v.terminate());
+					$("#equation ~ ul > h3").html("结果（如果解得根的数量较少可以增加尝试次数或重复尝试）：");
+					$("#equation ~ ul")[0].innerHTML += `<li class="stopped">线程已停止</li>`;
+					$("#equation ~ fieldset:eq(0) > button")
+						.css("background-color", "#fffae8")
+						.html("解方程")
+						[0].onclick = equation_dichotomy_event;
+				};
 		}else{
 			// 手动输入
 		}
-	});
+	};
+	$("#equation ~ fieldset:eq(0) > button")[0].onclick = equation_dichotomy_event;
+ 	
 	// 暴力算法
-	let equation_event = function(){
+	let equation_violence_event = function(){
 		console.log( $("#equation").val() );
 		$("#equation ~ ul").removeClass("dichotomy").addClass("violence");
 		results = [], workers=[], total=0;
@@ -967,7 +1003,7 @@ $(function(){
 			if (!that.checked) return;
 			let worker = new Worker("./work.js");
 			worker.onmessage = function(e){
-				//console.info(e.data);
+				console.info(e.data);
 				
 				results.push(e.data);
 				if (e.data.s === undefined && e.data.p === undefined){
@@ -1016,10 +1052,10 @@ $(function(){
 				$("#equation ~ fieldset:eq(1) > button")
 					.css("background-color", "#fffae8")
 					.html("解方程")
-					[0].onclick = equation_event;
+					[0].onclick = equation_violence_event;
 			};
 	};
-	$("#equation ~ fieldset:eq(1) > button")[0].onclick = equation_event;
+	$("#equation ~ fieldset:eq(1) > button")[0].onclick = equation_violence_event;
 });
 $("dialog").remove();
 </script>
