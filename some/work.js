@@ -49,7 +49,7 @@ function* range(r){
 }
 self.onmessage = function(e){
 	switch (e.data.type){
-		case "expression":
+		case "expression": {
 			let {value:exp, start, end} = e.data;
 			let args = {
 				b: [ // b: KClO3
@@ -120,10 +120,33 @@ if (bool) self.postMessage(
 };
 self.postMessage(null);`
 			eval(js);
-			break;
-		case "equation_dichotomy":
-			
-		case "equation_violence":
+			break; }
+		case "equation_dichotomy": {
+			let {exp, accuracy} = e.data,
+				low=0, high=0,
+				x=0,
+				low_value=0, high_value=0;
+			while (Math.abs(high-low) < 30 || low_value*high_value >= 0){
+				[low, high] = [-1000*Math.log(1/Math.random()-1), -1000*Math.log(1/Math.random()-1)];
+				x = low;
+				low_value = eval(exp);
+				x = high;
+				high_value =eval(exp);
+			}
+			if (low > high) [low, high] = [high,low];
+			let value=1;
+			while (Math.abs(high-low) > 10**accuracy){
+				x = (low+high)/2;
+				value = eval(e.data.exp);
+				if (value*low_value >= 0){
+					[low, high] = [low, x];
+				}else{
+					[low, high] = [x, high];
+				}
+			}
+			self.postMessage({x, e:eval(exp)});
+			break; }
+		case "equation_violence": {
 			if (e.data.range == "0"){
 				let x = 0;
 				self.postMessage({x, e:eval(e.data.equation)});
@@ -136,7 +159,7 @@ self.postMessage(null);`
 				if (s/p == Math.round(s/p)) s = p = null;
 				self.postMessage({x, s, p, e:eval(e.data.equation)});
 			}, 0);
-			break;
+			break; }
 		default:
 			throw "type ERROR:"+type;
 	}
