@@ -302,13 +302,13 @@ noscript{
 		<link rel="stylesheet" type="text/css" href="./css/layx.min.css" />
 		<script src="./js/layx.min.js"></script>
 <script>
-if (!localStorage.getItem("version") || +localStorage.getItem("version") < 14){
-	localStorage.setItem("version", 14);
+if (!localStorage.getItem("version") || +localStorage.getItem("version") < 15){
+	localStorage.setItem("version", 15);
 	setTimeout(function(){
 		layx.notice({
 			title: "版本更新通知",
 			type: "info",
-			message: "v1.9.1 2020/11/22\n使用后台线程work.js二分法解方程，并加入了精度参数"
+			message: "v1.9.2 2020/11/27\n计算功能添加了结果自动转换为分数、带π实数、带根号实数"
 		});
 	},1000);
 }
@@ -523,6 +523,7 @@ daovoice('update');
 					<li>v1.8.0 2020/11/19<br/>新增了“解方程”的“二分法解方程”功能</li>
 					<li>v1.9.0 2020/11/20<br/>新增了“计算”的“公式计算”功能，并加入了弧长、扇形面积、圆锥侧面积及全面积、圆锥展开扇形面积及圆心角度、身高体重BMI指数等计算公式</li>
 					<li>v1.9.1 2020/11/22<br/>使用后台线程work.js二分法解方程，并加入了精度参数</li>
+					<li>v1.9.2 2020/11/27<br/>计算功能添加了结果自动转换为分数、带π实数、带根号实数</li>
 				</ol>
 			</details>
 			<details>
@@ -670,6 +671,33 @@ for (let i in ATOMS)
 			) )
 	);
 
+function isZ(n=0, acc=-3){ //acc：精度
+	return Math.abs( n-Math.round(n) ) < 10**acc;
+}
+function toQ(n=0, max=1e4, acc=-3){ //转换为a/b (a∈±N,b∈N+)的形式
+	for (let i=1; i<=max; i++)
+		if ( isZ(n*i, acc) )
+			return [Math.round(n*i), i];
+	return [n, 1];
+}
+function toPI(n=0, max=1e4, acc=-3){ //转换为(aπ+b)(a,b∈Z)形式
+	for (let i=0; i<=max; i++)
+		if ( isZ((n-i)/Math.PI, acc) ){
+			return [Math.round( (n-i)/Math.PI ), i];
+		}else if ( isZ((n+i)/Math.PI, acc) ){
+			return [Math.round( (n+i)/Math.PI ), -i];
+		}
+	return [0, n];
+}
+function toR(n=0, max=1e4, acc=-3){ //转换为(√a+b)(a,b∈Z)形式
+	for (let i=0; i<=max; i++)
+		if ( isZ((n-i)**2, acc) ){
+			return [Math.round( (n-i)**2 ), i];
+		}else if ( isZ((n+i)**2, acc) ){
+			return [Math.round( (n+i)**2 ), -i];
+		}
+	return [0, n];
+}
 function omit(n){
 	return n==1? "": n;
 }
@@ -908,11 +936,19 @@ $(function(){
 	$("#javascript + button").click(function(){
 		console.log( $("#javascript").val() );
 		try{
-			$("#javascript ~ div:eq(0)").removeClass("error").html(
-				eval(`with(Math){ ${ $("#javascript").val() } }`)
-			);
+			let value = eval(`with(Math){ ${ $("#javascript").val() } }`),
+				[Q,P,R] = [toQ(value), toPI(value), toR(value)];
+			P[1] = P[1]? (P[1]<0? "-": "+") + P[1]: "";
+			R[1] = R[1]? (R[1]<0? "-": "+") + R[1]: "";
+			$("#javascript ~ div:eq(0)").removeClass("error")[0].innerHTML =
+				`<b>${value}</b>`+
+				(Q[1] != 1? `<br/>≈ ${Q.join("/")}`: "")+
+				(P[0]? `<br/>≈ ${P[0]}π${P[1]}` :"")+
+				(R[0]? `<br/>≈ √${R[0]}${R[1]}` :"")
+			;
 		}catch(err){
 			$("#javascript ~ div:eq(0)").addClass("error").html( err );
+			throw err;
 		};
 	});
 	// 公式计算
@@ -924,12 +960,20 @@ $(function(){
 			exp = `let ${name}=${value};${exp}`;
 		}
 		console.log(`with(Math){ ${exp} }`)
+		let value = eval(`with(Math){ ${exp} }`),
+			[Q,P,R] = [toQ(value), toPI(value), toR(value)];
+		P[1] = P[1]? (P[1]<0? "-": "+") + P[1]: "";
+		R[1] = R[1]? (R[1]<0? "-": "+") + R[1]: "";
 		try{
-			$("#javascript ~ div:eq(0)").removeClass("error").html(
-				eval(`with(Math){ ${exp} }`)
-			);
+			$("#javascript ~ div:eq(0)").removeClass("error")[0].innerHTML =
+				`<b>${value}</b>`+
+				(Q[1] != 1? `<br/>≈ ${Q.join("/")}`: "")+
+				(P[0]? `<br/>≈ ${P[0]}π${P[1]}` :"")+
+				(R[0]? `<br/>≈ √${R[0]}${R[1]}` :"")
+			;
 		}catch(err){
 			$("#javascript ~ div:eq(0)").addClass("error").html( err );
+			throw err;
 		}
 	});
 	
@@ -997,7 +1041,7 @@ $(function(){
 	let equation_violence_event = function(){
 		console.log( $("#equation").val() );
 		$("#equation ~ ul").removeClass("dichotomy").addClass("violence");
-		results = [], workers=[], total=0;
+		let results = [], workers=[], total=0;
 		[...$("#equation ~ fieldset:eq(1) > input")].map(function(that){
 			console.log(that.checked);
 			if (!that.checked) return;
