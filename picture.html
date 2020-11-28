@@ -18,7 +18,7 @@
 		</script>
 	</head>
 	<body>
-		<canvas width="16" height="16">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="128" height="48">你的浏览器不支持canvas绘图</canvas><br/>
 		<canvas width="32" height="32">你的浏览器不支持canvas绘图</canvas><br/>
 		<input class="load_picture" placeholder="图片地址" /><br/>
 		x:<input class="load_picture_scale" value="32" /><br/>
@@ -53,7 +53,7 @@ $("button.load_picture").click(function(){
 	let img = new Image();
 	img.src = $("input.load_picture").val();
 	img.onload = function(){
-		ctx.drawImage(img, 0, 0, 16, 16);
+		ctx.drawImage(img, 0, 0, 128, 48);
 		let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
 		let x_scale = Number( $(".load_picture_scale:eq(0)").val() )/WIDTH;
 		let y_scale = Number( $(".load_picture_scale:eq(1)").val() )/HEIGHT;
