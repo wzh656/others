@@ -1,0 +1,210 @@
+<html>
+<head>
+	<title>鬼工智障——之贝叶斯分类</title>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<style>
+body, input{
+	background-color: #fffae8;
+}
+h1{
+	text-align: center;
+	color: #aa6;
+	text-shadow:
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3,
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3;
+}
+input{
+	width: 16vw;
+	border-radius: 1vw;
+}
+input:focus{
+	background-color: #e0edd3;
+}
+div#result{
+	padding: 1.6vmax;
+}
+</style>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+	<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+	<script>eruda.init();</script>
+	<script>new VConsole();</script>
+	<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
+</head>
+<body>
+	<h1>鬼工智障——之贝叶斯分类</h1>
+	<table border="2">
+		<tr>
+			<th>序号</th>
+			<th>前1题选项</th>
+			<th>前2题选项</th>
+			<th>前3题选项</th>
+			<th>A选项长度</th>
+			<th>B选项长度</th>
+			<th>C选项长度</th>
+			<th>D选项长度</th>
+			<th>正确选项</th>
+		</tr>
+	</table>
+	前1题选项：<input maxlength="1" /><br/>
+	前2题选项：<input maxlength="1" /><br/>
+	前3题选项：<input maxlength="1" /><br/>
+	A选项长度：<input type="number" step="1" /><br/>
+	B选项长度：<input type="number" step="1" /><br/>
+	C选项长度：<input type="number" step="1" /><br/>
+	D选项长度：<input type="number" step="1" /><br/>
+	正确选项：<input maxlength="1" /><br/>
+	<button id="add">添加信息</button><br/>
+	<button id="clear">清空信息</button><br/>
+	<button id="predict">预测选项</button><br/>
+	<div id="result"></div>
+	
+<script>
+const data = JSON.parse( localStorage.getItem("bayes.data")||"[]" );
+function update(){
+	console.log("update", data);
+	$("table").html(`<tr>
+			<th>序号</th>
+			<th>前1题选项</th>
+			<th>前2题选项</th>
+			<th>前3题选项</th>
+			<th>A选项长度</th>
+			<th>B选项长度</th>
+			<th>C选项长度</th>
+			<th>D选项长度</th>
+			<th>正确选项</th>
+			<th>操作</th>
+		</tr>`);
+	for (const [i,row] of Object.entries(data)){
+		const tr = $("<tr></tr>").append(
+			$("<td></td>").html(+i+1)
+		);
+		for (const item of row)
+			tr.append(
+				$("<td></td>").html(item)
+			);
+		tr.append(
+			$("<td></td>").append(
+				$("<button></button>").html("删除")
+					.click(()=>{
+						data.splice(i, 1);
+						update();
+					})
+			)
+		);
+		$("table").append(tr);
+	}
+	localStorage.setItem("bayes.data", JSON.stringify(data));
+}
+update();
+
+//添加
+$("button#add").click(function(){
+	const row = [];
+	for (const i of $("input"))
+		row.push( i.value );
+	
+	console.log(data, row);
+	
+	data.push(row);
+	console.log(data);
+	update();
+});
+
+//清空
+$("button#clear").click(function(){
+	if ( confirm("Really?") )
+		data.splice(0, data.length);
+	update();
+});
+
+//预测
+function ave(arr){ //均值
+	return arr.reduce( (x,y) => +x+(+y) ) / arr.length;
+}
+function vce(arr){ //方差
+	let xave = ave(arr),
+		s = arr.map( v => Math.pow(v-xave,2) )
+			.reduce( (x,y) => +x+(+y) );
+	return Math.sqrt(s/arr.length);
+}
+function bayes(opt, checked, checkLength){
+	// P(optₙ|checked)
+	// P(checked|opt) = ∏p(...)
+	const count = [0,0,0, [],[],[],[]],
+		types = [new Set(), new Set(), new Set()];
+		p = new Array(8);
+	let total = 0;
+	
+	for (const [i,row] of Object.entries(data)){
+		for (let j=0; j<3; j++)
+			types[j].add( row[j] );
+		
+		if (row[7] == checked){ //在checked的条件下
+			console.log("checked", checked, row, count)
+			total++;
+			for (let j=0; j<3; j++) //0,1,2
+				if (row[j] == opt[j]) count[j]++;
+			for (let j=3; j<7; j++){ //3,4,5,6
+				count[j].push( +row[j] );
+			}
+		}
+	}
+	console.log( count, types.map(v => [...v]) )
+	
+	for (let j=0; j<3; j++) //0,1,2
+		p[j] = (count[j] +1) / (total +types[j].size);
+	for (let j=3; j<7; j++){ //3,4,5,6
+		const xave = ave(count[j]),
+			xvce = vce(count[j]);
+		p[j] = 1 / Math.sqrt(2*Math.PI)/xvce
+			*Math.exp( -Math.pow(opt[j]-xave, 2) /2/xvce );
+		console.log(opt[j], count[j], xave, xvce, p[j])
+	}
+	p[7] = (total +1) / (data.length +checkLength);
+	
+	console.log(p)
+	return p; //.reduce((x,y)=>x*y);
+}
+$("button#predict").click(function(){
+	let text = `所有可能的选项：`;
+	
+	const check = [...new Set( data.map(v => v[7]) )].sort(),
+		opt = [],
+		p = [],
+		max = [null, -Infinity];
+	for (const i of $("input").slice(0,-1))
+		opt.push( i.value );
+	text += check+"<br/>";
+	
+	for (const [i, checked] of Object.entries(check)){
+		const imul = bayes(opt, checked, check.length);
+		p[i] = imul.reduce((x,y) => x*y);
+		if (p[i] > max[1]){
+			max[0] = checked;
+			max[1] = p[i];
+		}
+		text += `P(${checked})<br/><nbr>=${imul.join("<wbr/>*")}</nbr><br/>=${p[i]}<br/><br/>`;
+	}
+	text += `<hr/>概率最大：\nP(${max[0]})=${max[1]}`;
+	
+	console.log( text
+		.replace(/(<br\/>)|(<hr\/>)/g, "\n")
+		.replace(/(<wbr\/>)|(<nbr\/>)/g, "")
+	)
+	$("div#result").html( text );
+	$("input:last-of-type").val( max[0] );
+});
+</script>
+
+	</body>
+</html>
