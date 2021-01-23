@@ -1,0 +1,878 @@
+<html>
+<head>
+	<title>BF++</title>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<style>
+html{
+	font-size: 10vw; /* width / 10 */
+}
+@media screen and (min-width: 780px){
+	html {font-size: 78px} /* 屏幕宽度大于780，不在放大 */
+}
+
+body{
+	font-size: 16px; /* 修正字体大小 */
+	/* 防止页面过宽 */
+	margin: auto;
+	padding: 0;
+	width: 10rem;
+
+	background-color: #fffae8;
+}
+/* 字体缩放方案 */
+@media screen and (min-width: 320px) {
+	body {font-size: 16px;}
+}
+@media screen and (min-width: 481px) and (max-width:640px) {
+	body {font-size: 18px;}
+}
+@media screen and (min-width: 641px) {
+	body {font-size: 20px;}
+}
+
+*{
+	outline: none;
+}
+
+h1{
+	text-align: center;
+	color: #aa6;
+	text-shadow:
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3,
+		0px 0px 6px #e0edd3,
+		0px 0px 12px #e0edd3,
+		0px 0px 18px #e0edd3,
+ 		0px 0px 24px #e0edd3,
+		0px 0px 36px #e0edd3,
+		0px 0px 42px #e0edd3;
+}
+
+textarea{
+	width: 10rem;
+	background-color: #e0edd3;
+}
+textarea.noAutoLine{ /* 取消自动换行 */
+	white-space: nowrap; /* Chrome */
+	word-wrap: break-word; /* IE */
+	word-break: unset;
+	word-wrap: unset;
+	overflow-wrap: unset;
+	-webkit-hyphens: unset;
+	-moz-hyphens: unset;
+	-ms-hyphens: unset;
+	hyphens: unset;
+}
+</style>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+	<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+	<script>eruda.init();</script>
+	<script>new VConsole();</script>
+	<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
+</head>
+<body>
+	<h1>BF++</h1>
+	CODE:<textarea id="code" class="noAutoLine"></textarea>
+	<br/>
+	INPUT:<textarea id="input" class="noAutoLine"></textarea>
+	<br/>
+	STORAGE:<textarea id="stg"></textarea>
+	<br/>
+	<button onclick="run($('#code').val(), $('#input').val());">RUN</button>
+	<button onclick="stop();">STOP</button>
+	<button onclick="run_asm($('#code').val(), $('#input').val());">RUN_ASM.JS</button>
+	<button onclick="compression($('#code').val());">Compression</button>
+	<button onclick="compile($('#code').val(), $('#input').val());">Compile</button>
+	<br/>
+	<hr/>
+	OUTPUT:<textarea id="output"></textarea>
+	<button onclick="eval($('#output').val());">RUN JS</button>
+	<hr/>
+	LOG:<textarea id="log" class="noAutoLine"></textarea>
+	<article>
+		<h1>BF++语法说明</h1>
+		<ul>
+			<li>+：当前位置数据+1</li>
+			<li>-：当前位置数据-1</li>
+			<li><：当前位置左移，内存(外存)溢出则进入外存(内存)</li>
+			<li>>：当前位置右移，溢出回到最左</li>
+			<li>[：为0跳到对应的“]”，非0进入循环</li>
+			<li>]：为0结束循环，非0跳到对应的“[”</li>
+			<li>{：为0进入循环，非0跳到对应的“}”</li>
+			<li>}：为0跳到对应的“{”，非0结束循环</li>
+			<li><i>(n个)</i>$：第n次运行时结束程序</li>
+			<li><i>(n个)</i>!：跳出n层循环</li>
+			<li>?：请求输入</li>
+			<li>,：获取输入，无则返回0</li>
+			<li>.：输出当前位置字符</li>
+			<li><i>(n个)</i>#：调节输出详略程度</li>
+			<li>∑：统计运行次数+1</li>
+			<li>…：中断并渲染页面</li>
+			<li>//<i>...</i>: 单行注释</li>
+			<li>/*<i>...</i>*/: 多行注释</li>
+		</ul>
+	</article>
+<script>
+$("#code").val( localStorage.getItem("BF.code") );
+$("#input").val( localStorage.getItem("BF.input") );
+$("#stg").val( localStorage.getItem("BF.data") );
+auto( $("#code")[0] );
+auto( $("#input")[0] );
+auto( $("#stg")[0] );
+
+
+/*
+* 运行
+*/
+const MEM_LEN = 0x1000,
+	STG_LEN = 0x600,
+	STG_START = MEM_LEN-STG_LEN;
+function* runner(code="", input=""){
+	//code = compression(code);
+	const t0 = +new Date(),
+		buffer = new ArrayBuffer( MEM_LEN ), //(0x1000 = 4096)
+		mem = new Uint8Array(buffer), //内存（0xA00 = 2560(62.5%)）
+		debug_total = [], //调试数（运行次数）($)
+		log_out = function(i=code.length-1){ //输出函数
+			log += `(index=${index})${left}[`;
+			// [left,index)
+			for (let j=left; j<index; j++)
+				log += `${mem[j]}(${String.fromCharCode(mem[j])}),`;
+			// index
+			log += `【${mem[index]}(${String.fromCharCode(mem[index])})】,`;
+			// (index, right]
+			for (let j=+index+1; j<=right; j++)
+				log += `${mem[j]}(${String.fromCharCode(mem[j])}),`;
+			log = log.slice(0,-1) + `]${right}	code=${code[i]}(i=${i})`+"\n计数："+run_total+"\n";
+		};
+	let index = left = right = 0, //指针
+		input_index = 0, //输入指针
+		output = "", //输出
+		log_mode = true, //调试模式
+		log = "", //调试输出
+		run_total = 0, //调试运行次数(∑)
+		stg = new Uint8Array(buffer, STG_START, STG_LEN); //外存（0x600 = 4096(37.5%)）
+	if ( localStorage.getItem("BF.data") ){
+		const data = localStorage.getItem("BF.data").split(",").reverse();
+		stg_length = data.length;
+		for (const [i,v] of Object.entries(data))
+			stg[i] = v;
+	}
+	
+	for (let i=0, len=code.length; i<len; i++){
+		yield;
+		if ( log_mode ) log_out(i); //输出调试信息
+		
+		let repeat = ""; //重复次数
+		for (let j=i+1; j<len; j++){
+			if ( isNaN(+code[j]) ) break;
+			repeat += code[j];
+		}
+		repeat = +repeat || 1;
+		
+		switch ( code.charAt(i) ){
+			case "+":
+				mem[index] += repeat;
+				break;
+			case "-":
+				mem[index] -= repeat;
+				break;
+			case "<":
+				if (index == right && mem[index] == 0) //在最右端可删除
+					right -= repeat;
+				index -= repeat; //指针左移
+				if (index < left) //超出左端
+					left = index;
+				
+				if (index < 0){ //溢出
+					do{
+						index += MEM_LEN;
+					}while (index < 0)
+					
+					//重新计算left,right
+					for (let j=0; j<MEM_LEN; j++)
+						if ( mem[j] ){
+							left = j;
+							break;
+						}
+					for (let j=MEM_LEN-1; j>=0; j--)
+						if ( mem[j] ){
+							right = j;
+							break;
+						}
+				}
+				break;
+			case ">":
+				if (index == left && mem[index] == 0) //在最左端可删除
+					left += repeat;
+				index += repeat; //指针左移
+				if (index > right) //超出右端
+					right = index;
+				
+				if (index >= MEM_LEN){ //溢出
+					do{
+						index -= MEM_LEN;
+					}while (index < MEM_LEN)
+					
+					//重新计算
+					for (let j=0; j<MEM_LEN; j++)
+						if ( mem[j] ){
+							left = j;
+							break;
+						}
+					for (let j=MEM_LEN-1; j>=0; j--)
+						if ( mem[j] ){
+							right = j;
+							break;
+						}
+				}
+				break;
+			case "[":
+				if (mem[index] == 0){ //为0 跳出循环（跳到循环尾）
+					let f=1;
+					for (let j=+i+1; j<len; j++){
+						if (code[j] == "["){
+							f++;
+						}else if (code[j] == "]"){
+							f--;
+						}
+						if (f == 0){
+							i = j;
+							break;
+						}
+					}
+				} //非0 进入循环
+				break;
+			case "]":
+				if (mem[index] != 0){ //非0 重新循环（跳到循环首）
+					let f=1;
+					for (let j=+i-1; j>=0; j--){
+						if (code[j] == "["){
+							f--;
+						}else if (code[j] == "]"){
+							f++;
+						}
+						if (f == 0){
+							i = j;
+							break;
+						}
+					}
+				} //为0 跳出循环
+				break;
+			case "{":
+				if (mem[index] != 0){ //非0 跳出循环（跳到循环尾）
+					let f=1;
+					for (let j=+i+1; j<len; j++){
+						if (code[j] == "{"){
+							f++;
+						}else if (code[j] == "}"){
+							f--;
+						}
+						if (f == 0){
+							i = j;
+							break;
+						}
+					}
+				} //为0 进入循环
+				break;
+			case "}":
+				if (mem[index] == 0){ //为0重新循环（跳到循环首）
+					let f=1;
+					for (let j=+i-1; j>=0; j--){
+						if (code[j] == "{"){
+							f--;
+						}else if (code[j] == "}"){
+							f++;
+						}
+						if (f == 0){
+							i = j;
+							break;
+						}
+					}
+				} //非0 跳出循环
+				break;
+			case "(":
+				while (code[++i] != ")"){
+					log += code[i];
+				}
+				log += "\n";
+				continue;
+				break;
+			case "$":
+				if (!debug_total[i]) debug_total[i] = 0; //第一次运行
+				if (++debug_total[i] == repeat){
+					log += "已停止("+debug_total[i]+")\n";
+					
+					log_out(i);
+					
+					log += "\n用时："+(new Date()-t0)+"ms";
+					
+					$("#output").val( output );
+					$("#log").val( log );
+					
+					auto($("#code")[0]);
+					auto($("#input")[0]);
+					auto($("#output")[0]);
+					auto($("#log")[0]);
+					
+					return;
+				}
+				i += repeat-1;
+				break;
+			case "#":
+				if (repeat > 1){ //## 调试模式
+					log_mode = true;
+				}else{ //# 取消调试
+					log_mode = false;
+				}
+				console.log("log_mode", log_mode)
+				break;
+			case ".":
+				for (let j=0; j<repeat; j++)
+					output += String.fromCharCode( mem[index+j] );
+				console.log("output", output)
+				break;
+			case ",":
+				for (let j=0; j<repeat; j++)
+					mem[index] = input.charAt( input_index++ );
+				break;
+			case "?":
+				input = "", input_index=0;
+				for (let j=0; j<repeat; j++)
+					input += prompt();
+				break;
+			case "…":
+				yield repeat;
+				break;
+			case "∑":
+				total += repeat;
+				break;
+		}
+		i += repeat-1;
+	}
+	
+	log_out();
+	log += "\n用时："+(new Date()-t0)+"ms";
+	
+	$("#output").val( output );
+	$("#log").val( log );
+	$("#stg").val( stg.join(",") );
+	
+	auto( $("#output")[0] );
+	auto( $("#log")[0] );
+	auto( $("#stg")[0] )
+	
+	localStorage.setItem("BF.data", stg.reverse().join(",") ); //存储外存
+}
+function run(code, input, breakTime=666){
+	if (code)
+		localStorage.setItem("BF.code", code);
+	if (input)
+		localStorage.setItem("BF.input", input);
+	
+	const runner_g = runner(code, input);
+	let runId = setInterval(function cycle(){
+			const t0 = +new Date();
+			do{
+				const {done, value} = runner_g.next();
+				if ( done ) return clearInterval( runId ); //停止
+				if ( value ){ //暂停
+					clearInterval( runId );
+					runId = setTimeout(()=>{
+						runId = setInterval(cycle, 0);
+					}, value);
+				};
+			}while (new Date()-t0 < breakTime);
+			console.log("超时")
+		}, 0);
+	stop = ()=>{
+		clearInterval(runId);
+		alert("已停止");
+		stop = ()=>alert("已停止");
+	}
+}
+var stop = ()=>alert("已停止");
+
+/*
+function run(code, input){
+	localStorage.setItem("BF.code", code);
+	localStorage.setItem("BF.input", input);
+	
+	let t0 = +new Date(),
+		mem = new Int8Array(1024), //内存
+		//storage = new Int8Array(1024), //外存
+		debug = [], //调试数（运行次数）
+		total = 0, //运行次数
+		ann = false, //注释
+		log_mode = 2, //调试模式
+		log = "", //调试输出
+		output = "", //输出
+		index = left = right = 0, //指针
+		input_index = 0, //输入指针
+		log_out = (i=code.length-1)=>{ //输出函数
+			if (log_mode == 2){
+				log += `(index=${index})${left}[`;
+				// [left,index)
+				for (let j=left; j<index; j++)
+					log += `${mem[j]}(${String.fromCharCode(mem[j])}),`;
+				// index
+				log += `【${mem[index]}(${String.fromCharCode(mem[index])})】,`;
+				// (index, right]
+				for (let j=+index+1; j<=right; j++)
+					log += `${mem[j]}(${String.fromCharCode(mem[j])}),`;
+				log = log.slice(0,-1) + `]${right}	code=${code[i]}(i=${i})`+"\n计数："+total+"\n";
+			}
+		};
+	//if ( localStorage.getItem("BF.storage") )
+		//storage = new Int8Array( localStorage.getItem("BF.storage").split(",") );
+	for (let i=0, len=code.length; i<len; i++){
+		if (ann){
+			if (code[i] == "*" && code[+i+1] == "/"){ //注释尾
+				ann = false;
+				i +=2 ;
+			}else{
+				continue;
+			}
+		}
+		if (code[i] == "/" && code[+i+1] == "*"){ //注释头
+			ann = true;
+			i++;
+			continue;
+		}
+		log_out(i);
+		switch ( code[i] ){
+			case "+":
+				mem[index]++;
+				break;
+			case "-":
+				mem[index]--;
+				break;
+			case "<":
+				if (index == right && mem[index] == 0) //在最右端可删除
+					right--;
+				if (index == left) //位于左端
+					left--;
+				if (--index < 0){ //溢出
+					index = mem.length-1;
+					left = right = null; //重新计算
+					for (let j in mem)
+						if (mem[j] != 0){
+							left = j;
+							break;
+						}
+					for (let j=mem.length-1; j>=0; j--)
+						if (mem[j] != 0){
+							right = j;
+							break;
+						}
+				}
+				if (mem[index] === undefined) //未定义
+					mem[index] = 0;
+				break;
+			case ">":
+				if (index == left && mem[index] == 0) //在最左端可删除
+					left++;
+				if (index == right) //位于右端
+					right++;
+				if (++index >= mem.length){ //溢出
+					index = 0;
+					left = right = null; //重新计算
+					for (let j in mem)
+						if (mem[j] != 0){
+							left = j;
+							break;
+						}
+					for (let j=mem.length-1; j>=0; j--)
+						if (mem[j] != 0){
+							right = j;
+							break;
+						}
+				}
+				if (mem[index] === undefined) //未定义
+					mem[index] = 0;
+				break;
+			case "[":
+				if (mem[index] == 0){ //为0跳出循环（跳到循环尾）
+					let f=1;
+					for (let j=+i+1; j<code.length; j++){
+						if (code[j] == "["){
+							f++;
+						}else if (code[j] == "]"){
+							f--;
+						}
+						if (f == 0){
+							i = j-1;
+							break;
+						}
+					}
+				}
+				break;
+			case "]":
+				if (mem[index] != 0){ //非0重新循环（跳到循环首）
+					let f=1;
+					for (let j=+i-1; j>=0; j--){
+						if (code[j] == "["){
+							f--;
+						}else if (code[j] == "]"){
+							f++;
+						}
+						if (f == 0){
+							i = j-1;
+							break;
+						}
+					}
+				}
+				break;
+			case "{":
+				if (mem[index] != 0){ //非0跳出循环（跳到循环尾）
+					let f=1;
+					for (let j=+i+1; j<code.length; j++){
+						if (code[j] == "{"){
+							f++;
+						}else if (code[j] == "}"){
+							f--;
+						}
+						if (f == 0){
+							i = j-1;
+							break;
+						}
+					}
+				}
+				break;
+			case "}":
+				if (mem[index] == 0){ //为0重新循环（跳到循环首）
+					let f=1;
+					for (let j=+i-1; j>=0; j--){
+						if (code[j] == "{"){
+							f--;
+						}else if (code[j] == "}"){
+							f++;
+						}
+						if (f == 0){
+							i = j-1;
+							break;
+						}
+					}
+				}
+				break;
+			case "$":
+				let f = 1;
+				for (let j=+i+1; j<code.length; j++)
+					if (code[j] == "$"){
+						f++;
+					}else{
+						break;
+					}
+				console.log(f)
+				if (!debug[i]) debug[i] = 0; //第一次运行
+				if (++debug[i] == f){
+					log += "已停止("+debug[i]+")\n";
+					
+					log_mode = 2;
+					log_out(i);
+					
+					log += "\n用时："+(new Date()-t0)+"ms";
+					
+					$("#output").val( output );
+					$("#log").val( log );
+					
+					auto($("#code")[0]);
+					auto($("#input")[0]);
+					auto($("#output")[0]);
+					auto($("#log")[0]);
+					
+					return;
+				}
+				i += f-1;
+				break;
+			case ",":
+				if (input_index < input.length){
+					let char = input[input_index++];
+					switch (char){
+						case "A":
+							mem[index] = 58;
+							break;
+						case "B":
+							mem[index] = 59;
+							break;
+						case "C":
+							mem[index] = 60;
+							break;
+						case "D":
+							mem[index] = 61;
+							break;
+						case "E":
+							mem[index] = 62;
+							break;
+						case "F":
+							mem[index] = 63;
+							break;
+						default:
+							mem[index] = char.charCodeAt();
+					}
+				}else{
+					mem[index] = 0;
+				}
+				break;
+			case ".":
+				output += String.fromCharCode(mem[index]);
+				break;
+			case "#":
+				console.log(i, log_mode, code[i], code[+i+1], code[+i+2])
+				if (code[+i+1] == "#"){ //*2
+					if (code[+i+2] == "#"){ //*3
+						console.log("(2)")
+						log_mode = 2;
+						i += 2;
+						continue;
+					}
+					console.log("(1)")
+					log_mode = 1;
+					i++;
+					continue;
+				}
+				console.log("(0)")
+				log_mode = 0;
+				break;
+			case "∑":
+				total++;
+				break;
+			default:
+				if (log_mode >= 1)
+					log += code[i];
+		}
+		if (+new Date-t0 > 40*1000){
+			log_out();
+			log += "\n用时："+(new Date()-t0)+"ms";
+			
+			$("#output").val( output );
+			$("#log").val( log );
+			
+			auto($("#code")[0]);
+			auto($("#input")[0]);
+			auto($("#output")[0]);
+			auto($("#log")[0]);
+			
+			return;
+		}else if (+new Date-t0 > 36*1000){
+			log += "超时("+(new Date-t0)+")\n";
+			log_mode = 2;
+		}
+	}
+	log_out();
+	log += "\n用时："+(new Date()-t0)+"ms";
+	
+	$("#output").val( output );
+	$("#log").val( log );
+	
+	auto($("#code")[0]);
+	auto($("#input")[0]);
+	auto($("#output")[0]);
+	auto($("#log")[0]);
+}*/
+
+
+/*
+* 压缩
+*/
+function compression(code){
+	const t0 = +new Date(),
+		str = "+-<>[]{}$!?,.#∑…".split("").join("\\")+"0123456789",
+		reg = new RegExp("[^\\"+str+"]", "g");
+	let value = (code+"\n")
+			.replace(/\/\*[\s\S]*?\*\//g, "") //删除注释
+			.replace(/\/\/.*?\n/g, "") //删除注释
+			.replace(reg, ""), //删除无用字符
+		len = value.length;
+	do{
+		len = value.length;
+		value = value
+			.replace(/\<\>/g, "") //删除重复
+			.replace(/\+\-/g, "") //删除重复
+			.replace(/\[\]/g, "") //防止死循环
+			.replace(/\{\}/g, ""); //防止死循环
+	}while(value.length != len);
+	
+	$("#output").val( value );
+	$("#log").val(
+		`压缩率：${value.length/code.length*100}%(${sizeof(value)/sizeof(code)*100}%)`+"\n"+
+		`压缩前：${code.length}(${sizeof(code)}B=${sizeof(code)/1024}KB)`+"\n"+
+		`压缩后：${value.length}(${sizeof(value)}B=${sizeof(value)/1024}KB)`+"\n"+
+		`用时：${new Date()-t0}ms`
+	);
+	
+	auto($("#code")[0]);
+	auto($("#output")[0]);
+	auto($("#log")[0]);
+	
+	return value;
+}
+
+
+
+/*
+* 编译js
+*/
+function compile(code, input){
+	let value = "let i=0,a=new Int8Array(1024),p='',j=0;",
+		end = "";
+	for (let i=0,len=code.length; i<len; i++){
+		let count = 0,
+			char=code[i];
+		switch (char){
+			case "<":
+				count = 1;
+				for (let j=i+1,f=code[j]; j<len; j++,count++,f=code[j])
+					if (f != "<" && f != " " && f != "\n"  && f != "\t")
+						break;
+				if (count == 1){
+					value += "i--;";
+				}else{
+					value += `i-=${count};`;
+					i += count-1;
+				}
+				break;
+			case ">":
+				count = 1;
+				for (let j=i+1,f=code[j]; j<len; j++,count++,f=code[j])
+					if (f != ">" && f != " " && f != "\n"  && f != "\t")
+						break;
+				if (count == 1){
+					value += "i++;";
+				}else{
+					value += `i+=${count};`;
+					i += count-1;
+				}
+				break;
+			case "+":
+				count = 1;
+				for (let j=i+1,f=code[j]; j<len; j++,count++,f=code[j])
+					if (f != "+" && f != " " && f != "\n"  && f != "\t")
+						break;
+				if (count == 1){
+					value += "a[i]++;";
+				}else{
+					value += `a[i]+=${count};`;
+					i += count-1;
+				}
+				break;
+			case "-":
+				count = 1;
+				for (let j=i+1,f=code[j]; j<len; j++,count++,f=code[j])
+					if (f != "-" && f != " " && f != "\n"  && f != "\t")
+						break;
+				if (count == 1){
+					value += "a[i]--;";
+				}else{
+					value += `a[i]-=${count};`;
+					i += count-1;
+				}
+				break;
+			case "[":
+				value += "while(a[i]){";
+				break;
+			case "{":
+				value += "while(!a[i]){";
+				break;
+			case "]":
+			case "}":
+				value += "}";
+				break;
+			case ",":
+				value += "if(!p[++j]){p=eval('let q=\"\";while(!q[0])q=prompt();');j=0}a[i]=p[j].charCodeAt();";
+				break;
+			case ".":
+				value += "document.write(String.fromCharCode(a[i]));";
+				break;
+			case "@":
+				value += "setTimeout(function(){";
+				end += "});";
+			case "$":
+				value += "throw a;";
+				break;
+		}
+	}
+	value += end;
+	$("#output").val( value );
+	$("#log").val(
+		`编译率：${value.length/code.length*100}%(${sizeof(value)/sizeof(code)*100}%)`+"\n"+
+		`编译前：${code.length}(${sizeof(code)}B=${sizeof(code)/1024}KB)`+"\n"+
+		`编译后：${value.length}(${sizeof(value)}B=${sizeof(value)/1024}KB)`
+	);
+	
+	auto($("#code")[0]);
+	auto($("#output")[0]);
+	auto($("#log")[0]);
+}
+
+
+
+/*
+* textarea调整
+*/
+function auto(that){
+	var lines = that.value.split("\n");
+	that.rows = Math.min( lines.length*1.06+3, 66 );
+}
+
+/**
+ * 计算字符串所占的内存字节数，默认使用UTF-8的编码方式计算，也可制定为UTF-16
+ * UTF-8 是一种可变长度的 Unicode 编码格式，使用一至四个字节为每个字符编码
+ *
+ * 000000 - 00007F(128个代码)      0zzzzzzz(00-7F)                             一个字节
+ * 000080 - 0007FF(1920个代码)     110yyyyy(C0-DF) 10zzzzzz(80-BF)             两个字节
+ * 000800 - 00D7FF
+   00E000 - 00FFFF(61440个代码)    1110xxxx(E0-EF) 10yyyyyy 10zzzzzz           三个字节
+ * 010000 - 10FFFF(1048576个代码)  11110www(F0-F7) 10xxxxxx 10yyyyyy 10zzzzzz  四个字节
+ *
+ * 注: Unicode在范围 D800-DFFF 中不存在任何字符
+ * {@link http://zh.wikipedia.org/wiki/UTF-8}
+ *
+ * UTF-16 大部分使用两个字节编码，编码超出 65535 的使用四个字节
+ * 000000 - 00FFFF  两个字节
+ * 010000 - 10FFFF  四个字节
+ *
+ * {@link http://zh.wikipedia.org/wiki/UTF-16}
+ * @param  {String} str
+ * @param  {String} charset utf-8, utf-16
+ * @return {Number}
+ */
+var sizeof = function(str, charset){
+    var total = 0,
+        charCode,
+        i,
+        len;
+    charset = charset ? charset.toLowerCase() : '';
+    if(charset === 'utf-16' || charset === 'utf16'){
+        for(i = 0, len = str.length; i < len; i++){
+            charCode = str.charCodeAt(i);
+            if(charCode <= 0xffff){
+                total += 2;
+            }else{
+                total += 4;
+            }
+        }
+    }else{
+        for(i = 0, len = str.length; i < len; i++){
+            charCode = str.charCodeAt(i);
+            if(charCode <= 0x007f) {
+                total += 1;
+            }else if(charCode <= 0x07ff){
+                total += 2;
+            }else if(charCode <= 0xffff){
+                total += 3;
+            }else{
+                total += 4;
+            }
+        }
+    }
+    return total;
+}
+</script>
+
+	</body>
+</html>
