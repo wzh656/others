@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<head>
+<meta charset="UTF-8">
+<title>ThreeBody模拟</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  /* 隐藏body窗口区域滚动条 */
+}
+</style>
+<!--<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+<script>eruda.init();</script>
+<script>new VConsole();</script>-->
+
+<script src="./js/stats.min.js"></script>
+<script src="./js/dat.gui.min.js"></script>
+<script src="./js/three.min.js"></script>
+<script src="./js/OrbitControls.js"></script>
+<script src="./js/DeviceOrientationControls.js"></script>
+</head>
+<body bgcolor="black">
+
+<footer style="display: none;"><script language="javascript" src="http://count28.51yes.com/click.aspx?id=286442075&logo=1" charset="gb2312"></script></footer>
+
+<script>
+var kt = 0; //时间比例系数
+
+/**
+* dat.gui
+*/
+var gui = new dat.GUI({
+	name: "设置",
+	//useLocalStorage: true, // 使用LocalStorage来存储
+	closeOnTop: true // 关闭按钮是否在顶部
+});
+
+//添加dat.gui元素
+gui.domElement.style.position = "fixed";
+gui.domElement.style.right = "0";
+gui.domElement.style.top = "0";
+document.body.appendChild(gui.domElement);
+
+gui.add(window, "kt", 0, 10, 0.01).name("时间流速");
+
+/**
+* 创建场景对象Scene
+*/
+var scene = new THREE.Scene();
+scene.fog = new THREE.Fog("#fff", 0.01, 30000); //雾
+
+//坐标轴
+const axesHelper = new THREE.AxesHelper(666);
+scene.add(axesHelper);
+
+
+/**
+* 光源设置
+*/
+//点光源
+const point_light = new THREE.PointLight(0xffffff);
+point_light.position.set(400, 200, 300); //点光源位置
+scene.add(point_light); //点光源添加到场景中
+//环境光
+const ambient_light = new THREE.AmbientLight(0x444444);
+scene.add(ambient_light);
+
+
+/**
+* 相机设置
+*/
+let WIDTH = window.innerWidth, //窗口宽度
+	HEIGHT = window.innerHeight; //窗口高度
+var camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 1, 666666*100*1000);
+camera.position.set(666, 666, 666); //设置相机位置
+camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+
+/**
+* 创建渲染器对象
+*/
+const renderer = new THREE.WebGLRenderer({
+	antialias: true //抗锯齿
+});
+renderer.setSize(WIDTH, HEIGHT);//设置渲染区域尺寸
+renderer.setClearColor(0x000000, 1); //设置背景颜色
+renderer.domElement.style.margin = "0";
+document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+//执行渲染操作 指定场景、相机作为参数
+renderer.render(scene, camera);
+
+
+//窗口大小调整
+window.onresize = function(){
+	WIDTH = window.innerWidth,
+	HEIGHT = window.innerHeight;
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix(); //更新投影矩阵
+};
+
+
+/**
+* 添加Body
+*/
+const G = 6.67259e-11, //引力常数
+m = 324708023181860.25, //质量
+body_folder = gui.addFolder("恒星(body)");
+body_folder.open();
+
+class Body{
+	constructor (pos, v, m, color){
+		this.v = v;
+		this.a = new THREE.Vector3(0, 0, 0);
+		this.m = m;
+		this.color = color;
+		
+		this.material = new THREE.MeshLambertMaterial({ color }); //材质
+		this.mesh = new THREE.Mesh(Body.prototype.geometry, this.material); //网格模型对象Mesh
+		this.mesh.position.x = pos.x,
+		this.mesh.position.y = pos.y,
+		this.mesh.position.z = pos.z; //设置位置
+		this.pos = this.mesh.position;
+		scene.add( this.mesh ); //加入到场景
+		
+		this.lines = {
+			a: new THREE.ArrowHelper(
+				this.a.normalize(),
+				this.pos,
+				this.a.length()*36,
+				0xffffff
+			),
+			v: new THREE.ArrowHelper(
+				this.v.normalize(),
+				this.pos,
+				this.v.length()*36,
+				color
+			)
+		};
+		scene.add( this.lines.a );
+		scene.add( this.lines.v );
+		
+		Body.prototype.body.push( this );
+		
+		const folder = body_folder.addFolder( Body.prototype.body.length );
+			folder.addColor(this, "color");
+			const position_folder = folder.addFolder("位置(pos)");
+				position_folder.add(this.pos, "x", -1000, 1000).listen();
+				position_folder.add(this.pos, "y", -1000, 1000).listen();
+				position_folder.add(this.pos, "z", -1000, 1000).listen();
+			const v_folder = folder.addFolder("速度(v)");
+				v_folder.add(this.v, "x", -20, 20).listen();
+				v_folder.add(this.v, "y", -20, 20).listen();
+				v_folder.add(this.v, "z", -20, 20).listen();
+			const a_folder = folder.addFolder("加速度(a)");
+				v_folder.add(this.a, "x", -20, 20).listen();
+				v_folder.add(this.a, "y", -20, 20).listen();
+				v_folder.add(this.a, "z", -20, 20).listen();
+	}
+}
+Body.prototype.body = []; //存储所有body
+Body.prototype.geometry = new THREE.SphereGeometry(10, 36, 36); //默认几何体
+
+new Body(new THREE.Vector3( //位置
+	Math.random()*600-300,
+	Math.random()*600-300,
+	Math.random()*600-300
+), new THREE.Vector3( //速度
+	Math.random()*50-25,
+	Math.random()*50-25,
+	Math.random()*50-25
+),  m, "#ff0000");
+new Body(new THREE.Vector3( //位置
+	Math.random()*600-300,
+	Math.random()*600-300,
+	Math.random()*600-300
+), new THREE.Vector3( //速度
+	Math.random()*50-25,
+	Math.random()*50-25,
+	Math.random()*50-25
+),  m, "#00ff00");
+new Body(new THREE.Vector3( //位置
+	Math.random()*600-300,
+	Math.random()*600-300,
+	Math.random()*600-300
+), new THREE.Vector3( //速度
+	Math.random()*50-25,
+	Math.random()*50-25,
+	Math.random()*50-25
+), m, "#0000ff");
+
+
+/*
+* 观察者
+*/
+var watcher = {
+	v: new THREE.Vector3(0, 0, 0),
+	pos: camera.position,
+	look: {
+		get x(){ return THREE.Math.radToDeg(camera.rotation.x); },
+		set x(v){ camera.rotation.x = THREE.Math.degToRad(v); },
+		
+		get y(){ return -THREE.Math.radToDeg(camera.rotation.y); },
+		set y(v){ camera.rotation.y = THREE.Math.degToRad(v); },
+		
+		get z(){ return THREE.Math.radToDeg(camera.rotation.z); },
+		set z(v){ camera.rotation.z = THREE.Math.degToRad(v); }
+	},
+	VR: false,
+	control1: new THREE.OrbitControls(camera, renderer.domElement),
+	control2: new THREE.DeviceOrientationControls(camera)
+};
+
+const watcher_folder = gui.addFolder("观察者(watcher)");
+watcher_folder.open();
+	const watcher_position_folder = watcher_folder.addFolder("位置(pos)");
+	watcher_position_folder.open();
+		watcher_position_folder.add(watcher.pos, "x", -1000, 1000);
+		watcher_position_folder.add(watcher.pos, "y", -1000, 1000);
+		watcher_position_folder.add(watcher.pos, "z", -1000, 1000);
+	const watcher_v_folder = watcher_folder.addFolder("速度(v)");
+	watcher_v_folder.open();
+		watcher_v_folder.add(watcher.v, "x", -20, 20);
+		watcher_v_folder.add(watcher.v, "y", -20, 20);
+		watcher_v_folder.add(watcher.v, "z", -20, 20);
+	const watcher_look_folder = watcher_folder.addFolder("朝向(look)");
+		watcher_look_folder.add(watcher.look, "x", -90, 90, 0.1).listen();
+		watcher_look_folder.add(watcher.look, "y", 0, 360, 0.1).listen();
+		watcher_look_folder.add(watcher.look, "z", -180, 180, 0.1).listen();
+		watcher_look_folder.add(watcher, "VR", -180, 180, 0.1).name("VR模式");
+
+
+/*
+* stats.js
+*/
+const stats = new Stats();
+stats.showPanel(0);
+document.body.appendChild(stats.dom);
+
+/**
+* 渲染
+*/
+let T0 = new Date();//上次时间
+function render() {
+	let t = (new Date()-T0) *kt; //时间差
+	T0 = new Date(); //把本次时间赋值给上次时间
+	stats.update(); //调用stats.js计算帧率
+	requestAnimationFrame(render);
+	renderer.render(scene, camera);//执行渲染操作
+	
+	if (!kt) return; //时间流速为0
+	
+	if (watcher.VR)
+		watcher.control2.update(); //陀螺仪更新
+	
+	// F = G*(m1*m2)/r^2
+	// F = ma
+	// => a = F/m1
+	// => a = G*m2/r^2
+	for (const [i,b] of Object.entries(Body.prototype.body)){
+		b.a.x = b.a.y = b.a.z = 0; //加速度归零
+		
+		for (const [j,v] of Object.entries(Body.prototype.body)){
+			if (i == j) continue;
+			const p = v.pos.clone().sub(b.pos), //坐标向量相减
+				r = p.length(), //距离
+				a0 = G*v.m/r/r; //加速度标量
+			
+			p.divideScalar(r).multiplyScalar(a0); //标准化向量，再乘以加速度，得到分加速度
+			console.log(`${i}<-${j}:${p.toArray()}`);
+			b.a.add(p); //加速度叠加
+		}
+		
+		b.v.add( b.a.clone().multiplyScalar(t/1000) ); //更新速度
+		b.pos.add( b.v.clone().multiplyScalar(t/1000) ); //更新位置
+		
+		b.lines.a.position.copy( b.pos );
+		b.lines.v.position.copy( b.pos ); //更新位置
+		b.lines.a.setLength( b.a.length()*10 );
+		b.lines.v.setLength( b.v.length()*10 ); //更新长度
+		b.lines.a.setDirection( b.a.clone().normalize() );
+		b.lines.v.setDirection( b.v.clone().normalize() ); //更新方向
+	}
+	
+	watcher.pos.add( watcher.v.clone().multiplyScalar(t/1000) ); //更新观察者位置
+}
+render(); //开始渲染
+</script>
+
+</body>
+</html>
