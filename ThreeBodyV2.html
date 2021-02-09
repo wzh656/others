@@ -118,7 +118,7 @@ class Body{
 		this.a = new THREE.Vector3(0, 0, 0);
 		this.m = m;
 		this.color = color;
-		
+
 		this.material = new THREE.MeshLambertMaterial({ color }); //材质
 		this.mesh = new THREE.Mesh(Body.prototype.geometry, this.material); //网格模型对象Mesh
 		this.mesh.position.x = pos.x,
@@ -144,6 +144,11 @@ class Body{
 		scene.add( this.lines.a );
 		scene.add( this.lines.v );
 		
+		this.path = new THREE.Line( new THREE.Geometry(), new THREE.LineBasicMaterial({
+				color
+			}) );
+		scene.add( this.path ); //加入到场景
+
 		Body.prototype.body.push( this );
 		
 		const folder = body_folder.addFolder( Body.prototype.body.length );
@@ -157,9 +162,9 @@ class Body{
 				v_folder.add(this.v, "y", -20, 20).listen();
 				v_folder.add(this.v, "z", -20, 20).listen();
 			const a_folder = folder.addFolder("加速度(a)");
-				v_folder.add(this.a, "x", -20, 20).listen();
-				v_folder.add(this.a, "y", -20, 20).listen();
-				v_folder.add(this.a, "z", -20, 20).listen();
+				a_folder.add(this.a, "x", -20, 20).listen();
+				a_folder.add(this.a, "y", -20, 20).listen();
+				a_folder.add(this.a, "z", -20, 20).listen();
 	}
 }
 Body.prototype.body = []; //存储所有body
@@ -245,7 +250,7 @@ document.body.appendChild(stats.dom);
 * 渲染
 */
 let T0 = new Date();//上次时间
-function render() {
+function render(){
 	let t = (new Date()-T0) *kt; //时间差
 	T0 = new Date(); //把本次时间赋值给上次时间
 	stats.update(); //调用stats.js计算帧率
@@ -283,6 +288,8 @@ function render() {
 		b.lines.v.setLength( b.v.length()*10 ); //更新长度
 		b.lines.a.setDirection( b.a.clone().normalize() );
 		b.lines.v.setDirection( b.v.clone().normalize() ); //更新方向
+
+		b.path.geometry.vertices.push( b.pos );
 	}
 	
 	watcher.pos.add( watcher.v.clone().multiplyScalar(t/1000) ); //更新观察者位置
