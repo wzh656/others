@@ -45,6 +45,7 @@ gui.domElement.style.top = "0";
 document.body.appendChild(gui.domElement);
 
 gui.add(window, "kt", 0, 10, 0.01).name("时间流速");
+gui.add(window, "record", 0, 10, 0.01).name("录屏/停止");
 
 /**
 * 创建场景对象Scene
@@ -128,15 +129,15 @@ class Body{
 		
 		this.lines = {
 			a: new THREE.ArrowHelper(
-				this.a.normalize(),
+				this.a.clone().normalize(),
 				this.pos,
-				this.a.length()*36,
+				this.a.length()*10,
 				0xffffff
 			),
 			v: new THREE.ArrowHelper(
-				this.v.normalize(),
+				this.v.clone().normalize(),
 				this.pos,
-				this.v.length()*36,
+				this.v.length()*10,
 				color
 			)
 		};
@@ -169,27 +170,27 @@ new Body(new THREE.Vector3( //位置
 	Math.random()*600-300,
 	Math.random()*600-300
 ), new THREE.Vector3( //速度
-	Math.random()*50-25,
-	Math.random()*50-25,
-	Math.random()*50-25
+	Math.random()*20-10,
+	Math.random()*20-10,
+	Math.random()*20-10
 ),  m, "#ff0000");
 new Body(new THREE.Vector3( //位置
 	Math.random()*600-300,
 	Math.random()*600-300,
 	Math.random()*600-300
 ), new THREE.Vector3( //速度
-	Math.random()*50-25,
-	Math.random()*50-25,
-	Math.random()*50-25
+	Math.random()*20-10,
+	Math.random()*20-10,
+	Math.random()*20-10
 ),  m, "#00ff00");
 new Body(new THREE.Vector3( //位置
 	Math.random()*600-300,
 	Math.random()*600-300,
 	Math.random()*600-300
 ), new THREE.Vector3( //速度
-	Math.random()*50-25,
-	Math.random()*50-25,
-	Math.random()*50-25
+	Math.random()*20-10,
+	Math.random()*20-10,
+	Math.random()*20-10
 ), m, "#0000ff");
 
 
@@ -270,7 +271,6 @@ function render() {
 				a0 = G*v.m/r/r; //加速度标量
 			
 			p.divideScalar(r).multiplyScalar(a0); //标准化向量，再乘以加速度，得到分加速度
-			console.log(`${i}<-${j}:${p.toArray()}`);
 			b.a.add(p); //加速度叠加
 		}
 		
@@ -288,6 +288,46 @@ function render() {
 	watcher.pos.add( watcher.v.clone().multiplyScalar(t/1000) ); //更新观察者位置
 }
 render(); //开始渲染
+
+
+//下载
+function download(url, name){
+	let a = document.createElement("a");
+	a.href = url;
+	a.download = name;
+	a.style.display = "none";
+	document.body.appendChild(a);
+	a.click();
+	a.remove();
+}
+//录屏
+function record(opt={}){
+	if (record.prototype.obj)
+		return record.prototype.obj.stop();
+
+	const {fps=30, audioBitsPerSecond=128000, videoBitsPerSecond=8500000} = opt,
+		chunks = [],
+		mediaStream = renderer.domElement.captureStream(fps), // 设置帧频率(FPS)
+		mediaRecord = new MediaRecorder(mediaStream, {
+			audioBitsPerSecond,
+			videoBitsPerSecond
+		});
+	
+	mediaRecord.ondataavailable = (e)=>{ // 接收数据
+		chunks.push( e.data );
+	};
+
+	mediaRecord.onstop = (e)=>{
+		console.log( chunks );
+		const videoBlob = new Blob(chunks, {type: "video/webm"}),
+			videoUrl = URL.createObjectURL(videoBlob);
+		download(videoUrl, "三体运动.mp4");
+	}
+	
+	mediaRecord.start(); //开始录屏
+	record.prototype.obj = mediaRecord;
+	alert("开始录屏");
+}
 </script>
 
 </body>
