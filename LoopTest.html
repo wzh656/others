@@ -42,7 +42,7 @@ function test(){
 		data[j][2] = {};
 		data[j][2].start = +new Date(),
 		data[j][2].result = 0;
-		for (let i in arr)
+		for (const i in arr)
 			if (arr[i] <= 0.5)
 				data[j][2].result++;
 		data[j][2].time = new Date()-data[j][2].start;
@@ -90,9 +90,9 @@ function test(){
 	}
 	msg += "【统计】\n"+
 		"	正序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
-		"	倒序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
-		"	for-in序循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"+
-		"	while循环用时："+eval(data.map(v => v[0].time).join("+"))/count+"ms/次\n"
+		"	倒序循环用时："+eval(data.map(v => v[1].time).join("+"))/count+"ms/次\n"+
+		"	for-in序循环用时："+eval(data.map(v => v[2].time).join("+"))/count+"ms/次\n"+
+		"	while循环用时："+eval(data.map(v => v[3].time).join("+"))/count+"ms/次\n"
 	;
 	alert(msg);
 	console.info(msg);
