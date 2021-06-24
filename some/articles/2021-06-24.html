@@ -1,44 +1,94 @@
 <!DOCTYPE html>
-<!-- Copyleft 2020~2021 by wzh -->
+<!-- Copyright © 2021 by wzh -->
 <html lang="zh">
 	<head>
 		<meta charset="UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<title>2021中考成绩查询</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				background-color: #fafafa;
+			}
+			header{
+				font-size: 0.8em;
+				text-align: center;
+				color: yellow;
+				background-color: red;
+			}
+			h1, h2{
+				color: red;
+				text-align: center;
+			}
+			p, input, button, div{
+				margin: 0.3rem;
+			}
+			input{
+				width: 80vw;
+				padding: 0.3rem;
+				border: 2px solid #ddd;
+				border-radius: 3px;
+				background-color: white;
+			}
+			button{
+				padding: 0.5rem;
+				border: 1px solid #6af;
+				border-radius: 3px;
+				font-size: 1em;
+				background-color: #cef;
+			}
+		</style>
 	</head>
 	<body>
+		<header>喜报！热烈庆祝中考状元张驰855分</header>
 		<h1>2021中考成绩查询</h1>
 		<p>请输入考生姓名：</p>
 		<input id="nname"/>
 		<p>请输入考号：</p>
-		<input id="num"/><br>
-		<button onclick="f()">立即查询</button>
+		<input id="num"/>
+		<p><button onclick="c();">立即查询</button></p>
+		<div id="res"></div>
 <script>
-function f(){
+function c(){
+	let r = "";
 	switch (nname.value){
 		case "邱楷":
-			document.write(`考生：邱楷<br>总分：0<br>区排名：10376<br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>录取学校：工地`);
+			r = `考生：邱楷<br><b>总分（含加分项）：0<br>区排名：10376</b><br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>加分：0<br>录取学校：工地`;
 			break;
 		case "吴正浩":
-			document.write(`考生：吴正浩<br>总分：845<br>区排名：1<br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：50<br>生物：50<br>体育：50<br>理化生实验操作：15<br>录取学校：南康中学民航班`);
+			r = `考生：吴正浩<br><b>总分（含加分项）：841<br>区排名：2</b><br>语文：120<br>数学：116<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：50<br>生物：50<br>体育：50<br>理化生实验操作：15<br>加分：0<br>录取学校：南康中学民航班`;
+			break;
+		case "张驰":
+			r = `考生：张驰<br><b>总分（含加分项）：855<br>区排名：1</b><br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：50<br>生物：50<br>体育：50<br>理化生实验操作：15<br>加分：10<br>录取学校：清华大学`;
 			break;
 		case "桌子好":
 		case "deskgood":
-			document.write(`考生：桌子好(deskgood)<br>区排名：10376<br>总分：0<br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>录取学校：工地`);
+			r = `考生：桌子好(deskgood)<br><b>总分（含加分项）：0<br>区排名：10376</b><br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>加分：0<br>录取学校：工地`;
 			break;
 		case "卓志浩":
-			document.write(`考生：卓志浩<br>总分：715<br>区排名：106<br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：5<br>录取学校：南康中学实验班`);
+			r = `考生：卓志浩<br><b>总分（含加分项）：715<br>区排名：106</b><br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：5<br>加分：0<br>录取学校：南康中学实验班`;
+			break;
+		case "阳佳良":
+			r = `考生：阳佳良<br><b>总分（含加分项）：710<br>区排名：106</b><br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：15<br>生物：5<br>体育：0<br>理化生实验操作：5<br>加分：0<br>录取学校：南康中学实验班`;
 			break;
 		case "熊绍鹏":
-			document.write(`考生：熊绍鹏<br>总分：710<br>区排名：169<br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：0<br>录取学校：南康中学实验班`);
+			r = `考生：熊绍鹏<br><b>总分（含加分项）：710<br>区排名：169</b><br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：0<br>加分：0<br>录取学校：南康中学实验班`;
 			break;
 		case "刘晟":
-			document.write(`考生：刘晟<br>总分：710<br>区排名：169<br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：0<br>录取学校：南康中学实验班`);
+			r = `考生：刘晟<br><b>总分（含加分项）：710<br>区排名：169</b><br>语文：120<br>数学：120<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：0<br>体育：0<br>理化生实验操作：0<br>加分：0<br>录取学校：南康中学实验班`;
+			break;
+		case "游文庆":
+			r = `考生：游文庆<br><b>总分（含加分项）：715<br>区排名：106</b><br>语文：120<br>数学：100<br>英语：120<br>道德与法治：80<br>历史：80<br>地理：30<br>生物：20<br>体育：0<br>理化生实验操作：5<br>加分：0<br>录取学校：南康中学实验班`;
 			break;
 		default:
-			document.write(`考生：${nname.value}<br>总分：0<br>区排名：10376<br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>录取学校：工地`);
+			r = `考生：${nname.value}<br><b>总分（含加分项）：0<br>区排名：10376</b><br>语文：0<br>数学：0<br>英语：0<br>道德与法治：0<br>历史：0<br>地理：0<br>生物：0<br>体育：0<br>理化生实验操作：0<br>加分：0<br>录取学校：工地`;
 			break;
 	}
+	res.innerHTML = "<hr/><h2>查询结果</h2><p>查询中……</p>";
+	setTimeout(()=>{
+		res.innerHTML = "<hr/><h2>查询结果</h2>" + r;
+	}, 2000);
 }
 </script>
 	</body>
