@@ -19,6 +19,8 @@
 				padding: 0;
 				background-color: #fafafa;
 			}
+			
+			
 			header{
 				width: 100%;
 				font-size: 0.8em;
@@ -32,10 +34,12 @@
 			header > span{
 				display: inline-block;
 				position: relative;
-				animation: header 10s linear 0s infinite;
+				animation: header 10s linear -2s infinite;
 				
 				white-space: nowrap;
 			}
+			
+			
 			section{
 				margin: 0.3rem;
 			}
@@ -43,10 +47,12 @@
 				width: 60vw;
 				margin: 0 20vw;
 			}
+			
 			h1, h2{
 				color: red;
 				text-align: center;
 			}
+			
 			input{
 				width: 80%;
 				padding: 0.3rem;
@@ -54,6 +60,21 @@
 				border-radius: 3px;
 				background-color: white;
 			}
+			
+			#v{
+				display: flex;
+				width: 80%;
+			}
+			#v > input{
+				width: 100%;
+				margin: 0.1rem;
+			}
+			#v > canvas{
+				flex: none;
+				margin: 0.1rem;
+				border: 1px solid #aaa;
+			}
+			
 			button{
 				padding: 0.5rem;
 				border: 1px solid #6af;
@@ -77,19 +98,25 @@
 			}
 		</style>
 		
+		<script src="https://wzh656.github.io/others/some/articles/js/count-check.js" async></script>
+		
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="https://unpkg.com/layui@2.6.8/dist/layui.js"></script>
 		
-		<script src="https://wzh656.github.io/others/some/articles/js/count-check.js" async></script>
 	</head>
 	<body>
-		<header>&nbsp;<span>喜报！热烈庆祝江西省状元张驰855分</span></header>
+		<header>&nbsp;<span>喜报！热烈庆祝江西省状元张驰同学855分</span></header>
 		<section>
 			<h1>2021江西省高中学业水平考试成绩查询平台</h1>
 			<p>请输入考生姓名：</p>
 			<input id="nname" />
-			<p>请输入考号：</p>
+			<p>请输入准考证号：</p>
 			<input id="num" type="number" />
+			<p>请输入验证码：</p>
+			<div id="v">
+				<input id="vinp" type="number" />
+				<canvas id="vcode" width="80" height="30"></canvas>
+			</div>
 			<p><button onclick="c();">立即查询</button></p>
 			<div id="res"></div>
 		</section>
@@ -183,32 +210,77 @@ const data = {
 		0, 15, 0, "南康中学重点班"
 	],
 	"袁明松": [
-		638, 1133,
+		638, 1148,
 		92.5, 96, 106, 55, 52,
 		67, 69, 42, 47,
+		0, 15, 0, "南康二中"
+	],
+	"谢梅": [
+		451.5, 5186,
+		63, 72, 52.5, 39, 42,
+		50, 52, 37, 29,
+		0, 15, 0, "唐江中学"
+	],
+	"周政": [
+		643, 1037,
+		104, 94, 101, 64, 61,
+		68, 56, 40, 40,
 		0, 15, 0, "南康中学普通班"
 	]
+};
+
+//验证码
+let vcv = ~~(Math.random()*9000 + 1000);
+function drawv(){
+	vinp.value = "";
+	vcv = ~~(Math.random()*9000 + 1000);
+	const ctx = vcode.getContext("2d");
+	ctx.fillStyle = `rgb(${~~(Math.random()*55+200)},${~~(Math.random()*55+200)},${~~(Math.random()*55+200)})`;
+	ctx.fillRect(0,0, 80,30);
+	
+	ctx.fillStyle = `rgb(${~~(Math.random()*200)},${~~(Math.random()*200)},${~~(Math.random()*200)})`;
+	ctx.font = "30px Arial";
+	ctx.fillText(vcv, 6, 25);
+	
+	for (let i=0; i<2; i++){
+		ctx.strokeStyle = `rgb(${~~(Math.random()*200)},${~~(Math.random()*200)},${~~(Math.random()*200)})`;
+		ctx.lineWidth = Math.random()*5;
+		ctx.beginPath();
+		ctx.moveTo(Math.random()*80, Math.random()*30);
+		ctx.quadraticCurveTo(Math.random()*80, Math.random()*30, Math.random()*80, Math.random()*30);
+		ctx.stroke();
+	}
 }
+drawv();
+vcode.onclick = drawv;
+
 function c(){
-	if (!nname.value || !num.value)
-		return layer.msg("请输入考生姓名和考号");
-	let find = false,
-		r = `<p>考生：${nname.value}</p>
-			<p><b>总分（含加分项）：0</b></p>
-			<p><b>区排名：0</b></p>
-			<p>语文：0</p>
-			<p>数学：0</p>
-			<p>英语：0</p>
-			<p>物理：0</p>
-			<p>化学：0</p>
-			<p>道德与法治：0</p>
-			<p>历史：0</p>
-			<p>地理：0</p>
-			<p>生物：0</p>
-			<p>体育：0</p>
-			<p>理化生实验操作：0</p>
-			<p>加分：0</p>
-			<p>录取学校：工地</p>`;
+	if (!nname.value || !num.value){
+		layer.msg("请输入考生姓名和考号");
+		return drawv();
+	}
+	
+	if (vinp.value != vcv){
+		layer.msg("验证码错误");
+		return drawv();
+	}
+	
+	let r = `<p>考生：${nname.value}</p>
+		<p><b>总分（含加分项）：0</b></p>
+		<p><b>区排名：0</b></p>
+		<p>语文：0</p>
+		<p>数学：0</p>
+		<p>英语：0</p>
+		<p>物理：0</p>
+		<p>化学：0</p>
+		<p>道德与法治：0</p>
+		<p>历史：0</p>
+		<p>地理：0</p>
+		<p>生物：0</p>
+		<p>体育：0</p>
+		<p>理化生实验操作：0</p>
+		<p>加分项：0</p>
+		<p>录取学校：工地</p>`;
 	for (const [name, value] of Object.entries(data)){
 		if (name == nname.value){
 			r = `考生：${name}</p>
@@ -225,14 +297,16 @@ function c(){
 			<p>生物：${value[10]}</p>
 			<p>体育：${value[11]}</p>
 			<p>理化生实验操作：${value[12]}</p>
-			<p>加分：${value[13]}</p>
+			<p>加分项：${value[13]}</p>
 			<p>录取学校：${value[14]}</p>`;
+			break;
 		}
 	}
 	res.innerHTML = "<hr/><h2>查询结果</h2><p>查询中……</p>";
 	setTimeout(()=>{
 		layer.msg("查询成功");
 		res.innerHTML = "<hr/><h2>查询结果</h2>" + r;
+		drawv();
 	}, 2000*(Math.random()*0.2+0.9));
 }
 </script>
