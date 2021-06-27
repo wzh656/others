@@ -4,15 +4,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-		<meta property="og:title" content="2021江西省高中学业水平考试成绩查询平台" />
+		<meta property="og:title" content="2021江西省高中学业水平考试成绩查询入口" />
 		<meta property="og:locale" content="zh_CN" />
-		<meta name="description" content="2021江西省高中学业水平考试成绩查询平台" />
-		<meta property="og:description" content="2021江西省高中学业水平考试成绩查询平台" />
+		<meta name="description" content="2021江西省高中学业水平考试成绩查询入口" />
+		<meta property="og:description" content="2021江西省高中学业水平考试成绩查询入口" />
 		<link rel="canonical" href="https://wzh656.github.io/others/some/articles/2021-06-24.html" />
 		<meta property="og:url" content="https://wzh656.github.io/others/some/articles/2021-06-24.html" />
 		<meta property="og:site_name" content="2021江西省高中学业水平考试成绩查询平台" />
-		<meta name="keywords" content="2021,中考,学考,查分,江西省,高中学业水平考试,成绩查询" />
-		<title>2021江西省高中学业水平考试成绩查询平台</title>
+		<meta name="keywords" content="2021,中考,学考,查分,江西省,高中学业水平考试,成绩查询,入口" />
+		<title>2021江西省高中学业水平考试成绩查询入口</title>
 		<style>
 			body{
 				margin: 0;
@@ -181,9 +181,9 @@
 		
 	</head>
 	<body>
-		<header>&nbsp;<span>喜报！热烈庆祝江西省状元张驰同学845分</span></header>
+		<header>&nbsp;<span>喜报！热烈庆祝江西省考得比较好的张驰同学806分</span></header>
 		<section>
-			<h1>2021江西省高中学业水平考试成绩查询平台</h1>
+			<h1>2021江西省高中学业水平考试成绩查询入口</h1>
 			<p>请输入考生姓名：</p>
 			<input id="name" />
 			<p>请输入报名序号：</p>
@@ -193,12 +193,12 @@
 				<input type="number" />
 				<canvas width="80" height="30"></canvas>
 			</div>
-			<p><button onclick="c();">立即查询</button></p>
+			<p><button onclick="check();">立即查询</button></p>
 			<div id="res"></div>
 			<div id="ad" style="display: none;">
-				<a href="https://m.baidu.com/from=844b/ssid=0/s?word=%E6%B1%9F%E8%A5%BF%E8%80%83%E9%B8%A1&nojc=1&sa=se&ms=1&rqid=8937243141114900968&params_ssrt=node-san&bd_ck=0&ex_bp_rt=1"><img src="./img/2021-06-24-ad1.jpg" alt="广告-江西考鸡" async /></a>
-				<a href="https://www.baidu.com/s?word=%E8%93%9D%E7%BF%94%E6%8C%96%E6%8E%98%E6%9C%BA"><img src="./img/2021-06-24-ad2.jpg" alt="广告-蓝翔挖掘机" async /></a>
 				<a href="javascript:pay();"><img src="./img/2021-06-24-ad3.jpg" alt="广告-修改成绩" async /></a>
+				<a href="https://www.baidu.com/s?word=%E8%93%9D%E7%BF%94%E6%8C%96%E6%8E%98%E6%9C%BA"><img src="./img/2021-06-24-ad2.jpg" alt="广告-蓝翔挖掘机" async /></a>
+				<a href="https://m.baidu.com/from=844b/ssid=0/s?word=%E6%B1%9F%E8%A5%BF%E8%80%83%E9%B8%A1&nojc=1&sa=se&ms=1&rqid=8937243141114900968&params_ssrt=node-san&bd_ck=0&ex_bp_rt=1"><img src="./img/2021-06-24-ad1.jpg" alt="广告-江西考鸡" async /></a>
 			</div>
 		</section>
 		<div id="pay" style="display: none;">
@@ -269,13 +269,13 @@ const data = {
 		0, 10376,
 		0, 0, 0, 0, 0,
 		0, 0, 0, 0,
-		0, 0, 0, "工地"
+		0, 0, 0, "南康中学对面的工地"
 	],
 	"deskgood": [
 		0, 10376,
 		0, 0, 0, 0, 0,
 		0, 0, 0, 0,
-		0, 0, 0, "工地"
+		0, 0, 0, "南康中学对面的工地"
 	],
 	"大帅哥": [
 		-Infinity, Infinity,
@@ -311,7 +311,7 @@ const data = {
 		368, 5796,
 		50, 60, 55, 40, 35,
 		39, 39, 25, 25,
-		0, 0, 0, "工地"
+		0, 0, 0, "南康区职业中等专业学校"
 	],
 	"邓霞": [
 		698.5, 434,
@@ -350,10 +350,10 @@ const data = {
 		0, 15, 0, "南康中学重点班"
 	],
 	"曹悦": [
-		675, 818,
+		677, 818,
 		98, 101, 101, 60, 58,
 		50, 58, 40, 39,
-		55, 15, 0, "南康中学重点班"
+		57, 15, 0, "南康中学重点班"
 	],
 	"邱王顺": [
 		664, 826,
@@ -388,7 +388,7 @@ function draw(){
 draw();
 $("#verify > canvas").click(draw);
 
-function c(){
+function check(){
 	const name = $("#name").val(),
 		number = $("#number").val();
 	if (!name || !number){
