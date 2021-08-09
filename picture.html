@@ -55,10 +55,10 @@ $("button.load_picture").click(function(){
 	img.onload = function(){
 		ctx.drawImage(img, 0, 0, 128, 64);
 		let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
-		let x_scale = Number( $(".load_picture_scale:eq(0)").val() )/WIDTH;
-		let y_scale = Number( $(".load_picture_scale:eq(1)").val() )/HEIGHT;
-		$("canvas")[1].width = Number( $(".load_picture_scale:eq(0)").val() );
-		$("canvas")[1].height = Number( $(".load_picture_scale:eq(1)").val() );
+		let x_scale = +$(".load_picture_scale:eq(0)").val() / WIDTH;
+		let y_scale = +$(".load_picture_scale:eq(1)").val() / HEIGHT;
+		$("canvas")[1].width = +$(".load_picture_scale:eq(0)").val();
+		$("canvas")[1].height = +$(".load_picture_scale:eq(1)").val();
 		let ctx2 = $("canvas")[1].getContext("2d");
 		let x=0, y=0;
 		for (let i=0; i<imgData.data.length; i+=4){
