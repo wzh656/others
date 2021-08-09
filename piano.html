@@ -11,6 +11,16 @@
 		<script src="./js/jquery.min.js"></script> <!-- jq -->
 		<script src="./js/acoustic_grand_piano-ogg.js"></script> <!-- 钢琴声音 -->
 		
+		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+		<script>
+		if ( /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test( navigator.userAgent.toLowerCase() ) ){
+			//手机
+			eruda.init();
+			new VConsole();
+		}
+		</script>
+		
 	</head>
 	<body>
 		
@@ -20,13 +30,26 @@
 function play(sound, time=1, volume=1){
 	return new Promise((resolve, reject)=>{
 		console.log(sound, time, volume)
+		
+		try{
 		if (sound){
 			const bgm = $("<audio></audio>")
 				.attr("volume", volume)
 				.attr("src", MIDI.Soundfont.acoustic_grand_piano[sound]);
 			bgm[0].play();
+			
+			const t0 = +new Date(),
+				id = setInterval(()=>{
+					const t = (new Date() - t0)/1000;
+					bgm.attr("volume", 2**(-t));
+					
+					if (t >= bgm.duration)
+						clearInterval(id);
+				}, 0);
 		}
+		
 		setTimeout(resolve, time/2*1.5*1000);
+		}catch(err){console.error(123,err)}
 	});
 }
 
@@ -44,7 +67,7 @@ function start(){
 	.then(()=> play("D4", 0.5) )
 	.then(()=> play("C4", 0.5) )
 	.then(()=> play("A3", 1) )
-	// .then(()=> play(null, 0.25) )
+	//.then(()=> play(null, 0.25) )
 	
 	.then(()=> play("E4", 0.5) )
 	.then(()=> play("D4", 0.5) )
