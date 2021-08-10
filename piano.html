@@ -5,9 +5,6 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<title>模拟钢琴</title>
 		
-		<!--icon-->
-		<link href="./img/icon.png" rel="icon" type="image/x-icon"/>
-		
 		<script src="./js/jquery.min.js"></script> <!-- 钢琴声音-->
 		<script src="./js/acoustic_grand_piano-ogg.js"></script> <!-- 钢琴声音-->
 		
@@ -66,6 +63,7 @@ function start(){
 	console.log("start")
 	
 	const t0 = +new Date();
+	total = 0;
 	/* PART 1 */
 	// Line 1
 	play("A3", 0.5)
@@ -426,7 +424,7 @@ function start(){
 	.then(()=>{
 		const speed = $("#speed").val();
 		$("#info").html(`速度：${speed}拍/分\n共${total}拍，理想用时：${total/(speed/60)}s\n实际用时：${(new Date()-t0)/1000}s`);
-		alert(`速度：${speed}拍/分<br>共${total}拍，理想用时：${total/(speed/60)}s<br>实际用时：${(new Date()-t0)/1000}s`);
+		// alert(`速度：${speed}拍/分<br>共${total}拍，理想用时：${total/(speed/60)}s<br>实际用时：${(new Date()-t0)/1000}s`);
 		start();
 	})
 }
