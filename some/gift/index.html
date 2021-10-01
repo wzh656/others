@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!-- Copyright © 2021 by wzh -->
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>Happy Birthday!</title>
+		
+		<!--icon-->
+		<link href="./img/icon.png" rel="icon" type="image/x-icon"/>
+		
+		<style>
+		@font-face{
+			font-family: xs; /*QQ*/
+			src: url("./qq1.ttf");
+		}
+
+		*{
+			outline: none; /* 无点击线 */
+			font-family: xs;
+		}
+		body{
+			margin: 0;
+			background-color: #fff;
+		}
+		#gift{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+		</style>
+		
+		<!-- jquery.js -->
+		<script src="./jquery.min.js"></script>
+		
+		<!-- three.js -->
+		<script src="./three.min.js"></script>
+		<script src="./OrbitControls.js"></script>
+		<!-- stats.js -->
+		<script src="./stats.min.js"></script>
+		
+		<!-- 调试工具 -->
+		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+		<script>
+		if ( /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test( navigator.userAgent.toLowerCase() ) ){
+			//手机
+			eruda.init();
+			new VConsole();
+		}
+		</script>
+		
+		<script src="./js_plus.min.js"></script> <!-- js+ -->
+		
+	</head>
+	<body>
+		<canvas id="text" style="display: none; position: absolute; z-index: 1;"></canvas>
+
+<script>
+const text = {
+	width: null,
+	height: 80,
+	pos: []
+};
+setTimeout(function(){
+	ctx = $("#text")[0].getContext("2d");
+	
+	ctx.font = text.height/2 + "px xs";
+	ctx.textBaseline = "top";
+	const line = "祝\u5434\u6b63\u6d69（顺带上游文庆以及我的祖国）";
+	text.width = ctx.measureText(line).width;
+	$("#text").attr("width", text.width).attr("height", text.height);
+	
+	ctx.font = text.height/2 + "px xs";
+	ctx.textBaseline = "top";
+	ctx.fillText(line, 0, 0);
+	ctx.textAlign = "center";
+	ctx.fillText("生日快乐！", text.width/2, text.height/2);
+	
+	const data = ctx.getImageData(0, 0, text.width, text.height).data;
+	console.log([...data])
+	for (let i=0; i<data.length; i+=4)
+		if (data[+i+3] != 0)
+			text.pos.push(
+				i/4 % text.width,
+				text.height - ~~(i/4/text.width)
+			);
+	console.log(text.pos);
+	animate();
+}, 0);
+
+/* 窗口大小 */
+let WIDTH = window.innerWidth; //窗口宽度
+let HEIGHT = window.innerHeight; //窗口高度
+
+/* 场景 */
+const scene = new THREE.Scene();
+
+/* 坐标轴 */
+const axesHelper = new THREE.AxesHelper(256);
+scene.add(axesHelper);
+
+/* 光源 */
+//点光源
+const pointLight = new THREE.PointLight("#fff");
+pointLight.position.set(0, 0, 0); //点光源位置
+scene.add(pointLight); //点光源添加到场景中
+//环境光
+const ambientLight = new THREE.AmbientLight("#888");
+scene.add(ambientLight);
+
+/* 相机 */
+const camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 1, 1024000);
+camera.position.set(300, 300, 300); //设置相机位置
+camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+/* 渲染器 */
+const renderer = new THREE.WebGLRenderer({
+	antialias: true //抗锯齿
+});
+renderer.setSize(WIDTH, HEIGHT);//设置渲染区域尺寸
+renderer.setClearColor(0xffffff, 1); //设置背景颜色
+renderer.domElement.id = "gift";
+$("body").append(renderer.domElement); //body元素中插入canvas对象
+
+//控制
+const control = new THREE.OrbitControls(camera, renderer.domElement);
+
+//stats
+const stats = new Stats();
+stats.showPanel(0);
+$("body").append(stats.dom);
+
+const material = new THREE.PointsMaterial({
+	size: 4,
+	color: 0xffffff,
+	vertexColors: THREE.VertexColors,
+	//transparent: true,
+	//opacity: 0.8,
+	sizeAnnutation: false
+});
+function createCake(){
+	const geo1 = new THREE.CylinderBufferGeometry(
+		128, //顶半径
+		128, //底半径
+		64, //高
+		128,
+		16,
+		false
+	);
+	const geo2 = new THREE.CylinderBufferGeometry(
+		96, //顶半径
+		96, //底半径
+		48, //高
+		96,
+		12,
+		false
+	);
+	geo2.attributes.position.array.forEach((v,i,arr)=>{
+		if (i%3 == 1)
+			arr[i] += 56;
+	});
+	const geo3 = new THREE.CylinderBufferGeometry(
+		64, //顶半径
+		64, //底半径
+		32, //高
+		64,
+		8,
+		false
+	);
+	geo3.attributes.position.array.forEach((v,i,arr)=>{
+		if (i%3 == 1)
+			arr[i] += 96;
+	});
+
+	// const cakeGeometry = new THREE.BufferGeometry();
+	const positions = [];
+	const colors = [];
+	positions.push(
+		...geo1.attributes.position.array,
+		...geo2.attributes.position.array,
+		...geo3.attributes.position.array
+	);
+	geo1.dispose();
+	geo2.dispose();
+	geo3.dispose();
+	for (let r=0; r<32; r++){
+		const max = r/32*128;
+		for (let i=0; i<max; i++){
+			const theta = Math.rad(i/max*360);
+			const radius = r/32*128;
+			positions.push( 
+				radius * Math.cos(theta),
+				32,
+				radius * Math.sin(theta)
+			);
+			positions.push( 
+				radius * Math.cos(theta),
+				-32,
+				radius * Math.sin(theta)
+			);
+		}
+	}
+	for (let r=0; r<24; r++){
+		const max = r/24*96;
+		for (let i=0; i<max; i++){
+			const theta = Math.rad(i/max*360);
+			const radius = r/24*96;
+			positions.push( 
+				radius * Math.cos(theta),
+				80,
+				radius * Math.sin(theta)
+			);
+		}
+	}
+	for (let r=0; r<16; r++){
+		const max = r/16*64;
+		for (let i=0; i<max; i++){
+			const theta = Math.rad(i/max*360);
+			const radius = r/16*64;
+			positions.push( 
+				radius * Math.cos(theta),
+				112,
+				radius * Math.sin(theta)
+			);
+		}
+	}
+	for (let i=0; i<positions.length; i+=3){
+		colors.push(
+			(positions[i]+128)/256,
+			(positions[+i+1]+128)/256,
+			(positions[+i+2]+128)/256,
+			1
+		);
+	}
+	// cakeGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+	// cakeGeometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
+
+	
+	// const cake = new THREE.Points(cakeGeometry, material);
+	// scene.add(cake);
+	return {positions, colors};
+}
+
+function createText(){
+	// const textGeometry = new THREE.BufferGeometry();
+	const positions = [];
+	const colors = [];
+	for (let i=0; i<text.pos.length; i+=2){
+		positions.push(
+			text.pos[i] - text.width/2,
+			text.pos[+i+1],
+			0
+		);
+		colors.push(
+			1 - text.pos[+i+1] / text.height,
+			0.5,
+			text.pos[i] / text.width,
+			1
+		);
+	}
+	// textGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+	// textGeometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
+	// const text = new THREE.Points(textGeometry, material);
+	// scene.add(text);
+	return {positions, colors};
+}
+
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute("position", new THREE.Float32BufferAttribute([], 3));
+geometry.setAttribute("color", new THREE.Float32BufferAttribute([], 4));
+const points = new THREE.Points(geometry, material);
+scene.add(points);
+
+const {positions, colors} = createCake();
+geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
+
+function animate(){
+	let state = "cake";
+	let {positions: goalPositions, colors: goalColors} = createCake();
+	setInterval(function(){
+		switch (state){
+			case "cake":
+				state = "text";
+				({positions: goalPositions, colors: goalColors} = createCake());
+				break;
+			case "text":
+				state = "cake";
+				({positions: goalPositions, colors: goalColors} = createText());
+				break;
+		}
+	}, 6000);
+	
+	const k = 0.002;
+	let t0 = +new Date();
+	setInterval(()=>{
+		const t = new Date() - t0;
+		t0 = new Date();
+		const posLen = Math.max(goalPositions.length, positions.length);
+		for (let i=posLen-1; i>=0; i--){
+			goalPositions[i] = goalPositions[i] || 0;
+			positions[i] = positions[i] || 0;
+			positions[i] += (goalPositions[i] - positions[i]) * t*k;
+		}
+		const colorLen = Math.max(goalColors.length, colors.length);
+		for (let i=colorLen-1; i>=0; i--){
+			goalColors[i] = goalColors[i] || 1;
+			colors[i] = colors[i] || 1;
+			colors[i] += (goalColors[i] - colors[i]) * t*k;
+		}
+		geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+		geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
+	}, 0);
+}
+
+function titleAnimate(){
+	const text = [
+		"Happy birthday!",
+		"生日快乐！",
+		"\u5434\u6b63\u6d69生日快乐！",
+		"游文庆生日快乐！",
+		"祖国生日快乐！"
+	];
+	let index = 0;
+	let len = 0;
+	let direction = 1;
+	setInterval(()=>{
+		document.title = text[index].substr(0, len) + "|";
+		len += direction;
+		if (len > text[index].length || len <= 0){
+			if (direction == 1){
+				direction = -1;
+			}else{
+				direction = 1;
+				index++;
+				if (index >= text.length){
+					index = 0;
+				}
+			}
+		}
+	}, 300);
+}
+titleAnimate();
+
+
+//渲染循环
+(function render(){
+	requestAnimationFrame(render);
+	renderer.render(scene, camera);
+	stats.update();
+})();
+
+//窗口大小调整
+window.onresize = function(){
+	WIDTH = window.innerWidth,
+	HEIGHT = window.innerHeight;
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix(); //更新投影矩阵
+};
+</script>
+		
+	</body>
+</html>
