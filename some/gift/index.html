@@ -6,9 +6,6 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<title>Happy Birthday!</title>
 		
-		<!--icon-->
-		<link href="./img/icon.png" rel="icon" type="image/x-icon"/>
-		
 		<style>
 		@font-face{
 			font-family: xs; /*QQ*/
@@ -42,7 +39,7 @@
 		<script src="./stats.min.js"></script>
 		
 		<!-- 调试工具 -->
-		<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<!--<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
 		<script>
 		if ( /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test( navigator.userAgent.toLowerCase() ) ){
@@ -50,7 +47,7 @@
 			eruda.init();
 			new VConsole();
 		}
-		</script>
+		</script>-->
 		
 		<script src="./js_plus.min.js"></script> <!-- js+ -->
 		
@@ -80,14 +77,14 @@ setTimeout(function(){
 	ctx.fillText("生日快乐！", text.width/2, text.height/2);
 	
 	const data = ctx.getImageData(0, 0, text.width, text.height).data;
-	console.log([...data])
+	//console.log([...data])
 	for (let i=0; i<data.length; i+=4)
 		if (data[+i+3] != 0)
 			text.pos.push(
 				i/4 % text.width,
 				text.height - ~~(i/4/text.width)
 			);
-	console.log(text.pos);
+	//console.log(text.pos);
 	animate();
 }, 0);
 
@@ -175,7 +172,6 @@ function createCake(){
 			arr[i] += 96;
 	});
 
-	// const cakeGeometry = new THREE.BufferGeometry();
 	const positions = [];
 	const colors = [];
 	positions.push(
@@ -235,17 +231,10 @@ function createCake(){
 			1
 		);
 	}
-	// cakeGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-	// cakeGeometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
-
-	
-	// const cake = new THREE.Points(cakeGeometry, material);
-	// scene.add(cake);
 	return {positions, colors};
 }
 
 function createText(){
-	// const textGeometry = new THREE.BufferGeometry();
 	const positions = [];
 	const colors = [];
 	for (let i=0; i<text.pos.length; i+=2){
@@ -261,10 +250,6 @@ function createText(){
 			1
 		);
 	}
-	// textGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-	// textGeometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 4));
-	// const text = new THREE.Points(textGeometry, material);
-	// scene.add(text);
 	return {positions, colors};
 }
 
