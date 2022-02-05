@@ -18,8 +18,8 @@
 		</script>
 	</head>
 	<body>
-		<canvas width="500" height="500">你的浏览器不支持canvas绘图</canvas><br/>
-		<canvas width="32" height="32">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="512" height="512">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="512" height="512">你的浏览器不支持canvas绘图</canvas><br/>
 		<input class="load_picture" placeholder="图片地址" /><br/>
 		x:<input class="load_picture_scale" value="32" /><br/>
 		y:<input class="load_picture_scale" value="32" /><br/>
@@ -53,7 +53,7 @@ $("button.load_picture").click(function(){
 	let img = new Image();
 	img.src = $("input.load_picture").val();
 	img.onload = function(){
-		ctx.drawImage(img, 0, 0, 500, 500);
+		ctx.drawImage(img, 0, 0, img.width, img.height);
 		let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
 		let x_scale = +$(".load_picture_scale:eq(0)").val() / WIDTH;
 		let y_scale = +$(".load_picture_scale:eq(1)").val() / HEIGHT;
@@ -78,14 +78,19 @@ $("button.load_picture").click(function(){
 const WIDTH = $("canvas")[0].width,
 	HEIGHT = $("canvas")[0].height;
 $("button.replace_color").click(function(){
+	// ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
 	for (let i=0; i<imgData.data.length; i+=4){
 		if (
 			imgData.data[i] == 255 &&
-			imgData.data[i+1] == 255 &&
-			imgData.data[i+2] == 255
+			imgData.data[+i+1] == 255 &&
+			imgData.data[+i+2] == 255
 		){
-			imgData.data[i+3] = 0;
+			imgData.data[+i+3] = 0;
+		}else{
+			imgData.data[i] = 255;
+			imgData.data[+i+1] = 255;
+			imgData.data[+i+2] = 255;
 		}
 	}
 	ctx.putImageData(imgData, 0, 0);
