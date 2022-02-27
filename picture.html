@@ -18,11 +18,11 @@
 		</script>
 	</head>
 	<body>
-		<canvas width="512" height="512">你的浏览器不支持canvas绘图</canvas><br/>
-		<canvas width="512" height="512">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="16" height="16">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="64" height="64">你的浏览器不支持canvas绘图</canvas><br/>
 		<input class="load_picture" placeholder="图片地址" /><br/>
-		x:<input class="load_picture_scale" value="32" /><br/>
-		y:<input class="load_picture_scale" value="32" /><br/>
+		x:<input class="load_picture_scale" value="64" /><br/>
+		y:<input class="load_picture_scale" value="64" /><br/>
 		<button class="load_picture">加载图片</button><br/>
 		color1:<input class="replace_color" type="color" />
 		color2:<input class="replace_color" type="color" />
@@ -81,6 +81,21 @@ $("button.replace_color").click(function(){
 	// ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
 	for (let i=0; i<imgData.data.length; i+=4){
+		/* const x = i/4 % imgData.width,
+			y = ~~(i/4 / imgData.width);
+		const r = Math.sqrt((x-63.5)**2 + (y-63.5)**2);
+		if (r > 63.5 || r < 31.75){ //四角 或 中心
+			imgData.data[i] = 255;
+			imgData.data[+i+1] = 255;
+			imgData.data[+i+2] = 255;
+			imgData.data[+i+3] = 0; //透明
+		}else{ //63.5->255, 31.75->0
+			imgData.data[i] = 200;
+			imgData.data[+i+1] = 200;
+			imgData.data[+i+2] = 200;
+			imgData.data[+i+3] = Math.round((r-31.75)/(63.5-31.5)*255);
+		}
+		console.log(r); */
 		if (
 			imgData.data[i] == 255 &&
 			imgData.data[+i+1] == 255 &&
