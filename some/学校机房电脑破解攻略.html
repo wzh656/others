@@ -5,28 +5,82 @@
 		<meta charset="UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<title>【绝密】学校机房电脑破解攻略</title>
+		
+		<link href='http://cdn.repository.webfont.com/webfonts/nomal/147911/46121/621a1ef1f629d812647b3e5e.css' rel='stylesheet' type='text/css' />
+		<link href='http://cdn.repository.webfont.com/webfonts/nomal/147911/19650/620cf824f629d80fb8b29b42.css' rel='stylesheet' type='text/css' />
+		<link href='http://cdn.repository.webfont.com/webfonts/nomal/147911/46724/620cf8acf629d80fb8b29b44.css' rel='stylesheet' type='text/css' />
 		<style>
-			@media all and (orientation:landscape){
-				body{padding:0 16vw;}
+		@media all and (orientation:landscape){
+			body{padding:0 16vw;}
+		}
+		#cover{
+			z-index: 1;
+			perspective: 600px;
+			transform-style: preserve-3d;
+			transform-origin: 0% 50%;
+		}
+		@keyframes turnOver{
+			from{
+				transform: rotateY(0deg);
+				opacity: 1;
 			}
-			*{
-				font-family: 楷体;
+			to{
+				transform: rotateY(90deg);
+				opacity: 0;
+				display: none;
 			}
+		}
+		#background{
+			position: fixed;
+			display: block;
+			left: 0;
+			top: 0;
+			z-index: -2;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			filter: blur(2px);
+		}
+		#glass{
+			position: fixed;
+			display: block;
+			left: 0;
+			top: 0;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			background-color: #fffae8;
+			opacity: 0.3;
+		}
 		</style>
+		<script src="./js/three.min.js"></script>
+		
 	</head>
-	<body style="background-color:#fffae8;">
-		<div>
-			<h1 style="font-size:22pt; line-height:241%; margin:17pt 0pt 16.5pt; orphans:0; text-align:center; widows:0">
-				<span style="font-family:宋体; font-size:22pt; font-weight:bold">【绝密】学校机房电脑破解攻略</span>
+	<body style="background-color:#fffae8">
+		<section id="cover" style="position:fixed; left:0; top:0; width:100%; height:100%;">
+			<div onclick="this.style.animation='turnOver 1s forwards';" class="css2ddb322773241c7" style="display:flex; flex-direction:column; align-items:center; text-align:center; background-color:#5588C7; color:white; font-size:60pt; transform-origin:left center">
+				<p style="position: absolute; top:1vh; margin:0; font-size:12pt">【绝密】</p>
+				<div style="display:flex; width:100vh; height:50vh">
+					<span style="display:block; width:50vh; height:50vh; line-height:50vh">破</span>
+					<span style="display:block; width:50vh; height:50vh; line-height:50vh">网</span>
+				</div>
+				<div style="display:flex; width:100vh; height:50vh">
+					<span style="display:block; width:50vh; height:50vh; line-height:50vh">计</span>
+					<span style="display:block; width:50vh; height:50vh; line-height:50vh">划</span>
+				</div>
+				<p style="position: absolute; bottom:1vh; margin:0; font-size:12pt">第六次行动（电子版攻略）</p>
+			</div>
+		</section>
+		<section id="content" class="css2da7d296bf241c7">
+			<h1 class="css2da7d4a9a1241c7" style="font-size:22pt; line-height:241%; margin:17pt 0pt 16.5pt; orphans:0; text-align:center; widows:0">
+				<span style="font-size:22pt; font-weight:bold">【绝密】学校机房电脑破解攻略</span>
 			</h1>
-			<p style="margin:0pt; orphans:0; text-align:center; widows:0">
-				<span style="font-family:仿宋; font-size:10.5pt; font-style:italic; font-weight:bold">——by wzh G2107</span>
+			<p class="css2da7d4a9a1241c7" style="margin:0pt; orphans:0; text-align:center; widows:0">
+				<span style="font-size:10.5pt; font-style:italic; font-weight:bold">——by wzh G2107</span>
 			</p>
 			<p style="margin:0pt; orphans:0; text-align:center; widows:0">
-				<span style="font-family:仿宋; font-size:10.5pt; font-style:italic; font-weight:bold">printed by zhj</span>
-			</p>
-			<p style="margin:0pt; orphans:0; text-align:center; widows:0">
-				<span style="font-family:仿宋; font-size:10.5pt; font-style:italic; font-weight:bold">&#xa0;</span>
+				<span style="font-size:10.5pt; font-style:italic; font-weight:bold">&#xa0;</span>
 			</p>
 			<p style="margin:0pt; orphans:0; widows:0">
 				<span style="font-size:12pt; font-style:italic; font-weight:bold">Step01.</span>
@@ -175,7 +229,8 @@
 			</p>
 			<p style="margin:0pt; orphans:0; widows:0">
 				<span style="width:21pt; text-indent:0pt; display:inline-block"></span>
-				<span style="font-size:10.5pt">（3）找到Student</span>
+				<span style="font-size:10.5pt">（3）找到</span>
+				<span style="font-size:10.5pt; font-style:italic">Student</span>
 				<span style="font-size:10.5pt">程序，双击卸载（提示该程序已不存在）</span>
 			</p>
 			<p style="margin:0pt; orphans:0; widows:0">
@@ -211,6 +266,292 @@
 			<p style="margin:0pt; orphans:0; widows:0">
 				<span style="width:21pt; text-indent:0pt; display:inline-block"></span>
 			</p>
-		</div>
+		</section>
+		<section id="glass"></section>
+		<section id="background"></section>
+		
+<script>
+/**
+* Body System
+*/
+class Body{
+	constructor(pos, v, m, r, color){
+		//this.pos = pos.clone();
+		this.v = v.clone(); //速度 单位: m/s
+		this.a = new THREE.Vector3(0, 0, 0); //加速度 单位: m/s²
+		this.m = m;
+		this.r = r;
+		this.color = color;
+		
+		const geometry = new THREE.SphereGeometry(1, 36, 36); //几何体
+		const material = new THREE.MeshLambertMaterial({ color }); //材质
+		this.mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+		this.mesh.scale.set(r, r, r);
+		this.mesh.position.copy(pos);
+		this.pos = this.mesh.position; //绑定位置
+		
+		this.path = [this.pos.clone()];
+		const pathGeometry = new THREE.BufferGeometry();
+		pathGeometry.setFromPoints(this.path);
+		const pathMaterial = new THREE.PointsMaterial({ color, sizeAttenuation: false, side: THREE.DoubleSide });
+		this.pathMesh = new THREE.Points(pathGeometry, pathMaterial);
+		
+		this.lines = {
+			a: new THREE.ArrowHelper(
+				this.a.clone().normalize(),
+				this.pos,
+				this.a.length()*3+this.r,
+				0xffffff
+			),
+			v: new THREE.ArrowHelper(
+				this.v.clone().normalize(),
+				this.pos,
+				this.v.length()*1+this.r,
+				color
+			)
+		};
+	}
+	
+	//根据速度和加速度运动
+	next(t){
+		//单位: s
+		this.pos
+			.add( this.v.clone() .multiplyScalar(t) )
+			.add( this.a.clone() .multiplyScalar(t*t/2) ); //x = v₀t + 1/2*a*t²
+		this.v.add( this.a.clone().multiplyScalar(t) ); // v = v₀+at
+		
+		if (this.v.lengthSq() > 300*300){
+			//alert([this.v.x, this.v.y, this.v.z, this.v.length(), this.v.lengthSq()])
+			this.v.setLength(300);
+		}
+		
+		this.lines.a.position.copy( this.pos );
+		this.lines.v.position.copy( this.pos ); //更新位置
+		this.lines.a.setLength( this.a.length()*3+this.r );
+		this.lines.v.setLength( this.v.length()*1+this.r ); //更新长度
+		this.lines.a.setDirection( this.a.clone().normalize() );
+		this.lines.v.setDirection( this.v.clone().normalize() ); //更新方向
+	}
+}
+
+
+class Bodies{
+	constructor(bodies, G){
+		this.bodies = bodies;
+		this.G = G;
+		this.speed = 1;
+		this.center = null;
+		this.id = null;
+	}
+	
+	start(updateCallback=()=>{}){
+		console.log("start")
+		let t0 = +new Date();
+		//let lastPath = +new Date();
+		this.id = setInterval(()=>{
+			const t = (+new Date() - t0) * this.speed;
+			t0 = +new Date();
+			
+			if (t > 1000*this.speed) return;
+			
+			const integer = ~~t; //整数
+			const decimal = t - integer; //小数
+			const center = new THREE.Vector3(0, 0, 0);
+			let num = 0;
+			for (const body of this.bodies){
+				center.add(body.pos.clone().multiplyScalar(body.m));
+				num += body.m;
+			}
+			center.divideScalar(num);
+			this.center = center;
+				
+			for (const [i, body] of Object.entries(this.bodies)){
+				body.a.set(0, 0, 0);
+				for (const [j, opp] of Object.entries(this.bodies)){
+					if (i == j) continue;
+					const delta = opp.pos.clone().sub(body.pos); //坐标差
+					const r = delta.length(); //距离
+					const a0 = this.G * opp.m * (r<20? -1/(r+1)**2: 1/r/r); //加速度标量
+					
+					body.a.add( delta.normalize().multiplyScalar(a0) ); //标准化向量，再乘以加速度，得到分加速度，加速度叠加
+				}
+				
+				const delta = center.clone().sub(body.pos); //坐标差
+				const r = delta.length(); //距离
+				const a0 = 2; //加速度标量
+				body.a.add( delta.normalize().multiplyScalar(a0) ); //标准化向量，再乘以加速度，得到分加速度，加速度叠加
+				
+				for (let t=0; t<integer; t++)
+					body.next( 1e-3 );
+				body.next(decimal / 1000);
+			}
+			
+			for (const body of this.bodies){
+					body.path.push( body.pos.clone() );
+					body.pathMesh.geometry.setFromPoints( body.path );
+				}
+			
+			updateCallback();
+		}, 0);
+		return this;
+	}
+	
+	stop(){
+		console.log("stop")
+		clearInterval(this.id);
+		return this;
+	}
+	
+	setSpeed(speed){
+		this.speed = speed;
+		return this;
+	}
+}
+
+
+
+const bodies = [new Body(
+	new THREE.Vector3(
+		Math.random()*1000-500,
+		Math.random()*1000-500,
+		Math.random()*1000-500
+	),
+	new THREE.Vector3(
+		Math.random()*40-20,
+		Math.random()*40-20,
+		Math.random()*40-20
+	),
+	1,
+	20,
+	"#ff0000"
+), new Body(
+	new THREE.Vector3(
+		Math.random()*1000-500,
+		Math.random()*1000-500,
+		Math.random()*1000-500
+	),
+	new THREE.Vector3(
+		Math.random()*40-20,
+		Math.random()*40-20,
+		Math.random()*40-20
+	),
+	1,
+	20,
+	"#00ff00"
+), new Body(
+	new THREE.Vector3(
+		Math.random()*1000-500,
+		Math.random()*1000-500,
+		Math.random()*1000-500
+	),
+	new THREE.Vector3(
+		Math.random()*40-20,
+		Math.random()*40-20,
+		Math.random()*40-20
+	),
+	1,
+	20,
+	"#0000ff"
+)];
+
+
+
+/**
+* Three.js
+*/
+/* 窗口大小 */
+let WIDTH = window.innerWidth, //窗口宽度
+	HEIGHT = window.innerHeight; //窗口高度
+
+/* 场景 */
+const scene = new THREE.Scene();
+
+/* 坐标轴 */
+/*const axesHelper = new THREE.AxesHelper(666);
+scene.add(axesHelper);*/
+
+/* 光源 */
+//点光源
+const pointLight = new THREE.PointLight("#fff");
+pointLight.position.set(0, 0, 0); //点光源位置
+scene.add(pointLight); //点光源添加到场景中
+//环境光
+const ambientLight = new THREE.AmbientLight("#888");
+scene.add(ambientLight);
+
+/* 相机 */
+const camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 1, 666666666666);
+camera.position.set(666, 666, 666); //设置相机位置
+camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+/* 渲染器 */
+const renderer = new THREE.WebGLRenderer({
+	antialias: true //抗锯齿
+});
+renderer.setSize(WIDTH, HEIGHT);//设置渲染区域尺寸
+renderer.setClearColor("#fffae8", 1); //设置背景颜色
+renderer.domElement.style.margin = "0";
+background.append(renderer.domElement); //body元素中插入canvas对象
+
+//渲染循环
+(function render(){
+	requestAnimationFrame(render);
+	renderer.render(scene, camera);
+})();
+
+//窗口大小调整
+window.onresize = function(){
+	WIDTH = window.innerWidth,
+	HEIGHT = window.innerHeight;
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix(); //更新投影矩阵
+};
+
+
+const bodySystem = new Bodies(bodies, 1e6);
+console.log(bodySystem)
+scene.add(...bodySystem.bodies.map(body => body.mesh));
+scene.add(...bodySystem.bodies.map(body => body.pathMesh));
+scene.add(...bodySystem.bodies.map(body => body.lines.v));
+scene.add(...bodySystem.bodies.map(body => body.lines.a));
+
+
+const rotation = [0, 0];
+let t0 = +new Date();
+bodySystem.start(function(){
+	const t = new Date() - t0;
+	t0 = +new Date();
+	
+	rotation[0] += Math.PI/13 * t/1000;
+	rotation[1] -= Math.PI/7 * t/1000;
+	
+	let r = 0;
+	for (const i of bodySystem.bodies){
+		const pos = i.mesh.position;
+		r = Math.max(
+			r,
+			pos.clone().sub(bodySystem.center).lengthSq()
+		);
+		for (const j of bodySystem.bodies){
+			if (i == j) continue;
+			r = Math.max(
+				r,
+				pos.clone().sub(j.mesh.position).lengthSq()
+			);
+		}
+	}
+	r = r**0.5 *2;
+	camera.position.copy( bodySystem.center.clone()
+		.add(new THREE.Vector3(
+			r * Math.cos(rotation[1]) * Math.cos(rotation[0]),
+			r * Math.cos(rotation[1]) * Math.sin(rotation[0]),
+			r * Math.sin(rotation[1])
+		))
+	);
+	camera.lookAt( bodySystem.center );
+});
+</script>
+
 	</body>
 </html>
