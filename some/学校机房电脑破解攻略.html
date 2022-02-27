@@ -27,10 +27,9 @@
 			to{
 				transform: rotateY(90deg);
 				opacity: 0;
-				display: none;
 			}
 		}
-		#background{
+		#background, #stars{
 			position: fixed;
 			display: block;
 			left: 0;
@@ -51,14 +50,14 @@
 			height: 100%;
 			margin: 0;
 			background-color: #fffae8;
-			opacity: 0.3;
+			opacity: 0.5;
 		}
 		</style>
 		<script src="./js/three.min.js"></script>
 		
 	</head>
 	<body style="background-color:#fffae8">
-		<section id="cover" style="position:fixed; left:0; top:0; width:100%; height:100%;">
+		<section id="cover" onclick="setTimeout(()=>this.style.display='none', 1000);"  style="position:fixed; left:0; top:0; width:100%; height:100%;">
 			<div onclick="this.style.animation='turnOver 1s forwards';" class="css2ddb322773241c7" style="display:flex; flex-direction:column; align-items:center; text-align:center; background-color:#5588C7; color:white; font-size:60pt; transform-origin:left center">
 				<p style="position: absolute; top:1vh; margin:0; font-size:12pt">【绝密】</p>
 				<div style="display:flex; width:100vh; height:50vh">
@@ -269,6 +268,7 @@
 		</section>
 		<section id="glass"></section>
 		<section id="background"></section>
+		<canvas id="stars"></canvas>
 		
 <script>
 /**
@@ -551,6 +551,89 @@ bodySystem.start(function(){
 	);
 	camera.lookAt( bodySystem.center );
 });
+
+
+//命名空间
+var Canvas = {};
+Canvas.animate = {
+	//初始化
+	init(){
+		var canvas = document.getElementById("stars");
+		this.cxt = canvas.getContext("2d"); //2d绘图环境 画笔
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		this.cw = canvas.width;
+		this.ch = canvas.height;
+		this.num = 200;
+		this.data = [];
+		for (var i = 0; i < this.num; i++) {
+			this.data[i] = {
+				x: Math.random() * this.cw,
+				y: Math.random() * this.ch,
+				cX: Math.random() * 0.6 - 0.3,
+				cY: Math.random() * 0.6 - 0.3
+			}
+			this.drawCircle(this.data[i].x, this.data[i].y);
+		}
+	},
+	//绘制粉色小点
+	drawCircle(x, y){
+		var cxt = this.cxt;
+		cxt.save();
+		cxt.fillStyle = "pink";
+		cxt.beginPath();
+		cxt.arc(x, y, 0.5, 0, Math.PI * 2, false);
+		cxt.closePath();
+		cxt.fill();
+		cxt.restore();
+	},
+	//绘制线条
+	drawLine(x1, y1, x2, y2){
+		var cxt = this.cxt;
+		var color = cxt.createLinearGradient(x1, y1, x2, y2);
+		color.addColorStop(0, "#fff");
+		color.addColorStop(0.5, "#08f");
+		color.addColorStop(1, "#666");
+		cxt.save();
+		cxt.strokeStyle = color;
+		cxt.beginPath();
+		cxt.moveTo(x1, y1);
+		cxt.lineTo(x2, y2);
+		cxt.closePath();
+		cxt.stroke();
+		cxt.restore();
+	},
+	//鼠标连线
+	drawMouseLine(){},
+	//粉色小点动起来 及连线
+	moveCircle(){
+		this.cxt.clearRect(0, 0, this.cw, this.ch);
+		for (var i = 0; i < this.num; i++) {
+			this.data[i].x += this.data[i].cX;
+			this.data[i].y += this.data[i].cY;
+			//边界值判断
+			if (this.data[i].x > this.cw || this.data[i].x < 0) {
+				this.data[i].cX = -this.data[i].cX;
+			}
+			if (this.data[i].y > this.ch || this.data[i].y < 0) {
+				this.data[i].cY = -this.data[i].cY;
+			}
+			this.drawCircle(this.data[i].x, this.data[i].y);
+			//用勾股定理判断是否连线
+			for (var j = i + 1; j < this.num; j++) { //下一个点 i++
+				if ((this.data[i].x - this.data[j].x) * (this.data[i].x - this.data[j].x) +
+					(this.data[i].y - this.data[j].y) * (this.data[i].y - this.data[j].y) <= 50 * 50) {
+					this.drawLine(this.data[i].x, this.data[i].y, this.data[j].x, this.data[j].y);
+				}
+			}
+		}
+	}
+}
+Canvas.animate.init();
+setInterval(function() {
+	Canvas.animate.moveCircle();
+}, 13);
+
 </script>
 
 	</body>
