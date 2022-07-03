@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<!-- Copyright © 2022 by wzh -->
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta property="og:title" content="2021~2022下学期赣州地区期末考试成绩查询" />
+		<meta property="og:locale" content="zh_CN" />
+		<meta name="description" content="2021~2022下学期赣州地区期末考试成绩查询" />
+		<meta property="og:description" content="2021~2022下学期赣州地区期末考试成绩查询" />
+		<link rel="canonical" href="https://wzh656.github.io/others/some/articles/2022-07-03.html" />
+		<meta property="og:url" content="https://wzh656.github.io/others/some/articles/2022-07-03.html" />
+		<meta property="og:site_name" content="2021~2022下学期赣州地区期末考试成绩查询" />
+		<meta name="keywords" content="2021,2022,下学期,赣州,赣州地区,期末考试,查分,成绩查询" />
+		<title>2021~2022下学期赣州地区期末考试成绩查询</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				background-color: #fafafa;
+			}
+			
+			
+			section{
+				margin: 0.3rem;
+			}
+			section.landscape{
+				width: 60vw;
+				margin: 0 20vw;
+			}
+			
+			h1, h2{
+				color: red;
+				text-align: center;
+			}
+			
+			input{
+				width: 80%;
+				padding: 0.3rem;
+				border: 2px solid #ddd;
+				border-radius: 3px;
+				background-color: white;
+			}
+			
+			button{
+				padding: 0.5rem;
+				border: 1px solid #6af;
+				border-radius: 3px;
+				font-size: 1em;
+				background-color: #cef;
+			}
+			button:active{
+				background-color: #bde;
+			}
+			
+			#res tbody, #res tr > td{
+				border: 1px solid #a7ccf1;
+			}
+			#res tr > td:first-of-type{
+				min-width: 100px;
+				text-align: center;
+				background-color: #eff8ff;
+			}
+			#res tr > td.bold{
+				font-weight: bold;
+			}
+			#res tr > td:last-of-type{
+				word-break: break-all;
+				background-color: #fff;
+			}
+			
+			#ad{
+				margin-top: 1rem;
+			}
+			#ad img{
+				height: 18vw;
+				margin: 0.1rem;
+			}
+			section.landscape #ad img{
+				height: 10.8vw;
+			}
+			
+			#pay > div{
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0, .5);
+			}
+			#pay > a{
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 1;
+				display: block;
+				width: 80vmin;
+			}
+			#pay > a > img{
+				width: 100%;
+			}
+			
+			#pass{
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 60vmin;
+				
+				perspective: 600px;
+				transform-style: preserve-3d;
+				transform-origin: center;
+			}
+			#pass > img{
+				position:relative;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				animation: card 5s;
+			}
+			#pass > div{
+				position: absolute;
+				top: 0;
+				left: -66.67%;
+				width: 66.67%;
+				height: 100%;
+				background: linear-gradient(to right,
+					rgba(255,255,255, 0) 0%,
+					rgba(255,255,255, .5) 50%,
+					rgba(255,255,255, 0) 100%);
+				transform: skewX(-25deg);
+				transition: left 1s;
+			}
+			#pass.finished{
+				overflow: hidden;
+			}
+			#pass.finished:hover > div{
+				left: 100%;
+			}
+			
+			@keyframes header{
+				from{
+					left: 0%;
+					transform: translateX(-100%);
+				}
+				to{
+					left: 100%;
+					transform: translateX(0%);
+				}
+			}
+			
+			@keyframes card{
+				from{
+					transform: rotateY(0deg);
+				}
+				to{
+					transform: rotateY(360deg);
+				}
+			}
+		</style>
+		
+		<script src="https://wzh656.github.io/others/some/articles/js/count-check.js" async></script>
+		
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://unpkg.com/layui@2.6.8/dist/layui.js"></script>
+		
+	</head>
+	<body>
+		<section>
+			<h1>2021~2022下学期赣州地区期末考试成绩查询</h1>
+			<p>姓名：</p>
+			<input id="name" />
+			<p>考号：</p>
+			<input id="number" type="number" />
+			<p><button onclick="check();">查询</button></p>
+			<hr/>
+			<table id="res"></table>
+			<div id="ad" style="display: none;">
+				<a href="javascript:pay();"><img src="./img/2021-06-24-ad3.jpg" alt="广告-修改成绩" async /></a>
+				<a href="https://www.baidu.com/s?word=%E8%93%9D%E7%BF%94%E6%8C%96%E6%8E%98%E6%9C%BA"><img src="./img/2021-06-24-ad2.jpg" alt="广告-蓝翔挖掘机" async /></a>
+				<a href="https://m.baidu.com/from=844b/ssid=0/s?word=%E6%B1%9F%E8%A5%BF%E8%80%83%E9%B8%A1&nojc=1&sa=se&ms=1&rqid=8937243141114900968&params_ssrt=node-san&bd_ck=0&ex_bp_rt=1"><img src="./img/2021-06-24-ad1.jpg" alt="广告-江西考鸡" async /></a>
+			</div>
+		</section>
+		<div id="pay" style="display: none;">
+			<div></div>
+			<a href="javascript:paid();"><img src="./img/2021-06-24-pay.jpg" async /></a>
+		</div>
+		<div id="pass" style="display: none;">
+			<img src="./img/2021-06-24-pass.jpg" async />
+			<div></div>
+		</div>
+		<noscript><h1 style="display:block; position:fixed; left:0; top:0; width:100%; height:100%; background-color:black; color:white; text-align:center; z-index:2;">你的浏览器不支持JavaScript，请升级或切换浏览器</h1></noscript>
+		
+<script>
+if (window.innerWidth > window.innerHeight)
+	$("section").addClass("landscape"); //横屏
+$(window).resize(function(){
+	if (window.innerWidth < window.innerHeight)
+		$("section").removeClass("landscape"); //取消横屏
+});
+</script>
+<script>
+function request(name, number){
+	return new Promise((resolve, reject)=>{
+		console.log({name, number})
+		$.ajax({
+			url: "https://wzh.glitch.me/checkGrade/check",
+			data: {name, number, href:location.href},
+			type: "GET",
+			dataType: "jsonp",
+			success: (response, status, xhr)=>{
+				console.log("checkGrade/check", {name, number}, response)
+				$.ajax({
+					url: "http://www.kjw123.cn/api/queryScore",
+					method: "POST",
+					data: JSON.stringify({name, exam_number: number}),
+					headers: {
+						"Accept": "application/json, text/plain, */*",
+						"Accept-Encoding": "gzip, deflate",
+						"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+						"Authorization": "Basic dGVzdDp0ZXN0MTIz",
+						"Connection": "keep-alive",
+						"Content-Length": "49",
+						"Content-Type": "application/json",
+						"Host": "kjw123.cn",
+						"Origin": "http://kjw123.cn",
+						"Referer": "http://kjw123.cn/",
+						//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
+						"User-Agent": navigator.userAgent
+					},
+					success(body, status, xhr){
+						console.log(status, body, xhr)
+						if (!body || !body[0])
+							return reject(status, body, xhr);
+						resolve(body[0]);
+					},
+					error(response, status, xhr){
+						console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
+						reject(response, status, xhr);
+					}
+				});
+			},
+			error: (response, status, xhr)=>{
+				console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
+				reject(response, status, xhr);
+			}
+		});
+	});
+}
+
+
+function check(){
+	const name = $("#name").val(),
+		number = $("#number").val();
+	if (!name || !number){
+		layer.msg("请输入考生姓名和报名序号");
+		return draw();
+	}
+	
+	$("#res")[0].innerHTML = "<h2>查询结果</h2><p>查询中……</p>";
+	request(name, number).then(data => { //发送请求
+		layer.msg("查询成功");
+		$("#ad").show();
+		
+		console.log(data)
+		$("#res").empty().append(
+			$("<tr></tr>").append(
+				$("<td>学校</td>")
+			).append(
+				$("<td></td>").html(data.school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>班级</td>")
+			).append(
+				$("<td></td>").html(data.class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>姓名</td>")
+			).append(
+				$("<td></td>").html(data.name)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>考号</td>")
+			).append(
+				$("<td></td>").html(data.exam_number)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>考试id</td>")
+			).append(
+				$("<td></td>").html(data.exam_id)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>ID</td>")
+			).append(
+				$("<td></td>").html(data.id)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>语文</td>")
+			).append(
+				$("<td></td>").html(data.chinese_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>语文班排</td>")
+			).append(
+				$("<td></td>").html(data.chinese_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>语文校排</td>")
+			).append(
+				$("<td></td>").html(data.chinese_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>语文联排</td>")
+			).append(
+				$("<td></td>").html(data.chinese_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>数学</td>")
+			).append(
+				$("<td></td>").html(data.maths_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>数学班排</td>")
+			).append(
+				$("<td></td>").html(data.maths_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>数学校排</td>")
+			).append(
+				$("<td></td>").html(data.maths_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>数学联排</td>")
+			).append(
+				$("<td></td>").html(data.maths_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>英语</td>")
+			).append(
+				$("<td></td>").html(data.english_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>英语班排</td>")
+			).append(
+				$("<td></td>").html(data.english_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>英语校排</td>")
+			).append(
+				$("<td></td>").html(data.english_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>英语联排</td>")
+			).append(
+				$("<td></td>").html(data.english_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>日语</td>")
+			).append(
+				$("<td></td>").html(data.jap_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>日语班排</td>")
+			).append(
+				$("<td></td>").html(data.jap_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>日语校排</td>")
+			).append(
+				$("<td></td>").html(data.jap_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>日语联排</td>")
+			).append(
+				$("<td></td>").html(data.jap_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>物理</td>")
+			).append(
+				$("<td></td>").html(data.physics_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>物理班排</td>")
+			).append(
+				$("<td></td>").html(data.physics_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>物理校排</td>")
+			).append(
+				$("<td></td>").html(data.physics_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>物理联排</td>")
+			).append(
+				$("<td></td>").html(data.physics_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>化学</td>")
+			).append(
+				$("<td></td>").html(data.chemistry_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>化学赋分</td>")
+			).append(
+				$("<td></td>").html(data.chemistry_score_calc)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>化学班排</td>")
+			).append(
+				$("<td></td>").html(data.chemistry_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>化学校排</td>")
+			).append(
+				$("<td></td>").html(data.chemistry_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>化学联排</td>")
+			).append(
+				$("<td></td>").html(data.chemistry_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>生物</td>")
+			).append(
+				$("<td></td>").html(data.bio_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>生物赋分</td>")
+			).append(
+				$("<td></td>").html(data.bio_score_calc)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>生物班排</td>")
+			).append(
+				$("<td></td>").html(data.bio_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>生物校排</td>")
+			).append(
+				$("<td></td>").html(data.bio_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>生物联排</td>")
+			).append(
+				$("<td></td>").html(data.bio_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>历史</td>")
+			).append(
+				$("<td></td>").html(data.history_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>历史班排</td>")
+			).append(
+				$("<td></td>").html(data.history_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>历史校排</td>")
+			).append(
+				$("<td></td>").html(data.history_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>历史联排</td>")
+			).append(
+				$("<td></td>").html(data.history_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>地理</td>")
+			).append(
+				$("<td></td>").html(data.geo_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>地理班排</td>")
+			).append(
+				$("<td></td>").html(data.geo_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>地理校排</td>")
+			).append(
+				$("<td></td>").html(data.geo_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>地理联排</td>")
+			).append(
+				$("<td></td>").html(data.geo_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>政治</td>")
+			).append(
+				$("<td></td>").html(data.politics_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>政治班排</td>")
+			).append(
+				$("<td></td>").html(data.politics_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>政治校排</td>")
+			).append(
+				$("<td></td>").html(data.politics_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>政治联排</td>")
+			).append(
+				$("<td></td>").html(data.politics_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>总分</td>")
+			).append(
+				$("<td></td>").html(data.sum_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>总分赋分</td>")
+			).append(
+				$("<td></td>").html(data.sum_score_calc)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>总分班排</td>")
+			).append(
+				$("<td></td>").html(data.sum_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>总分校排</td>")
+			).append(
+				$("<td></td>").html(data.sum_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>总分联排</td>")
+			).append(
+				$("<td></td>").html(data.sum_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>主科成绩</td>")
+			).append(
+				$("<td></td>").html(data.subject_main_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>主科班排</td>")
+			).append(
+				$("<td></td>").html(data.subject_main_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>主科校排</td>")
+			).append(
+				$("<td></td>").html(data.subject_main_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>主科联排</td>")
+			).append(
+				$("<td></td>").html(data.subject_main_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>选科</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>选科成绩</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>选科赋分</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel_score_calc)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>选科班排</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel_pos_class)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>选科校排</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel_pos_school)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>选科联排</td>")
+			).append(
+				$("<td></td>").html(data.subject_sel_pos_joint)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>修改时间</td>")
+			).append(
+				$("<td></td>").html(data.input_time)
+			)
+		);
+	}).catch(msg => {
+		layer.alert(msg, {icon: 2, title: "错误"});
+	});
+}
+
+function pay(){
+	const id = layer.load(2);
+	setTimeout(function(){
+		$("#pay").show();
+		layer.close(id);
+	}, 500*(Math.random()*0.4+0.8));
+}
+
+function paid(){
+	const id = layer.load(2);
+	setTimeout(function(){
+		layer.close(id);
+		$("#pay").hide();
+		$("#pass").fadeIn("slow");
+		setTimeout(() => $("#pass")
+			.addClass("finished")
+			.click( ()=>$("#pass").hide("slow").removeClass("finished") ),
+		5000);
+		layer.msg("支付成功！<br/>已获得编辑功能+附赠“逢考必过”卡片");
+		$("#res").attr("contenteditable", "true"); //可编辑
+	}, 1000*(Math.random()*0.4+0.8));
+};
+</script>
+	</body>
+</html>
