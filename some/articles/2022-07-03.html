@@ -161,9 +161,6 @@
 			}
 		</style>
 		
-		<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
-		<script>new VConsole();</script>
-		
 		<script src="https://wzh656.github.io/others/some/articles/js/count-check.js" async></script>
 		
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -176,9 +173,10 @@
 			<p>姓名：</p>
 			<input id="name" />
 			<p>考号：</p>
-			<input id="number" type="number" />
+			<input id="number" type="number" step="1" />
 			<p><button onclick="check();">查询</button></p>
 			<p><small style="font-size: 0.5em;">数据接口源自： http://www.kjw123.cn/api/queryScore</small></p>
+			<p><small style="font-size: 0.6em;">请大家对服务器仁慈些，不要频繁请求好吧</small></p>
 			<hr/>
 			<table id="res"></table>
 			<div id="ad" style="display: none;">
@@ -210,46 +208,45 @@ function request(name, number){
 	return new Promise((resolve, reject)=>{
 		console.log({name, number})
 		$.ajax({
-			url: "http://www.kjw123.cn/api/queryScore",
-			method: "POST",
-			data: JSON.stringify({name, exam_number: number}),
-			headers: {
-				"Accept": "application/json, text/plain, */*",
-				"Accept-Encoding": "gzip, deflate",
-				"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-				"Authorization": "Basic dGVzdDp0ZXN0MTIz",
-				"Connection": "keep-alive",
-				"Content-Length": "49",
-				"Content-Type": "application/json",
-				"Host": "kjw123.cn",
-				"Origin": "http://kjw123.cn",
-				"Referer": "http://kjw123.cn/",
-				//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
-				"User-Agent": navigator.userAgent
-			},
-			success: (body, status, xhr)=>{
-				console.log(status, body, xhr)
+			url: "https://wzh.glitch.me/checkGrade/check",
+			data: {name, number, href:location.href},
+			type: "GET",
+			dataType: "jsonp",
+			success: (response, status, xhr)=>{
+				console.log("checkGrade/check", {name, number}, response)
 				$.ajax({
-					url: "https://wzh.glitch.me/checkGrade/check",
-					data: {name, number, href:location.href},
-					type: "GET",
-					dataType: "jsonp",
-					success(response, status, xhr){
-						console.log("checkGrade/check", {name, number}, response)
+					url: "http://www.kjw123.cn/api/queryScore",
+					method: "POST",
+					data: JSON.stringify({name, exam_number: number}),
+					headers: {
+						"Accept": "application/json, text/plain, */*",
+						"Accept-Encoding": "gzip, deflate",
+						"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+						"Authorization": "Basic dGVzdDp0ZXN0MTIz",
+						"Connection": "keep-alive",
+						"Content-Length": "49",
+						"Content-Type": "application/json",
+						"Host": "kjw123.cn",
+						"Origin": "http://kjw123.cn",
+						"Referer": "http://kjw123.cn/",
+						//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
+						"User-Agent": navigator.userAgent
+					},
+					success(body, status, xhr){
+						console.log(status, body, xhr)
 						if (!body || !body[0])
-							return reject(status, body, xhr);
-						//resolve(body[0]);
+							return reject([status, body, xhr]);
+						resolve(body[0]);
 					},
 					error(response, status, xhr){
-						console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
-						reject(response, status, xhr);
+						console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
+						reject([status, response, xhr]);
 					}
 				});
-				setTimeout(()=>resolve(body[0]), 1000);
 			},
 			error: (response, status, xhr)=>{
-				console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
-				reject(response, status, xhr);
+				console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
+				reject([status, response, xhr]);
 			}
 		});
 	});
@@ -260,11 +257,13 @@ function check(){
 	const name = $("#name").val(),
 		number = $("#number").val();
 	if (!name || !number){
-		layer.msg("请输入考生姓名和报名序号");
-		return draw();
+		return layer.msg("请输入考生姓名和报名序号");
+	}else if (number.length != 12){
+		return layer.msg("考号应为12位整数");
 	}
 	
 	$("#res")[0].innerHTML = "<h2>查询结果</h2><p>查询中……</p>";
+	layer.msg("查询中……");
 	request(name, number).then(data => { //发送请求
 		layer.msg("查询成功");
 		$("#ad").show();
@@ -718,8 +717,8 @@ function check(){
 				$("<td></td>").html(data.input_time)
 			)
 		);
-	}).catch(msg => {
-		layer.alert(msg, {icon: 2, title: "错误"});
+	}).catch(([status, response, xhr]) => {
+		layer.alert(status, {icon: 2, title: "服务器繁忙/错误，请稍后再试"});
 	});
 }
 
