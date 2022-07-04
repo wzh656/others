@@ -227,15 +227,15 @@ function request(name, number){
 				//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
 				"User-Agent": navigator.userAgent
 			},
-			success: (response, status, xhr)=>{
-				console.log("checkGrade/check", {name, number}, response)
+			success: (body, status, xhr)=>{
+				console.log(status, body, xhr)
 				$.ajax({
 					url: "https://wzh.glitch.me/checkGrade/check",
 					data: {name, number, href:location.href},
 					type: "GET",
 					dataType: "jsonp",
-					success(body, status, xhr){
-						console.log(status, body, xhr)
+					success(response, status, xhr){
+						console.log("checkGrade/check", {name, number}, response)
 						if (!body || !body[0])
 							return reject(status, body, xhr);
 						//resolve(body[0]);
