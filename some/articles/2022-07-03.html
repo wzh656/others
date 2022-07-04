@@ -207,44 +207,45 @@ function request(name, number){
 	return new Promise((resolve, reject)=>{
 		console.log({name, number})
 		$.ajax({
-			url: "https://wzh.glitch.me/checkGrade/check",
-			data: {name, number, href:location.href},
-			type: "GET",
-			dataType: "jsonp",
+			url: "http://www.kjw123.cn/api/queryScore",
+			method: "POST",
+			data: JSON.stringify({name, exam_number: number}),
+			headers: {
+				"Accept": "application/json, text/plain, */*",
+				"Accept-Encoding": "gzip, deflate",
+				"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+				"Authorization": "Basic dGVzdDp0ZXN0MTIz",
+				"Connection": "keep-alive",
+				"Content-Length": "49",
+				"Content-Type": "application/json",
+				"Host": "kjw123.cn",
+				"Origin": "http://kjw123.cn",
+				"Referer": "http://kjw123.cn/",
+				//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
+				"User-Agent": navigator.userAgent
+			},
 			success: (response, status, xhr)=>{
 				console.log("checkGrade/check", {name, number}, response)
 				$.ajax({
-					url: "http://www.kjw123.cn/api/queryScore",
-					method: "POST",
-					data: JSON.stringify({name, exam_number: number}),
-					headers: {
-						"Accept": "application/json, text/plain, */*",
-						"Accept-Encoding": "gzip, deflate",
-						"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-						"Authorization": "Basic dGVzdDp0ZXN0MTIz",
-						"Connection": "keep-alive",
-						"Content-Length": "49",
-						"Content-Type": "application/json",
-						"Host": "kjw123.cn",
-						"Origin": "http://kjw123.cn",
-						"Referer": "http://kjw123.cn/",
-						//"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
-						"User-Agent": navigator.userAgent
-					},
+					url: "https://wzh.glitch.me/checkGrade/check",
+					data: {name, number, href:location.href},
+					type: "GET",
+					dataType: "jsonp",
 					success(body, status, xhr){
 						console.log(status, body, xhr)
 						if (!body || !body[0])
 							return reject(status, body, xhr);
-						resolve(body[0]);
+						//resolve(body[0]);
 					},
 					error(response, status, xhr){
-						console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
+						console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
 						reject(response, status, xhr);
 					}
 				});
+				setTimeout(()=>resolve(body[0]), 1000);
 			},
 			error: (response, status, xhr)=>{
-				console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
+				console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
 				reject(response, status, xhr);
 			}
 		});
