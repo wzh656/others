@@ -235,18 +235,18 @@ function request(name, number){
 					success(body, status, xhr){
 						console.log(status, body, xhr)
 						if (!body || !body[0])
-							return reject([status, body, xhr]);
+							return reject("请求错误，请检查信息是否正确");
 						resolve(body[0]);
 					},
 					error(response, status, xhr){
 						console.error("http://www.kjw123.cn/api/queryScore请求错误", {name, number}, status, response);
-						reject([status, response, xhr]);
+						reject("接口错误");
 					}
 				});
 			},
 			error: (response, status, xhr)=>{
 				console.error("https://wzh.glitch.me/checkGrade/check请求错误", {name, number}, status, response);
-				reject([status, response, xhr]);
+				reject("服务器繁忙，请稍后再试");
 			}
 		});
 	});
@@ -717,8 +717,8 @@ function check(){
 				$("<td></td>").html(data.input_time)
 			)
 		);
-	}).catch(([status, response, xhr]) => {
-		layer.alert(status, {icon: 2, title: "服务器繁忙/错误，请稍后再试"});
+	}).catch(msg => {
+		layer.alert(msg, {icon: 2, title: "错误"});
 	});
 }
 
