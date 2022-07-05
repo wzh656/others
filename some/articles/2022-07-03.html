@@ -465,6 +465,10 @@ function check(){
 				$("<td>化学赋分</td>")
 			).append(
 				$("<td></td>").html(data.chemistry_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.chemistry_score_calc - data.chemistry_score) + "）")
+							.css("color", data.chemistry_score_calc-data.chemistry_score>0? "red": data.chemistry_score_calc-data.chemistry_score==0? "gray": "green")
+					)
 			)
 		)
 		.append(
@@ -500,6 +504,10 @@ function check(){
 				$("<td>生物赋分</td>")
 			).append(
 				$("<td></td>").html(data.bio_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.bio_score_calc - data.bio_score) + "）")
+							.css("color", data.bio_score_calc-data.bio_score>0? "red": data.bio_score_calc-data.bio_score==0? "gray": "green")
+					)
 			)
 		)
 		.append(
@@ -560,6 +568,17 @@ function check(){
 		)
 		.append(
 			$("<tr></tr>").append(
+				$("<td class='bold'>地理赋分</td>")
+			).append(
+				$("<td></td>").html(data.geo_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.geo_score_calc - data.geo_score) + "）")
+							.css("color", data.geo_score_calc-data.geo_score>0? "red": data.geo_score_calc-data.geo_score==0? "gray": "green")
+					)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
 				$("<td>地理班排</td>")
 			).append(
 				$("<td></td>").html(data.geo_pos_class)
@@ -584,6 +603,17 @@ function check(){
 				$("<td class='bold'>政治</td>")
 			).append(
 				$("<td></td>").html(data.politics_score)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td class='bold'>政治赋分</td>")
+			).append(
+				$("<td></td>").html(data.politics_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.politics_score_calc - data.politics_score) + "）")
+							.css("color", data.politics_score_calc-data.politics_score>0? "red": data.politics_score_calc-data.politics_score==0? "gray": "green")
+					)
 			)
 		)
 		.append(
@@ -619,6 +649,10 @@ function check(){
 				$("<td class='bold'>总分赋分</td>")
 			).append(
 				$("<td></td>").html(data.sum_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.sum_score_calc - data.sum_score) + "）")
+							.css("color", data.sum_score_calc-data.sum_score>=0? "red": "green")
+					)
 			)
 		)
 		.append(
@@ -689,6 +723,10 @@ function check(){
 				$("<td class='bold'>选科赋分</td>")
 			).append(
 				$("<td></td>").html(data.subject_sel_score_calc)
+					.append(
+						$("<span></span>").html( "（+" + (data.subject_sel_score_calc - data.subject_sel_score) + "）")
+							.css("color", data.subject_sel_score_calc-data.subject_sel_score>=0? "red": "green")
+					)
 			)
 		)
 		.append(
