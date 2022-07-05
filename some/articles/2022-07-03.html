@@ -174,7 +174,7 @@
 			<input id="name" />
 			<p>考号：</p>
 			<input id="number" type="number" step="1" />
-			<p><button onclick="check();">查询</button></p>
+			<p><button id="check" onclick="check();">查询</button></p>
 			<p><small style="font-size: 0.5em;">数据接口源自： http://www.kjw123.cn/api/queryScore</small></p>
 			<p><small style="font-size: 0.6em;">请大家对服务器仁慈些，不要频繁请求好吧</small></p>
 			<hr/>
@@ -261,6 +261,8 @@ function check(){
 	}else if (number.length != 12){
 		return layer.msg("考号应为12位整数");
 	}
+	
+	localStorage.setItem("2021~2022赣州地区期末考试查分_time", +new Date()+20*1000);
 	
 	$("#res")[0].innerHTML = "<h2>查询结果</h2><p>查询中……</p>";
 	layer.msg("查询中……");
@@ -712,15 +714,33 @@ function check(){
 		)
 		.append(
 			$("<tr></tr>").append(
-				$("<td>修改时间</td>")
+				$("<td>更新时间</td>")
 			).append(
 				$("<td></td>").html(data.input_time)
+			)
+		)
+		.append(
+			$("<tr></tr>").append(
+				$("<td>来自文件</td>")
+			).append(
+				$("<td></td>").html(data.from_file)
 			)
 		);
 	}).catch(msg => {
 		layer.alert(msg, {icon: 2, title: "错误"});
 	});
 }
+
+setInterval(function(){
+	const until = localStorage.getItem("2021~2022赣州地区期末考试查分_time");
+	if (until == null) return;
+	if (+new Date() < until){
+		$("#check").attr("disabled", "disabled")
+			.html(`查询（${ ~~((until - new Date())/1000) }s）`);
+	}else{
+		$("#check").removeAttr("disabled").html("查询");
+	}
+}, 100);
 
 function pay(){
 	const id = layer.load(2);
