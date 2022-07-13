@@ -1,0 +1,67 @@
+[07:08:59.8]controlled G2107班电脑(HPS4leHSFphmHh5AAAAB) into
+[07:34:17.44]controlled G2102班电脑(obaU8n65zVzmWnWtAAAD) into
+[10:22:47.290]controlled G2102班电脑(WXbHrSXHnYkNyYlTAAAB) into
+[10:22:47.690]controlled G2107班电脑(QA1Y47CrOb2V_fikAAAD) into
+[10:38:37.741]controlled G2107班电脑(LKOR6YJAD4QvOXuYAAAB) into
+[10:38:38.295]controlled G2102班电脑(UGoYYv96OsvGng9dAAAD) into
+[10:39:29.736]controlled G2102班电脑(KSrtjDJOkhbfihmDAAAD) into
+[10:39:29.739]controlled G2107班电脑(nixoBHJFlU6NqUeHAAAC) into
+[10:40:17.635]controlled G2107班电脑(nixoBHJFlU6NqUeHAAAC) leave
+[11:14:18.691]controller PHLFsNuxYpDH7yfaAAAF into
+[11:14:19.178]PHLFsNuxYpDH7yfaAAAF send electron to G2102班电脑(KSrtjDJOkhbfihmDAAAD): fs.statSync("D:/t.png").isDirectory()
+[11:14:19.431](KSrtjDJOkhbfihmDAAAD) output to PHLFsNuxYpDH7yfaAAAF: [object Object]
+[11:14:19.431](KSrtjDJOkhbfihmDAAAD) cannot find PHLFsNuxYpDH7yfaAAAF to output: [object Object]
+[11:19:47.542]controller PHLFsNuxYpDH7yfaAAAF leave
+[11:24:44.329]controlled G2102班电脑(rhwogfvG1Lc8jkDUAAAB) into
+[11:30:34.117]controlled G2102班电脑(KFJ3PhPROMNn2aDwAAAD) into
+[11:31:04.688]controlled G2102班电脑(EfbjeYk4n0E9IzFSAAAB) into
+[11:32:19.190]controller ai3NkDckb7ubrw24AAAF into
+[11:32:19.551]ai3NkDckb7ubrw24AAAF send electron to G2102班电脑(EfbjeYk4n0E9IzFSAAAB): fs.statSync("D:/t.png").isDirectory()
+[11:32:19.865](EfbjeYk4n0E9IzFSAAAB) output to ai3NkDckb7ubrw24AAAF: [object Object]
+[11:32:19.865](EfbjeYk4n0E9IzFSAAAB) cannot find ai3NkDckb7ubrw24AAAF to output: [object Object]
+[11:33:39.684]controlled G2102班电脑(QR-ylnHfY6CAmJ13AAAB) into
+[11:34:21.18]controller A3mZAvfiJ6vhFokjAAAF into
+[11:34:21.316]A3mZAvfiJ6vhFokjAAAF send electron to G2102班电脑(QR-ylnHfY6CAmJ13AAAB): fs.statSync("D:/t.png").isDirectory()
+[11:34:21.603](QR-ylnHfY6CAmJ13AAAB) output to A3mZAvfiJ6vhFokjAAAF: [object Object]
+[11:34:21.604](QR-ylnHfY6CAmJ13AAAB) cannot find A3mZAvfiJ6vhFokjAAAF to output: [object Object]
+[11:35:58.58]controller A3mZAvfiJ6vhFokjAAAF leave
+[11:36:00.611]controlled G2102班电脑(BpFdtgZMEO44qYtsAAAB) into
+[12:52:44.748]controlled G2102班电脑(DkpwCjn4Yuj5HJmKAAAB) into
+[13:55:42.689]controlled G2102班电脑(mIIoRj3ds2PFY-eYAAAB) into
+[14:05:46.167]controlled 自家电脑(Eb1KeWiD_ZPmEY5AAAAD) into
+[14:07:22.588]controller CTXiXr3buqd6pd2QAAAF into
+[14:11:14.678]controller CTXiXr3buqd6pd2QAAAF leave
+[14:11:20.669]controller PE9MYO-_latl2nAIAAAH into
+[14:22:53.688]controlled 自家电脑(Eb1KeWiD_ZPmEY5AAAAD) leave
+[14:22:54.381]controller PE9MYO-_latl2nAIAAAH leave
+[14:22:58.496]controlled 自家电脑(eAKAEtJpvmBgmbT5AAAL) into
+[14:22:58.582]controller gn1WQiudo7CbazFBAAAJ into
+[14:23:27.301]controlled 自家电脑(eAKAEtJpvmBgmbT5AAAL) leave
+[14:23:29.919]controlled 自家电脑(shHsNH-W0kicuj9oAAAN) into
+[14:23:57.130]controlled 自家电脑(shHsNH-W0kicuj9oAAAN) leave
+[14:24:00.635]controlled 自家电脑(NkR7Z5uFoed4T47-AAAP) into
+[14:24:01.276]controlled G2102班电脑(mIIoRj3ds2PFY-eYAAAB) leave
+[14:24:04.690]controlled G2102班电脑(3DkJzVjyUI6CMZmhAAAR) into
+[14:24:16.488]controlled 自家电脑(NkR7Z5uFoed4T47-AAAP) leave
+[14:24:20.369]controlled 自家电脑(5M8nmmNNw7fES-vhAAAT) into
+[14:24:33.48]controlled 自家电脑(5M8nmmNNw7fES-vhAAAT) leave
+[14:24:33.79]controller gn1WQiudo7CbazFBAAAJ leave
+[14:24:35.923]controlled 自家电脑(TdJuKL6pxIKR_vb5AAAW) into
+[14:24:36.651]controller pow_bsOY2yHImdjmAAAX into
+[15:45:52.705]controller TpiZnoUT7rEpMIKIAAAD into
+[15:45:52.989]controlled 自家电脑(gn96laI-bdRCrsz6AAAC) into
+[15:45:54.307]controlled G2102班电脑(4ltyOmsHpSQYA-5AAAAF) into
+[15:52:03.794]controller TpiZnoUT7rEpMIKIAAAD leave
+[15:52:22.613]controlled 自家电脑(gn96laI-bdRCrsz6AAAC) leave
+[16:52:03.862]controlled 自家电脑(M_PllGfG6L7rD8vdAAAI) into
+[18:32:14.107]controlled 自家电脑(M_PllGfG6L7rD8vdAAAI) leave
+[19:06:46.875]controlled 自家电脑(VL4juHBbBSTsN13eAAAL) into
+[19:09:19.733]controlled G2102班电脑(7ygX4nFerT5zBCgyAAAF) into
+[19:09:19.924]controlled 自家电脑(k8v6nyI0cDqohXVgAAAE) into
+[20:07:19.138]controlled G2102班电脑(WLtGLe5hJgDBGVwKAAAC) into
+[20:07:20.878]controlled 自家电脑(2Cx9iRtYc5fOWv6LAAAD) into
+[21:01:29.533]controlled 自家电脑(2Cx9iRtYc5fOWv6LAAAD) leave
+[21:23:34.906]controlled 自家电脑(VLofSLAUVq1Qest-AAAG) into
+[22:21:03.238]controlled G2102班电脑(WLtGLe5hJgDBGVwKAAAC) leave
+[22:34:09.406]controlled 自家电脑(Wj7CnNAsC7dPQuxcAAAB) into
+[22:52:57.33]controlled 自家电脑(Wj7CnNAsC7dPQuxcAAAB) leave
