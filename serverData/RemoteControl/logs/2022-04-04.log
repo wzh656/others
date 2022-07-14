@@ -1,0 +1,130 @@
+[13:28:55.60]controlled 自家电脑(bvS0bL-yB2Yd3PmpAAAB) into
+[13:29:14.875]controller 4WATeMMC5GmnZxd1AAAD into
+[14:23:44.816]controlled 自家电脑(bvS0bL-yB2Yd3PmpAAAB) leave
+[14:24:35.968]controller 4WATeMMC5GmnZxd1AAAD leave
+[14:24:39.204]controller NQWVCdo1w3NYEyaGAAAJ into
+[14:27:17.199]controller 6k0iHI-YciR19ePSAAAL into
+[14:52:41.925]controller 6k0iHI-YciR19ePSAAAL leave
+[14:52:45.126]controller a9DXrZpqIwlLb6GUAAAN into
+[14:53:09.871]controller a9DXrZpqIwlLb6GUAAAN leave
+[14:53:12.612]controller A6mBeSmmKq0L3Q9RAAAP into
+[14:53:51.968]controlled 自家电脑(23r2e4Wux7l4YUunAAAR) into
+[14:53:53.808]controller A6mBeSmmKq0L3Q9RAAAP leave
+[14:53:57.292]controller oqHhDEIyHferVOJCAAAT into
+[14:54:26.838]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(23r2e4Wux7l4YUunAAAR): window.open("https://www.baidu.com/")
+[14:54:27.68](23r2e4Wux7l4YUunAAAR) cannot find null to output: window.open("https://www.baidu.com/")
+[14:54:47.644]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(23r2e4Wux7l4YUunAAAR): win.show();
+[14:54:47.883](23r2e4Wux7l4YUunAAAR) cannot find null to output: null
+[14:56:08.235]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(23r2e4Wux7l4YUunAAAR): window.open("https://www.baidu.com")
+[14:56:08.466](23r2e4Wux7l4YUunAAAR) cannot find null to output: window.open("https://www.baidu.com")
+[14:56:51.494]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(23r2e4Wux7l4YUunAAAR): window.open("https://www.baidu.com")
+[14:56:51.731](23r2e4Wux7l4YUunAAAR) cannot find null to output: window.open("https://www.baidu.com")
+[14:57:50.107]controlled 自家电脑(23r2e4Wux7l4YUunAAAR) leave
+[14:58:01.364]oqHhDEIyHferVOJCAAAT cannot find 自家电脑 to send electron: win.close()
+[14:58:11.93]oqHhDEIyHferVOJCAAAT cannot find 自家电脑 to send electron: win.close()
+[14:58:17.632]oqHhDEIyHferVOJCAAAT cannot find 自家电脑 to send electron: win.hide()
+[14:59:30.985]controlled 自家电脑(2Rz0RrCczBYBiYi1AAAX) into
+[14:59:42.119]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(2Rz0RrCczBYBiYi1AAAX): win.show()
+[14:59:42.375](2Rz0RrCczBYBiYi1AAAX) output to oqHhDEIyHferVOJCAAAT: undefined
+[14:59:42.375](2Rz0RrCczBYBiYi1AAAX) cannot find oqHhDEIyHferVOJCAAAT to output: undefined
+[14:59:55.434]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(2Rz0RrCczBYBiYi1AAAX): window.open("https://www.baidu.com/")
+[14:59:55.703](2Rz0RrCczBYBiYi1AAAX) output to oqHhDEIyHferVOJCAAAT: [object Object]
+[14:59:55.704](2Rz0RrCczBYBiYi1AAAX) cannot find oqHhDEIyHferVOJCAAAT to output: [object Object]
+[15:00:04.915]controlled 自家电脑(2Rz0RrCczBYBiYi1AAAX) leave
+[15:00:22.970]controlled 自家电脑(tEwqEa4UhX2eO-X2AAAZ) into
+[15:00:32.465]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(tEwqEa4UhX2eO-X2AAAZ): window.open("https://www.baidu.com/")
+[15:00:33.530](tEwqEa4UhX2eO-X2AAAZ) output to oqHhDEIyHferVOJCAAAT: [object Object]
+[15:00:33.530](tEwqEa4UhX2eO-X2AAAZ) cannot find oqHhDEIyHferVOJCAAAT to output: [object Object]
+[15:01:22.118]controlled 自家电脑(tEwqEa4UhX2eO-X2AAAZ) leave
+[15:01:47.219]controlled 自家电脑(to_mCW7S5_BL_CNqAAAb) into
+[15:01:55.394]oqHhDEIyHferVOJCAAAT send javascript to 自家电脑(to_mCW7S5_BL_CNqAAAb): window.open("https://www.baidu.com/")
+[15:01:55.666](to_mCW7S5_BL_CNqAAAb) output to oqHhDEIyHferVOJCAAAT: {"location":{"href":"about:blank","hash":"","host":"","hostname":"","origin":"null","pathname":"blank","port":"","protocol":"about:","search":""},"closed":false}
+[15:01:55.666](to_mCW7S5_BL_CNqAAAb) cannot find oqHhDEIyHferVOJCAAAT to output: {"location":{"href":"about:blank","hash":"","host":"","hostname":"","origin":"null","pathname":"blank","port":"","protocol":"about:","search":""},"closed":false}
+[15:02:00.114]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(to_mCW7S5_BL_CNqAAAb): window.open("https://www.baidu.com/")
+[15:02:00.350](to_mCW7S5_BL_CNqAAAb) output to oqHhDEIyHferVOJCAAAT: [object Object]
+[15:02:00.351](to_mCW7S5_BL_CNqAAAb) cannot find oqHhDEIyHferVOJCAAAT to output: [object Object]
+[15:02:40.585]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(to_mCW7S5_BL_CNqAAAb): win2 = new BrowserWindow({
+		width: 600,
+		height: 500,
+		autoHideMenuBar: true, //隐藏菜单
+		webPreferences: {
+			nodeIntegration: true,
+			nodeIntegrationInWorker: true,
+			contextIsolation: false
+		}
+	});
+win2.setMenu(null); //隐藏菜单
+	win2.loadURL("https://www.baidu.com/"); //加载index.html文件
+[15:02:40.862](to_mCW7S5_BL_CNqAAAb) output to oqHhDEIyHferVOJCAAAT: {}
+[15:02:40.862](to_mCW7S5_BL_CNqAAAb) cannot find oqHhDEIyHferVOJCAAAT to output: {}
+[15:03:04.419]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(to_mCW7S5_BL_CNqAAAb): win2 = new BrowserWindow({
+		width: 600,
+		height: 500,
+		autoHideMenuBar: true, //隐藏菜单
+		webPreferences: {
+			nodeIntegration: true,
+			nodeIntegrationInWorker: true,
+			contextIsolation: false
+		}
+	});
+//win2.setMenu(null); //隐藏菜单
+	win2.loadURL("https://www.baidu.com/"); //加载index.html文件
+[15:03:04.786](to_mCW7S5_BL_CNqAAAb) output to oqHhDEIyHferVOJCAAAT: {}
+[15:03:04.786](to_mCW7S5_BL_CNqAAAb) cannot find oqHhDEIyHferVOJCAAAT to output: {}
+[15:03:21.241]oqHhDEIyHferVOJCAAAT send electron to 自家电脑(to_mCW7S5_BL_CNqAAAb): new BrowserWindow({
+		width: 600,
+		height: 500,
+		autoHideMenuBar: true, //隐藏菜单
+		webPreferences: {
+			nodeIntegration: true,
+			nodeIntegrationInWorker: true,
+			contextIsolation: false
+		}
+	}).loadURL("https://www.baidu.com/"); //加载index.html文件
+[15:03:21.581](to_mCW7S5_BL_CNqAAAb) output to oqHhDEIyHferVOJCAAAT: {}
+[15:03:21.581](to_mCW7S5_BL_CNqAAAb) cannot find oqHhDEIyHferVOJCAAAT to output: {}
+[15:17:02.266]controller oqHhDEIyHferVOJCAAAT leave
+[15:17:05.16]controller gTX2F5fpbtHJZZU9AAAd into
+[15:17:22.498]controlled 自家电脑(to_mCW7S5_BL_CNqAAAb) leave
+[15:23:13.588]controlled 自家电脑(FXYPqHZOaoVSMjZlAAAf) into
+[15:23:51.983]controlled 自家电脑(FXYPqHZOaoVSMjZlAAAf) leave
+[15:26:04.664]controlled 自家电脑(emFWeUdrXadzeZemAAAl) into
+[15:28:26.576]controlled 自家电脑(emFWeUdrXadzeZemAAAl) leave
+[15:34:17.283]controller gTX2F5fpbtHJZZU9AAAd leave
+[15:34:17.301]controller NQWVCdo1w3NYEyaGAAAJ leave
+[16:56:49.615]controlled 自家电脑(mgY-nGDaAkwG3lFeAAAB) into
+[16:59:29.773]controller iwLtxL7vq8soKZ-oAAAD into
+[16:59:33.369]controller guUJuEhnRrixQ-gjAAAF into
+[16:59:43.383]controller TrDRvcSvyku0bsaWAAAH into
+[16:59:47.484]TrDRvcSvyku0bsaWAAAH send commands to 自家电脑(mgY-nGDaAkwG3lFeAAAB): screenshot
+[16:59:58.797]controlled 自家电脑(mgY-nGDaAkwG3lFeAAAB) leave
+[17:00:08.992]controller YJ6BnZKmj7T7qQLSAAAL into
+[17:00:43.806]controller YJ6BnZKmj7T7qQLSAAAL leave
+[17:00:46.188]controller QN3HBzzJSVS3Qj74AAAN into
+[17:02:20.491]controller iwLtxL7vq8soKZ-oAAAD leave
+[17:02:20.587]controller QN3HBzzJSVS3Qj74AAAN leave
+[17:02:23.859]controller guUJuEhnRrixQ-gjAAAF leave
+[17:02:33.934]controller TrDRvcSvyku0bsaWAAAH leave
+[17:04:13.503]controller Zhgx_R73oxIZGHNGAAAS into
+[17:04:13.680]controller 4SjNGrHVSk97gKnCAAAU into
+[17:04:13.699]controller yPh3SviXiGfTLH9-AAAT into
+[17:04:13.826]controller iUdI9K0S0XTrX9tgAAAV into
+[17:08:19.724]controller iUdI9K0S0XTrX9tgAAAV leave
+[17:08:40.600]controller 5HJAL54rz-a4CDo1AAAX into
+[17:10:47.662]Zhgx_R73oxIZGHNGAAAS cannot find 自家电脑 to send commands: 
+[17:10:53.775]Zhgx_R73oxIZGHNGAAAS cannot find 自家电脑 to send commands: 
+[17:10:55.440]Zhgx_R73oxIZGHNGAAAS cannot find 自家电脑 to send javascript: 
+[17:10:55.926]Zhgx_R73oxIZGHNGAAAS cannot find 自家电脑 to send electron: 
+[17:10:56.585]Zhgx_R73oxIZGHNGAAAS saved precommands to 自家电脑 at Zhgx_R73oxIZGHNGAAAS@1649063456585.cmd: 
+[17:12:51.569]controller Zhgx_R73oxIZGHNGAAAS leave
+[17:12:53.917]controller 9_jfAor4twP_X0dHAAAZ into
+[17:24:54.990]controller 9_jfAor4twP_X0dHAAAZ leave
+[17:25:28.205]controller 4SjNGrHVSk97gKnCAAAU leave
+[17:25:28.298]controller yPh3SviXiGfTLH9-AAAT leave
+[17:25:28.299]controller 5HJAL54rz-a4CDo1AAAX leave
+[18:40:06.544]controller u9mX7ccGDTCZRaGyAAAB into
+[18:41:06.198]controller SsBXawQOI6mWd_CdAAAD into
+[18:41:41.943]controller u9mX7ccGDTCZRaGyAAAB leave
+[18:42:21.742]controller SsBXawQOI6mWd_CdAAAD leave
+[18:42:37.44]controller osry1gR_sLbryoX7AAAF into
+[18:45:00.27]controller osry1gR_sLbryoX7AAAF leave

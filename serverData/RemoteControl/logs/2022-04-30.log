@@ -1,0 +1,52 @@
+[07:13:58.680]controlled 班上电脑(muCZdWmRcjaGnTowAAAB) into
+[08:44:02.463]controlled 班上电脑(muCZdWmRcjaGnTowAAAB) leave
+[08:44:07.132]controlled 班上电脑(vzO2PpIk_Lb84VqnAAAD) into
+[10:01:29.868]controlled 班上电脑(vzO2PpIk_Lb84VqnAAAD) leave
+[10:01:34.718]controlled 班上电脑(boAE6-_pyIOmwckhAAAH) into
+[10:43:09.624]controlled 班上电脑(boAE6-_pyIOmwckhAAAH) leave
+[10:43:13.624]controlled 班上电脑(tTGfd5DNZreRz1ShAAAJ) into
+[10:58:17.544]controlled 班上电脑(tTGfd5DNZreRz1ShAAAJ) leave
+[10:58:24.713]controlled 班上电脑(1236EQQD589TJKpiAAAL) into
+[12:39:56.993]controlled 班上电脑(1236EQQD589TJKpiAAAL) leave
+[13:31:12.464]controlled 班上电脑(WaEYlxEcmV0S2TeRAAAB) into
+[14:24:30.551]controlled 班上电脑(WaEYlxEcmV0S2TeRAAAB) leave
+[14:24:34.101]controlled 班上电脑(5w4yGNg3nrnZK0ieAAAD) into
+[16:00:40.767]controlled 班上电脑(5w4yGNg3nrnZK0ieAAAD) leave
+[19:58:17.7]controller 4cEWIek4H0WOwsJCAAAB into
+[19:58:17.689]4cEWIek4H0WOwsJCAAAB cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[19:58:27.637]controller 7Lh-NgkbMsYbSYJsAAAD into
+[20:06:02.201]controller 4cEWIek4H0WOwsJCAAAB leave
+[20:06:02.291]controller 7Lh-NgkbMsYbSYJsAAAD leave
+[20:17:52.593]controller 7wjkd9xUT_kWVMU1AAAF into
+[20:17:53.50]7wjkd9xUT_kWVMU1AAAF cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[20:18:25.929]controller foygpRpsWQNTA9eoAAAH into
+[20:42:16.279]controller mbJ6wLmNXQ2GZNbyAAAJ into
+[20:53:59.753]controller foygpRpsWQNTA9eoAAAH leave
+[20:54:11.721]controller o3Jr_noOQ0oDhGBCAAAN into
+[20:54:12.98]controller 7wjkd9xUT_kWVMU1AAAF leave
+[20:54:12.103]controller mbJ6wLmNXQ2GZNbyAAAJ leave
+[20:54:16.796]controller GB5x6sy2esOMeJhDAAAP into
+[20:54:39.203]controller GB5x6sy2esOMeJhDAAAP leave
+[20:54:48.858]controller blCnTbn0ZrBxVS7pAAAS into
+[20:54:49.676]controller gX0AutexyzTNP7AbAAAT into
+[20:54:50.569]controller o3Jr_noOQ0oDhGBCAAAN leave
+[20:54:57.208]controller gX0AutexyzTNP7AbAAAT leave
+[20:54:57.210]controller blCnTbn0ZrBxVS7pAAAS leave
+[20:55:00.170]controller d2rpaFqWkU6g7qtjAAAZ into
+[20:55:00.181]controller zqbcQJvBqR1Ad6cKAAAa into
+[20:55:00.405]controller RIlw-kxj7BGba0pxAAAb into
+[20:55:00.609]zqbcQJvBqR1Ad6cKAAAa cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[21:14:16.983]controller RIlw-kxj7BGba0pxAAAb leave
+[21:14:16.983]controller zqbcQJvBqR1Ad6cKAAAa leave
+[21:14:16.983]controller d2rpaFqWkU6g7qtjAAAZ leave
+[21:14:52.504]controller Kph7NGgvTeqp_DLTAAAg into
+[21:14:52.839]controller VEujmjOOYYxAJEDAAAAh into
+[21:14:53.560]controller A8Lte8Gki3O4wC-zAAAf into
+[21:14:53.561]A8Lte8Gki3O4wC-zAAAf cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[21:39:42.770]controller A8Lte8Gki3O4wC-zAAAf leave
+[21:39:42.770]controller Kph7NGgvTeqp_DLTAAAg leave
+[21:39:42.771]controller VEujmjOOYYxAJEDAAAAh leave
+[21:40:17.664]controller nLrdbTXCe15KSTbIAAAl into
+[21:46:18.841]controller nLrdbTXCe15KSTbIAAAl leave
+[22:21:12.293]controller y02MYJsY09-oFDQ1AAAB into
+[22:23:42.21]controller y02MYJsY09-oFDQ1AAAB leave

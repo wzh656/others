@@ -1,0 +1,126 @@
+[10:02:33.858]controlled G2107班电脑(EH24lH81ZfP3cnezAAAB) into
+[11:50:13.739]controlled G2107班电脑(EH24lH81ZfP3cnezAAAB) leave
+[11:50:20.458]controlled G2107班电脑(Rk5hawWyCrYuYY8vAAAD) into
+[11:57:24.756]controlled G2107班电脑(Rk5hawWyCrYuYY8vAAAD) leave
+[12:33:20.339]controlled G2107班电脑(hjOZpFDT_MWxBSBRAAAF) into
+[12:44:47.3]controlled G2107班电脑(hjOZpFDT_MWxBSBRAAAF) leave
+[12:57:11.513]controller xJVRjV-i_vlVbItRAAAH into
+[12:57:11.837]xJVRjV-i_vlVbItRAAAH cannot find 班上电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[12:57:20.96]controller C4isQrTYWxZ9wUacAAAJ into
+[12:58:18.99]controller xJVRjV-i_vlVbItRAAAH leave
+[12:58:19.978]controller JYDlIVVsQ-ZAmdpqAAAL into
+[12:58:19.978]JYDlIVVsQ-ZAmdpqAAAL cannot find 班上电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[13:02:17.124]controller C4isQrTYWxZ9wUacAAAJ leave
+[13:02:46.706]controller xr9YUtO7_fZUzSPLAAAN into
+[13:02:51.792]controller JYDlIVVsQ-ZAmdpqAAAL leave
+[13:03:30.662]controller xr9YUtO7_fZUzSPLAAAN leave
+[13:11:37.786]controlled 自家电脑(dpX0jXBPeQ0I25j_AAAP) into
+[13:13:05.682]controller x3dS3GL1f-M9qvgHAAAR into
+[13:48:25.575]controller x3dS3GL1f-M9qvgHAAAR leave
+[13:48:30.382]controller 8tjiHemE2GSlluUlAAAT into
+[14:22:26.279]controller 8tjiHemE2GSlluUlAAAT leave
+[14:23:27.772]controlled 自家电脑(dpX0jXBPeQ0I25j_AAAP) leave
+[14:23:34.62]controlled 自家电脑(rFLNomYTH8JQM6BnAAAV) into
+[14:56:53.497]controlled 自家电脑(rFLNomYTH8JQM6BnAAAV) leave
+[15:11:25.519]controlled G2107班电脑(OUEkwVAXZzT5B6lGAAAX) into
+[16:15:08.576]controller w2HTb3gb9jFS8oALAAAZ into
+[16:15:09.396]controller w2HTb3gb9jFS8oALAAAZ leave
+[16:15:11.66]controller uHHZsD89pYTnqvNQAAAb into
+[16:15:23.79]controller KAf6MPAyNoLE61K4AAAd into
+[16:15:23.358]KAf6MPAyNoLE61K4AAAd send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[16:15:23.638](OUEkwVAXZzT5B6lGAAAX) output to KAf6MPAyNoLE61K4AAAd: true
+[16:15:23.638](OUEkwVAXZzT5B6lGAAAX) cannot find KAf6MPAyNoLE61K4AAAd to output: true
+[16:15:24.723]KAf6MPAyNoLE61K4AAAd send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$")
+[16:15:25.15](OUEkwVAXZzT5B6lGAAAX) output to KAf6MPAyNoLE61K4AAAd: ["Thumbs.db","~$一班口号.docx","~$打印.docx","中学部教师目录","信息中心","党支部","后勤保障部","吴中鸿","国际部","培训学校","小学部","小学部教师目录","教务处","教科室","教育处","方鸣凌","行政人事部","财务室","高中部教师目录"]
+[16:15:25.15](OUEkwVAXZzT5B6lGAAAX) cannot find KAf6MPAyNoLE61K4AAAd to output: ["Thumbs.db","~$一班口号.docx","~$打印.docx","中学部教师目录","信息中心","党支部","后勤保障部","吴中鸿","国际部","培训学校","小学部","小学部教师目录","教务处","教科室","教育处","方鸣凌","行政人事部","财务室","高中部教师目录"]
+[16:15:27.675]controller KAf6MPAyNoLE61K4AAAd leave
+[16:15:29.580]controller y4MHaTAuaqkfaqdGAAAf into
+[16:15:29.973]y4MHaTAuaqkfaqdGAAAf send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录").isDirectory()
+[16:15:30.272](OUEkwVAXZzT5B6lGAAAX) output to y4MHaTAuaqkfaqdGAAAf: true
+[16:15:30.273](OUEkwVAXZzT5B6lGAAAX) cannot find y4MHaTAuaqkfaqdGAAAf to output: true
+[16:15:30.629]y4MHaTAuaqkfaqdGAAAf send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录")
+[16:15:30.906](OUEkwVAXZzT5B6lGAAAX) output to y4MHaTAuaqkfaqdGAAAf: ["$Zak",".data",".DS_Store","111111.xlsx","2019年新教师相片采集","2021级高一","2021高一期中考答案","2022届高三周测","29日表彰大会.pptx","43.pptx","666","RecentPlaces.lnk","Thumbs.db","临界生文化强化花名册.xlsx","体艺学科","作文范文2.GIF","信息技术","值日登记表.xlsx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","外国语logo.png","安装软件","席位牌（长）.doc","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","清文文学社","清文文学社 里社","物理学科","理综学科","生活部","生物学科","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语学科","语文学科","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:15:30.906](OUEkwVAXZzT5B6lGAAAX) cannot find y4MHaTAuaqkfaqdGAAAf to output: ["$Zak",".data",".DS_Store","111111.xlsx","2019年新教师相片采集","2021级高一","2021高一期中考答案","2022届高三周测","29日表彰大会.pptx","43.pptx","666","RecentPlaces.lnk","Thumbs.db","临界生文化强化花名册.xlsx","体艺学科","作文范文2.GIF","信息技术","值日登记表.xlsx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","外国语logo.png","安装软件","席位牌（长）.doc","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","清文文学社","清文文学社 里社","物理学科","理综学科","生活部","生物学科","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语学科","语文学科","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:15:48.559]controller uHHZsD89pYTnqvNQAAAb leave
+[16:15:48.578]controller y4MHaTAuaqkfaqdGAAAf leave
+[16:15:56.907]controller Edt5G-VubBQqfuVlAAAi into
+[16:15:57.193]controller VaBc-cAi0R7hyehuAAAj into
+[16:15:58.376]Edt5G-VubBQqfuVlAAAi send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录").isDirectory()
+[16:15:58.678](OUEkwVAXZzT5B6lGAAAX) output to Edt5G-VubBQqfuVlAAAi: true
+[16:15:58.678](OUEkwVAXZzT5B6lGAAAX) cannot find Edt5G-VubBQqfuVlAAAi to output: true
+[16:15:59.194]Edt5G-VubBQqfuVlAAAi send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录")
+[16:15:59.464](OUEkwVAXZzT5B6lGAAAX) output to Edt5G-VubBQqfuVlAAAi: ["$Zak",".data",".DS_Store","111111.xlsx","2019年新教师相片采集","2021级高一","2021高一期中考答案","2022届高三周测","29日表彰大会.pptx","43.pptx","666","RecentPlaces.lnk","Thumbs.db","临界生文化强化花名册.xlsx","体艺学科","作文范文2.GIF","信息技术","值日登记表.xlsx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","外国语logo.png","安装软件","席位牌（长）.doc","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","清文文学社","清文文学社 里社","物理学科","理综学科","生活部","生物学科","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语学科","语文学科","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:15:59.464](OUEkwVAXZzT5B6lGAAAX) cannot find Edt5G-VubBQqfuVlAAAi to output: ["$Zak",".data",".DS_Store","111111.xlsx","2019年新教师相片采集","2021级高一","2021高一期中考答案","2022届高三周测","29日表彰大会.pptx","43.pptx","666","RecentPlaces.lnk","Thumbs.db","临界生文化强化花名册.xlsx","体艺学科","作文范文2.GIF","信息技术","值日登记表.xlsx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","外国语logo.png","安装软件","席位牌（长）.doc","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","清文文学社","清文文学社 里社","物理学科","理综学科","生活部","生物学科","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语学科","语文学科","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:16:01.80]controller Edt5G-VubBQqfuVlAAAi leave
+[16:16:03.233]controller nJWPRYqMBk4Yv-OUAAAl into
+[16:16:03.499]nJWPRYqMBk4Yv-OUAAAl send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/2021级高一").isDirectory()
+[16:16:03.767](OUEkwVAXZzT5B6lGAAAX) output to nJWPRYqMBk4Yv-OUAAAl: true
+[16:16:03.767](OUEkwVAXZzT5B6lGAAAX) cannot find nJWPRYqMBk4Yv-OUAAAl to output: true
+[16:16:04.161]nJWPRYqMBk4Yv-OUAAAl send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/2021级高一")
+[16:16:04.421](OUEkwVAXZzT5B6lGAAAX) output to nJWPRYqMBk4Yv-OUAAAl: ["4月19-20日期中考试.xls","7-20欢迎标语.pptx","A4大小蓝色奖状.docx","jp-pc.exe","Thumbs.db","~$部红五月歌舞比赛活动方案(初稿）.wps","体温检测登记记录.xlsx","学生违纪登记表_20210902100152.pdf","我和我的祖国.jpg","新建 DOC 文档.doc","新建文件夹","晚自习签到表.xls","期中考试成绩","选科意向简化表.docx","高一3班李子欣警告处分 2022-5-10.docx","高一4班学生孔令严 记大过处分.docx","高一下学期新课表2-22起定稿.xlsx","高一元旦节目审核音乐","高一年级表彰大会流程.docx","高一歌唱比赛曲目.xlsx","高一红五月歌唱比赛串词、ppt","高中学业水平考试工作的通知.docx","高中部红五月歌舞比赛活动方案(初稿）.wps"]
+[16:16:04.421](OUEkwVAXZzT5B6lGAAAX) cannot find nJWPRYqMBk4Yv-OUAAAl to output: ["4月19-20日期中考试.xls","7-20欢迎标语.pptx","A4大小蓝色奖状.docx","jp-pc.exe","Thumbs.db","~$部红五月歌舞比赛活动方案(初稿）.wps","体温检测登记记录.xlsx","学生违纪登记表_20210902100152.pdf","我和我的祖国.jpg","新建 DOC 文档.doc","新建文件夹","晚自习签到表.xls","期中考试成绩","选科意向简化表.docx","高一3班李子欣警告处分 2022-5-10.docx","高一4班学生孔令严 记大过处分.docx","高一下学期新课表2-22起定稿.xlsx","高一元旦节目审核音乐","高一年级表彰大会流程.docx","高一歌唱比赛曲目.xlsx","高一红五月歌唱比赛串词、ppt","高中学业水平考试工作的通知.docx","高中部红五月歌舞比赛活动方案(初稿）.wps"]
+[16:16:14.67]controller nJWPRYqMBk4Yv-OUAAAl leave
+[16:16:16.46]controller kF8s20wklhv8BQhxAAAn into
+[16:16:16.319]kF8s20wklhv8BQhxAAAn send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/2021级高一/新建文件夹").isDirectory()
+[16:16:16.578](OUEkwVAXZzT5B6lGAAAX) output to kF8s20wklhv8BQhxAAAn: true
+[16:16:16.578](OUEkwVAXZzT5B6lGAAAX) cannot find kF8s20wklhv8BQhxAAAn to output: true
+[16:16:17.1]kF8s20wklhv8BQhxAAAn send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/2021级高一/新建文件夹")
+[16:16:17.296](OUEkwVAXZzT5B6lGAAAX) output to kF8s20wklhv8BQhxAAAn: ["高一3班  选科意向.xlsx","高一10班选科表最终版.xlsx","高一11班选课.xls","高一1班选课最终版.xlsx","高一2班选科定表.xlsx","高一4班选科.xlsx","高一5班选课表.xlsx","高一6班选科.xlsx","高一7班选科5月4日.xlsx","高一8班选科.xls","高一9班 选科.xlsx"]
+[16:16:17.296](OUEkwVAXZzT5B6lGAAAX) cannot find kF8s20wklhv8BQhxAAAn to output: ["高一3班  选科意向.xlsx","高一10班选科表最终版.xlsx","高一11班选课.xls","高一1班选课最终版.xlsx","高一2班选科定表.xlsx","高一4班选科.xlsx","高一5班选课表.xlsx","高一6班选科.xlsx","高一7班选科5月4日.xlsx","高一8班选科.xls","高一9班 选科.xlsx"]
+[16:16:43.398]controller NyNRxPXto4EA2M3kAAAp into
+[16:16:43.928]NyNRxPXto4EA2M3kAAAp send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录").isDirectory()
+[16:16:44.181](OUEkwVAXZzT5B6lGAAAX) output to NyNRxPXto4EA2M3kAAAp: true
+[16:16:44.182](OUEkwVAXZzT5B6lGAAAX) cannot find NyNRxPXto4EA2M3kAAAp to output: true
+[16:16:44.474]NyNRxPXto4EA2M3kAAAp send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录")
+[16:16:44.600]controller NyNRxPXto4EA2M3kAAAp leave
+[16:16:44.757](OUEkwVAXZzT5B6lGAAAX) cannot find NyNRxPXto4EA2M3kAAAp to output: ["$Zak",".data",".DS_Store","111111.xlsx","2019年新教师相片采集","2021级高一","2021高一期中考答案","2022届高三周测","29日表彰大会.pptx","43.pptx","666","RecentPlaces.lnk","Thumbs.db","临界生文化强化花名册.xlsx","体艺学科","作文范文2.GIF","信息技术","值日登记表.xlsx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","外国语logo.png","安装软件","席位牌（长）.doc","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","清文文学社","清文文学社 里社","物理学科","理综学科","生活部","生物学科","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语学科","语文学科","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:16:45.22]controller kF8s20wklhv8BQhxAAAn leave
+[16:16:46.553]controller _ssZ7Zxh5cz305QrAAAr into
+[16:16:46.841]_ssZ7Zxh5cz305QrAAAr send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/地理学科").isDirectory()
+[16:16:47.86](OUEkwVAXZzT5B6lGAAAX) output to _ssZ7Zxh5cz305QrAAAr: true
+[16:16:47.86](OUEkwVAXZzT5B6lGAAAX) cannot find _ssZ7Zxh5cz305QrAAAr to output: true
+[16:16:47.514]_ssZ7Zxh5cz305QrAAAr send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/地理学科")
+[16:16:47.779](OUEkwVAXZzT5B6lGAAAX) output to _ssZ7Zxh5cz305QrAAAr: ["Thumbs.db","专题四 地理过程分析.pptx","学业水平考试模拟系统.rar","廖光京","张光钦","旅游地理(二）.ppt","旅游地理.pptx","曹伟","期中考试答案","杨唐勇","王东","王义鹏","许兰婷","赖雨","赣州市中心城区地块标注.jpg","赣州市商业网点规划2021-2035.pdf","赣州旅游发展规划.pdf","赣州老旧小区改造规划.pdf","陈庆鑫","黄荣辉","黄蓉"]
+[16:16:47.779](OUEkwVAXZzT5B6lGAAAX) cannot find _ssZ7Zxh5cz305QrAAAr to output: ["Thumbs.db","专题四 地理过程分析.pptx","学业水平考试模拟系统.rar","廖光京","张光钦","旅游地理(二）.ppt","旅游地理.pptx","曹伟","期中考试答案","杨唐勇","王东","王义鹏","许兰婷","赖雨","赣州市中心城区地块标注.jpg","赣州市商业网点规划2021-2035.pdf","赣州旅游发展规划.pdf","赣州老旧小区改造规划.pdf","陈庆鑫","黄荣辉","黄蓉"]
+[16:16:53.694]controller _ssZ7Zxh5cz305QrAAAr leave
+[16:16:55.585]controller Cmhx6u8_v13uuIO5AAAt into
+[16:16:55.892]Cmhx6u8_v13uuIO5AAAt send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/地理学科/廖光京").isDirectory()
+[16:16:56.148](OUEkwVAXZzT5B6lGAAAX) output to Cmhx6u8_v13uuIO5AAAt: true
+[16:16:56.148](OUEkwVAXZzT5B6lGAAAX) cannot find Cmhx6u8_v13uuIO5AAAt to output: true
+[16:16:56.520]Cmhx6u8_v13uuIO5AAAt send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/地理学科/廖光京")
+[16:16:56.786](OUEkwVAXZzT5B6lGAAAX) output to Cmhx6u8_v13uuIO5AAAt: ["1637487027(1).jpg","2021级高一","211051101016130_04232222.pdf","4545.xlsx","7-20欢迎标语.pptx","8班寒假补课名单.xlsx","Thumbs.db","一班ppt城市规划","下学期高一教师课时等详细数据.xlsx","中欧班列9.jpg","中欧铁路规划.jpg","各种背景音乐","夜空中最亮的星 9班.mp4","姓名书写练习.docx","家长会背景.ppt","廖光京 2021年赣州市中小学（幼儿园）教师职称评审材料公示及送审表(1).doc","廖光京《干部任免审批表》.doc","教学","文清外国语学校学生行为守则（奖惩细则）(1).doc","文清外国语高三课表8.17.xls","新建 Microsoft Word 97 - 2003 文档 (2).doc","新建文本文档.txt","晚自习签到表.xls","校门口蒲葵.jpg","江西2020高考一分一段 文理科.xlsx","海水的运动.pptx","热带草原1.mp4","百日誓师.ppt","表彰大会的主持词.doc","赣州市文清外国语学校就读协议修改版.docx","高一上学期期末表彰2022.3.2.pptx","高一下学期课表 6月14日.xlsx","高一下学期课表 6月2日1.xlsx","高一年级文件","高一成绩分析会.xls","高三年级","高二年级","高二教师成长记录表"]
+[16:16:56.786](OUEkwVAXZzT5B6lGAAAX) cannot find Cmhx6u8_v13uuIO5AAAt to output: ["1637487027(1).jpg","2021级高一","211051101016130_04232222.pdf","4545.xlsx","7-20欢迎标语.pptx","8班寒假补课名单.xlsx","Thumbs.db","一班ppt城市规划","下学期高一教师课时等详细数据.xlsx","中欧班列9.jpg","中欧铁路规划.jpg","各种背景音乐","夜空中最亮的星 9班.mp4","姓名书写练习.docx","家长会背景.ppt","廖光京 2021年赣州市中小学（幼儿园）教师职称评审材料公示及送审表(1).doc","廖光京《干部任免审批表》.doc","教学","文清外国语学校学生行为守则（奖惩细则）(1).doc","文清外国语高三课表8.17.xls","新建 Microsoft Word 97 - 2003 文档 (2).doc","新建文本文档.txt","晚自习签到表.xls","校门口蒲葵.jpg","江西2020高考一分一段 文理科.xlsx","海水的运动.pptx","热带草原1.mp4","百日誓师.ppt","表彰大会的主持词.doc","赣州市文清外国语学校就读协议修改版.docx","高一上学期期末表彰2022.3.2.pptx","高一下学期课表 6月14日.xlsx","高一下学期课表 6月2日1.xlsx","高一年级文件","高一成绩分析会.xls","高三年级","高二年级","高二教师成长记录表"]
+[16:17:15.930]controller Cmhx6u8_v13uuIO5AAAt leave
+[16:17:25.933]controller qanIYQsNWD3_0QTuAAAv into
+[16:17:29.970]controller 5nkFZX9E-zTgldfoAAAx into
+[16:17:30.263]5nkFZX9E-zTgldfoAAAx send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科").isDirectory()
+[16:17:30.539](OUEkwVAXZzT5B6lGAAAX) output to 5nkFZX9E-zTgldfoAAAx: true
+[16:17:30.539](OUEkwVAXZzT5B6lGAAAX) cannot find 5nkFZX9E-zTgldfoAAAx to output: true
+[16:17:30.987]5nkFZX9E-zTgldfoAAAx send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科")
+[16:17:31.242](OUEkwVAXZzT5B6lGAAAX) output to 5nkFZX9E-zTgldfoAAAx: [".DS_Store","2021高一","B3U1—Reading and Thinking.pptx","Thumbs.db","任翔","刘亚姗","刘婷","听力","孙罗金","张玲玲","张美娟","张英","易灵","朱才平","李梅","李玮","李青莲","杨云鹏 Crane","欧萍","段晓媛","毛乃婧","温暖婷","王莉","纪美娜","罗春雷 rock","肖雯琦","自主学习巩固测试卷【英语】.zip","许舒晴","谢丽冰","赖丹","邱良微","邱艳涵","钟琼","陈华玉","高二英语组"]
+[16:17:31.243](OUEkwVAXZzT5B6lGAAAX) cannot find 5nkFZX9E-zTgldfoAAAx to output: [".DS_Store","2021高一","B3U1—Reading and Thinking.pptx","Thumbs.db","任翔","刘亚姗","刘婷","听力","孙罗金","张玲玲","张美娟","张英","易灵","朱才平","李梅","李玮","李青莲","杨云鹏 Crane","欧萍","段晓媛","毛乃婧","温暖婷","王莉","纪美娜","罗春雷 rock","肖雯琦","自主学习巩固测试卷【英语】.zip","许舒晴","谢丽冰","赖丹","邱良微","邱艳涵","钟琼","陈华玉","高二英语组"]
+[16:17:36.891]controller 5nkFZX9E-zTgldfoAAAx leave
+[16:17:39.30]controller hHZtbx4qqxt8AyIMAAAz into
+[16:17:39.405]hHZtbx4qqxt8AyIMAAAz send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科/赖丹").isDirectory()
+[16:17:39.664](OUEkwVAXZzT5B6lGAAAX) output to hHZtbx4qqxt8AyIMAAAz: true
+[16:17:39.664](OUEkwVAXZzT5B6lGAAAX) cannot find hHZtbx4qqxt8AyIMAAAz to output: true
+[16:17:40.131]hHZtbx4qqxt8AyIMAAAz send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科/赖丹")
+[16:17:40.394](OUEkwVAXZzT5B6lGAAAX) output to hHZtbx4qqxt8AyIMAAAz: [".DS_Store","2021新年贺词.pptx","22届高一4月期中·英语答案.pdf","5.14 江西省普通高中综合素质评价系统自我评价.docx","7班名单.xlsx","7班座位表.xlsx","book2","book3","book3 unit2单元过关检测卷答案.docx","CUSTOM.DIC","homework","Thumbs.db","U3单元检测卷答案.docx","~$省普通高中综合素质评价系统上传证书.docx","参考答案","必修三 Unit 1 Festivals and Celebrations基础过关卷答案.docx","最新座位表.xlsx","最新座位表1.xlsx","班级","练习七","练习五","练习八","练习六","高一7班5.7号留宿名单.xlsx"]
+[16:17:40.394](OUEkwVAXZzT5B6lGAAAX) cannot find hHZtbx4qqxt8AyIMAAAz to output: [".DS_Store","2021新年贺词.pptx","22届高一4月期中·英语答案.pdf","5.14 江西省普通高中综合素质评价系统自我评价.docx","7班名单.xlsx","7班座位表.xlsx","book2","book3","book3 unit2单元过关检测卷答案.docx","CUSTOM.DIC","homework","Thumbs.db","U3单元检测卷答案.docx","~$省普通高中综合素质评价系统上传证书.docx","参考答案","必修三 Unit 1 Festivals and Celebrations基础过关卷答案.docx","最新座位表.xlsx","最新座位表1.xlsx","班级","练习七","练习五","练习八","练习六","高一7班5.7号留宿名单.xlsx"]
+[16:17:47.206]controller hHZtbx4qqxt8AyIMAAAz leave
+[16:17:49.520]controller dCZCv8enq2HtUdYJAAA1 into
+[16:17:49.879]dCZCv8enq2HtUdYJAAA1 send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科/赖丹/班级").isDirectory()
+[16:17:50.296](OUEkwVAXZzT5B6lGAAAX) output to dCZCv8enq2HtUdYJAAA1: true
+[16:17:50.296](OUEkwVAXZzT5B6lGAAAX) cannot find dCZCv8enq2HtUdYJAAA1 to output: true
+[16:17:50.844]dCZCv8enq2HtUdYJAAA1 send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/英语学科/赖丹/班级")
+[16:17:51.194](OUEkwVAXZzT5B6lGAAAX) output to dCZCv8enq2HtUdYJAAA1: ["11班听写名单.xlsx","11班背诵名单.xlsx","3502cd5401cf2ab52f6f9fc62409cba.jpg","7班听写名单.xlsx","7班核酸检测名单身份证.xlsx","7班背诵名单.xlsx","Thumbs.db","图片","班会","谈谈“学习方法”.pptx"]
+[16:17:51.194](OUEkwVAXZzT5B6lGAAAX) cannot find dCZCv8enq2HtUdYJAAA1 to output: ["11班听写名单.xlsx","11班背诵名单.xlsx","3502cd5401cf2ab52f6f9fc62409cba.jpg","7班听写名单.xlsx","7班核酸检测名单身份证.xlsx","7班背诵名单.xlsx","Thumbs.db","图片","班会","谈谈“学习方法”.pptx"]
+[16:17:56.933]controller VaBc-cAi0R7hyehuAAAj leave
+[16:18:04.231]controller j2AnBTY73Lwd9QlpAAA3 into
+[16:18:04.576]j2AnBTY73Lwd9QlpAAA3 send electron to G2107班电脑(OUEkwVAXZzT5B6lGAAAX): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录").isDirectory()
+[16:18:04.829](OUEkwVAXZzT5B6lGAAAX) output to j2AnBTY73Lwd9QlpAAA3: true
+[16:18:04.829](OUEkwVAXZzT5B6lGAAAX) cannot find j2AnBTY73Lwd9QlpAAA3 to output: true
+[16:18:10.25]controller qanIYQsNWD3_0QTuAAAv leave
+[16:18:10.132]controller dCZCv8enq2HtUdYJAAA1 leave
+[16:18:10.134]controller j2AnBTY73Lwd9QlpAAA3 leave
+[16:33:14.36]controlled G2107班电脑(OUEkwVAXZzT5B6lGAAAX) leave

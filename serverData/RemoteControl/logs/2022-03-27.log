@@ -1,0 +1,61 @@
+[14:13:44.440]controlled 自家电脑(geHOFeBts4dL5WhaAAAH) leave
+[14:13:58.590]2NvUkxqQYsPWe1tbAAAF saved precommands to 自家电脑 at 2NvUkxqQYsPWe1tbAAAF@1648361638530.cmd: moveMouseSmooth 0 0
+[14:15:03.733]controller hw27VQh_am_uvdGOAAAC into
+[14:15:05.404]controller bodKkKxXiPBvT-nxAAAE into
+[14:15:25.694]bodKkKxXiPBvT-nxAAAE saved precommands to 自家电脑 at bodKkKxXiPBvT-nxAAAE@1648361725609.cmd: moveMouseSmooth 0 0
+[14:15:54.139]controlled 自家电脑(D96mlQUn5CntDb8DAAAG) into
+[14:15:54.142]自家电脑(D96mlQUn5CntDb8DAAAG) run precommands bodKkKxXiPBvT-nxAAAE@1648361725609.cmd: moveMouseSmooth 0 0
+[14:15:59.449](D96mlQUn5CntDb8DAAAG) output to bodKkKxXiPBvT-nxAAAE: true
+[14:15:59.450](D96mlQUn5CntDb8DAAAG) cannot find bodKkKxXiPBvT-nxAAAE to output: true
+[14:16:42.598]bodKkKxXiPBvT-nxAAAE send commands to 自家电脑(D96mlQUn5CntDb8DAAAG): require("child_process").exec
+[14:16:44.157](D96mlQUn5CntDb8DAAAG) output to bodKkKxXiPBvT-nxAAAE: Error: Invalid Command: 
+[14:16:44.157](D96mlQUn5CntDb8DAAAG) cannot find bodKkKxXiPBvT-nxAAAE to output: Error: Invalid Command: 
+[14:16:49.674]bodKkKxXiPBvT-nxAAAE send commands to 自家电脑(D96mlQUn5CntDb8DAAAG): nodejs require("child_process").exec
+[14:16:50.228](D96mlQUn5CntDb8DAAAG) output to bodKkKxXiPBvT-nxAAAE: function exec(command, options, callback) {
+  const opts = normalizeExecArgs(command, options, callback);
+  return module.exports.execFile(opts.file,
+                                 opts.options,
+                                 opts.callback);
+}
+[14:16:50.228](D96mlQUn5CntDb8DAAAG) cannot find bodKkKxXiPBvT-nxAAAE to output: function exec(command, options, callback) {
+  const opts = normalizeExecArgs(command, options, callback);
+  return module.exports.execFile(opts.file,
+                                 opts.options,
+                                 opts.callback);
+}
+[14:17:00.94]bodKkKxXiPBvT-nxAAAE send commands to 自家电脑(D96mlQUn5CntDb8DAAAG): nodejs require("child_process").exec("msg * hello")
+[14:17:00.694](D96mlQUn5CntDb8DAAAG) output to bodKkKxXiPBvT-nxAAAE: [object Object]
+[14:17:00.694](D96mlQUn5CntDb8DAAAG) cannot find bodKkKxXiPBvT-nxAAAE to output: [object Object]
+[14:17:08.393]controlled 自家电脑(D96mlQUn5CntDb8DAAAG) leave
+[14:17:18.827]bodKkKxXiPBvT-nxAAAE saved precommands to 自家电脑 at bodKkKxXiPBvT-nxAAAE@1648361838827.cmd: nodejs require("child_process").exec("msg * hello")
+[14:17:44.391]controlled 自家电脑(XMOduKZzELcu8_GeAAAI) into
+[14:17:44.402]自家电脑(XMOduKZzELcu8_GeAAAI) run precommands bodKkKxXiPBvT-nxAAAE@1648361838827.cmd: nodejs require("child_process").exec("msg * hello")
+[14:17:49.580](XMOduKZzELcu8_GeAAAI) output to bodKkKxXiPBvT-nxAAAE: [object Object]
+[14:17:49.581](XMOduKZzELcu8_GeAAAI) cannot find bodKkKxXiPBvT-nxAAAE to output: [object Object]
+[14:22:55.787]controller bodKkKxXiPBvT-nxAAAE leave
+[14:23:10.153]controlled 自家电脑(XMOduKZzELcu8_GeAAAI) leave
+[14:23:41.810]controller hw27VQh_am_uvdGOAAAC leave
+[14:23:46.386]controller W16Nr6wACWYxvrZzAAAM into
+[14:24:12.442]controller W16Nr6wACWYxvrZzAAAM leave
+[14:24:15.650]controller gYmPwFK-GESr-c8gAAAO into
+[15:02:47.401]controlled 自家电脑(UMeGTMkNYDbYk4dEAAAQ) into
+[15:02:54.479]controlled 自家电脑(UMeGTMkNYDbYk4dEAAAQ) leave
+[15:03:25.268]controlled 自家电脑(uNTm116qrwmD3kSzAAAS) into
+[15:03:51.503]controlled 自家电脑(uNTm116qrwmD3kSzAAAS) leave
+[15:04:09.75]controlled 自家电脑(prgB-PJNBxieMe-IAAAU) into
+[15:05:58.602]controlled 自家电脑(prgB-PJNBxieMe-IAAAU) leave
+[15:06:18.219]controlled 自家电脑(qDYsWV0TM4vSza6wAAAW) into
+[15:21:56.0]controlled 自家电脑(qDYsWV0TM4vSza6wAAAW) leave
+[15:25:14.95]controlled 班上电脑(dSe2dBXVE64sXRy0AAAY) into
+[15:26:05.471]controlled 班上电脑(dSe2dBXVE64sXRy0AAAY) leave
+[15:27:38.640]controlled 自家电脑(3ECvGJpRBcay1OgFAAAa) into
+[15:27:55.866]controlled 自家电脑(3ECvGJpRBcay1OgFAAAa) leave
+[15:29:51.395]controlled 自家电脑(cPnyfDk71EsQuENrAAAc) into
+[15:31:13.349]controller gYmPwFK-GESr-c8gAAAO leave
+[15:31:33.457]controlled 自家电脑(cPnyfDk71EsQuENrAAAc) leave
+[15:34:02.997]controller 8hx3PS4KxzKXQTx7AAAe into
+[15:36:02.199]controller 8hx3PS4KxzKXQTx7AAAe leave
+[15:36:45.289]controller pULbuV60Yk2tUTGxAAAg into
+[15:39:27.341]controller pULbuV60Yk2tUTGxAAAg leave
+[19:17:42.612]controlled 班上电脑(n_w9be0QdMzWlckhAAAB) into
+[22:35:25.542]controlled 班上电脑(n_w9be0QdMzWlckhAAAB) leave

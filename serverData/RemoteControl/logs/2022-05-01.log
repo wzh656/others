@@ -1,0 +1,10 @@
+[18:22:59.703]controller dyVitJQ9HLr2VX6_AAAB into
+[18:23:38.778]controller dyVitJQ9HLr2VX6_AAAB leave
+[22:37:00.720]controller 9-Qr6XG9dXDgC95FAAAB into
+[22:37:03.828]9-Qr6XG9dXDgC95FAAAB cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[22:39:47.996]controller 4wHMsxGxF_colrYCAAAD into
+[22:40:20.499]controller 4wHMsxGxF_colrYCAAAD leave
+[22:40:20.499]controller 9-Qr6XG9dXDgC95FAAAB leave
+[22:43:08.377]controller xHQJCPLb9gRphQEfAAAF into
+[22:43:09.202]xHQJCPLb9gRphQEfAAAF cannot find 班上电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop/期中联考普高成绩详细.xlsx").isDirectory()
+[22:43:22.886]controller xHQJCPLb9gRphQEfAAAF leave

@@ -1,0 +1,92 @@
+[07:19:45.459]controlled 班上电脑(6khVWci0J3PjVOgNAAAB) into
+[07:53:17.743]controlled 班上电脑(6khVWci0J3PjVOgNAAAB) leave
+[19:23:05.812]controller 25zeo0RNzhqfiGkCAAAB into
+[19:59:25.423]controller 25zeo0RNzhqfiGkCAAAB leave
+[19:59:33.648]controller X5WZhdKG7NVib0orAAAD into
+[20:00:02.636]controller 0T8IXBjX6kGVaA1iAAAF into
+[20:00:14.318]controller X5WZhdKG7NVib0orAAAD leave
+[20:10:47.911]controller 0T8IXBjX6kGVaA1iAAAF leave
+[20:11:01.534]controller GNaiDPkG9VUgoh5hAAAH into
+[20:23:39.60]controlled 班上电脑(8QcTRQEyP3vZhOB4AAAJ) into
+[20:52:33.317]controller fnh_xe4a0gBTTzHSAAAL into
+[20:52:36.861]controller UOwu_duwQNb6sjr-AAAN into
+[20:52:43.539]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): mousePos
+[20:52:44.76](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: Error: Invalid Command: mousePos
+[20:52:44.77](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: Error: Invalid Command: mousePos
+[20:52:56.205]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:52:56.826](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 673 895
+[20:52:56.827](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 673 895
+[20:52:59.519]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:53:00.50](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 673 895
+[20:53:00.50](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 673 895
+[20:53:01.878]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:53:02.407](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 673 895
+[20:53:02.407](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 673 895
+[20:53:17.239]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getScreenSize
+[20:53:17.800](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 1920 1080
+[20:53:17.800](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 1920 1080
+[20:53:40.279]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): child_process
+[20:53:40.279]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): child_process
+[20:53:40.811](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: Error: Invalid Command: child_process
+[20:53:40.811](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: Error: Invalid Command: child_process
+[20:53:40.811](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: Error: Invalid Command: child_process
+[20:53:40.811](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: Error: Invalid Command: child_process
+[20:53:52.978]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): require("child_process")
+[20:53:53.509](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: Error: Invalid Command: require("child_process")
+[20:53:53.509](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: Error: Invalid Command: require("child_process")
+[20:54:05.856]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): nodejs require("child_process")
+[20:54:06.397](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: [object Object]
+[20:54:06.398](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: [object Object]
+[20:55:27.910]UOwu_duwQNb6sjr-AAAN send electron to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): require("child_process")
+[20:55:32.448]UOwu_duwQNb6sjr-AAAN send electron to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): require("child_process")
+[20:55:40.292]UOwu_duwQNb6sjr-AAAN send javascript to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): $
+[20:56:16.710]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:56:17.321](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 671 464
+[20:56:17.321](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 671 464
+[20:56:55.670]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:56:56.211](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 781 471
+[20:56:56.211](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 781 471
+[20:57:27.716]controller MF9Va7ndKUncXGZfAAAP into
+[20:59:20.913]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): 
+[20:59:21.536](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: Error: Invalid Command: 
+[20:59:21.537](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: Error: Invalid Command: 
+[20:59:23.853]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[20:59:24.895](8QcTRQEyP3vZhOB4AAAJ) output to UOwu_duwQNb6sjr-AAAN: 940 686
+[20:59:24.896](8QcTRQEyP3vZhOB4AAAJ) cannot find UOwu_duwQNb6sjr-AAAN to output: 940 686
+[20:59:51.954]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): screenCapture
+[21:01:10.450]UOwu_duwQNb6sjr-AAAN send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getPixelColor 0 0
+[21:01:25.639]controller UOwu_duwQNb6sjr-AAAN leave
+[21:01:28.655]controller CHsT_zs2JWL0ETSYAAAR into
+[21:01:32.183]CHsT_zs2JWL0ETSYAAAR send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getPixelColor 0 0
+[21:02:12.19]controller CHsT_zs2JWL0ETSYAAAR leave
+[21:02:14.395]controller j7SZrWb3yYvngJ4sAAAT into
+[21:02:40.877]controller fnh_xe4a0gBTTzHSAAAL leave
+[21:02:40.887]controller j7SZrWb3yYvngJ4sAAAT leave
+[21:02:40.888]controller MF9Va7ndKUncXGZfAAAP leave
+[21:02:40.925]controller GNaiDPkG9VUgoh5hAAAH leave
+[21:35:24.306]controller v2WaNz6rmPDR9NO7AAAW into
+[21:35:25.105]controller Gi5S7_vgkDqkbXxFAAAX into
+[21:35:38.900]v2WaNz6rmPDR9NO7AAAW send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[21:36:17.963]controller sldKwHSUQK2DES0HAAAa into
+[21:36:18.912]controller e683VAhPhWVRK7KFAAAc into
+[21:36:24.860]e683VAhPhWVRK7KFAAAc send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[21:36:32.341]controller v2WaNz6rmPDR9NO7AAAW leave
+[21:36:32.373]controller Gi5S7_vgkDqkbXxFAAAX leave
+[21:37:04.400]e683VAhPhWVRK7KFAAAc send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): getMousePos
+[21:37:51.186]e683VAhPhWVRK7KFAAAc send javascript to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): aaa
+[21:37:54.80]e683VAhPhWVRK7KFAAAc send electron to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): bbb
+[21:38:21.941]e683VAhPhWVRK7KFAAAc send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): a
+[21:41:56.386]controller e683VAhPhWVRK7KFAAAc leave
+[21:42:00.95]controller 7cuDTK-leIbYLzc4AAAe into
+[21:42:23.306]sldKwHSUQK2DES0HAAAa send commands to 班上电脑(8QcTRQEyP3vZhOB4AAAJ): screenshot
+[22:13:05.976]controller sldKwHSUQK2DES0HAAAa leave
+[22:13:05.992]controller 7cuDTK-leIbYLzc4AAAe leave
+[22:13:10.939]controller Ad3rWUrvA4MTavmMAAAh into
+[22:13:11.27]controller zOL09GqM7X_9iSufAAAi into
+[22:16:17.563]controller zOL09GqM7X_9iSufAAAi leave
+[22:16:17.599]controller Ad3rWUrvA4MTavmMAAAh leave
+[22:25:19.814]controlled 班上电脑(8QcTRQEyP3vZhOB4AAAJ) leave
+[22:56:52.838]controller eH7WL5-hwquWr9nZAAAB into
+[22:56:54.327]controller xl0AvzdmDTU49fX1AAAD into
+[22:57:11.551]controller eH7WL5-hwquWr9nZAAAB leave
+[22:57:11.556]controller xl0AvzdmDTU49fX1AAAD leave
