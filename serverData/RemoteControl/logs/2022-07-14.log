@@ -1,0 +1,26 @@
+[09:59:07.568]controller hNNsu0DM6oRBtc8FAAAC into
+[09:59:07.930]hNNsu0DM6oRBtc8FAAAC cannot find null to send electron: fs.statSync("undefined").isDirectory()
+[09:59:23.588]controller hNNsu0DM6oRBtc8FAAAC leave
+[09:59:31.782]controller qPRDOa27yOBqFwDvAAAE into
+[09:59:41.244]controller qPRDOa27yOBqFwDvAAAE leave
+[09:59:52.45]controller zvZIEzLcTYuQPYg1AAAG into
+[10:00:10.740]controller C8kgL3cr8H5PKQvOAAAI into
+[10:00:10.831]controller zvZIEzLcTYuQPYg1AAAG leave
+[10:00:54.434]controller C8kgL3cr8H5PKQvOAAAI leave
+[10:36:05.325]controlled G2102班电脑(bgw0uwDOgK8l33iJAAAK) into
+[12:01:27.50]controlled G2107班电脑(l4uBIEYELNgFsQ3OAAAX) into
+[12:19:26.295]controlled G2107班电脑(l4uBIEYELNgFsQ3OAAAX) leave
+[12:19:31.746]controlled G2107班电脑(otheiLssHa8VxZcVAAAb) into
+[12:49:20.234]controlled G2107班电脑(otheiLssHa8VxZcVAAAb) leave
+[12:49:25.487]controlled G2107班电脑(kuPy0eqOy1xg7iGiAAAd) into
+[12:59:49.51]controlled 自家电脑(mwtBl_aE73TZmzPjAAAf) into
+[13:11:59.990]controlled G2102班电脑(iXXLlORdCZMePhQ6AAAB) into
+[13:12:01.40]controlled 自家电脑(nvlgRKkWu6mOXbZ3AAAF) into
+[13:12:01.720]controlled G2107班电脑(Et4VcR0pI7RvrdyDAAAE) into
+[13:12:05.918]controlled G2102班电脑(utMmi4xYUpmlHlIiAAAE) into
+[13:12:06.533]controlled G2107班电脑(-DUf148KrfeUWem3AAAD) into
+[13:12:06.580]controlled 自家电脑(nfk09vQsPiAy16xKAAAF) into
+[13:19:33.822]controlled G2102班电脑(utMmi4xYUpmlHlIiAAAE) leave
+[13:19:41.216]controlled G2102班电脑(OLp8McpltTGaly6IAAAH) into
+[13:34:20.925]controlled G2102班电脑(OLp8McpltTGaly6IAAAH) leave
+[13:34:26.163]controlled G2102班电脑(_MJLDyfPHU6FZCe7AAAJ) into
