@@ -24,3 +24,1744 @@
 [13:19:41.216]controlled G2102班电脑(OLp8McpltTGaly6IAAAH) into
 [13:34:20.925]controlled G2102班电脑(OLp8McpltTGaly6IAAAH) leave
 [13:34:26.163]controlled G2102班电脑(_MJLDyfPHU6FZCe7AAAJ) into
+[14:23:12.558]controlled G2102班电脑(_MJLDyfPHU6FZCe7AAAJ) leave
+[14:23:15.948]controlled G2102班电脑(a41U7QZmbATqCQFhAAAN) into
+[14:24:16.520]controlled G2102班电脑(a41U7QZmbATqCQFhAAAN) leave
+[14:24:16.535]controlled G2107班电脑(-DUf148KrfeUWem3AAAD) leave
+[14:24:17.208]controlled 自家电脑(nfk09vQsPiAy16xKAAAF) leave
+[14:24:19.166]controlled G2102班电脑(jtOKRWIqKXrJtkVgAAAP) into
+[14:24:20.720]controlled 自家电脑(3X1PiLa9tDnfNMyxAAAR) into
+[14:24:22.46]controlled G2107班电脑(JrTLZaByCQ8LmKtuAAAT) into
+[14:33:54.836]controlled G2102班电脑(jtOKRWIqKXrJtkVgAAAP) leave
+[14:34:00.103]controlled G2102班电脑(GOfQ05WG0gp7mc6LAAAV) into
+[14:34:22.631]controlled G2107班电脑(JrTLZaByCQ8LmKtuAAAT) leave
+[14:34:27.919]controlled G2107班电脑(_qgxjwHw_eziuccrAAAX) into
+[14:41:01.112]controlled 自家电脑(3X1PiLa9tDnfNMyxAAAR) leave
+[14:48:40.139]controlled G2107班电脑(_qgxjwHw_eziuccrAAAX) leave
+[14:48:42.790]controlled G2107班电脑(gh5jTS7mYDYa934OAAAZ) into
+[15:02:30.217]controlled G2107班电脑(gh5jTS7mYDYa934OAAAZ) leave
+[15:02:35.529]controlled G2107班电脑(C_7csC7DCAtgK3xPAAAb) into
+[15:19:27.592]controlled G2102班电脑(GOfQ05WG0gp7mc6LAAAV) leave
+[15:19:31.133]controlled G2102班电脑(C-uqLU_AtxJOm_HaAAAd) into
+[15:49:20.202]controlled G2102班电脑(C-uqLU_AtxJOm_HaAAAd) leave
+[15:49:22.107]controlled G2102班电脑(koFO9hz66h2HlIEIAAAf) into
+[16:09:47.584]controller q7NyQjOPc03e0RuqAAAh into
+[16:09:47.938]q7NyQjOPc03e0RuqAAAh send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:/capture.png").isDirectory()
+[16:09:48.196](koFO9hz66h2HlIEIAAAf) output to q7NyQjOPc03e0RuqAAAh: false
+[16:09:48.196](koFO9hz66h2HlIEIAAAf) cannot find q7NyQjOPc03e0RuqAAAh to output: false
+[16:09:48.585]q7NyQjOPc03e0RuqAAAh send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): [fs.statSync("D:/capture.png"), fs.readFileSync("D:/capture.png").toString("base64").length]
+[16:09:48.874](koFO9hz66h2HlIEIAAAf) output to q7NyQjOPc03e0RuqAAAh: [{"dev":2559755421,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":3659174697282295,"size":2441202,"blocks":4768,"atimeMs":1657605810102.0469,"mtimeMs":1657723142739.4143,"ctimeMs":1657723142739.4143,"birthtimeMs":1657605810102.0469,"atime":"2022-07-12T06:03:30.102Z","mtime":"2022-07-13T14:39:02.739Z","ctime":"2022-07-13T14:39:02.739Z","birthtime":"2022-07-12T06:03:30.102Z"},3254936]
+[16:09:48.874](koFO9hz66h2HlIEIAAAf) cannot find q7NyQjOPc03e0RuqAAAh to output: [{"dev":2559755421,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":3659174697282295,"size":2441202,"blocks":4768,"atimeMs":1657605810102.0469,"mtimeMs":1657723142739.4143,"ctimeMs":1657723142739.4143,"birthtimeMs":1657605810102.0469,"atime":"2022-07-12T06:03:30.102Z","mtime":"2022-07-13T14:39:02.739Z","ctime":"2022-07-13T14:39:02.739Z","birthtime":"2022-07-12T06:03:30.102Z"},3254936]
+[16:09:55.326]controller RRxU6oT2RGUjeprJAAAj into
+[16:09:55.654]RRxU6oT2RGUjeprJAAAj send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:").isDirectory()
+[16:09:55.929](koFO9hz66h2HlIEIAAAf) output to RRxU6oT2RGUjeprJAAAj: true
+[16:09:55.930](koFO9hz66h2HlIEIAAAf) cannot find RRxU6oT2RGUjeprJAAAj to output: true
+[16:09:56.421]RRxU6oT2RGUjeprJAAAj send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.readdirSync("D:")
+[16:09:56.717](koFO9hz66h2HlIEIAAAf) output to RRxU6oT2RGUjeprJAAAj: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:09:56.717](koFO9hz66h2HlIEIAAAf) cannot find RRxU6oT2RGUjeprJAAAj to output: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:09:59.79]controller u-fGwN4AQgvyloijAAAl into
+[16:10:04.998]u-fGwN4AQgvyloijAAAl send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[16:10:05.297](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: {}
+[16:10:05.297](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: {}
+[16:10:06.684](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:06.684](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:06.763](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: 640,480
+[16:10:06.765](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: 640,480
+[16:10:08.123]u-fGwN4AQgvyloijAAAl send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[16:10:08.590](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:08.590](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:08.590](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: null
+[16:10:08.590](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: null
+[16:10:13.299](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:13.299](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:13.777](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:13.777](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:19.805]u-fGwN4AQgvyloijAAAl send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:10:20.54](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: {}
+[16:10:20.54](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: {}
+[16:10:21.423](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: screenshot
+[16:10:21.423](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: screenshot
+[16:10:21.515](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:21.515](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:23.707](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:23.708](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:25.826](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:25.841](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:27.719](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:27.720](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:29.693](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:29.693](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:31.662](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:31.662](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:33.387](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:33.388](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:34.875](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:34.875](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:36.915](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:36.915](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:38.570](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:38.570](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:40.315](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:40.315](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:10:40.793](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: [object Object]
+[16:10:40.793](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:03.864]u-fGwN4AQgvyloijAAAl send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[16:11:04.116](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: 819
+[16:11:04.117](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: 819
+[16:11:04.351](koFO9hz66h2HlIEIAAAf) output to u-fGwN4AQgvyloijAAAl: record start
+[16:11:04.351](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: record start
+[16:11:09.615]controller u-fGwN4AQgvyloijAAAl leave
+[16:11:12.493]controller -6ue2olCfXtHxqwOAAAn into
+[16:11:14.122](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: record data available
+[16:11:14.129](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:16.135](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:18.110](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:20.88](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:21.480]controller -6ue2olCfXtHxqwOAAAn leave
+[16:11:21.809](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:22.629](koFO9hz66h2HlIEIAAAf) cannot find u-fGwN4AQgvyloijAAAl to output: [object Object]
+[16:11:24.415]controller 19LXhyw64zXSI4zfAAAp into
+[16:11:30.806]controller 19LXhyw64zXSI4zfAAAp leave
+[16:11:30.824]controller q7NyQjOPc03e0RuqAAAh leave
+[16:11:30.917]controller RRxU6oT2RGUjeprJAAAj leave
+[16:12:52.856]controller v90ml-DoXCuy5XiAAAAt into
+[16:12:52.949]controller ImKB-BB_sOVUoQhbAAAu into
+[16:12:53.225]v90ml-DoXCuy5XiAAAAt send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:/capture.png").isDirectory()
+[16:12:53.250]ImKB-BB_sOVUoQhbAAAu send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:").isDirectory()
+[16:12:53.469](koFO9hz66h2HlIEIAAAf) output to v90ml-DoXCuy5XiAAAAt: false
+[16:12:53.469](koFO9hz66h2HlIEIAAAf) cannot find v90ml-DoXCuy5XiAAAAt to output: false
+[16:12:53.499](koFO9hz66h2HlIEIAAAf) output to ImKB-BB_sOVUoQhbAAAu: true
+[16:12:53.500](koFO9hz66h2HlIEIAAAf) cannot find ImKB-BB_sOVUoQhbAAAu to output: true
+[16:12:53.850]ImKB-BB_sOVUoQhbAAAu send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.readdirSync("D:")
+[16:12:53.920]v90ml-DoXCuy5XiAAAAt send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): [fs.statSync("D:/capture.png"), fs.readFileSync("D:/capture.png").toString("base64").length]
+[16:12:54.361](koFO9hz66h2HlIEIAAAf) output to v90ml-DoXCuy5XiAAAAt: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:12:54.361](koFO9hz66h2HlIEIAAAf) cannot find v90ml-DoXCuy5XiAAAAt to output: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:12:55.545]controller KrJgeqvtQHxzMWbWAAAw into
+[16:12:58.551]KrJgeqvtQHxzMWbWAAAw send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[16:12:58.819](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: 826
+[16:12:58.819](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: 826
+[16:12:58.970](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: record start
+[16:12:58.970](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: record start
+[16:13:08.805](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: record data available
+[16:13:08.805](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: record data available
+[16:13:08.811](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:08.811](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:11.815](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:11.816](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:13.512](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:13.512](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:15.486](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:15.487](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:17.236](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:17.239](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:18.261](koFO9hz66h2HlIEIAAAf) output to KrJgeqvtQHxzMWbWAAAw: [object Object]
+[16:13:18.261](koFO9hz66h2HlIEIAAAf) cannot find KrJgeqvtQHxzMWbWAAAw to output: [object Object]
+[16:13:39.124]controller KrJgeqvtQHxzMWbWAAAw leave
+[16:13:42.393]controller 1dwRMzpVpfNlFBnDAAAy into
+[16:13:44.694]1dwRMzpVpfNlFBnDAAAy send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 1000);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[16:13:44.945](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: 830
+[16:13:44.945](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: 830
+[16:13:45.97](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: record start
+[16:13:45.97](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: record start
+[16:13:54.947](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: record data available
+[16:13:54.947](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: record data available
+[16:13:55.16](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: [object Object]
+[16:13:55.16](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: [object Object]
+[16:13:58.267](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: [object Object]
+[16:13:58.267](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: [object Object]
+[16:14:00.899](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: [object Object]
+[16:14:00.899](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: [object Object]
+[16:14:03.367](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: [object Object]
+[16:14:03.368](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: [object Object]
+[16:14:04.864](koFO9hz66h2HlIEIAAAf) output to 1dwRMzpVpfNlFBnDAAAy: [object Object]
+[16:14:04.864](koFO9hz66h2HlIEIAAAf) cannot find 1dwRMzpVpfNlFBnDAAAy to output: [object Object]
+[16:14:25.851]controller 1dwRMzpVpfNlFBnDAAAy leave
+[16:14:29.444]controller BE1sfyutXI9Y1p1pAAA0 into
+[16:14:33.576]controller yM8ERD7YUvZcBw-yAAA2 into
+[16:14:33.921]yM8ERD7YUvZcBw-yAAA2 send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:").isDirectory()
+[16:14:34.179](koFO9hz66h2HlIEIAAAf) output to yM8ERD7YUvZcBw-yAAA2: true
+[16:14:34.179](koFO9hz66h2HlIEIAAAf) cannot find yM8ERD7YUvZcBw-yAAA2 to output: true
+[16:14:34.374]controller arBG_JS-Wdn6_9sGAAA4 into
+[16:14:34.961]controller YO7UyeV46071P1JuAAA6 into
+[16:14:34.961]YO7UyeV46071P1JuAAA6 send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): fs.statSync("D:/capture.png").isDirectory()
+[16:14:35.219](koFO9hz66h2HlIEIAAAf) output to YO7UyeV46071P1JuAAA6: false
+[16:14:35.219](koFO9hz66h2HlIEIAAAf) cannot find YO7UyeV46071P1JuAAA6 to output: false
+[16:14:35.669]YO7UyeV46071P1JuAAA6 send electron to G2102班电脑(koFO9hz66h2HlIEIAAAf): [fs.statSync("D:/capture.png"), fs.readFileSync("D:/capture.png").toString("base64").length]
+[16:14:36.317]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 1000);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[16:14:36.810](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: 834
+[16:14:36.810](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: 834
+[16:14:36.835](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [{"dev":2559755421,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":3659174697282295,"size":1545461,"blocks":3024,"atimeMs":1657605810102.0469,"mtimeMs":1657786221159,"ctimeMs":1657786221159,"birthtimeMs":1657605810102.0469,"atime":"2022-07-12T06:03:30.102Z","mtime":"2022-07-14T08:10:21.159Z","ctime":"2022-07-14T08:10:21.159Z","birthtime":"2022-07-12T06:03:30.102Z"},2060616]
+[16:14:36.915](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [{"dev":2559755421,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":3659174697282295,"size":1545461,"blocks":3024,"atimeMs":1657605810102.0469,"mtimeMs":1657786221159,"ctimeMs":1657786221159,"birthtimeMs":1657605810102.0469,"atime":"2022-07-12T06:03:30.102Z","mtime":"2022-07-14T08:10:21.159Z","ctime":"2022-07-14T08:10:21.159Z","birthtime":"2022-07-12T06:03:30.102Z"},2060616]
+[16:14:36.971](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: record start
+[16:14:36.971](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: record start
+[16:14:46.812](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: record data available
+[16:14:46.812](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: record data available
+[16:14:46.820](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:14:46.821](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:14:50.779](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:14:50.779](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:14:52.803]controller ImKB-BB_sOVUoQhbAAAu leave
+[16:14:52.826]controller v90ml-DoXCuy5XiAAAAt leave
+[16:14:52.981](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:14:52.982](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:14:55.932](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:14:55.933](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:14:56.184](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:14:56.184](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:04.919]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 1000);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:15:05.166](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: {}
+[16:15:05.166](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: {}
+[16:15:06.17](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: screenshot
+[16:15:06.17](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: screenshot
+[16:15:06.17](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:06.17](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:09.325](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:09.325](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:11.936](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:11.937](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:13.68]controller BE1sfyutXI9Y1p1pAAA0 leave
+[16:15:14.380](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:14.380](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:17.82](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:17.82](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:17.537]controller yM8ERD7YUvZcBw-yAAA2 leave
+[16:15:18.844]controller YO7UyeV46071P1JuAAA6 leave
+[16:15:20.48](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:20.48](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:22.828](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:22.828](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:23.460]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 1000);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 100000);
+[16:15:25.680](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:25.680](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:26.652](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:26.652](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:27.396](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:27.396](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: 838
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: 838
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: record start
+[16:15:27.628](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: record start
+[16:15:34.518]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 1000);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:15:34.688](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: {}
+[16:15:34.688](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: {}
+[16:15:35.425](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: screenshot
+[16:15:35.515](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: screenshot
+[16:15:35.516](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:35.516](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:37.207](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:37.207](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:38.203](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:38.203](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:39.202](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:39.203](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:39.965](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:39.965](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:40.519](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:40.519](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:50.325]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 1000);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:15:50.660](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: {}
+[16:15:50.660](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: {}
+[16:15:51.407](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: screenshot
+[16:15:51.407](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: screenshot
+[16:15:51.436](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:51.437](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:53.36](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:53.36](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:54.26](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:54.26](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:55.135](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:55.135](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:15:55.694](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:15:55.694](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:10.220]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 1000);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:16:10.463](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: {}
+[16:16:10.463](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: {}
+[16:16:11.196](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: screenshot
+[16:16:11.196](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: screenshot
+[16:16:11.239](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:11.239](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:14.502](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:14.502](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:15.722](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:15.722](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:17.35](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:17.35](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:17.953](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:17.954](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:18.547](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:18.547](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:16:49.140]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 1000);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:16:49.392](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: {}
+[16:16:49.393](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: {}
+[16:16:50.167](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: screenshot
+[16:16:50.167](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: screenshot
+[16:16:50.220](koFO9hz66h2HlIEIAAAf) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:16:50.220](koFO9hz66h2HlIEIAAAf) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:17.93](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:17.93](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:18.471]arBG_JS-Wdn6_9sGAAA4 send javascript to G2102班电脑(koFO9hz66h2HlIEIAAAf): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 300000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 1000);
+[16:17:21.140](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.140](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:21.352](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.353](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:21.640](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.640](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:21.640]controlled G2102班电脑(xHOtAsSkU9686EagAAA8) into
+[16:17:21.792](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.792](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:21.840](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.840](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:21.929](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:21.929](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.43](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.44](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.125](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.126](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.141](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.141](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.245](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.245](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.337](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.337](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:22.828](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:22.829](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:23.839](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:23.840](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:24.810](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:24.810](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:25.835](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:25.835](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:26.855](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:26.855](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:27.807](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:27.808](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:28.827]controlled G2102班电脑(koFO9hz66h2HlIEIAAAf) leave
+[16:17:28.859](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:28.859](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:29.843](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:29.844](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:30.808](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:30.808](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:31.827](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:31.827](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:32.847](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:32.847](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:33.808](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:33.808](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:34.844](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:34.844](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:35.830](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:35.830](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:36.807](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:36.807](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:37.836](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:37.837](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:38.840](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:38.841](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:39.807](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:39.807](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:40.807](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:40.807](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:41.809](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:41.809](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:42.807](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:42.807](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:43.833](xHOtAsSkU9686EagAAA8) output to arBG_JS-Wdn6_9sGAAA4: [object Object]
+[16:17:43.834](xHOtAsSkU9686EagAAA8) cannot find arBG_JS-Wdn6_9sGAAA4 to output: [object Object]
+[16:17:53.917]controller arBG_JS-Wdn6_9sGAAA4 leave
+[16:17:58.203]controller RKCik99iVB2UYeW1AAA- into
+[16:18:03.287]RKCik99iVB2UYeW1AAA- send javascript to G2102班电脑(xHOtAsSkU9686EagAAA8): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[16:18:03.532](xHOtAsSkU9686EagAAA8) output to RKCik99iVB2UYeW1AAA-: 854
+[16:18:03.532](xHOtAsSkU9686EagAAA8) cannot find RKCik99iVB2UYeW1AAA- to output: 854
+[16:18:03.751](xHOtAsSkU9686EagAAA8) output to RKCik99iVB2UYeW1AAA-: record start
+[16:18:03.752](xHOtAsSkU9686EagAAA8) cannot find RKCik99iVB2UYeW1AAA- to output: record start
+[16:19:03.537](xHOtAsSkU9686EagAAA8) output to RKCik99iVB2UYeW1AAA-: record data available
+[16:19:03.537](xHOtAsSkU9686EagAAA8) cannot find RKCik99iVB2UYeW1AAA- to output: record data available
+[16:19:03.616](xHOtAsSkU9686EagAAA8) output to RKCik99iVB2UYeW1AAA-: [object Object]
+[16:19:03.617](xHOtAsSkU9686EagAAA8) cannot find RKCik99iVB2UYeW1AAA- to output: [object Object]
+[16:19:35.438]controller PRG0z0ZTlXOsrHJaAABC into
+[16:19:37.906]controlled G2102班电脑(xHOtAsSkU9686EagAAA8) leave
+[16:19:41.811]PRG0z0ZTlXOsrHJaAABC cannot find G2102班电脑 to send javascript: 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 250000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 600);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[16:19:59.227]controller RKCik99iVB2UYeW1AAA- leave
+[16:19:59.662]controller 9SuvUp9aotAKRGywAABE into
+[16:20:00.230]9SuvUp9aotAKRGywAABE cannot find G2102班电脑 to send electron: fs.statSync("D:").isDirectory()
+[16:20:01.27]controller PRG0z0ZTlXOsrHJaAABC leave
+[16:20:03.934]controller aeuQJmr9vJF5oxLjAABG into
+[16:20:06.562]aeuQJmr9vJF5oxLjAABG send javascript to G2107班电脑(C_7csC7DCAtgK3xPAAAb): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[16:20:07.130](C_7csC7DCAtgK3xPAAAb) output to aeuQJmr9vJF5oxLjAABG: {}
+[16:20:07.130](C_7csC7DCAtgK3xPAAAb) cannot find aeuQJmr9vJF5oxLjAABG to output: {}
+[16:20:07.930](C_7csC7DCAtgK3xPAAAb) output to aeuQJmr9vJF5oxLjAABG: [object Object]
+[16:20:07.931](C_7csC7DCAtgK3xPAAAb) cannot find aeuQJmr9vJF5oxLjAABG to output: [object Object]
+[16:20:09.842]aeuQJmr9vJF5oxLjAABG send javascript to G2107班电脑(C_7csC7DCAtgK3xPAAAb): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[16:20:14.356]controlled G2102班电脑(v0X3Uu1IFEECneOxAABI) into
+[16:20:15.222]controller aeuQJmr9vJF5oxLjAABG leave
+[16:20:17.341]controller TXGwpsbJYLjyJYP2AABK into
+[16:20:20.85]TXGwpsbJYLjyJYP2AABK send javascript to G2107班电脑(C_7csC7DCAtgK3xPAAAb): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[16:20:27.969]controlled G2107班电脑(C_7csC7DCAtgK3xPAAAb) leave
+[16:20:31.764]controller TXGwpsbJYLjyJYP2AABK leave
+[16:20:33.353]controlled G2107班电脑(dXx4a3ejvt_jCpIBAABM) into
+[16:20:34.583]controller h0PvdlZgfjvkpi11AABO into
+[16:20:36.616]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[16:20:36.862](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: video exist
+[16:20:36.862](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: video exist
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: canvas exist
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: canvas exist
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: stream exist
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: stream exist
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: null
+[16:20:36.863](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: null
+[16:20:42.895]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:20:43.919](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:20:43.919](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:20:44.659](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:20:44.660](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:20:44.693](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:44.694](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:47.319](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:47.319](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:47.629](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:47.629](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:47.636](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:47.636](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:47.785](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:47.785](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:47.815](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:47.816](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:48.3](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:48.3](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:48.232](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:48.232](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:48.697](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:20:48.697](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:20:51.122]controller rffeq0ahIvwxTLM1AABQ into
+[16:21:02.595]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[16:21:02.832](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: 867
+[16:21:02.832](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: 867
+[16:21:03.73](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record start
+[16:21:03.74](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record start
+[16:21:04.120]controller 81bQ8DZsuHqsQ1xkAABS into
+[16:22:02.836](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record data available
+[16:22:02.836](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record data available
+[16:22:02.865](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:02.865](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:03.434](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:03.434](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:04.143](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:04.144](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:04.436](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:04.436](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:04.912](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:04.913](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:05.520](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:05.521](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:05.913](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:05.913](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:06.444](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:06.444](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:06.955](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:06.955](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:07.452](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:07.452](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:08.130](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:08.130](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:08.412](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:08.412](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:08.947](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:08.948](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:09.455](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:09.455](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:09.934](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:09.934](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:10.450](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:10.451](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:10.934](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:10.934](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:11.448](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:11.449](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:11.950](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:11.950](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:12.440](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:12.441](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:12.915](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:12.915](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:13.371](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:13.371](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:19.556]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[16:22:19.793](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: 873
+[16:22:19.793](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: 873
+[16:22:20.3](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record start
+[16:22:20.4](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record start
+[16:22:26.576]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:22:26.819](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:22:26.819](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:22:27.519](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:22:27.519](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:22:27.616](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:27.616](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:30.29](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:30.29](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:30.171](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:30.172](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:30.487](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:30.487](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:30.674](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:30.715](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:30.724](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:30.724](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:50.17]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:22:50.255](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:22:50.255](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:22:50.988](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:22:50.988](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:22:51.28](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:51.29](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:51.778](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:51.778](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:52.326](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:52.326](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:52.776](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:52.776](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:53.273](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:53.274](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:53.774](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:53.774](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:54.153](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:54.153](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:58.295]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:22:58.532](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:22:58.532](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:22:59.181](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:22:59.181](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:22:59.207](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:59.207](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:22:59.957](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:22:59.957](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:00.238](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:00.238](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:02.356]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:23:02.592](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:23:02.593](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:23:03.238](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:23:03.318](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:23:03.319](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:03.319](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:04.123](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:04.125](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:04.327](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:04.327](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:06.122]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:23:06.358](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:23:06.358](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:23:07.25](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:23:07.121](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:23:07.140](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:07.141](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:07.776](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:07.776](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:08.66](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:08.66](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:18.356]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:23:19.352](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:23:19.352](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:23:19.799](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record data available
+[16:23:19.799](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record data available
+[16:23:19.834](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:19.834](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:20.79](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:23:20.79](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:23:20.118](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:20.124](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:20.439](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:20.439](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:20.662](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:20.662](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:20.897](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:20.898](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:21.235](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:21.235](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:21.395](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:21.395](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:21.665](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:21.665](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:21.933](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:21.934](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:22.254](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:22.255](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:22.394](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:22.394](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:22.667](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:22.667](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:22.962](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:22.962](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:23.119](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:23.220](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:23.381](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:23.381](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:23.962](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:23.962](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:24.453](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:24.453](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:24.876](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:24.877](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:25.443](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:25.451](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:26.24](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:26.24](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:26.377](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:26.378](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:26.875](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:26.875](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:27.447](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:27.447](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:27.876](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:27.877](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:28.435](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:28.436](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:28.876](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:28.876](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:29.439](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:29.439](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:29.880](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:29.880](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:30.421](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:30.422](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:40.255]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 300000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[16:23:40.493](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: 884
+[16:23:40.493](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: 884
+[16:23:40.673](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record start
+[16:23:40.674](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record start
+[16:23:53.575]h0PvdlZgfjvkpi11AABO send javascript to G2102班电脑(v0X3Uu1IFEECneOxAABI): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:23:53.812](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: {}
+[16:23:53.812](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: {}
+[16:23:54.519](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: screenshot
+[16:23:54.519](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: screenshot
+[16:23:54.549](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:54.549](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:55.95](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:55.95](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:55.594](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:55.594](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:23:56.82](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:23:56.82](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:40.497](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: record data available
+[16:24:40.497](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: record data available
+[16:24:40.531](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:40.531](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:41.146](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:41.147](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:41.757](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:41.758](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:42.233](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:42.240](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:42.388]controller v7MiuzY2tOO0_Z6hAABV into
+[16:24:42.635](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:42.635](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:42.879]v7MiuzY2tOO0_Z6hAABV cannot find null to send electron: fs.statSync("undefined").isDirectory()
+[16:24:43.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:43.77](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:43.577](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:43.577](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:44.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:44.77](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:44.640](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:44.640](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:45.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:45.78](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:45.644](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:45.645](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:46.78](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:46.78](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:46.640](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:46.640](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:47.91](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:47.91](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:47.577](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:47.577](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:48.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:48.77](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:48.647](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:48.647](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:49.173](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:49.173](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:49.758](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:49.758](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:50.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:50.77](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:50.636](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:50.637](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:51.77](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:51.77](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:51.640](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:51.640](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:24:52.64](v0X3Uu1IFEECneOxAABI) output to h0PvdlZgfjvkpi11AABO: [object Object]
+[16:24:52.64](v0X3Uu1IFEECneOxAABI) cannot find h0PvdlZgfjvkpi11AABO to output: [object Object]
+[16:25:17.338]controller Md4MrRu97TImDCODAABX into
+[16:25:17.727]Md4MrRu97TImDCODAABX cannot find 2102班电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[16:25:21.619]controller Md4MrRu97TImDCODAABX leave
+[16:25:27.846]controller f06gRsKKtjWSajgnAABZ into
+[16:25:28.180]f06gRsKKtjWSajgnAABZ cannot find 2102班电脑 to send electron: fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:26:26.280]controller f06gRsKKtjWSajgnAABZ leave
+[16:26:31.60]controller be55GX50IDOhEwk2AABb into
+[16:26:31.61]be55GX50IDOhEwk2AABb cannot find 2102班电脑 to send electron: fs.statSync("D:").isDirectory()
+[16:27:12.555]controller zJDF3o-sUDA4O7lDAABd into
+[16:27:12.895]zJDF3o-sUDA4O7lDAABd send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.statSync("D:").isDirectory()
+[16:27:13.151](v0X3Uu1IFEECneOxAABI) output to zJDF3o-sUDA4O7lDAABd: true
+[16:27:13.151](v0X3Uu1IFEECneOxAABI) cannot find zJDF3o-sUDA4O7lDAABd to output: true
+[16:27:13.627]zJDF3o-sUDA4O7lDAABd send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.readdirSync("D:")
+[16:27:13.881](v0X3Uu1IFEECneOxAABI) output to zJDF3o-sUDA4O7lDAABd: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:27:13.881](v0X3Uu1IFEECneOxAABI) cannot find zJDF3o-sUDA4O7lDAABd to output: ["$RECYCLE.BIN","2009","360Downloads","360安全浏览器下载","64Win7  (C).lnk","9708f49658f25e2bb19a286e9ecba640","a.png","all.txt","article.jpg","article.png","autorun.inf","BaiduNetdiskDownload","BaiduNetdiskWorkspace","BluestacksCN","BOOT","capture.png","CloudMusic","CNTV","F70E6B5720F32CA7EA285AC3D694A3B9F0E7BB56.torrent","FFOutput","HEU23_Debug.txt","HEU_KMS_Activator_v23.1.0(1).exe","HEU_KMS_Activator_v23.1.0.exe","HEU_KMS_Activator_v23.1.0说明书.pdf","KuGou","MobileEmuMaster","PDF编辑器","Program","Program Files","Program Files (x86)","ProgramData","QMDownload","QQMusicCache","qycache","share","System Volume Information","Temp","tree.txt","tree_Chemistry.txt","tree_English.txt","tree_Physics.txt","UserData","WeChatSetup.exe","Youku Files","YunGameBox","~Temp","体育节10月27比赛项目","关注微信公众号：IT迷，获取更多实用资源.png","学习","宇宙沙盘","数学","文清125班期末考试成总表.xlsx","新建 DOCX 文档 (2).docx","新建文件夹","新建文件夹 (2)","暑假作业答案","更新日志.txt","物理","背景","英语","西贝柳斯","语文","迅雷下载","迅雷云盘","远程传输","阳光电影www.ygdy8.com.金刚川.HD.1080p.国语中英双字.mkv","高一2班月考成绩.xlsx"]
+[16:27:16.224]controller zJDF3o-sUDA4O7lDAABd leave
+[16:27:18.25]controller DbZbS4OXQLMbJDDKAABf into
+[16:27:18.361]DbZbS4OXQLMbJDDKAABf send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:27:18.603](v0X3Uu1IFEECneOxAABI) output to DbZbS4OXQLMbJDDKAABf: true
+[16:27:18.603](v0X3Uu1IFEECneOxAABI) cannot find DbZbS4OXQLMbJDDKAABf to output: true
+[16:27:19.88]DbZbS4OXQLMbJDDKAABf send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:27:19.345](v0X3Uu1IFEECneOxAABI) output to DbZbS4OXQLMbJDDKAABf: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:27:19.417](v0X3Uu1IFEECneOxAABI) cannot find DbZbS4OXQLMbJDDKAABf to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:28:24.217]controller DbZbS4OXQLMbJDDKAABf leave
+[16:29:36.998]controller 9SuvUp9aotAKRGywAABE leave
+[16:29:37.383]controller d5kcidhCqWMcuXViAABh into
+[16:29:37.727]d5kcidhCqWMcuXViAABh send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.statSync("undefined").isDirectory()
+[16:29:37.981](v0X3Uu1IFEECneOxAABI) output to d5kcidhCqWMcuXViAABh: [object Object]
+[16:29:37.982](v0X3Uu1IFEECneOxAABI) cannot find d5kcidhCqWMcuXViAABh to output: [object Object]
+[16:29:39.352]controller d5kcidhCqWMcuXViAABh leave
+[16:29:41.223]controller XbyqOQFRTzh4EVkcAABj into
+[16:29:41.582]XbyqOQFRTzh4EVkcAABj send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:29:41.829](v0X3Uu1IFEECneOxAABI) output to XbyqOQFRTzh4EVkcAABj: true
+[16:29:41.829](v0X3Uu1IFEECneOxAABI) cannot find XbyqOQFRTzh4EVkcAABj to output: true
+[16:29:42.270]XbyqOQFRTzh4EVkcAABj send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:29:42.517](v0X3Uu1IFEECneOxAABI) output to XbyqOQFRTzh4EVkcAABj: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:29:42.517](v0X3Uu1IFEECneOxAABI) cannot find XbyqOQFRTzh4EVkcAABj to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:30:22.810]controller XbyqOQFRTzh4EVkcAABj leave
+[16:30:25.181]controller jafY7pCdhiJ-E2D-AABl into
+[16:30:29.968]controller vAouIUKh4s89sANQAABn into
+[16:30:30.295]controller v7MiuzY2tOO0_Z6hAABV leave
+[16:31:08.633]controller jafY7pCdhiJ-E2D-AABl leave
+[16:31:13.743]controller vAouIUKh4s89sANQAABn leave
+[16:31:16.104]controller gNwwg_HSxNWGLtgDAABp into
+[16:31:55.618]controller SvE6HovljtrTjxyfAABr into
+[16:31:55.997]SvE6HovljtrTjxyfAABr send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:31:56.316](v0X3Uu1IFEECneOxAABI) output to SvE6HovljtrTjxyfAABr: true
+[16:31:56.316](v0X3Uu1IFEECneOxAABI) cannot find SvE6HovljtrTjxyfAABr to output: true
+[16:31:56.674]SvE6HovljtrTjxyfAABr send electron to G2102班电脑(v0X3Uu1IFEECneOxAABI): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:31:56.914](v0X3Uu1IFEECneOxAABI) output to SvE6HovljtrTjxyfAABr: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:31:56.914](v0X3Uu1IFEECneOxAABI) cannot find SvE6HovljtrTjxyfAABr to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:31:59.829]controller gNwwg_HSxNWGLtgDAABp leave
+[16:32:18.755]controller h0PvdlZgfjvkpi11AABO leave
+[16:32:35.858]controller rffeq0ahIvwxTLM1AABQ leave
+[16:32:39.379]controller SvE6HovljtrTjxyfAABr leave
+[16:32:44.926]controller be55GX50IDOhEwk2AABb leave
+[16:32:45.404]controlled G2102班电脑(v0X3Uu1IFEECneOxAABI) leave
+[16:32:48.201]controlled G2102班电脑(4FMTPwgx7ICp7y8tAABt) into
+[16:32:48.352]controller 81bQ8DZsuHqsQ1xkAABS leave
+[16:33:08.530]controller fPDZbAhOnw-eX--tAABx into
+[16:33:08.539]controller 8PdBncrgbX1qAfpmAABw into
+[16:33:08.943]fPDZbAhOnw-eX--tAABx cannot find null to send electron: fs.statSync("undefined").isDirectory()
+[16:33:08.949]8PdBncrgbX1qAfpmAABw send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:33:09.197](4FMTPwgx7ICp7y8tAABt) output to 8PdBncrgbX1qAfpmAABw: true
+[16:33:09.197](4FMTPwgx7ICp7y8tAABt) cannot find 8PdBncrgbX1qAfpmAABw to output: true
+[16:33:09.589]8PdBncrgbX1qAfpmAABw send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:33:09.830](4FMTPwgx7ICp7y8tAABt) output to 8PdBncrgbX1qAfpmAABw: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:33:09.830](4FMTPwgx7ICp7y8tAABt) cannot find 8PdBncrgbX1qAfpmAABw to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:33:09.912]controller aalXdnvv2ghnPTxaAABz into
+[16:33:10.410]controller fPDZbAhOnw-eX--tAABx leave
+[16:33:11.27]controller kgX9Ku4qxC3tM3xDAAB1 into
+[16:33:12.257]controller lQWn0A_1u8r8Qi6ZAAB3 into
+[16:33:12.583]lQWn0A_1u8r8Qi6ZAAB3 cannot find null to send electron: fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:33:59.36]controller uaIOCb3hGEcQ5kg5AAB5 into
+[16:33:59.423]uaIOCb3hGEcQ5kg5AAB5 send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:33:59.677](4FMTPwgx7ICp7y8tAABt) output to uaIOCb3hGEcQ5kg5AAB5: true
+[16:33:59.677](4FMTPwgx7ICp7y8tAABt) cannot find uaIOCb3hGEcQ5kg5AAB5 to output: true
+[16:33:59.724]controlled G2107班电脑(ZsVinP9TX93SDm2GAAB7) into
+[16:34:00.63]uaIOCb3hGEcQ5kg5AAB5 send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:34:00.305](4FMTPwgx7ICp7y8tAABt) output to uaIOCb3hGEcQ5kg5AAB5: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:34:00.305](4FMTPwgx7ICp7y8tAABt) cannot find uaIOCb3hGEcQ5kg5AAB5 to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:34:20.675]controlled G2107班电脑(dXx4a3ejvt_jCpIBAABM) leave
+[16:34:34.448]controller uaIOCb3hGEcQ5kg5AAB5 leave
+[16:34:36.262]controller Z3vzfVqUEgdblmU8AAB9 into
+[16:34:36.608]Z3vzfVqUEgdblmU8AAB9 send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:34:36.916](4FMTPwgx7ICp7y8tAABt) output to Z3vzfVqUEgdblmU8AAB9: true
+[16:34:36.917](4FMTPwgx7ICp7y8tAABt) cannot find Z3vzfVqUEgdblmU8AAB9 to output: true
+[16:34:37.590]Z3vzfVqUEgdblmU8AAB9 send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:34:37.831](4FMTPwgx7ICp7y8tAABt) output to Z3vzfVqUEgdblmU8AAB9: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:34:37.831](4FMTPwgx7ICp7y8tAABt) cannot find Z3vzfVqUEgdblmU8AAB9 to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:35:09.471]controller Z3vzfVqUEgdblmU8AAB9 leave
+[16:35:11.277]controller cMLveXIBGoDG8aAeAAB_ into
+[16:35:11.623]cMLveXIBGoDG8aAeAAB_ send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:35:11.970](4FMTPwgx7ICp7y8tAABt) output to cMLveXIBGoDG8aAeAAB_: true
+[16:35:11.970](4FMTPwgx7ICp7y8tAABt) cannot find cMLveXIBGoDG8aAeAAB_ to output: true
+[16:35:12.556]cMLveXIBGoDG8aAeAAB_ send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:35:12.794](4FMTPwgx7ICp7y8tAABt) output to cMLveXIBGoDG8aAeAAB_: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:35:12.794](4FMTPwgx7ICp7y8tAABt) cannot find cMLveXIBGoDG8aAeAAB_ to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:35:14.451]cMLveXIBGoDG8aAeAAB_ send commands to G2102班电脑(4FMTPwgx7ICp7y8tAABt): tree /F "C:/Users/Administrator/Desktop"
+[16:35:15.315](4FMTPwgx7ICp7y8tAABt) output to cMLveXIBGoDG8aAeAAB_: Error: Invalid Command: tree
+
+[16:35:15.316](4FMTPwgx7ICp7y8tAABt) cannot find cMLveXIBGoDG8aAeAAB_ to output: Error: Invalid Command: tree
+
+[16:35:35.631]controller cMLveXIBGoDG8aAeAAB_ leave
+[16:35:39.820]controller 8PdBncrgbX1qAfpmAABw leave
+[16:35:41.76]controller aalXdnvv2ghnPTxaAABz leave
+[16:35:42.58]controller kgX9Ku4qxC3tM3xDAAB1 leave
+[16:35:43.120]controller lQWn0A_1u8r8Qi6ZAAB3 leave
+[16:36:01.32]controller gsBiU9_5ttgYZhNeAACF into
+[16:36:01.186]controller nYF9oeMP0YEE9HzSAACG into
+[16:36:01.187]nYF9oeMP0YEE9HzSAACG send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:36:01.249]controller EvGyhMrGEQTSKrXRAACH into
+[16:36:01.252]controller cUCJcJSGYgR316jMAACI into
+[16:36:01.429](4FMTPwgx7ICp7y8tAABt) output to nYF9oeMP0YEE9HzSAACG: true
+[16:36:01.429](4FMTPwgx7ICp7y8tAABt) cannot find nYF9oeMP0YEE9HzSAACG to output: true
+[16:36:01.433]controller lzeGpah6shaN8jVlAACJ into
+[16:36:01.434]gsBiU9_5ttgYZhNeAACF send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:36:01.577]cUCJcJSGYgR316jMAACI cannot find null to send electron: fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:36:01.953]nYF9oeMP0YEE9HzSAACG send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:36:01.964](4FMTPwgx7ICp7y8tAABt) output to gsBiU9_5ttgYZhNeAACF: true
+[16:36:01.964](4FMTPwgx7ICp7y8tAABt) cannot find gsBiU9_5ttgYZhNeAACF to output: true
+[16:36:02.199](4FMTPwgx7ICp7y8tAABt) output to nYF9oeMP0YEE9HzSAACG: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:36:02.199](4FMTPwgx7ICp7y8tAABt) cannot find nYF9oeMP0YEE9HzSAACG to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:36:02.275]gsBiU9_5ttgYZhNeAACF send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:36:02.510](4FMTPwgx7ICp7y8tAABt) output to gsBiU9_5ttgYZhNeAACF: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:36:02.510](4FMTPwgx7ICp7y8tAABt) cannot find gsBiU9_5ttgYZhNeAACF to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:36:40.251]controller cUCJcJSGYgR316jMAACI leave
+[16:36:40.320]controller gsBiU9_5ttgYZhNeAACF leave
+[16:36:54.20]controller 8LEZWtV88bZdfQMPAACL into
+[16:36:58.421]8LEZWtV88bZdfQMPAACL send javascript to G2102班电脑(4FMTPwgx7ICp7y8tAABt): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 300000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:36:58.655](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: {}
+[16:36:58.656](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: {}
+[16:36:59.406](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: screenshot
+[16:36:59.407](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: screenshot
+[16:36:59.442](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:36:59.442](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:05.528](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:37:05.529](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:08.509](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:37:08.509](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:11.322](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:37:11.322](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:13.622](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:37:13.622](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:14.674]controller GmQsowksQKDIAOEnAACQ into
+[16:37:14.709]controller 6hXzHqR1i-tjj_UYAACR into
+[16:37:14.942]controller _IdIE1jbWSQx8va3AACT into
+[16:37:15.24]GmQsowksQKDIAOEnAACQ send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.statSync("C:/Users/Administrator/Desktop").isDirectory()
+[16:37:16.435](4FMTPwgx7ICp7y8tAABt) output to 8LEZWtV88bZdfQMPAACL: [object Object]
+[16:37:16.435](4FMTPwgx7ICp7y8tAABt) cannot find 8LEZWtV88bZdfQMPAACL to output: [object Object]
+[16:37:16.436](4FMTPwgx7ICp7y8tAABt) output to GmQsowksQKDIAOEnAACQ: true
+[16:37:16.436](4FMTPwgx7ICp7y8tAABt) cannot find GmQsowksQKDIAOEnAACQ to output: true
+[16:37:16.693]GmQsowksQKDIAOEnAACQ send electron to G2102班电脑(4FMTPwgx7ICp7y8tAABt): fs.readdirSync("C:/Users/Administrator/Desktop")
+[16:37:16.932](4FMTPwgx7ICp7y8tAABt) output to GmQsowksQKDIAOEnAACQ: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:37:16.932](4FMTPwgx7ICp7y8tAABt) cannot find GmQsowksQKDIAOEnAACQ to output: ["360安全浏览器.lnk","desktop.ini","Microsoft Excel 2010.lnk","Microsoft PowerPoint 2010.lnk","Microsoft Word 2010.lnk","PotPlayer.lnk","wechat_PCDownload1100109240.exe","WPS Office.lnk","文外内网.lnk","新建 XLS 工作表.xls","新建文件夹","答案","美国首席大法官罗伯茨在儿子中学毕业典礼上的演讲，人唯有遭遇不公时，才知道公正的价值.mp4","赣教云教学通2.0.lnk","酷狗音乐.lnk"]
+[16:37:22.117]controller uykKBHxc4we9kmmVAACV into
+[16:37:22.117]uykKBHxc4we9kmmVAACV send javascript to G2102班电脑(4FMTPwgx7ICp7y8tAABt): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[16:37:22.352](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: {}
+[16:37:22.352](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: {}
+[16:37:23.124](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: screenshot
+[16:37:23.124](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: screenshot
+[16:37:23.164](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:23.164](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:25.131](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:25.132](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:26.897](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:26.897](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:28.523](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:28.523](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:30.115](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:30.115](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:31.725](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:31.725](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:33.568](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:33.568](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:35.174](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:35.174](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:35.442]controller nYF9oeMP0YEE9HzSAACG leave
+[16:37:35.737]controller EvGyhMrGEQTSKrXRAACH leave
+[16:37:35.816]controller lzeGpah6shaN8jVlAACJ leave
+[16:37:37.25](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:37.25](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:37.926]controller 8LEZWtV88bZdfQMPAACL leave
+[16:37:38.735](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:38.735](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:39.545](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:39.615](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:39.999](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:40.0](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:40.231](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:40.231](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:37:48.853]uykKBHxc4we9kmmVAACV send javascript to G2102班电脑(4FMTPwgx7ICp7y8tAABt): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[16:37:49.112](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: 924
+[16:37:49.112](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: 924
+[16:37:49.228](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: record start
+[16:37:49.229](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: record start
+[16:37:59.113](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: record data available
+[16:37:59.113](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: record data available
+[16:37:59.126](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:37:59.126](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:00.88](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:38:00.90](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:00.635](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:38:00.635](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:01.88](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:38:01.88](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:01.588](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:38:01.589](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:01.923](4FMTPwgx7ICp7y8tAABt) output to uykKBHxc4we9kmmVAACV: [object Object]
+[16:38:01.924](4FMTPwgx7ICp7y8tAABt) cannot find uykKBHxc4we9kmmVAACV to output: [object Object]
+[16:38:38.398]controller uykKBHxc4we9kmmVAACV leave
+[16:38:38.401]controller 6hXzHqR1i-tjj_UYAACR leave
+[16:38:38.419]controller _IdIE1jbWSQx8va3AACT leave
+[16:38:38.427]controller GmQsowksQKDIAOEnAACQ leave
+[16:39:24.934]controller HAtkqRbNjRDD0SLoAACZ into
+[16:39:25.211]controller iI7cvOr5Hvy5TJZ6AACa into
+[16:39:25.448]controller qHWD3FDOdwS7N1gLAACb into
+[16:39:36.691]controller iI7cvOr5Hvy5TJZ6AACa leave
+[16:39:36.706]controller HAtkqRbNjRDD0SLoAACZ leave
+[16:39:36.717]controller qHWD3FDOdwS7N1gLAACb leave
+[16:40:04.506]controller E5yc4tm-nvL1RdoNAACf into
+[16:40:05.171]controller ZMPonhnVgXHbRfdoAACj into
+[16:40:05.230]controller gXt7yDQWvzZ5MqvAAACi into
+[16:41:03.443]controller ZMPonhnVgXHbRfdoAACj leave
+[16:41:03.462]controller E5yc4tm-nvL1RdoNAACf leave
+[16:41:03.521]controller gXt7yDQWvzZ5MqvAAACi leave
+[16:42:50.952]controller TnI4AKXMTZ__b86BAACp into
+[16:42:51.127]controller YW3WmoPIS41x2ItoAACq into
+[16:42:51.681]controller SgVNmpKF6AM0AZEFAACt into
+[16:48:38.490]controller TnI4AKXMTZ__b86BAACp leave
+[16:49:23.399]controlled G2102班电脑(4FMTPwgx7ICp7y8tAABt) leave
+[16:49:25.305]controlled G2102班电脑(BVt8rnAvzHjjiEACAADR) into
+[16:55:57.297]controller YW3WmoPIS41x2ItoAACq leave
+[16:55:57.298]controller SgVNmpKF6AM0AZEFAACt leave
+[16:56:07.333]controller 63qIkk5X6_C8qyCZAAD7 into
+[16:56:08.732]controller CbtL-fWW0HnT2EwJAAD9 into
+[16:57:54.316]controlled G2102班电脑(BVt8rnAvzHjjiEACAADR) leave
+[17:04:20.151]controlled G2102班电脑(35ThaqYFGS8y5dIcAAEi) into
+[17:06:10.724]controller 63qIkk5X6_C8qyCZAAD7 leave
+[17:06:10.738]controller CbtL-fWW0HnT2EwJAAD9 leave
+[17:06:15.568]controller 3yQJ5VT-YpFnO4AGAAEn into
+[17:06:15.642]controller ltdhX2-RsE8ccwP9AAEo into
+[17:11:41.203]controller wxvMpbwGwe9n_IfDAAE_ into
+[17:11:42.638]controller ltdhX2-RsE8ccwP9AAEo leave
+[17:11:42.651]controller 3yQJ5VT-YpFnO4AGAAEn leave
+[17:12:25.325]controller wxvMpbwGwe9n_IfDAAE_ leave
+[17:18:31.474]controlled G2102班电脑(35ThaqYFGS8y5dIcAAEi) leave
+[17:19:02.205]controlled G2102班电脑(6yPDlLkUaL3rxpFGAAFB) into
+[17:34:28.914]controlled G2102班电脑(6yPDlLkUaL3rxpFGAAFB) leave
+[17:34:36.6]controlled G2102班电脑(JtUy5X5i8x9MBCAFAAFD) into
+[20:18:24.941]controlled G2107班电脑(YwKGAcS2nw_KFo0OAAAD) into
+[20:18:25.76]controlled G2102班电脑(dxXjryLLSm_anJpyAAAC) into
+[22:23:35.956]controlled G2102班电脑(dxXjryLLSm_anJpyAAAC) leave
