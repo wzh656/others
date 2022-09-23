@@ -1,0 +1,20 @@
+[08:13:16.144]controlled G2102班电脑(t38EK6bx3AG_Co32AAAB) into
+[11:51:45.715]controlled G2102班电脑(t38EK6bx3AG_Co32AAAB) leave
+[13:12:17.811]controlled 自家电脑(vI313xForLGvDgtMAAAW) into
+[13:13:52.969]controlled 自家电脑(vI313xForLGvDgtMAAAW) leave
+[13:48:18.713]controlled 自家电脑(eiPJTc1OJ0u0KQjvAAAa) into
+[13:48:49.562]controller K0EmOCJ-bcAFxVOsAAAc into
+[13:48:55.408]controller K0EmOCJ-bcAFxVOsAAAc leave
+[13:48:59.47]controller QtzoGWZJS9_YDrrOAAAe into
+[13:49:04.129]QtzoGWZJS9_YDrrOAAAe send electron to 自家电脑(eiPJTc1OJ0u0KQjvAAAa): win.hide()
+[13:49:05.18](eiPJTc1OJ0u0KQjvAAAa) output to QtzoGWZJS9_YDrrOAAAe: null
+[13:49:09.560]QtzoGWZJS9_YDrrOAAAe send electron to 自家电脑(eiPJTc1OJ0u0KQjvAAAa): win.show()
+[13:49:09.787](eiPJTc1OJ0u0KQjvAAAa) output to QtzoGWZJS9_YDrrOAAAe: null
+[13:51:41.687]controlled 自家电脑(eiPJTc1OJ0u0KQjvAAAa) leave
+[14:23:44.833]controller QtzoGWZJS9_YDrrOAAAe leave
+[14:23:48.804]controller D28VwXDi3Ch3QMoTAAAg into
+[14:23:56.341]controller D28VwXDi3Ch3QMoTAAAg leave
+[14:23:59.416]controller 6_ZzF-EPHPS3u27uAAAi into
+[14:43:02.416]controlled 自家电脑(AzQes151xdiGpTrYAAAk) into
+[14:54:03.62]controller 6_ZzF-EPHPS3u27uAAAi leave
+[14:54:18.612]controlled 自家电脑(AzQes151xdiGpTrYAAAk) leave

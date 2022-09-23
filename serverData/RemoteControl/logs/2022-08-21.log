@@ -1,0 +1,1020 @@
+[07:27:55.134]controlled G2102班电脑(-xGsV03PAy1eC_aJAAAD) into
+[08:43:30.882]controlled G2107班电脑(s_5okZny9yELxIPMAAAI) into
+[12:09:34.723]controller byX2Kx6Pg6gS8hHQAAA_ into
+[12:09:38.724]controller byX2Kx6Pg6gS8hHQAAA_ leave
+[12:09:42.297]controller 0npxqY3d9wyxDOCDAABB into
+[12:09:44.756]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[12:09:45.60](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:09:48.457](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:09:48.516](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: 640,480
+[12:09:50.179]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[12:09:50.488](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:09:50.489](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: null
+[12:09:52.42](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:09:56.703]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:09:56.923](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:10:00.588](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: screenshot
+[12:10:00.664](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:04.54](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:05.803](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:07.288](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:08.952](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:10.520](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:11.910](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:13.237](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:14.651](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:16.140](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:17.626](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:19.52](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:20.564](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:21.827](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:23.415](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:24.850](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:26.487](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:26.870](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:32.800]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:10:33.21](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:10:34.773](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: screenshot
+[12:10:34.881](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:35.837](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:36.306](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:36.917](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:37.344](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:37.834](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:38.453](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:38.822](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:38.824]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[12:10:39.217](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:39.217](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: 677
+[12:10:39.222](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record start
+[12:10:39.652](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:40.128](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:40.605](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:41.359](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:41.746](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:42.133](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:42.600](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:43.141](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:43.742](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:44.119](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:44.603](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:45.112](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:45.610](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:46.112](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:46.669](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:47.315](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:47.815](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:48.107](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:48.600](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:49.266](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:49.266](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record data available
+[12:10:49.266](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:49.932](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:50.303](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:51.29](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:51.301](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:51.810](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:52.436](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:52.851](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:53.420](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:53.798](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:10:54.83](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:33.590]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[12:11:33.814](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: 681
+[12:11:33.886](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record start
+[12:11:36.275]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:11:36.482](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:11:37.619](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: screenshot
+[12:11:37.642](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:38.373](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:38.853](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:39.369](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:39.936](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:40.429](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:40.937](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:41.365](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:41.854](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:42.547](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:42.855](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:43.426](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:43.853](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:43.853](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record data available
+[12:11:43.853](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:44.365](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:44.557](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:44.937](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:45.150](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:45.358](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:45.565](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:45.958](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:46.80](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:46.677](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:46.730](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:46.735](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:47.148](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:47.631](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:48.48](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:48.552](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:11:48.834](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:12:22.802]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[12:12:23.37](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: 686
+[12:12:23.116](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record start
+[12:12:24.189]controller 9pK7-zlm-BdZj5XLAABD into
+[12:13:21.818]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:13:22.42](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:13:23.44](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: record data available
+[12:13:23.145](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:23.320](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: screenshot
+[12:13:23.396](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:23.832](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:24.126](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:24.446](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:24.633](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:25.141](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:25.221](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:25.456](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:25.751](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:25.936](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:26.164](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:26.341](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:26.616](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:26.674](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:26.949](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:27.252](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:27.438](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:27.746](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:27.950](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:28.171](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:28.451](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:28.662](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:29.26](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:29.459](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:29.519](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:29.657](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:29.932](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:30.230](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:30.428](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:30.733](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:30.950](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:31.148](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:31.437](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:31.648](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:31.959](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:32.242](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:32.637](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:32.661](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:33.157](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:33.721](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:34.239](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:34.744](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:35.166](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:35.698](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:36.161](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:36.683](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:37.230](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:37.741](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:38.259](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:38.675](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:39.153](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:39.655](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:40.229](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:40.738](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:41.164](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:41.744](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:42.320](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:42.655](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:43.237](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:43.653](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:44.146](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:44.734](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:45.154](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:45.741](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:46.158](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:46.672](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:47.239](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:47.660](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:48.337](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:48.671](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:49.440](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:49.653](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:50.229](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:13:50.661](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:30.77]0npxqY3d9wyxDOCDAABB send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:14:30.303](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: {}
+[12:14:32.915](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: screenshot
+[12:14:33.34](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:33.536](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:34.25](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:34.753](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:34.846]controller HOh-ybfnYU6ATJpUAABG into
+[12:14:34.853]controller nmTA81xW_BAqcGtNAABH into
+[12:14:35.22](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:35.755](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:36.146](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:36.769](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:37.79](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:37.531](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:38.36](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:38.779](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:39.71](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:39.548](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:40.50](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:40.513](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:41.41](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:41.941](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:42.130](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:42.337]controller xx6awlg9SEXD2Z34AABK into
+[12:14:42.543](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:42.738]controller Dyf3OHO8-g9y1PfKAABL into
+[12:14:43.36](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:43.160]controller HOh-ybfnYU6ATJpUAABG leave
+[12:14:43.525](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:44.21](-xGsV03PAy1eC_aJAAAD) output to 0npxqY3d9wyxDOCDAABB: [object Object]
+[12:14:46.905]controller 0npxqY3d9wyxDOCDAABB leave
+[12:14:49.817]controller 9pK7-zlm-BdZj5XLAABD leave
+[12:14:55.213]Dyf3OHO8-g9y1PfKAABL send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:14:55.438](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: {}
+[12:14:58.508](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: screenshot
+[12:14:58.680](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:14:59.272](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:14:59.781](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:00.247](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:00.739](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:01.248](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:01.853](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:02.204](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:02.756](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:03.237](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:03.747](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:04.264](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:04.818](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:05.261](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:05.709](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:06.224](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:06.766](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:07.325](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:07.930](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:08.203](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:08.764](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:09.225](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:09.729](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:10.338](-xGsV03PAy1eC_aJAAAD) output to Dyf3OHO8-g9y1PfKAABL: [object Object]
+[12:15:18.32]controller nmTA81xW_BAqcGtNAABH leave
+[12:15:25.756]controller Dyf3OHO8-g9y1PfKAABL leave
+[12:15:28.687]controller VALewXpMpPK9-cVUAABN into
+[12:19:48.643]controller VALewXpMpPK9-cVUAABN leave
+[12:19:52.594]controller R25ixVb-PKr8ttdQAABP into
+[12:20:03.149]controller IstgL14uezx7t9yeAABR into
+[12:20:06.661]IstgL14uezx7t9yeAABR send javascript to G2102班电脑(-xGsV03PAy1eC_aJAAAD): location.reload()
+[12:20:06.870](-xGsV03PAy1eC_aJAAAD) output to IstgL14uezx7t9yeAABR: null
+[12:20:06.927]controlled G2102班电脑(-xGsV03PAy1eC_aJAAAD) leave
+[12:20:09.635]controlled G2102班电脑(dSq6wCuj5C6nqrHLAABT) into
+[12:20:13.781]controller IstgL14uezx7t9yeAABR leave
+[12:20:16.469]controller 7a8SP4_6X_Fp2CNNAABV into
+[12:20:19.448]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[12:20:19.694](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: {}
+[12:20:20.642](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:20.912](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: 640,480
+[12:20:24.20]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[12:20:24.288](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:24.288](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: null
+[12:20:25.522](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:27.512]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[12:20:27.817](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: 4
+[12:20:27.828](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: record start
+[12:20:28.302]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:20:28.421]controller anA_3Q9xeJOUjBZiAABX into
+[12:20:28.547](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: {}
+[12:20:30.977](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: screenshot
+[12:20:31.132](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:32.354](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:32.630](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:32.841](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:33.233](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:33.651](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:34.243](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:34.863](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:35.255](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:35.743](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:36.253](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:36.753](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:37.162](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:37.755](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:37.759](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: record data available
+[12:20:37.781](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:38.229](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:38.447](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:38.865](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:38.927](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:39.168](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:39.337](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:39.727](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:39.865](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:40.323](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:40.335](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:40.742](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:40.827](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:41.150](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:41.306](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:41.732](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:41.810](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:42.155](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:42.355](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:42.659](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:42.817](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:43.156](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:43.649](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:44.222](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:20:44.639](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:21:22.468]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[12:21:22.714](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: 9
+[12:21:22.811](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: record start
+[12:21:25.238]controller 5wNQgTvvww8h4fzYAABZ into
+[12:21:57.738]7a8SP4_6X_Fp2CNNAABV send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:21:57.979](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: {}
+[12:21:58.822](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: screenshot
+[12:21:58.906](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:21:59.471](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:21:59.956](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:00.459](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:00.953](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:01.444](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:01.948](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:02.615](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:02.945](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:03.528](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:03.938](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:04.443](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:04.950](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:05.451](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:06.40](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:06.460](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:22.718](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: record data available
+[12:22:22.768](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:23.336](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:23.835](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:24.332](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:24.835](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:25.338](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:25.825](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:26.335](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:26.794](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:27.295](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:27.845](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:28.322](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:28.932](dSq6wCuj5C6nqrHLAABT) output to 7a8SP4_6X_Fp2CNNAABV: [object Object]
+[12:22:29.21]controller 7a8SP4_6X_Fp2CNNAABV leave
+[12:22:29.373](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:29.792](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:30.623](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:30.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:31.36]controller p-3EjttS1-JnvWsjAABb into
+[12:22:31.341](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:31.793](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:32.430](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:32.832](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:33.423](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:33.936](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:34.293](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:34.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:35.428](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:35.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:36.347](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:36.929](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:37.348](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:37.796](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:38.296](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:38.796](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:39.342](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:40.132](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:40.293](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:40.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:41.443](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:41.833](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:42.329](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:43.228](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:43.436](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:43.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:44.334](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:44.796](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:45.343](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:45.859](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:46.470](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:46.828](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:47.355](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:47.919](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:48.337](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:48.794](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:48.876]controller R25ixVb-PKr8ttdQAABP leave
+[12:22:49.427](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:49.844](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:50.272](dSq6wCuj5C6nqrHLAABT) cannot find 7a8SP4_6X_Fp2CNNAABV to output: [object Object]
+[12:22:51.871]controller XYSpRSK_wE5wbHtoAABg into
+[12:22:52.315]controller 5_k88FswCPZ5VNXnAABf into
+[12:22:52.319]controller p-3EjttS1-JnvWsjAABb leave
+[12:22:52.319]controller 5wNQgTvvww8h4fzYAABZ leave
+[12:22:52.325]controller anA_3Q9xeJOUjBZiAABX leave
+[12:22:52.325]controller wJdPmguTXZdr-yJXAABj into
+[12:22:52.528]controller NrFHpJtWS0rc-mveAABk into
+[12:22:52.535]controller UIyrB_FhtQ6XLYUiAABl into
+[12:22:56.102]UIyrB_FhtQ6XLYUiAABl send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:22:56.341](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: {}
+[12:22:57.24](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: screenshot
+[12:22:57.143](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:57.716](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:58.143](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:58.484]UIyrB_FhtQ6XLYUiAABl send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[12:22:58.642](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:59.222](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:59.575](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: 17
+[12:22:59.654](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:22:59.654](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: record start
+[12:23:00.216](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:00.621](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:01.167](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:01.628](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:02.111](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:02.568]controller XlzIKdlLz_KSFR7kAABn into
+[12:23:02.633](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:02.845]controller XYSpRSK_wE5wbHtoAABg leave
+[12:23:02.941]controller 5_k88FswCPZ5VNXnAABf leave
+[12:23:02.941]controller wJdPmguTXZdr-yJXAABj leave
+[12:23:03.107](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:03.173]controller 9FBYdzY6xUssEjsSAABp into
+[12:23:03.398]controller NrFHpJtWS0rc-mveAABk leave
+[12:23:03.607](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:04.6]controller -Hpcmw4wBJKUMPoIAABt into
+[12:23:04.62]controller ibw5H5fdc9wZIb_oAABs into
+[12:23:04.120](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:04.584](dSq6wCuj5C6nqrHLAABT) output to UIyrB_FhtQ6XLYUiAABl: [object Object]
+[12:23:06.532]controller ZXC0t2kY-aW6gmGHAABv into
+[12:23:08.37]controller xx6awlg9SEXD2Z34AABK leave
+[12:23:08.339]ZXC0t2kY-aW6gmGHAABv send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[12:23:08.569](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: {}
+[12:23:09.284](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: screenshot
+[12:23:09.336](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:09.644](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: record data available
+[12:23:09.644](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:09.953](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:09.953]ZXC0t2kY-aW6gmGHAABv send javascript to G2102班电脑(dSq6wCuj5C6nqrHLAABT): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[12:23:10.166](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:10.196](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: 21
+[12:23:10.297](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: record start
+[12:23:10.363](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:10.628](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:10.874](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:11.155](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:11.375](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:11.643](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:11.952](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:12.216](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:12.359](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:12.662](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:12.868](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:13.128](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:13.437](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:13.657](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:13.862](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:14.122](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:14.432](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:14.589](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:14.927](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:15.453](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:16.140](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:16.400](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:16.839](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:20.195](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: record data available
+[12:23:20.205](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:20.740](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:21.243](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:21.752](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:22.254](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:22.744](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:23.242](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:23.758](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:24.245](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:24.740](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:25.237](dSq6wCuj5C6nqrHLAABT) output to ZXC0t2kY-aW6gmGHAABv: [object Object]
+[12:23:36.177]controller UIyrB_FhtQ6XLYUiAABl leave
+[12:23:50.441]controller ZXC0t2kY-aW6gmGHAABv leave
+[12:23:52.625]controller hwf1Fwq1fCHt9oV1AABx into
+[12:23:57.285]controller hwf1Fwq1fCHt9oV1AABx leave
+[12:23:57.287]controller ibw5H5fdc9wZIb_oAABs leave
+[12:23:57.362]controller -Hpcmw4wBJKUMPoIAABt leave
+[12:23:57.391]controller 9FBYdzY6xUssEjsSAABp leave
+[12:23:57.394]controller XlzIKdlLz_KSFR7kAABn leave
+[13:30:47.700]controlled 自家电脑(d_ZowjEkAPLKF-2rAABz) into
+[14:22:54.25]controlled G2107班电脑(s_5okZny9yELxIPMAAAI) leave
+[14:22:56.790]controlled G2107班电脑(uWbz_HJTtcnYxOpzAAB3) into
+[14:23:27.664]controlled 自家电脑(d_ZowjEkAPLKF-2rAABz) leave
+[14:23:28.685]controlled G2102班电脑(dSq6wCuj5C6nqrHLAABT) leave
+[14:23:31.246]controlled 自家电脑(y4vwT4iiqaN2p0yTAAB5) into
+[14:23:32.938]controlled G2102班电脑(27x3BHGjdwpQyJbrAAB7) into
+[14:23:56.996]controlled G2102班电脑(27x3BHGjdwpQyJbrAAB7) leave
+[14:23:59.839]controlled G2102班电脑(cWeRaGeDqIZbu3ZLAAB9) into
+[14:24:19.714]controlled G2107班电脑(uWbz_HJTtcnYxOpzAAB3) leave
+[14:24:24.362]controlled G2107班电脑(o_ISDig_euVFaxHGAAB_) into
+[15:21:31.325]controlled 自家电脑(y4vwT4iiqaN2p0yTAAB5) leave
+[15:50:01.361]controlled G2107班电脑(o_ISDig_euVFaxHGAAB_) leave
+[18:47:25.189]controlled G2102班电脑(OxNOHFDe8eCnNYNzAAAB) into
+[20:33:07.512]controlled G2102班电脑(OxNOHFDe8eCnNYNzAAAB) leave

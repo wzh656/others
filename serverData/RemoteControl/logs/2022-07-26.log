@@ -1,0 +1,765 @@
+[07:37:55.223]controlled G2102班电脑(P79UT1CsWY9ibWykAAAB) into
+[10:44:38.523]controlled G2102班电脑(P79UT1CsWY9ibWykAAAB) leave
+[11:42:12.3]controlled G2102班电脑(wT2Qdq0dDgsbBaeGAAAI) into
+[12:06:29.823]controlled G2107班电脑(Fqjo2x42WU424qlkAAAK) into
+[13:02:38.283]controlled 自家电脑(UjKybCExtzO6lQOxAAAM) into
+[13:21:34.706]controlled G2107班电脑(Fqjo2x42WU424qlkAAAK) leave
+[14:22:55.685]controlled G2102班电脑(wT2Qdq0dDgsbBaeGAAAI) leave
+[14:22:59.879]controlled G2102班电脑(uIzlkRw62iJUyZkSAAAQ) into
+[14:23:42.584]controlled G2102班电脑(uIzlkRw62iJUyZkSAAAQ) leave
+[14:23:45.143]controlled G2102班电脑(AwVISFDIMZ5U_NT6AAAS) into
+[14:24:15.709]controlled 自家电脑(UjKybCExtzO6lQOxAAAM) leave
+[14:24:20.179]controlled 自家电脑(SAwSLku079qYae4bAAAU) into
+[14:44:43.938]controlled 自家电脑(SAwSLku079qYae4bAAAU) leave
+[14:57:24.417]controller AGHq11xKkPhmmJthAAAW into
+[14:57:30.6]controller AGHq11xKkPhmmJthAAAW leave
+[14:57:39.436]controller Kd_6KVArLZrh5TalAAAY into
+[14:57:41.447]controller Kd_6KVArLZrh5TalAAAY leave
+[14:57:45.107]controller 1RFnMdY1tZ8NHBpcAAAa into
+[14:57:47.483]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[14:57:47.723](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:57:47.723](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:57:48.557](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:57:48.557](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:57:48.954](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: 640,480
+[14:57:48.954](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: 640,480
+[14:57:51.816]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[14:57:52.101](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:57:52.102](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:57:52.102](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: null
+[14:57:52.102](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: null
+[14:57:53.537](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:57:53.537](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:57:57.1]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:57:57.236](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:57:57.236](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:57:59.456](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:57:59.456](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:57:59.460](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:57:59.460](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:03.9](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:03.9](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:16.81]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:58:16.318](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:58:16.318](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:58:16.903](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:58:16.903](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:58:16.980](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:16.982](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:19.305](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:19.306](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:29.415]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:58:29.651](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:58:29.651](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:58:30.399](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:58:30.400](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:58:30.486](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:30.486](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:32.562](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:32.562](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:42.0]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:58:42.236](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:58:42.236](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:58:43.93](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:58:43.93](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:58:43.129](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:43.129](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:45.274](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:45.282](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:47.0](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:47.0](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:47.604](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:47.604](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:50.400]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:58:50.636](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:58:50.636](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:58:51.396](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:58:51.396](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:58:51.592](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:51.592](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:53.604](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:53.604](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:55.204](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:55.205](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:57.61](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:57.61](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:58.225](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:58:58.225](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:58:59.298]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:58:59.534](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:58:59.534](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:59:00.326](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:59:00.326](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:59:00.357](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:00.357](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:02.590](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:02.590](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:04.691](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:04.692](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:06.89](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:06.89](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:07.859](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:07.859](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:08.86](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:08.180](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:10.760]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:59:10.996](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:59:10.996](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:59:11.673](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:59:11.673](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:59:11.701](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:11.701](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:13.687](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:13.688](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:15.245](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:15.245](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:17.121](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:17.121](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:19.13](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:19.13](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:19.492](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:19.493](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:22.988]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:59:23.225](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[14:59:23.226](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[14:59:23.910](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[14:59:23.910](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[14:59:23.946](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:23.946](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:24.922](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:24.922](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:25.421](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:25.421](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:25.921](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:25.921](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:26.422](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:26.422](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:27.17](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:27.18](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:27.486](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:27.487](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:35.703]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[14:59:35.939](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: 485
+[14:59:35.939](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: 485
+[14:59:36.17](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: record start
+[14:59:36.17](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: record start
+[14:59:45.941](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: record data available
+[14:59:45.941](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: record data available
+[14:59:45.952](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:45.952](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:46.806](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:46.806](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:47.205](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:47.206](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:47.698](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:47.698](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:48.284](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:48.284](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:48.699](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:48.700](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:49.307](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:49.307](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:49.708](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:49.708](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:50.294](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:50.294](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:50.716](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:50.716](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[14:59:50.991](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[14:59:50.992](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:02.960]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[15:00:03.285](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: 488
+[15:00:03.285](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: 488
+[15:00:03.285](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: record start
+[15:00:03.285](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: record start
+[15:00:03.286]controller qClAwuBxBo53Yl-OAAAc into
+[15:00:10.816]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:00:11.53](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[15:00:11.54](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[15:00:11.802](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[15:00:11.802](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[15:00:11.848](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:11.848](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:12.683](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:12.683](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:13.90](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:13.95](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:13.687](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:13.688](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:14.94](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:14.94](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:14.614](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:14.614](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:15.191](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:15.191](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:15.598](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:15.599](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:16.184](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:16.185](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:16.692](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:16.695](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:16.856](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:16.856](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:37.255]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:00:37.493](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[15:00:37.493](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[15:00:38.236](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[15:00:38.236](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[15:00:38.276](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:38.276](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:39.26](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:39.26](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:39.518](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:39.518](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:40.17](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:40.17](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:40.585](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:40.585](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:41.21](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:41.21](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:41.586](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:41.586](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:42.90](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:42.91](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:42.528](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:42.528](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:43.23](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:43.23](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:00:43.387](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:00:43.390](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:03.201](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: record data available
+[15:01:03.201](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: record data available
+[15:01:03.279](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:03.279](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:04.6](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:04.7](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:04.506](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:04.506](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:05.82](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:05.82](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:05.580](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:05.580](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:06.104](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:06.104](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:06.505](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:06.505](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:07.12](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:07.13](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:07.581](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:07.581](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:08.4](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:08.4](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:08.591](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:08.592](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:09.84](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:09.84](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:09.582](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:09.582](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:10.13](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:10.14](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:10.599](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:10.599](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:11.95](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:11.95](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:11.595](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:11.595](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:12.90](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:12.92](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:12.587](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:12.587](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:13.0](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:13.1](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:13.504](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:13.504](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:14.8](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:14.8](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:14.585](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:14.585](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:15.5](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:15.82](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:15.505](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:15.505](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:16.7](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:16.7](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:16.504](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:16.504](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:17.7](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:17.79](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:17.504](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:17.504](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:18.89](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:18.90](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:18.581](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:18.581](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:19.2](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:19.2](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:19.504](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:19.504](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:20.9](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:20.9](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:20.495]1RFnMdY1tZ8NHBpcAAAa send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:01:20.508](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:20.508](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:20.780](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: {}
+[15:01:20.780](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: {}
+[15:01:21.92](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:21.92](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: screenshot
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: screenshot
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:21.506](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:22.3](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:22.3](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:22.236](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:22.237](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:22.505](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:22.505](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:22.735](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:22.735](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:23.93](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:23.93](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:23.233](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:23.233](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:23.508](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:23.508](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:23.735](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:23.735](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:24.120](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:24.120](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:24.506](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:24.506](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:25.11](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:25.11](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:25.503](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:25.503](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:26.110](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:26.110](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:26.300](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:26.300](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:26.794](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:26.794](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:27.308](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:27.308](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:27.814](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:27.814](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:28.295](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:28.295](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:28.796](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:28.797](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:29.293](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:29.293](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:29.907](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:29.907](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:30.288](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:30.288](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:01:30.764](AwVISFDIMZ5U_NT6AAAS) output to 1RFnMdY1tZ8NHBpcAAAa: [object Object]
+[15:01:30.765](AwVISFDIMZ5U_NT6AAAS) cannot find 1RFnMdY1tZ8NHBpcAAAa to output: [object Object]
+[15:02:26.368]controller 1RFnMdY1tZ8NHBpcAAAa leave
+[15:02:27.532]controller qClAwuBxBo53Yl-OAAAc leave
+[15:04:36.509]controller 66iaoFggEhx-ICTyAAAf into
+[15:04:36.511]controller N3MHCv3M1AcioxvGAAAg into
+[15:04:48.186]66iaoFggEhx-ICTyAAAf send javascript to G2102班电脑(AwVISFDIMZ5U_NT6AAAS): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:04:48.423](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: {}
+[15:04:48.423](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: {}
+[15:04:49.195](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: screenshot
+[15:04:49.196](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: screenshot
+[15:04:49.280](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:49.280](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:51.443](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:51.444](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:51.913](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:51.913](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:52.370](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:52.371](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:52.888](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:52.888](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:53.75](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:53.75](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:53.540](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:53.540](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:54.88](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:54.88](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:54.285](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:54.286](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:54.710](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:54.710](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:55.162](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:55.163](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:55.426](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:55.426](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:55.863](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:55.863](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:04:56.203](AwVISFDIMZ5U_NT6AAAS) output to 66iaoFggEhx-ICTyAAAf: [object Object]
+[15:04:56.203](AwVISFDIMZ5U_NT6AAAS) cannot find 66iaoFggEhx-ICTyAAAf to output: [object Object]
+[15:05:06.272]controller Y1lMXd7ut2IsW89VAAAj into
+[15:05:06.332]controller aRIIP0GMtpdaBC1WAAAk into
+[15:05:20.189]controller 66iaoFggEhx-ICTyAAAf leave
+[15:05:20.189]controller N3MHCv3M1AcioxvGAAAg leave
+[15:05:21.97]controller aRIIP0GMtpdaBC1WAAAk leave
+[15:05:25.92]controller qUQFcc5Rp0yhQEFnAAAm into
+[15:05:49.147]controller qUQFcc5Rp0yhQEFnAAAm leave
+[15:06:15.488]controller Y1lMXd7ut2IsW89VAAAj leave
+[15:54:15.80]controlled G2107班电脑(JvqD7SC503_BuXGbAAAo) into
+[17:28:08.327]controlled G2107班电脑(JvqD7SC503_BuXGbAAAo) leave
+[17:40:05.345]controlled G2107班电脑(LvCSlYzoTWA95rsdAAAu) into
+[17:53:05.183]controlled G2107班电脑(LvCSlYzoTWA95rsdAAAu) leave
+[17:58:23.581]controlled G2102班电脑(AwVISFDIMZ5U_NT6AAAS) leave
+[21:36:44.393]controlled G2102班电脑(lM_VkFRK4FoNTFPUAAAD) into
+[21:55:02.518]controlled G2107班电脑(GvUKWsjhl0HEXtsEAAAF) into
+[21:56:18.812]controlled G2107班电脑(GvUKWsjhl0HEXtsEAAAF) leave
+[22:03:54.680]controlled G2102班电脑(lM_VkFRK4FoNTFPUAAAD) leave

@@ -1,0 +1,60 @@
+[08:05:59.813]controlled G2102班电脑(bLx-JLUG1ZIXoZaZAAAB) into
+[09:17:15.897]controlled G2106班电脑(bHE9-7_3mC3BVDBZAAAD) into
+[09:18:57.460]controlled G2106班电脑(bHE9-7_3mC3BVDBZAAAD) leave
+[13:00:24.522]controlled 自家电脑(gca_DV9CLnMO9-HBAAAQ) into
+[13:57:15.191]controlled 自家电脑(gca_DV9CLnMO9-HBAAAQ) leave
+[13:57:20.134]controlled 自家电脑(T-ccdFi2r_YN7WJWAAAc) into
+[14:23:11.193]controlled G2102班电脑(bLx-JLUG1ZIXoZaZAAAB) leave
+[14:23:15.632]controlled G2102班电脑(nsKGTMJC-icX4nNRAAAf) into
+[14:23:42.379]controlled 自家电脑(T-ccdFi2r_YN7WJWAAAc) leave
+[14:23:46.13]controlled 自家电脑(pqem06AF1-nN3Y8fAAAh) into
+[14:24:15.828]controlled G2102班电脑(nsKGTMJC-icX4nNRAAAf) leave
+[14:24:18.944]controlled G2102班电脑(l4GkzY3pcE0Jcnn3AAAj) into
+[14:25:21.697]controller d2W4fDh1V26Hfgu6AAAl into
+[14:25:24.313]controller d2W4fDh1V26Hfgu6AAAl leave
+[14:25:26.14]controller cp8PZePfbg_U2MG4AAAn into
+[14:25:28.288]cp8PZePfbg_U2MG4AAAn send javascript to G2102班电脑(l4GkzY3pcE0Jcnn3AAAj): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[14:25:28.565](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: {}
+[14:25:30.880](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: screenshot
+[14:25:30.888](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:38.766](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:41.683](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:43.627](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:45.540](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:47.456](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:49.648](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:51.603](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:53.549](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:55.398](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:25:57.314](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:00.924](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:02.805](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:04.925](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:06.842](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:07.387](l4GkzY3pcE0Jcnn3AAAj) output to cp8PZePfbg_U2MG4AAAn: [object Object]
+[14:26:10.185]controller cp8PZePfbg_U2MG4AAAn leave
+[14:26:12.904]controller WV9nQxsmlSEcO8BHAAAp into
+[14:46:21.226]controller WV9nQxsmlSEcO8BHAAAp leave
+[14:46:21.349]controlled 自家电脑(pqem06AF1-nN3Y8fAAAh) leave
+[18:26:03.643]controlled G2102班电脑(l4GkzY3pcE0Jcnn3AAAj) leave

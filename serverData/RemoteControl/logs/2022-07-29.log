@@ -1,0 +1,331 @@
+[07:50:00.219]controlled G2102班电脑(sGhWdfiTmafZVI_kAAAB) into
+[12:01:30.23]controlled G2102班电脑(sGhWdfiTmafZVI_kAAAB) leave
+[12:04:40.347]controlled G2102班电脑(HSe2KHLIeSDbcI3CAAAD) into
+[13:00:25.970]controlled 自家电脑(eP9PFKEB2mOljERhAAAI) into
+[13:42:41.648]controlled G2102班电脑(HSe2KHLIeSDbcI3CAAAD) leave
+[13:52:34.242]controlled G2102班电脑(A3VpNzh_ABQjYCbsAAAK) into
+[14:03:47.578]controlled G2107班电脑(dIgDCjXCLX83eckmAAAM) into
+[14:23:11.990]controlled G2102班电脑(A3VpNzh_ABQjYCbsAAAK) leave
+[14:23:17.225]controlled G2102班电脑(5BK8VKscdGtemKqvAAAO) into
+[14:23:44.745]controlled G2107班电脑(dIgDCjXCLX83eckmAAAM) leave
+[14:23:50.370]controlled G2107班电脑(Ivzy_0-sQ3Qwp9DcAAAQ) into
+[14:23:59.503]controlled G2107班电脑(Ivzy_0-sQ3Qwp9DcAAAQ) leave
+[14:24:02.142]controlled G2107班电脑(GI7c_6lN4idYTpzqAAAS) into
+[14:24:16.146]controlled 自家电脑(eP9PFKEB2mOljERhAAAI) leave
+[14:24:21.770]controlled 自家电脑(c0IhUJ76tLlIRMb5AAAU) into
+[14:24:30.623]controlled G2102班电脑(5BK8VKscdGtemKqvAAAO) leave
+[14:24:33.842]controlled G2102班电脑(CRfyFQElHBfvs3nmAAAW) into
+[14:41:01.681]controlled 自家电脑(c0IhUJ76tLlIRMb5AAAU) leave
+[15:30:20.507]controlled G2107班电脑(GI7c_6lN4idYTpzqAAAS) leave
+[15:51:03.882]controller szAvoTg7idA-HUcaAAAf into
+[15:51:05.32]controller szAvoTg7idA-HUcaAAAf leave
+[15:51:08.304]controller BjN8Kx3D3H4SwiufAAAh into
+[15:51:09.733]BjN8Kx3D3H4SwiufAAAh send javascript to G2102班电脑(CRfyFQElHBfvs3nmAAAW): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[15:51:09.984](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: {}
+[15:51:10.75](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: {}
+[15:51:10.977](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:10.977](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:11.1](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: 640,480
+[15:51:11.1](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: 640,480
+[15:51:13.873]BjN8Kx3D3H4SwiufAAAh send javascript to G2102班电脑(CRfyFQElHBfvs3nmAAAW): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[15:51:14.197](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:14.198](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:14.198](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: null
+[15:51:14.198](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: null
+[15:51:19.184](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:19.184](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:20.985](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:20.986](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:25.482]BjN8Kx3D3H4SwiufAAAh send javascript to G2102班电脑(CRfyFQElHBfvs3nmAAAW): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:51:25.727](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: {}
+[15:51:25.728](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: {}
+[15:51:27.273]BjN8Kx3D3H4SwiufAAAh send javascript to G2102班电脑(CRfyFQElHBfvs3nmAAAW): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[15:51:27.513](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: 290
+[15:51:27.513](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: 290
+[15:51:27.750](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: record start
+[15:51:27.750](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: record start
+[15:51:27.900](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: screenshot
+[15:51:27.900](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: screenshot
+[15:51:27.978](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:27.978](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:30.151](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:30.151](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:32.99](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:32.103](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:33.895](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:33.895](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:35.755](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:35.755](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:37.698](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:37.698](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:39.381](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:39.381](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:41.303](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:41.374](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:43.16](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:43.16](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:44.929](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:44.930](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:46.874](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:46.874](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:48.383](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:48.384](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:50.221](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:50.222](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:52.412](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:52.412](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:54.98](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:54.98](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:54.99](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:54.99](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:54.99](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: record data available
+[15:51:54.100](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: record data available
+[15:51:54.100](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:54.100](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:55.889](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:55.899](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:57.593](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:57.593](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:57.996](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:57.996](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:58.700](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:58.700](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:59.182](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:59.184](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:51:59.688](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:51:59.688](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:52:00.148](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:52:00.148](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:52:00.678](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: [object Object]
+[15:52:00.678](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:52:20.263]controller 1JXmjnRu7F9PkHPzAAAj into
+[15:52:20.878]BjN8Kx3D3H4SwiufAAAh send javascript to G2102班电脑(CRfyFQElHBfvs3nmAAAW): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 60000);
+[15:52:21.128](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: 294
+[15:52:21.128](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: 294
+[15:52:21.344](CRfyFQElHBfvs3nmAAAW) output to BjN8Kx3D3H4SwiufAAAh: record start
+[15:52:21.344](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: record start
+[15:53:15.663]controller BjN8Kx3D3H4SwiufAAAh leave
+[15:53:21.189](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: record data available
+[15:53:21.189](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:22.177](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:22.672](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:22.890]controller V6jH-6G00YcOgAeNAAAm into
+[15:53:22.903]controller 17Pg4MItOU7Wz_XtAAAn into
+[15:53:23.157](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:23.187]controller 1JXmjnRu7F9PkHPzAAAj leave
+[15:53:23.700](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:23.936](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:24.433](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:24.994](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:25.477](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:25.985](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:26.435](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:26.933](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:27.430](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:27.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:28.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:28.930](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:29.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:29.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:30.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:30.928](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:31.483](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:31.979](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:32.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:32.929](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:33.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:33.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:34.497](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:34.931](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:35.435](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:35.996](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:36.595](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:36.931](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:37.430](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:37.931](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:38.433](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:38.975](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:39.432](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:39.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:40.431](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:40.930](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:41.434](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:41.935](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:42.436](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:42.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:43.431](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:43.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:44.431](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:44.925](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:45.502](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:45.931](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:46.426](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:46.932](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[15:53:46.998]controller 17Pg4MItOU7Wz_XtAAAn leave
+[15:53:46.999]controller V6jH-6G00YcOgAeNAAAm leave
+[15:53:47.181](CRfyFQElHBfvs3nmAAAW) cannot find BjN8Kx3D3H4SwiufAAAh to output: [object Object]
+[16:06:48.90]controller NUZuN70AhxVYesqWAAAt into
+[16:06:49.570]controller NUZuN70AhxVYesqWAAAt leave
+[16:07:02.370]controller DZyX4D-cKxrJHr5GAAAv into
+[16:07:02.888]DZyX4D-cKxrJHr5GAAAv send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[16:07:03.147](CRfyFQElHBfvs3nmAAAW) output to DZyX4D-cKxrJHr5GAAAv: true
+[16:07:03.147](CRfyFQElHBfvs3nmAAAW) cannot find DZyX4D-cKxrJHr5GAAAv to output: true
+[16:07:03.906]DZyX4D-cKxrJHr5GAAAv send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.readdirSync("\\\\10.0.4.6\\wsgj$")
+[16:07:04.170](CRfyFQElHBfvs3nmAAAW) output to DZyX4D-cKxrJHr5GAAAv: ["Thumbs.db","~$一班口号.docx","~$打印.docx","中学部教师目录","信息中心","党支部","后勤保障部","国际部","小学部教师目录","教务处","教科室","教育处","方鸣凌","行政人事部","财务室","高中部教师目录"]
+[16:07:04.170](CRfyFQElHBfvs3nmAAAW) cannot find DZyX4D-cKxrJHr5GAAAv to output: ["Thumbs.db","~$一班口号.docx","~$打印.docx","中学部教师目录","信息中心","党支部","后勤保障部","国际部","小学部教师目录","教务处","教科室","教育处","方鸣凌","行政人事部","财务室","高中部教师目录"]
+[16:07:06.179]controller DZyX4D-cKxrJHr5GAAAv leave
+[16:07:09.350]controller 4ZLnlN40SE6sWQwCAAAx into
+[16:07:09.816]4ZLnlN40SE6sWQwCAAAx send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录").isDirectory()
+[16:07:10.88](CRfyFQElHBfvs3nmAAAW) output to 4ZLnlN40SE6sWQwCAAAx: true
+[16:07:10.88](CRfyFQElHBfvs3nmAAAW) cannot find 4ZLnlN40SE6sWQwCAAAx to output: true
+[16:07:10.446]4ZLnlN40SE6sWQwCAAAx send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录")
+[16:07:10.993](CRfyFQElHBfvs3nmAAAW) output to 4ZLnlN40SE6sWQwCAAAx: [".data",".DS_Store","2019年新教师相片采集","2021级高一","2021高一期中考答案","20220513高考警示教育片.zip","2022届北京丰台区普通高中合格性考试地理调研练习试题.docx","2022届高三周测","2022级高一夏令营活动方案.docx","2022高中学业水平考试考务工作人员考试安全承诺书.doc","2022高考出征仪式.pptx","29日表彰大会.pptx","360软件管家.lnk","43.pptx","666","RecentPlaces.lnk","Thumbs.db","wsgj$ (10.0.4.6) - 快捷方式 (2).lnk","wsgj$ (10.0.4.6) - 快捷方式.lnk","临界生文化强化花名册.xlsx","体艺学科","作息时间表.xlsx","信息技术","值日登记表.xlsx","刘若涵第1页.doc","创新4班教材.xlsx","创新班老师会.pptx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","夏令营宿舍安排表.docx","外国语logo.png","安装软件","尊敬的各位领导.docx","带队安排","席位牌（长）.doc","强基辅导课时.xlsx","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","文档 - 快捷方式.lnk","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","新建文件夹","新建文件夹 (2)","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","物理学科","王志鸿9.doc","王智鸿(1).docx","理综学科","生活部","生物学科","监考教师必会身份验证操作流程（含三种情况）(1)","监考教师必会身份验证操作流程（含三种情况）(1).rar","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语周测5.mp3","英语学科","语文学科","课表（修改后）.pdf","课表（外发）.xlsx","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三9班刘若涵国家学生体质健康标准登记卡(1)(2).docx","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部教师目录.lnk","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:07:11.79](CRfyFQElHBfvs3nmAAAW) cannot find 4ZLnlN40SE6sWQwCAAAx to output: [".data",".DS_Store","2019年新教师相片采集","2021级高一","2021高一期中考答案","20220513高考警示教育片.zip","2022届北京丰台区普通高中合格性考试地理调研练习试题.docx","2022届高三周测","2022级高一夏令营活动方案.docx","2022高中学业水平考试考务工作人员考试安全承诺书.doc","2022高考出征仪式.pptx","29日表彰大会.pptx","360软件管家.lnk","43.pptx","666","RecentPlaces.lnk","Thumbs.db","wsgj$ (10.0.4.6) - 快捷方式 (2).lnk","wsgj$ (10.0.4.6) - 快捷方式.lnk","临界生文化强化花名册.xlsx","体艺学科","作息时间表.xlsx","信息技术","值日登记表.xlsx","刘若涵第1页.doc","创新4班教材.xlsx","创新班老师会.pptx","化学学科","升旗仪式主持稿.docx","历史学科","各位家长.docx","图片","地理学科","夏令营宿舍安排表.docx","外国语logo.png","安装软件","尊敬的各位领导.docx","带队安排","席位牌（长）.doc","强基辅导课时.xlsx","德育工作","成人礼活动图片.docx","打印1.xlsx","政治学科","教学材料","数学学科","文字文稿2.docx","文档 - 快捷方式.lnk","新建 Microsoft Word 文档.docx","新建 Microsoft Word 文档1.docx","新建文件夹","新建文件夹 (2)","日志封面.docx","日语学科","月考答题卡","月考答题卡.rar","江西考场优秀作文（理想）给考生的启示.docx","物理学科","王志鸿9.doc","王智鸿(1).docx","理综学科","生活部","生物学科","监考教师必会身份验证操作流程（含三种情况）(1)","监考教师必会身份验证操作流程（含三种情况）(1).rar","红五月奖状.doc","网上阅卷.url","艺术部","艺术高二","英语周测5.mp3","英语学科","语文学科","课表（修改后）.pdf","课表（外发）.xlsx","通用技术","野外拉练方案(1).doc","音体美","高一期末听力","高三9班刘若涵国家学生体质健康标准登记卡(1)(2).docx","高三年级","高三政治滚动卷答案","高中部全体教师会.pptx","高中部教师目录.lnk","高中部新生国防教育实施方案.doc","高中部相片"]
+[16:07:20.691]controller 4ZLnlN40SE6sWQwCAAAx leave
+[16:07:23.807]controller Iyp6txzjCFJ1gq1PAAAz into
+[16:07:24.124]Iyp6txzjCFJ1gq1PAAAz send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣").isDirectory()
+[16:07:24.477](CRfyFQElHBfvs3nmAAAW) output to Iyp6txzjCFJ1gq1PAAAz: true
+[16:07:24.477](CRfyFQElHBfvs3nmAAAW) cannot find Iyp6txzjCFJ1gq1PAAAz to output: true
+[16:07:25.954]Iyp6txzjCFJ1gq1PAAAz send electron to G2102班电脑(CRfyFQElHBfvs3nmAAAW): fs.readdirSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣")
+[16:07:26.212](CRfyFQElHBfvs3nmAAAW) output to Iyp6txzjCFJ1gq1PAAAz: ["2102","21年上学期高一物理培优 第12讲电场强度及电场线（学生版）.pdf","21年春高一物理培优 第6讲  动能和动能定理（学生版）.pdf","22届高一12月摸底考试物理·答案.pdf","2_冬令营课表(3).xlsx","GeoGebra 经典.lnk","Screenshot_20220605-073819__01.jpg","Thumbs.db","作业","冬令营课表(3)_20220218140554.pdf","几何画板画稿","创新1班座位表和名单.xlsx","创新1班座位表和名单.xlsx.lnk","各班名单.xlsx","培优名单.xlsx","夸克扫描件_2022060407_1.jpg","夸克扫描件_2022060407_2.jpg","夸克扫描件_2022060407_3.jpg","摩擦起电.mp4","文外高考送考服务方案(1).docx","新建 Internet 快捷方式.url","答案","考试错例","自主学习课件","课件","资源"]
+[16:07:26.212](CRfyFQElHBfvs3nmAAAW) cannot find Iyp6txzjCFJ1gq1PAAAz to output: ["2102","21年上学期高一物理培优 第12讲电场强度及电场线（学生版）.pdf","21年春高一物理培优 第6讲  动能和动能定理（学生版）.pdf","22届高一12月摸底考试物理·答案.pdf","2_冬令营课表(3).xlsx","GeoGebra 经典.lnk","Screenshot_20220605-073819__01.jpg","Thumbs.db","作业","冬令营课表(3)_20220218140554.pdf","几何画板画稿","创新1班座位表和名单.xlsx","创新1班座位表和名单.xlsx.lnk","各班名单.xlsx","培优名单.xlsx","夸克扫描件_2022060407_1.jpg","夸克扫描件_2022060407_2.jpg","夸克扫描件_2022060407_3.jpg","摩擦起电.mp4","文外高考送考服务方案(1).docx","新建 Internet 快捷方式.url","答案","考试错例","自主学习课件","课件","资源"]
+[16:07:30.935]controlled G2102班电脑(CRfyFQElHBfvs3nmAAAW) leave
+[16:07:32.647]controller Iyp6txzjCFJ1gq1PAAAz leave
+[16:07:35.343]controller IVNQMc4D_gPtZJgOAAA1 into
+[16:07:35.685]IVNQMc4D_gPtZJgOAAA1 cannot find G2102班电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣/夸克扫描件_2022060407_3.jpg").isDirectory()
+[16:07:45.802]controller IVNQMc4D_gPtZJgOAAA1 leave
+[16:07:48.400]controller 5UNvnKbwkNVtR2MjAAA3 into
+[16:07:48.781]5UNvnKbwkNVtR2MjAAA3 cannot find G2102班电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣/夸克扫描件_2022060407_3.jpg").isDirectory()
+[16:08:08.851]controller 5UNvnKbwkNVtR2MjAAA3 leave
+[16:08:23.701]controller N2zz07XmICJPt5C_AAA5 into
+[16:08:23.713]N2zz07XmICJPt5C_AAA5 cannot find G2102班电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣/夸克扫描件_2022060407_3.jpg").isDirectory()
+[16:08:37.280]controller wYyrACSq3DtVOToSAAA7 into
+[16:08:37.684]wYyrACSq3DtVOToSAAA7 cannot find G2102班电脑 to send electron: fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/物理学科/刘欣").isDirectory()
+[16:09:11.357]controller 052Pd-xcYBhh2v2kAAA9 into
+[16:10:04.45]controller 052Pd-xcYBhh2v2kAAA9 leave
+[16:10:04.55]controller N2zz07XmICJPt5C_AAA5 leave
+[16:10:18.79]controller wYyrACSq3DtVOToSAAA7 leave
+[16:56:33.483]controlled G2102班电脑(i03Zf27nYXMzMOCgAABD) into
+[18:01:09.964]controlled G2102班电脑(i03Zf27nYXMzMOCgAABD) leave

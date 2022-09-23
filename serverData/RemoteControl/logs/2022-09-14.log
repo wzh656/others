@@ -1,0 +1,197 @@
+[06:51:49.656]controlled G328(i-p9YKoEPz_f5dPXAAAB) into
+[07:11:18.345]controlled G2107班电脑(hB60yLRL_oDKf3GWAAAD) into
+[07:15:56.46]controlled G2106班电脑(4k8JFdXncsR1_bFGAAAF) into
+[07:40:15.50]controlled G2107班电脑(hB60yLRL_oDKf3GWAAAD) leave
+[07:40:20.43]controlled G2107班电脑(OlImW1sq62yLzLJbAAAH) into
+[07:41:55.958]controlled G2106班电脑(4k8JFdXncsR1_bFGAAAF) leave
+[07:42:00.742]controlled G2106班电脑(_qVg5sWbgESpc_QyAAAJ) into
+[07:42:14.932]controlled G328(i-p9YKoEPz_f5dPXAAAB) leave
+[07:42:19.368]controlled G328(qfoD-WuCGhp7zVkaAAAL) into
+[08:59:34.76]controlled G2102班电脑(kvbtWDw5xs_CauF-AAAU) into
+[10:54:37.436]controlled G2102班电脑(kvbtWDw5xs_CauF-AAAU) leave
+[10:56:46.254]controlled G2102班电脑(Mwr9HiHAlcvvCBeJAAAW) into
+[12:26:24.583]controlled G2106班电脑(_qVg5sWbgESpc_QyAAAJ) leave
+[13:01:19.840]controlled G2102班电脑(Mwr9HiHAlcvvCBeJAAAW) leave
+[13:01:20.196]controlled G2107班电脑(OlImW1sq62yLzLJbAAAH) leave
+[13:01:24.919]controlled G2102班电脑(GXC1Co7M4YXXfvITAAAc) into
+[13:01:25.821]controlled G2107班电脑(ofY-bNodbsT3MXAcAAAe) into
+[13:01:27.793]controlled G328(qfoD-WuCGhp7zVkaAAAL) leave
+[13:01:37.341]controlled G328(HU_jeaAUGaISRwEHAAAg) into
+[13:34:09.996]controlled G2107班电脑(ofY-bNodbsT3MXAcAAAe) leave
+[13:34:12.517]controlled G2102班电脑(GXC1Co7M4YXXfvITAAAc) leave
+[13:34:14.792]controlled G2107班电脑(8Ia86Z8QIzAqh0tAAAAi) into
+[13:34:17.848]controlled G2102班电脑(5V5ak4dUzEgkn2VyAAAk) into
+[13:34:20.641]controlled G328(HU_jeaAUGaISRwEHAAAg) leave
+[13:34:26.208]controlled G328(d2X7xSfQcLQWnJuBAAAm) into
+[14:04:29.113]controlled G2102班电脑(5V5ak4dUzEgkn2VyAAAk) leave
+[14:04:34.147]controlled G2102班电脑(hGo00Fef-dmmby2_AAAs) into
+[14:04:38.933]controlled G328(d2X7xSfQcLQWnJuBAAAm) leave
+[14:04:44.310]controlled G328(P1jyRRJYwFMMbNxiAAAu) into
+[14:23:42.428]controlled G328(P1jyRRJYwFMMbNxiAAAu) leave
+[14:23:43.987]controlled G2102班电脑(hGo00Fef-dmmby2_AAAs) leave
+[14:23:45.963]controlled G328(emzHwuE7z_L4uNKyAAAw) into
+[14:23:47.628]controlled G2102班电脑(VcZDiC0uGMlbQT8rAAAy) into
+[14:23:56.966]controlled G2107班电脑(8Ia86Z8QIzAqh0tAAAAi) leave
+[14:23:58.741]controlled G328(emzHwuE7z_L4uNKyAAAw) leave
+[14:24:01.224]controlled G2107班电脑(Z3c5bi_36E5x0MrRAAA0) into
+[14:24:02.346]controlled G328(7hELjC5Iz0uqoTAjAAA2) into
+[14:24:19.785]controlled G2107班电脑(Z3c5bi_36E5x0MrRAAA0) leave
+[14:24:22.547]controlled G2107班电脑(IIqTXAZ8sch0EYWBAAA4) into
+[17:00:03.915]controlled G2102班电脑(VcZDiC0uGMlbQT8rAAAy) leave
+[17:09:42.259]controlled G2102班电脑(sivWPQvaL4UYWPwJAABA) into
+[17:14:34.61]controlled G328(7hELjC5Iz0uqoTAjAAA2) leave
+[17:15:55.938]controlled G328(MlR-zfVOzTkOuC05AABC) into
+[17:21:10.649]controlled G328(MlR-zfVOzTkOuC05AABC) leave
+[17:22:57.330]controlled G328(SIYb1ZSJSPXIXmvbAABE) into
+[17:51:54.274]controller yGZt0q1tU5kLlHboAABG into
+[17:51:57.341]controller yGZt0q1tU5kLlHboAABG leave
+[17:51:58.985]controller T4ad2MPAOoLdnKzZAABI into
+[17:52:02.280]T4ad2MPAOoLdnKzZAABI send javascript to G328(SIYb1ZSJSPXIXmvbAABE): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[17:52:02.584](SIYb1ZSJSPXIXmvbAABE) output to T4ad2MPAOoLdnKzZAABI: {}
+[17:52:03.744](SIYb1ZSJSPXIXmvbAABE) output to T4ad2MPAOoLdnKzZAABI: [object Object]
+[17:52:03.792](SIYb1ZSJSPXIXmvbAABE) output to T4ad2MPAOoLdnKzZAABI: 640,480
+[17:52:06.451]T4ad2MPAOoLdnKzZAABI send javascript to G328(SIYb1ZSJSPXIXmvbAABE): 
+			send("type", "webRTC");
+			
+			if (!window.pc){
+				window.pc = new RTCPeerConnection({
+					iceServers: [{
+						urls: "stun:stun.l.google.com:19302"
+					}]
+				});
+				send("remote_output", controllerID, {pc: window.pc});
+			}else{
+				send("remote_output", controllerID, "pc exist"});
+			}
+			
+			window.stream.getTracks().forEach(track => pc.addTrack(track, window.stream));
+			
+			pc.createOffer().then(offer => {
+				pc.setLocalDescription(offer);
+				send("webRTC_send", {
+					type: "sendOffer",
+					offer
+				});
+			});
+			
+			//监听ice候选信息
+			pc.addEventListener("icecandidate", event => {
+				if (event.candidate)
+					send("webRTC_send", {
+						type: "iceCandidate",
+						candidate: event.candidate
+					});
+			});
+			
+			//接收到消息
+			socket.on("webRTC_send", function(data){
+				switch (data.type){
+					case "sendAnswer":
+						pc.setRemoteDescription( new RTCSessionDescription(data.answer) );
+						break;
+					
+					case "iceCandidate":
+						pc.addIceCandidate( new RTCIceCandidate(data.candidate) );
+						break;
+				}
+			});
+		
+[17:52:06.731](SIYb1ZSJSPXIXmvbAABE) output to T4ad2MPAOoLdnKzZAABI: [object Object]
+[17:52:16.533]T4ad2MPAOoLdnKzZAABI send javascript to G328(SIYb1ZSJSPXIXmvbAABE): 
+			send("type", "webRTC");
+			
+			if (!window.pc){
+				window.pc = new RTCPeerConnection({
+					iceServers: [{
+						urls: "stun:stun.l.google.com:19302"
+					}]
+				});
+				send("remote_output", controllerID, {pc: window.pc});
+			}else{
+				send("remote_output", controllerID, "pc exist"});
+			}
+			
+			window.stream.getTracks().forEach(track => pc.addTrack(track, window.stream));
+			
+			pc.createOffer().then(offer => {
+				pc.setLocalDescription(offer);
+				send("webRTC_send", {
+					type: "sendOffer",
+					offer
+				});
+			});
+			
+			//监听ice候选信息
+			pc.addEventListener("icecandidate", event => {
+				if (event.candidate)
+					send("webRTC_send", {
+						type: "iceCandidate",
+						candidate: event.candidate
+					});
+			});
+			
+			//接收到消息
+			socket.on("webRTC_send", function(data){
+				switch (data.type){
+					case "sendAnswer":
+						pc.setRemoteDescription( new RTCSessionDescription(data.answer) );
+						break;
+					
+					case "iceCandidate":
+						pc.addIceCandidate( new RTCIceCandidate(data.candidate) );
+						break;
+				}
+			});
+		
+[17:52:16.787](SIYb1ZSJSPXIXmvbAABE) output to T4ad2MPAOoLdnKzZAABI: [object Object]
+[17:52:23.887]controller T4ad2MPAOoLdnKzZAABI leave
+[18:52:19.548]controlled G2107班电脑(XnfzyifaOpKTZMu2AAAE) into
+[18:52:19.822]controlled G2102班电脑(F6dNFtGgp6SXChkiAAAD) into
+[18:52:20.861]controlled G328(rHBpopDsebnJeHBCAAAF) into
+[20:18:03.685]controlled G2102班电脑(F6dNFtGgp6SXChkiAAAD) leave
+[20:18:31.556]controlled G2102班电脑(S2VzBWkpJYzEHK0_AAAI) into
+[20:24:31.934]controlled G2106班电脑(ZhaNrjBbOhBF97hqAAAK) into
+[20:35:40.471]controlled G2102班电脑(S2VzBWkpJYzEHK0_AAAI) leave
+[20:35:42.113]controlled G328(rHBpopDsebnJeHBCAAAF) leave
+[20:35:42.243]controlled G2107班电脑(XnfzyifaOpKTZMu2AAAE) leave
+[20:35:45.713]controlled G2102班电脑(Qrj0j1r5wgQu8-2fAAAO) into
+[20:35:46.437]controlled G2107班电脑(5QIzz-siVogjo664AAAS) into
+[20:35:46.486]controlled G328(1sypi4hMwqtpeFJkAAAR) into
+[20:35:47.242]controlled G2106班电脑(ZhaNrjBbOhBF97hqAAAK) leave
+[20:35:51.841]controlled G2106班电脑(qdzT9LHelsLHS5atAAAU) into
+[21:55:40.337]controlled G2107班电脑(5QIzz-siVogjo664AAAS) leave
+[22:21:05.539]controlled G2106班电脑(qdzT9LHelsLHS5atAAAU) leave
+[22:38:22.331]controlled G2102班电脑(Qrj0j1r5wgQu8-2fAAAO) leave
+[22:48:32.783]controlled G328(1sypi4hMwqtpeFJkAAAR) leave

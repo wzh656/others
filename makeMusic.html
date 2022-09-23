@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Make Music</title>
+	
+	<style>
+	*{
+		outline: none;
+	}
+	h3{
+		text-align: center;
+	}
+	label{
+		font-weight: bold;
+	}
+	input{
+		width: 36px;
+		text-align: center;
+		border: none;
+		border-bottom: 2px solid #ccc;
+		transition: border-bottom-color 0.3s, width 0.3s;
+	}
+	input:focus{
+		width: 50px;
+		border-bottom: 2px solid #8af;
+	}
+	li{
+		margin: 0;
+	}
+	</style>
+	
+	<!-- 调试工具 -->
+	<!--<script src="eruda.js"></script>-->
+	<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+	<script>
+	if ( /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test( navigator.userAgent.toLowerCase() ) ){
+		//手机
+		//eruda.init();
+		new VConsole();
+	}
+	</script>
+	
+	<script src="./js/vue3.js"></script>
+	<script src="./js/acoustic_grand_piano-ogg.js"></script>
+	<script src="./js/wad.min.js"></script>
+	
+	<script src="../js-plus/src/js_plus.min.js"></script>
+	
+</head>
+<body bgcolor="white">
+	<app>
+		<h1>Make Music</h1>
+		<section>
+			<h3>基本</h3>
+			<div><label>BPM：</label><input type="number" v-model="bpm" />拍/min</div>
+			<div><label>调：</label><input type="number" v-model="major" />{{majorName}}</div>
+			<h3>和弦</h3>
+			<div>
+				<label>和弦时长：</label>
+				<input type="number" v-model="chord.beat" />拍
+			</div>
+			<div>
+				<label>和弦音量：</label>
+				<input type="number" v-model="chord.volume" />
+			</div>
+			<div>
+				<label>和弦类型：</label>
+				<table border="1">
+					<tr v-for="(list, type) in chord.types">
+						<th>{{ type }}</th>
+						<td v-for="value in list"><input v-model="value[0]" />:<input type="number" v-model="value[1]" /></td>
+						<td>
+							<button @click="list.push(['C', 1])">+</button><br/>
+							<button @click="list.pop()">-</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<label>和弦转位：</label>
+				<table border="1">
+					<tr>
+						<td rowspan="2">第三音<br/>概率：<input type="number" v-model="chord.jump.third.weight" /></td>
+						<td>+8度：<input type="number" v-model="chord.jump.third.higher" /></td>
+					</tr>
+					<tr>
+						<td>-8度：<input type="number" v-model="chord.jump.third.lower" /></td>
+					</tr>
+					<tr>
+						<td rowspan="2">第二音<br/>概率：<input type="number" v-model="chord.jump.second.weight" /></td>
+						<td>+8度：<input type="number" v-model="chord.jump.second.higher" /></td>
+					</tr>
+					<tr>
+						<td>-8度：<input type="number" v-model="chord.jump.second.lower" /></td>
+					</tr>
+					<tr>
+						<td rowspan="2">根音<br/>概率：<input type="number" v-model="chord.jump.root.weight" /></td>
+						<td>+8度：<input type="number" v-model="chord.jump.root.higher" /></td>
+					</tr>
+					<tr>
+						<td>-8度：<input type="number" v-model="chord.jump.root.lower" /></td>
+					</tr>
+				</table>
+			</div>
+			<h3>旋律</h3>
+			<div>
+				<label>旋律初音：</label>
+				<input v-model="melody.beginNote.start" />~<input v-model="melody.beginNote.end" />
+			</div>
+			<div>
+				<label>和谐率：</label>
+				<input type="number" v-model="melody.melodiousness" />
+			</div>
+			<div>
+				<label>艺术手法：</label>
+				<table border="1">
+					<tr>
+						<th>手法</th>
+						<td v-for="(item, name) in melody.skills">{{name}}</td>
+					</tr>
+					<tr>
+						<th>权重</th>
+						<td v-for="item in melody.skills"><input type="number" v-model="item"/></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<label>普通位移范围：</label>
+				<table border="1">
+					<tr>
+						<th>位移</th>
+						<td v-for="item in melody.displaceRange"><input v-model="item[0]" /></td>
+						<td rowspan="2"><button @click="melody.displaceRange.push([1, 1])">+</button><br/><button @click="melody.displaceRange.pop()">-</button></td>
+					</tr>
+					<tr>
+						<th>权重</th>
+						<td v-for="item in melody.displaceRange"><input type="number" v-model="item[1]" /></td>
+					</tr>
+				</table>
+			</div>
+			<h3>节奏</h3>
+			<div>
+				<label>音符时长</label>
+				<table border="1">
+					<tr>
+						<th>节拍</th>
+						<td v-for="item in rhythm.beats"><input v-model="item[0]" /></td>
+						<td rowspan="2"><button @click="rhythm.beats.push([1, 1])">+</button><br/><button @click="rhythm.beats.pop()">-</button></td>
+					</tr>
+					<tr>
+						<th>权重</th>
+						<td v-for="item in rhythm.beats"><input v-model="item[1]" /></td>
+					</tr>
+				</table>
+			</div>
+		</section>
+		<button @click="makeMusic()">start</button>
+		<button @click="stop()">stop</button>
+		<hr/>
+		<section>
+			<div>
+				<label>status:</label>
+				<button @click="result.status='begin'" :disabled="result.status=='begin'">Begin</button>
+				<button @click="result.status='transition'" :disabled="result.status=='transition'">Transition</button>
+				<button @click="result.status='peak'" :disabled="result.status=='peak'">Peak</button>
+				<button @click="result.status='end'" :disabled="result.status=='end'">End</button>
+			</div>
+			<div>
+				<label>Parts Length:</label><span>{{result.parts.length}}</span>
+			</div>
+			<div>
+				<label>Record Index:</label><span>{{result.recordIndex}}</span>
+			</div>
+			<div>
+				<label>Play Index:</label><span>{{result.playIndex}}</span>
+			</div>
+			<div>
+				<label>手法：</label><span>{{result.recordIndex!=-1? "录制": result.playIndex!=-1? "反复": "普通"}}</span>
+			</div>
+			<div>
+				<label>显示：</label>
+				<input type="checkbox" v-model="result.show" />
+			</div>
+			<table v-if="result.show" border="1">
+				<tr>
+					<th>和弦进行 ({{result.chords.length * chord.beat}})</th>
+					<th>旋律 ({{result.melodyIndex}})</th>
+					<th>parts ({{result.parts.length}})</th>
+				</tr>
+				<tr>
+					<td :rowspan="result.parts.length">
+						<ul>
+							<li v-for="chord in result.chords"><span v-for="item in chord">{{item.name}},</span></li>
+						</ul>
+					</td>
+					<td :rowspan="result.parts.length">
+						<ul>
+							<li v-for="item in result.melody">{{item.name}} ({{item.beat}})</li>
+						</ul>
+					</td>
+					<td v-if="result.parts.length != 0">
+						<ul>
+							<li v-for="item in result.parts[0].melody">{{item.name}} ({{item.beat}})</li>
+						</ul>
+					</td>
+				</tr>
+				<tr v-for="(part, index) in result.parts.slice(1)">
+					<td>
+						<ul>
+							<li v-for="item in part.melody">{{item.name}} ({{item.beat}})</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</app>
+	
+<script>
+console.log = ()=>{};
+/* 音符 */
+class Note{
+	constructor(...args){
+		if (args[0] == -1 || args[0] == "wait"){ //休止符
+			this.name = "wait";
+			this.id8 = this.id12 = -1;
+		}else if ( isNaN(+args[0]) ){ //name
+			this.name = args[0];
+			this.id8 = this.notes8.indexOf(this.name);
+			this.id12 = this.notes12.indexOf(this.name);
+		}else{ //id
+			if (args[1] == false){ //八度
+				this.id12 = +args[0];
+				this.name = this.notes12[this.id12];
+				this.id8 = this.notes8.indexOf(this.name);
+			}else{ //十二平均律
+				this.id8 = +args[0];
+				this.name = this.notes8[this.id8];
+				this.id12 = this.notes12.indexOf(this.name);
+			}
+		}
+		this.beat = 1; //1拍
+	}
+	
+	add8(delta=1){
+		if (this.name == "wait") //休止符
+			return this;
+		
+		this.id8 += +delta;
+		this.name = this.notes8[this.id8];
+		this.id12 = this.notes12.indexOf(this.name);
+		return this;
+	}
+	
+	add12(delta=1){
+		if (this.name == "wait") //休止符
+			return this;
+		
+		this.id12 += +delta;
+		this.name = this.notes12[this.id12];
+		this.id8 = this.notes8.indexOf(this.name);
+		return this;
+	}
+	
+	//设置节拍
+	setBeat(beat=1){
+		this.beat = +beat;
+		return this;
+	}
+	
+	getPitch(){
+		return this.name.length==3? this.name.substr(0, 2):
+			this.name.length==2? this.name.substr(0,1):
+			this.name;
+	}
+	
+	play(volume=1){
+		return new Promise((resolve, reject)=>{
+			if (this.name != "wait") //非休止符
+				new Wad({
+					source: this.sounds[this.name],
+					volume
+				}).play();
+			setTimeout(resolve, this.beat/(this.bpm/60) * 1000);
+		});
+	}
+	
+	clone(){
+		return new Note(this.name);
+	}
+}
+Note.prototype.bpm = 72; //beats per minute
+Note.prototype.sounds = MIDI.Soundfont.acoustic_grand_piano;
+Note.prototype.notes12 = Object.keys(MIDI.Soundfont.acoustic_grand_piano);
+Note.prototype.notes8 = Object.keys(MIDI.Soundfont.acoustic_grand_piano).filter(v => v.length==2);
+
+
+
+const app = Vue.createApp({
+	data(){
+		return {
+			paused: false,
+			bpm: 72,
+			major: 0,
+			chord: { //和弦设置
+				beat: 2, //两拍
+				volume: 0.5,
+				types: { //和弦类型
+					begin: [["C", 1], ["E", 1], ["A", 1]],
+					transition: [["F", 1], ["D", 1]],
+					peak: [["G", 1], ["B", 1]],
+					end: [["C", 1]]
+				},
+				jump: { //转位
+					root: {
+						weight: 0.2,
+						higher: 1, //+8度
+						lower: 0 //-8度
+					},
+					second: {
+						weight: 0.2,
+						higher: 1, //+8度
+						lower: 1 //-8度
+					},
+					third: {
+						weight: 0.2,
+						higher: 0, //+8度
+						lower: 1 //-8度
+					}
+				}
+			},
+			melody: { //旋律设置
+				beginNote: {start: "A3", end: "A4"},
+				melodiousness: 0.9, //和谐率
+				skills: {
+					"普通": 0.96,
+					"休止": 0.2,
+					"录制": 0.2,
+					"反复": 0.2
+				},
+				displaceRange: [ //位移范围及权重
+					[-7, 1],
+					[-6, 2],
+					[-5, 4],
+					[-4, 8],
+					[-3, 16],
+					[-2, 24],
+					[-1, 32],
+					[0, 40],
+					[1, 32],
+					[2, 24],
+					[3, 16],
+					[4, 8],
+					[5, 4],
+					[6, 2],
+					[7, 1]
+				]
+			},
+			rhythm: { //节奏
+				beats: [
+					[1/4, 3],
+					[1/2, 15],
+					[3/4, 2],
+					[1, 65],
+					[3/2, 2],
+					[2, 10],
+					[4, 3]
+				]
+			},
+			result: {
+				status: "begin",
+				show: true,
+				melodyIndex: 0, //旋律拍数
+				last: null,
+				parts: [],
+				recordIndex: -1,
+				playIndex: -1,
+				chords: [], //和弦进行
+				melody: [] //旋律
+			} //结果
+		};
+	},
+	watch: {
+		bpm(){
+			Note.prototype.bpm = this.bpm;
+		}
+	},
+	computed: {
+		majorName(){
+			return new Note("C4").add12(this.major).getPitch();
+		},
+	},
+	methods: {
+		makeMusic(){
+			this.result.status = "begin";
+			
+			let playChord = ()=>{
+				if (this.paused) return;
+				if (this.result.playIndex != -1){
+					const part = this.result.parts[this.result.playIndex];
+					this.result.chords.push(part.chords[0]); //添加到谱子
+					let task = part.chords[0].map(v => v.play(this.chord.volume))[0]; //任务队列
+					for (let i=1; i<part.chords.length; i++)
+						task = task.then(()=>{
+							this.result.chords.push(part.chords[i]); //添加到谱子
+							return part.chords[i].map(v => v.play(this.chord.volume))[0]
+						});
+					task.then(()=>{
+						this.result.playIndex = -1; //结束反复
+						console.log("反复 over1")
+						playChord();
+					});
+					return;
+				}
+				
+				const chord = this.generateChord().map(v => v.add12(this.major));
+				if (this.result.recordIndex != -1) //录制
+					this.result.parts[this.result.recordIndex].chords.push(chord);
+				chord.map(v => v.play(this.chord.volume))[0].then(playChord);
+			};
+			playChord();
+			
+			let playMelody = ()=>{
+				if (this.paused) return;
+				switch ( Object.keys(this.melody.skills).randomSelect(Object.values(this.melody.skills)) ){
+					case "普通": {
+						let next;
+						while (true){
+							next = this.nextRandom(this.result.last);
+							const chord = this.result.chords[~~(this.result.melodyIndex/this.chord.beat)];
+							if (!chord) //和弦较后 休止
+								return new Note(-1).setBeat(0.25).then(playMelody);
+							if ( chord.map(v => v.getPitch()).indexOf(next.getPitch()) == -1) //不和谐
+								if ( Math.random() < this.melody.melodiousness )
+									continue;
+							if ( chord.map(v => v.name).indexOf(next.name) != -1 ) //同音
+								continue;
+							break;
+						}
+						console.log("普通", next)
+						this.result.melody.push(next);
+						this.result.melodyIndex += next.beat;
+						if (this.result.recordIndex != -1) //录制
+							this.result.parts[this.result.recordIndex].melody.push(next);
+						next.add12(this.major).play().then(playMelody);
+						break;
+					}
+					
+					case "休止": {
+						const next = this.waitRandom();
+						console.log("休止", next)
+						this.result.melody.push(next);
+						this.result.melodyIndex += next.beat;
+						if (this.result.recordIndex != -1) //录制
+							this.result.parts[this.result.recordIndex].melody.push(next);
+						next.play().then(playMelody);
+						break;
+					}
+					
+					case "录制": {
+						console.log("try 录制")
+						if ( this.result.recordIndex != -1 &&
+							( this.result.parts[this.result.recordIndex].chords.length <= 1 ||
+							this.result.parts[this.result.recordIndex].melody.length <= 1 )
+						) return playMelody(); //录制中 长度不足 不许终止
+						
+						this.result.recordIndex = this.result.parts.length;
+						this.result.parts[this.result.recordIndex] = {chords: [], melody: []};
+						console.log("录制", this.result.recordIndex, this.result.parts)
+						playMelody();
+						break;
+					}
+					
+					case "反复": {
+						console.log("try 反复")
+						if (this.result.parts.length == 0)
+							return playMelody();
+						if ( this.result.recordIndex != -1 &&
+							( this.result.parts[this.result.recordIndex].chords.length <= 1 ||
+							this.result.parts[this.result.recordIndex].melody.length <= 1 )
+						) return playMelody(); //录制中 长度不足 不许终止
+						
+						this.result.recordIndex = -1; //结束录制
+						this.result.playIndex = Math.random(0, this.result.parts.length, 0);
+						
+						console.log("反复", this.result.playIndex, this.result.parts)
+						
+						const part = this.result.parts[this.result.playIndex];
+						this.result.melody.push(part.melody[0]); //添加到谱子
+						let task = part.melody[0].play(); //任务队列
+						for (let i=1; i<part.melody.length; i++)
+							task = task.then(()=>{
+								this.result.melody.push(part.melody[i]); //添加到谱子
+								this.result.melodyIndex += part.melody[i].beat;
+								return part.melody[i].play();
+							});
+						task.then(()=>{
+							this.result.playIndex = -1; //结束反复
+							console.log("反复 over2")
+							playMelody();
+						});
+						break;
+					}
+				}
+			};
+			playMelody();
+		},
+		
+		//停止
+		stop(){
+			this.paused = true;
+		},
+		
+		//生成和弦
+		generateChord(){
+			const chord_type = this.chord.types[this.result.status].map(v => v[0])
+				.randomSelect( this.chord.types[this.result.status].map(v => v[1]) );
+			const chord = [
+				new Note(chord_type + "3").setBeat(this.chord.beat),
+				new Note(chord_type + "3").add8(2).setBeat(this.chord.beat),
+				new Note(chord_type + "3").add8(4).setBeat(this.chord.beat)
+			];
+			if (Math.random() < this.chord.jump.root.weight){
+				if ( Math.random() < this.chord.jump.root.higher / (this.chord.jump.root.higher + this.chord.jump.root.lower) ){
+					chord[0].add8(7);
+				}else{
+					chord[0].add8(-7);
+				}
+			}
+			if (Math.random() < this.chord.jump.second.weight){
+				if ( Math.random() < this.chord.jump.second.higher / (this.chord.jump.second.higher + this.chord.jump.second.lower) ){
+					chord[1].add8(7);
+				}else{
+					chord[1].add8(-7);
+				}
+			}
+			if (Math.random() < this.chord.jump.third.weight){
+				if ( Math.random() < this.chord.jump.third.higher / (this.chord.jump.third.higher + this.chord.jump.third.lower) ){
+					chord[2].add8(7);
+				}else{
+					chord[2].add8(-7);
+				}
+			}
+			this.result.chords.push(chord);
+			return chord;
+		},
+		
+		//生成指定长度随机片段
+		generateRandom(length, start){
+			const ret = new Array(length);
+			if (!start)
+				start = new Note( Math.random(
+					new Note(this.melody.beginNote.start).id8,
+					new Note(this.melody.beginNote.end).id8,
+					0
+				) );
+			
+			ret[0] = start;
+			for (let i=1; i<length; i++)
+				ret[i] = this.nextRandom( ret[+i-1] );
+			
+			console.log(ret)
+			return ret;
+		},
+		
+		//随机下一个音
+		nextRandom(start){
+			if (!start)
+				start = new Note( Math.random(
+					new Note(this.melody.beginNote.start).id8,
+					new Note(this.melody.beginNote.end).id8,
+					0
+				) );
+			
+			const delta = this.melody.displaceRange.map(v => v[0])
+				.randomSelect( this.melody.displaceRange.map(v => v[1]) );
+			const beat = this.rhythm.beats.map(v => v[0])
+				.randomSelect( this.rhythm.beats.map(v => v[1]) );
+			return start.clone().add8(delta).setBeat(beat);
+		},
+		
+		waitRandom(){
+			const beat = this.rhythm.beats.map(v => v[0])
+				.randomSelect( this.rhythm.beats.map(v => v[1]) );
+			return new Note(-1).setBeat(beat);
+		}
+	}
+}).mount("app");
+</script>

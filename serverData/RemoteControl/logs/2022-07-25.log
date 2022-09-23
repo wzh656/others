@@ -1,0 +1,32 @@
+[08:00:50.599]controlled G2102班电脑(Zmr0MdZcGVFzZPhNAAAB) into
+[08:22:03.923]controlled G2107班电脑(63-j-vXorNcygLgEAAAD) into
+[09:37:18.359]controlled G2102班电脑(Zmr0MdZcGVFzZPhNAAAB) leave
+[09:38:13.356]controlled G2102班电脑(raICeUpAp-ELlUZlAAAO) into
+[09:53:31.980]controlled G2107班电脑(63-j-vXorNcygLgEAAAD) leave
+[13:02:15.335]controlled 自家电脑(RjCF9cpMm5yWI68rAAAR) into
+[13:25:23.896]controlled 自家电脑(RjCF9cpMm5yWI68rAAAR) leave
+[13:25:35.993]controlled 自家电脑(QnGJlBa0zPBcwUhcAAAT) into
+[13:35:41.15]controlled 自家电脑(QnGJlBa0zPBcwUhcAAAT) leave
+[13:36:05.606]controlled 自家电脑(RdK5UcRGEzCBUWWrAAAV) into
+[14:00:29.411]controlled G2107班电脑(MM5s9k043fyehI-8AAAZ) into
+[14:23:27.362]controlled G2102班电脑(raICeUpAp-ELlUZlAAAO) leave
+[14:23:30.928]controlled G2102班电脑(9lBb_zj_NX9DVfVLAAAb) into
+[14:23:58.641]controlled 自家电脑(RdK5UcRGEzCBUWWrAAAV) leave
+[14:24:04.181]controlled 自家电脑(UxA7NmY6GRkdoO3wAAAd) into
+[14:24:32.531]controlled G2107班电脑(MM5s9k043fyehI-8AAAZ) leave
+[14:24:36.292]controlled G2107班电脑(9eY8n0z9dQBCnyyfAAAf) into
+[15:03:17.68]controlled 自家电脑(UxA7NmY6GRkdoO3wAAAd) leave
+[17:24:39.292]controlled G2107班电脑(9eY8n0z9dQBCnyyfAAAf) leave
+[18:24:03.658]controlled G2107班电脑(FyIErwDA6a4tJDVTAAAq) into
+[19:49:27.29]controller irt9H-JBt51dvnQ4AAAu into
+[19:49:27.30]irt9H-JBt51dvnQ4AAAu send electron to G2102班电脑(9lBb_zj_NX9DVfVLAAAb): fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/化学学科/2021级文清化学学科建设/2022/作业/2022暑假作业参考答案.pdf").isDirectory()
+[19:49:27.295](9lBb_zj_NX9DVfVLAAAb) output to irt9H-JBt51dvnQ4AAAu: false
+[19:49:27.295](9lBb_zj_NX9DVfVLAAAb) cannot find irt9H-JBt51dvnQ4AAAu to output: false
+[19:49:27.798]irt9H-JBt51dvnQ4AAAu send electron to G2102班电脑(9lBb_zj_NX9DVfVLAAAb): [fs.statSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/化学学科/2021级文清化学学科建设/2022/作业/2022暑假作业参考答案.pdf"), fs.readFileSync("\\\\10.0.4.6\\wsgj$/高中部教师目录/化学学科/2021级文清化学学科建设/2022/作业/2022暑假作业参考答案.pdf").toString("base64").length]
+[19:49:28.259](9lBb_zj_NX9DVfVLAAAb) output to irt9H-JBt51dvnQ4AAAu: [{"dev":4170115732,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":4503599627405682,"size":15408934,"blocks":30096,"atimeMs":1657098665116.4648,"mtimeMs":1657098660941.2188,"ctimeMs":1657098751074.1394,"birthtimeMs":1657098665116.4648,"atime":"2022-07-06T09:11:05.116Z","mtime":"2022-07-06T09:11:00.941Z","ctime":"2022-07-06T09:12:31.074Z","birthtime":"2022-07-06T09:11:05.116Z"},20545248]
+[19:49:28.259](9lBb_zj_NX9DVfVLAAAb) cannot find irt9H-JBt51dvnQ4AAAu to output: [{"dev":4170115732,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":4503599627405682,"size":15408934,"blocks":30096,"atimeMs":1657098665116.4648,"mtimeMs":1657098660941.2188,"ctimeMs":1657098751074.1394,"birthtimeMs":1657098665116.4648,"atime":"2022-07-06T09:11:05.116Z","mtime":"2022-07-06T09:11:00.941Z","ctime":"2022-07-06T09:12:31.074Z","birthtime":"2022-07-06T09:11:05.116Z"},20545248]
+[19:50:10.951]controller irt9H-JBt51dvnQ4AAAu leave
+[20:01:45.93]controlled G2107班电脑(F0Yx8UXm7swnGRbxAAAD) into
+[20:01:45.208]controlled G2102班电脑(GugG_PIisqsi38E6AAAC) into
+[21:58:17.396]controlled G2107班电脑(F0Yx8UXm7swnGRbxAAAD) leave
+[22:14:34.866]controlled G2102班电脑(GugG_PIisqsi38E6AAAC) leave

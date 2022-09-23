@@ -1,0 +1,599 @@
+[06:58:34.282]controlled G2102班电脑(34t9VtIzQOogQuXIAAAB) into
+[07:07:56.718]controlled G2102班电脑(34t9VtIzQOogQuXIAAAB) leave
+[07:18:08.880]controlled G2107班电脑(tDCIsw_bZws1IQC0AAAD) into
+[07:55:46.836]controlled G2102班电脑(EZlz9F8NvLPNRipGAAAF) into
+[10:26:28.458]controlled G2106班电脑(NPDMJTaifn593FHFAAAY) into
+[13:07:46.845]controlled G2106班电脑(NPDMJTaifn593FHFAAAY) leave
+[13:21:43.56]controlled G2101班电脑(7MC-CWhMFhxmiwKmAAAa) into
+[13:22:11.227]controlled G2101班电脑(7MC-CWhMFhxmiwKmAAAa) leave
+[13:22:17.643]controlled G328(eZpZwrDwabdL_STbAAAc) into
+[13:52:25.836]controlled G2106班电脑(L4WbIOdBLoSKx-58AAAe) into
+[14:23:27.951]controlled G2107班电脑(tDCIsw_bZws1IQC0AAAD) leave
+[14:23:31.458]controlled G2107班电脑(VYPzFOWe16kyJwPNAAAg) into
+[14:24:02.488]controlled G2106班电脑(L4WbIOdBLoSKx-58AAAe) leave
+[14:24:04.627]controlled G2102班电脑(EZlz9F8NvLPNRipGAAAF) leave
+[14:24:07.59]controlled G2106班电脑(fhvojBKB3-Gf_6RLAAAi) into
+[14:24:07.675]controlled G2102班电脑(ESI-ve9GU7zASLBMAAAk) into
+[14:24:17.628]controlled G328(eZpZwrDwabdL_STbAAAc) leave
+[14:24:21.119]controlled G328(1KYWsrieiKaAVbQAAAAm) into
+[14:24:21.667]controlled G2102班电脑(ESI-ve9GU7zASLBMAAAk) leave
+[14:24:25.46]controlled G2102班电脑(PHiY8UjUFkXr3bKPAAAo) into
+[14:24:34.661]controlled G2102班电脑(PHiY8UjUFkXr3bKPAAAo) leave
+[14:24:36.971]controlled G2102班电脑(GwzgMS_dHvLVSinhAAAq) into
+[15:14:26.830]controller plizToWC_oFCU_hMAAAs into
+[15:14:29.574]controller plizToWC_oFCU_hMAAAs leave
+[15:14:31.525]controller zdZD7z6lw-6Z8nLlAAAu into
+[15:14:35.331]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[15:14:35.602](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: {}
+[15:14:36.994](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:14:37.61](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: 640,480
+[15:14:39.38]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[15:14:39.626](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:14:39.626](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: null
+[15:14:41.831](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:14:42.372](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:15:01.116]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:15:01.336](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: {}
+[15:15:02.688](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: screenshot
+[15:15:02.718](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:15:03.539](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:15:03.826](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:15:22.556]controller bAdqY_q0sTcGvxzNAAAw into
+[15:15:26.58]controller bAdqY_q0sTcGvxzNAAAw leave
+[15:15:27.815]controller NyU9tSXpJZPgxrh2AAAy into
+[15:15:30.717]NyU9tSXpJZPgxrh2AAAy send javascript to G2102班电脑(GwzgMS_dHvLVSinhAAAq): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[15:15:31.16](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: {}
+[15:15:32.272](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:32.637](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: 640,480
+[15:15:34.153]NyU9tSXpJZPgxrh2AAAy send javascript to G2102班电脑(GwzgMS_dHvLVSinhAAAq): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[15:15:34.605](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:34.606](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: null
+[15:15:35.529](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:39.170]NyU9tSXpJZPgxrh2AAAy send javascript to G2102班电脑(GwzgMS_dHvLVSinhAAAq): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:15:39.518](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: {}
+[15:15:41.980](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: screenshot
+[15:15:42.139](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:44.330](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.31](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.133](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.332](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.428](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.440](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:45.631](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:46.134](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:46.575](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:47.139](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:47.576](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:48.137](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:48.824](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:49.152](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:49.553](GwzgMS_dHvLVSinhAAAq) output to NyU9tSXpJZPgxrh2AAAy: [object Object]
+[15:15:56.945]controller EB05e2JvKYf-dNCSAAA0 into
+[15:15:59.298]controller EB05e2JvKYf-dNCSAAA0 leave
+[15:16:01.133]controller NQ4AmJmrCKZ8eqk8AAA2 into
+[15:16:02.573]NQ4AmJmrCKZ8eqk8AAA2 send javascript to G2106班电脑(fhvojBKB3-Gf_6RLAAAi): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[15:16:02.870](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: {}
+[15:16:05.933](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:05.957](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: 640,480
+[15:16:07.218]NQ4AmJmrCKZ8eqk8AAA2 send javascript to G2106班电脑(fhvojBKB3-Gf_6RLAAAi): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[15:16:07.648](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:07.650](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: null
+[15:16:08.428](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:12.266]NQ4AmJmrCKZ8eqk8AAA2 send javascript to G2106班电脑(fhvojBKB3-Gf_6RLAAAi): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:16:12.618](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: {}
+[15:16:18.820](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: screenshot
+[15:16:18.930](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:19.697](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:19.794]controller rshkI50SoHuicgg2AAA4 into
+[15:16:20.43](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:20.444](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:20.940](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:21.439](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:22.23](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:22.441](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:23.34](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:23.532](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:24.45](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:24.533](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:25.36](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:25.741](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:25.969](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:26.554](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:27.16](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:27.539](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:27.954](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:28.440](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:28.949](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:29.572](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:30.40](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:30.532](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:31.128](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:31.527](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:32.51](fhvojBKB3-Gf_6RLAAAi) output to NQ4AmJmrCKZ8eqk8AAA2: [object Object]
+[15:16:58.668]controller rshkI50SoHuicgg2AAA4 leave
+[15:17:05.739]controller SQ-Z-8p2FV3WBmU_AAA6 into
+[15:17:25.597]SQ-Z-8p2FV3WBmU_AAA6 send javascript to G2107班电脑(VYPzFOWe16kyJwPNAAAg): 
+			if (!window.video){
+				window.video=$("<video></video>")[0];
+				$("body").append(window.video);
+			}else{
+				send("remote_output", controllerID, "video exist");
+			}
+			if (!window.canvas){
+				window.canvas=$("<canvas></canvas>")[0];
+				$("body").append(window.canvas);
+			}else{
+				send("remote_output", controllerID, "canvas exist");
+			}
+			if (!window.stream){
+				navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(function(stream){
+					window.stream = stream;
+					send("remote_output", controllerID, {stream: window.stream});
+					window.video.srcObject = stream;
+					window.video.onloadedmetadata = function(){
+						window.video.play();
+						window.video.muted = true;
+						window.canvas.width = window.video.videoWidth;
+						window.canvas.height = window.video.videoHeight;
+						send("remote_output", controllerID, [window.video.videoWidth, window.video.videoHeight]);
+					};
+				})
+				.catch(function(err){
+					console.error(err)
+					send("remote_output", controllerID, err.message);
+				});
+			}else{
+				send("remote_output", controllerID, "stream exist");
+			}
+[15:17:25.960](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: {}
+[15:17:27.391](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:17:27.409](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: 640,480
+[15:17:28.244]SQ-Z-8p2FV3WBmU_AAA6 send javascript to G2107班电脑(VYPzFOWe16kyJwPNAAAg): 
+			window.canvas.getContext("2d").drawImage(video, 0, 0, window.canvas.width, window.canvas.height);
+			const data = window.canvas.toDataURL();
+			const partLen = 200000;;
+			const partNum = Math.ceil(data.length / partLen);
+			send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+			let index=0;
+			const id = setInterval(function(){
+				if (index >= partNum)
+					return clearInterval(id);
+				send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+				index++;
+			}, 500);
+[15:17:28.760](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:17:28.761](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: null
+[15:17:29.263](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:17:34.271]SQ-Z-8p2FV3WBmU_AAA6 send javascript to G2107班电脑(VYPzFOWe16kyJwPNAAAg): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:17:34.550](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: {}
+[15:17:36.636](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: screenshot
+[15:17:36.664](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:17:37.996](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:18:04.396]SQ-Z-8p2FV3WBmU_AAA6 send javascript to G2107班电脑(VYPzFOWe16kyJwPNAAAg): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:18:04.674](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: {}
+[15:18:05.186](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: screenshot
+[15:18:05.204](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:18:05.994](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:18:50.318]SQ-Z-8p2FV3WBmU_AAA6 send javascript to G2107班电脑(VYPzFOWe16kyJwPNAAAg): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[15:18:50.604](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: 1149
+[15:18:50.719](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: record start
+[15:18:58.35]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			send("type", "webRTC");
+			
+			if (!window.pc){
+				window.pc = new RTCPeerConnection({
+					iceServers: [{
+						urls: "stun:stun.l.google.com:19302"
+					}]
+				});
+				send("remote_output", controllerID, {pc: window.pc});
+			}else{
+				send("remote_output", controllerID, "pc exist"});
+			}
+			
+			window.stream.getTracks().forEach(track => pc.addTrack(track, window.stream));
+			
+			pc.createOffer().then(offer => {
+				pc.setLocalDescription(offer);
+				send("webRTC_send", {
+					type: "sendOffer",
+					offer
+				});
+			});
+			
+			//监听ice候选信息
+			pc.addEventListener("icecandidate", event => {
+				if (event.candidate)
+					send("webRTC_send", {
+						type: "iceCandidate",
+						candidate: event.candidate
+					});
+			});
+			
+			//接收到消息
+			socket.on("webRTC_send", function(data){
+				switch (data.type){
+					case "sendAnswer":
+						pc.setRemoteDescription( new RTCSessionDescription(data.answer) );
+						break;
+					
+					case "iceCandidate":
+						pc.addIceCandidate( new RTCIceCandidate(data.candidate) );
+						break;
+				}
+			});
+		
+[15:18:58.246](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:00.609](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: record data available
+[15:19:00.617](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:19:01.137](VYPzFOWe16kyJwPNAAAg) output to SQ-Z-8p2FV3WBmU_AAA6: [object Object]
+[15:19:07.256]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			runCommands("nodejs screenshot('D:/capture.png')").then(()=>{
+				send("remote_output", controllerID, "screenshot");
+				return runElectron(`
+					const data = fs.readFileSync("D:/capture.png");
+					const buffer = new Buffer(data, "binary");
+					buffer.toString("base64")
+				`);
+			}).then(base64 => {
+				const data = "data:image/png;base64," + base64.substring(1, base64.length-1);
+				const partLen = 200000;;
+				const partNum = Math.ceil(data.length / partLen);
+				send("remote_output", controllerID, {type: "image_info", len: data.length, partNum});
+				let index=0;
+				const id = setInterval(function(){
+					if (index >= partNum)
+						return clearInterval(id);
+					send("remote_output", controllerID, {type: "image_part", index, data: data.substr(index*partLen, partLen)});
+					index++;
+				}, 500);
+			}).catch(err => send("remote_output", controllerID, err.message));
+		
+[15:19:07.466](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: {}
+[15:19:08.442](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: screenshot
+[15:19:08.469](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:09.61](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:09.531](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:15.928]zdZD7z6lw-6Z8nLlAAAu send javascript to G328(1KYWsrieiKaAVbQAAAAm): 
+			const chunks = [];
+			const recorder = new MediaRecorder(stream);
+			recorder.start();
+			recorder.onstart = () => send("remote_output", controllerID, "record start");
+			recorder.ondataavailable = e => {
+				send("remote_output", controllerID, "record data available");
+				chunks.push(e.data);
+				
+				const blob = new Blob(chunks, {type: "audio/webm;codecs=opus"});
+				const fileReader = new FileReader();
+				fileReader.onload = e => {
+					const data = e.target.result;
+					
+					const partLen = 200000;
+					const partNum = Math.ceil(data.length / partLen);
+					send("remote_output", controllerID, {type: "video_info", len: data.length, partNum});
+					let index=0;
+					const id = setInterval(function(){
+						if (index >= partNum)
+							return clearInterval(id);
+						send("remote_output", controllerID, {type: "video_part", index, data: data.substr(index*partLen, partLen)});
+						index++;
+					}, 500);
+			
+				};
+				fileReader.onerror = err => send("remote_output", controllerID, err.message);
+				fileReader.readAsDataURL(blob); //readAsDataURL
+			};
+			setTimeout(()=>recorder.stop(), 10000);
+[15:19:16.145](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: 286
+[15:19:16.353](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: record start
+[15:19:26.154](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: record data available
+[15:19:26.173](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:26.701](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:27.199](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:27.699](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:28.233](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:28.728](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:29.333](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:29.934](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:19:30.196](1KYWsrieiKaAVbQAAAAm) output to zdZD7z6lw-6Z8nLlAAAu: [object Object]
+[15:21:03.202]controller SQ-Z-8p2FV3WBmU_AAA6 leave
+[15:21:03.224]controller NyU9tSXpJZPgxrh2AAAy leave
+[15:21:04.720]controller NQ4AmJmrCKZ8eqk8AAA2 leave
+[15:21:14.523]controller zdZD7z6lw-6Z8nLlAAAu leave
+[15:57:59.116]controlled G2102班电脑(GwzgMS_dHvLVSinhAAAq) leave
+[15:58:01.1]controlled G2102班电脑(5wcnbhKWv7zT8_BwAABA) into
+[16:00:06.972]controlled G2106班电脑(fhvojBKB3-Gf_6RLAAAi) leave
+[16:00:09.36]controlled G328(1KYWsrieiKaAVbQAAAAm) leave
+[16:00:09.456]controlled G2106班电脑(6KUE3AFSbj1RlA3uAABC) into
+[16:00:11.434]controlled G328(x1ZFCch1hjvTpsL2AABE) into
+[17:05:40.219]controlled G2107班电脑(VYPzFOWe16kyJwPNAAAg) leave
+[17:11:42.246]controlled G2107班电脑(6TS7WNpzTmhQa7TcAABH) into
+[17:55:54.221]controlled G328(x1ZFCch1hjvTpsL2AABE) leave
+[18:18:30.777]controlled G2106班电脑(6KUE3AFSbj1RlA3uAABC) leave
+[18:18:30.822]controlled G2102班电脑(5wcnbhKWv7zT8_BwAABA) leave
+[18:18:31.575]controlled G2107班电脑(6TS7WNpzTmhQa7TcAABH) leave
+[18:18:35.576]controlled G2102班电脑(917iGlIs04S0y_LmAABJ) into
+[18:18:36.168]controlled G2107班电脑(ar7jUsbc1p3vp-DVAABM) into
+[18:18:36.716]controlled G2106班电脑(zMopqLx5CYulF4nZAABN) into
+[18:55:29.683]controlled G2107班电脑(vE7Qp3UDraKF5M_mAAAD) into
+[18:55:29.752]controlled G2102班电脑(SSCeueK5QPJdahzTAAAE) into
+[18:55:29.853]controlled G2106班电脑(-fhOJiN5IVSpH0TZAAAF) into
+[20:25:15.522]controlled G2101班电脑(nKa4t_nXdoW6sXk3AAAM) into
+[20:25:32.218]controlled G2101班电脑(nKa4t_nXdoW6sXk3AAAM) leave
+[20:25:43.263]controlled G328(pU7MVulp9_-amdsbAAAQ) into
+[20:25:55.836]controlled G2106班电脑(-fhOJiN5IVSpH0TZAAAF) leave
+[20:31:45.727]controlled G2106班电脑(-Zz6mzEOg6Dg8kLIAAAS) into
+[21:26:24.523]controlled G2102班电脑(SSCeueK5QPJdahzTAAAE) leave
+[21:26:29.821]controlled G2102班电脑(ZIBcHxCbc8z3HGZ2AAAU) into
+[21:50:14.81]controlled G2106班电脑(-Zz6mzEOg6Dg8kLIAAAS) leave
+[21:54:21.62]controlled G2107班电脑(vE7Qp3UDraKF5M_mAAAD) leave
+[21:55:19.170]controlled G2106班电脑(JOr66-DswcHKz1TJAAAX) into
+[22:06:31.521]controlled G2106班电脑(JOr66-DswcHKz1TJAAAX) leave
+[22:45:05.308]controlled G328(pU7MVulp9_-amdsbAAAQ) leave
+[22:47:49.893]controlled G2102班电脑(ZIBcHxCbc8z3HGZ2AAAU) leave

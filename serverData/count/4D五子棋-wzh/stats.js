@@ -19,9 +19,12 @@ for (const year of fs.readdirSync(".")){
 		const files = fs.readdirSync( path.join(year, month) );
 		for (const file of files){
 			if ( isNaN(+file.split(".")[0]) ) continue;
+			console.log(year, month, file)
 
-			const arr = fs.readFileSync( path.join(year, month, file) )
-				.toString().trim().split("\n")
+			const text = fs.readFileSync( path.join(year, month, file) )
+				.toString().trim();
+			if (text.length == 0) continue;
+			const arr = text.split("\n")
 				.map( line => JSON.parse(line.trim()) );
 			visits += arr.length;
 			for (const line of arr){

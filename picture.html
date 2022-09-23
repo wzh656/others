@@ -18,7 +18,7 @@
 		</script>
 	</head>
 	<body>
-		<canvas width="16" height="16">你的浏览器不支持canvas绘图</canvas><br/>
+		<canvas width="80" height="80">你的浏览器不支持canvas绘图</canvas><br/>
 		<canvas width="64" height="64">你的浏览器不支持canvas绘图</canvas><br/>
 		<input class="load_picture" placeholder="图片地址" /><br/>
 		x:<input class="load_picture_scale" value="64" /><br/>
@@ -77,6 +77,7 @@ $("button.load_picture").click(function(){
 });
 const WIDTH = $("canvas")[0].width,
 	HEIGHT = $("canvas")[0].height;
+const radius = 16;
 $("button.replace_color").click(function(){
 	// ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	let imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
@@ -96,7 +97,39 @@ $("button.replace_color").click(function(){
 			imgData.data[+i+3] = Math.round((r-31.75)/(63.5-31.5)*255);
 		}
 		console.log(r); */
+
+		const x = i/4 % imgData.width,
+			y = ~~(i/4 / imgData.width);
 		if (
+			x <= radius &&
+			y <= radius &&
+			(x-radius)**2 + (y-radius)**2 > radius**2
+		){
+			imgData.data[+i+3] = 0;
+		}
+		if (
+			x >= 80-radius &&
+			y <= radius &&
+			(x-(80-radius))**2 + (y-radius)**2 > radius**2
+		){
+			imgData.data[+i+3] = 0;
+		}
+		if (
+			x <= radius &&
+			y >= 80-radius &&
+			(x-radius)**2 + (y-(80-radius))**2 > radius**2
+		){
+			imgData.data[+i+3] = 0;
+		}
+		if (
+			x >= 80-radius &&
+			y >= 80-radius &&
+			(x-(80-radius))**2 + (y-(80-radius))**2 > radius**2
+		){
+			imgData.data[+i+3] = 0;
+		}
+
+		/*if (
 			imgData.data[i] == 255 &&
 			imgData.data[+i+1] == 255 &&
 			imgData.data[+i+2] == 255
@@ -106,7 +139,7 @@ $("button.replace_color").click(function(){
 			imgData.data[i] = 255;
 			imgData.data[+i+1] = 255;
 			imgData.data[+i+2] = 255;
-		}
+		}*/
 	}
 	ctx.putImageData(imgData, 0, 0);
 });
