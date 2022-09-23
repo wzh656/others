@@ -1,1 +1,22 @@
-<svg>
+<script src="https://lib.baomitu.com/jquery/3.5.0/jquery.min.js"></script>
+<svg id="small" xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="-110 -110 220 220">
+<circle cx="0" cy="0" r="99" stroke="black" stroke-width="1" fill="none"/>
+</svg>
+<script>
+const radius = 99;
+for (let num=1; num<10; num+=0.05){
+	num = Math.round(num*10000)/10000
+	const theta = Math.log10(num) * 2*Math.PI;
+	const delta = num%1==0? 10:
+		num%0.5==0? 8:
+		num%0.1==0? 5:
+		3;
+	console.log(num)
+	$("#small").append(
+		$(`<line x1="${radius*Math.cos(theta)}" y1="${radius*Math.sin(theta)}" x2="${(radius+delta)*Math.cos(theta)}" y2="${(radius+delta)*Math.sin(theta)}" style="stroke:black"></line>`)
+	);
+}
+$("body").append(
+	$("<a></a>").attr("href", "data:text/html," + $("body").html())
+);
+</script>
