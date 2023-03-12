@@ -1,0 +1,90 @@
+[09:41:28.739]controlled G328(Dvjp1Y1MTcXT6_ZSAAAD) into
+[11:42:08.491]controlled G328(Dvjp1Y1MTcXT6_ZSAAAD) leave
+[11:42:15.492]controlled G328(I5qn8KeTEmSdkPhpAAAL) into
+[13:10:52.542]controller q6nWgwCTDOnq6iuoAAAN into
+[13:10:56.26]controller q6nWgwCTDOnq6iuoAAAN leave
+[13:11:00.729]controller JQGEbgJEHk8wFzJpAAAP into
+[13:11:00.980]JQGEbgJEHk8wFzJpAAAP send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.statSync("\\\\10.0.4.6\\wsgj$").isDirectory()
+[13:11:01.699](I5qn8KeTEmSdkPhpAAAL) output to JQGEbgJEHk8wFzJpAAAP: true
+[13:11:02.83]JQGEbgJEHk8wFzJpAAAP send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.readdirSync("\\\\10.0.4.6\\wsgj$")
+[13:11:02.470](I5qn8KeTEmSdkPhpAAAL) output to JQGEbgJEHk8wFzJpAAAP: ["~$一班口号.docx","~$打印.docx","中学部教师目录","信息中心","党支部","后勤保障部","国际部","小学部教师目录","教务处","教科室","教育处","方鸣凌","行政人事部","财务室","高中部教师目录"]
+[13:11:03.26]controller JQGEbgJEHk8wFzJpAAAP leave
+[13:11:04.761]controller 5vRqXt7Zw2RQyTH7AAAR into
+[13:11:05.157]5vRqXt7Zw2RQyTH7AAAR send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[13:11:05.434](I5qn8KeTEmSdkPhpAAAL) output to 5vRqXt7Zw2RQyTH7AAAR: true
+[13:11:06.53]5vRqXt7Zw2RQyTH7AAAR send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[13:11:06.491](I5qn8KeTEmSdkPhpAAAL) output to 5vRqXt7Zw2RQyTH7AAAR: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[13:11:13.407]controller 5vRqXt7Zw2RQyTH7AAAR leave
+[13:11:14.904]controller fyNu4Rv_vxDlC2jMAAAT into
+[13:11:15.152]fyNu4Rv_vxDlC2jMAAAT send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.statSync("\\\\10.0.4.6\\rj$/Adobe Premiere cs6").isDirectory()
+[13:11:15.493](I5qn8KeTEmSdkPhpAAAL) output to fyNu4Rv_vxDlC2jMAAAT: true
+[13:11:15.729]fyNu4Rv_vxDlC2jMAAAT send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.readdirSync("\\\\10.0.4.6\\rj$/Adobe Premiere cs6")
+[13:11:16.61](I5qn8KeTEmSdkPhpAAAL) output to fyNu4Rv_vxDlC2jMAAAT: ["Adobe Premiere Pro CS6","QuickInstall.exe","使用说明.url","命令行示例"]
+[13:27:36.946]controller fyNu4Rv_vxDlC2jMAAAT leave
+[13:27:38.490]controller dC2MkT9E1cu80WZvAAAZ into
+[13:27:38.823]dC2MkT9E1cu80WZvAAAZ send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[13:27:39.179](I5qn8KeTEmSdkPhpAAAL) output to dC2MkT9E1cu80WZvAAAZ: true
+[13:27:39.433]dC2MkT9E1cu80WZvAAAZ send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[13:27:39.838](I5qn8KeTEmSdkPhpAAAL) output to dC2MkT9E1cu80WZvAAAZ: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[13:46:03.477]controller dC2MkT9E1cu80WZvAAAZ leave
+[13:46:07.145]controller nooCGHqyRz6EzIDeAAAb into
+[13:46:07.634]nooCGHqyRz6EzIDeAAAb send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[13:46:07.903](I5qn8KeTEmSdkPhpAAAL) output to nooCGHqyRz6EzIDeAAAb: true
+[13:46:08.189]nooCGHqyRz6EzIDeAAAb send electron to G328(I5qn8KeTEmSdkPhpAAAL): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[13:46:08.471](I5qn8KeTEmSdkPhpAAAL) output to nooCGHqyRz6EzIDeAAAb: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[14:14:35.973]controlled G328(I5qn8KeTEmSdkPhpAAAL) leave
+[14:14:41.969]controlled G328(Bhr5yXY4kCjsB1alAAAe) into
+[14:23:43.874]controller nooCGHqyRz6EzIDeAAAb leave
+[14:23:47.331]controller CAWg4fZFStUE1rfyAAAg into
+[14:23:47.567]CAWg4fZFStUE1rfyAAAg send electron to G328(Bhr5yXY4kCjsB1alAAAe): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[14:23:48.325](Bhr5yXY4kCjsB1alAAAe) output to CAWg4fZFStUE1rfyAAAg: true
+[14:23:48.554]CAWg4fZFStUE1rfyAAAg send electron to G328(Bhr5yXY4kCjsB1alAAAe): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[14:23:48.926](Bhr5yXY4kCjsB1alAAAe) output to CAWg4fZFStUE1rfyAAAg: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[14:24:17.176]controller CAWg4fZFStUE1rfyAAAg leave
+[14:24:19.386]controller HuFaE3r-9Iuvwr6gAAAi into
+[14:24:19.656]HuFaE3r-9Iuvwr6gAAAi send electron to G328(Bhr5yXY4kCjsB1alAAAe): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[14:24:20.519](Bhr5yXY4kCjsB1alAAAe) output to HuFaE3r-9Iuvwr6gAAAi: true
+[14:24:20.768]HuFaE3r-9Iuvwr6gAAAi send electron to G328(Bhr5yXY4kCjsB1alAAAe): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[14:24:21.44](Bhr5yXY4kCjsB1alAAAe) output to HuFaE3r-9Iuvwr6gAAAi: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[14:24:31.716]controlled G328(Bhr5yXY4kCjsB1alAAAe) leave
+[14:24:36.423]controlled G328(heAwPWBjmB-ifaobAAAk) into
+[14:33:29.42]controller HuFaE3r-9Iuvwr6gAAAi leave
+[14:33:32.849]controller KYnQ2FblxpJ_k1PeAAAm into
+[14:33:32.916]KYnQ2FblxpJ_k1PeAAAm send electron to G328(heAwPWBjmB-ifaobAAAk): fs.statSync("\\\\10.0.4.6\\rj$").isDirectory()
+[14:33:33.184](heAwPWBjmB-ifaobAAAk) output to KYnQ2FblxpJ_k1PeAAAm: true
+[14:33:33.411]KYnQ2FblxpJ_k1PeAAAm send electron to G328(heAwPWBjmB-ifaobAAAk): fs.readdirSync("\\\\10.0.4.6\\rj$")
+[14:33:33.705](heAwPWBjmB-ifaobAAAk) output to KYnQ2FblxpJ_k1PeAAAm: ["1006 problem.rar","Adobe Animate CC 2018","Adobe Audition CS6","Adobe Photoshop CS6","Adobe Photoshop CS6.zip.lnk","Adobe Premiere cs6","a少先队活动课程视频","Deep Freeze Server Enterprise","Dev-Cpp_5.11_TDM-GCC_4.9.2_Setup.exe","Dev_c  .6.3.exe","EasiNoteSetup_5.2.2.1957_seewo.exe","flashcenter_pp_ax_install_cn.exe","GeoGebra-Windows-Installer-6-0-726-0.exe","MathType 6.9a简体中文版(加载&对象型).exe","QQ9.6.5.28778.exe","Radmin 3.5 简体中文版附完美破解.rar","Recovery_hf001-hsz-31.exe","sogou_pinyin_118a.exe","sysdiag-full-5.0.66.3-2022.3.17.1.exe","TencentMeeting_0300000000_3.6.6.477.publish.exe","Thumbs.db","VisualStudioSetup.exe","VS code","WeChatSetup.exe","WPS_Setup_11691.exe","xuekao","上课课件","搜狗拼音输入法_11.1.0.5032.exe","新建文本文档.txt","浏览器安装包","海天地实物展台_有线版_v3.01.exe","海天地视频展台V3.5.2.exe","海天地视频展台软件V3.4.2.zip"]
+[14:44:43.692]controlled G328(heAwPWBjmB-ifaobAAAk) leave
+[14:44:48.509]controlled G328(WA_Ybj5MKzFDsA7iAAAo) into
+[14:49:52.624]controller KYnQ2FblxpJ_k1PeAAAm leave
+[15:29:47.191]controlled G2107班电脑(3lpeq8sCmDtG5ieKAAAq) into
+[15:33:36.376]controlled G2107班电脑(3lpeq8sCmDtG5ieKAAAq) leave
+[15:49:01.301]controlled G2106班电脑(64p94tKfxh1f7GKpAAAu) into
+[15:55:38.290]controlled G328(WA_Ybj5MKzFDsA7iAAAo) leave
+[16:05:44.288]controlled G2106班电脑(64p94tKfxh1f7GKpAAAu) leave
+[16:08:01.520]controlled G2106班电脑(VkmInLIp-Qcq1aqPAAAy) into
+[18:15:17.3]controlled G2106班电脑(VkmInLIp-Qcq1aqPAAAy) leave
+[18:15:22.682]controlled G2106班电脑(jlLE4zFlfLjnuWoPAAA0) into
+[18:34:03.640]controlled G2107班电脑(-wp72Pdpv8qs3dzGAAA3) into
+[19:15:55.166]controlled G2106班电脑(jlLE4zFlfLjnuWoPAAA0) leave
+[19:16:02.115]controlled G2107班电脑(-wp72Pdpv8qs3dzGAAA3) leave
+[19:16:05.524]controlled G2106班电脑(OkCPB1lmUgN5qUeyAAA6) into
+[19:16:06.496]controlled G2107班电脑(h6ch5tVHqIQC5_UcAAA8) into
+[20:02:50.438]controlled G2106班电脑(CARWlbd0jzOJ7r2oAAAC) into
+[20:02:50.719]controlled G2107班电脑(-7E05tLMXejcbPOyAAAD) into
+[20:44:40.742]controlled G328(KfGPI3cMaVdVJJtvAAAF) into
+[20:59:18.745]controlled G2107班电脑(-7E05tLMXejcbPOyAAAD) leave
+[21:00:50.253]controlled G2107班电脑(V-sHba_8MiwIHwouAAAJ) into
+[21:01:14.8]controlled G2107班电脑(V-sHba_8MiwIHwouAAAJ) leave
+[21:03:15.425]controlled G2107班电脑(Sn2-Z6A8l91_5LYWAAAL) into
+[21:03:33.762]controlled G2107班电脑(Sn2-Z6A8l91_5LYWAAAL) leave
+[21:05:55.365]controlled G2107班电脑(OLz2RG-pF8RmMqOQAAAN) into
+[21:06:01.259]controlled G2107班电脑(OLz2RG-pF8RmMqOQAAAN) leave
+[21:08:01.976]controlled G2107班电脑(KRS6fr8u2hOxaGP6AAAP) into
+[21:19:33.583]controlled G2107班电脑(KRS6fr8u2hOxaGP6AAAP) leave
+[21:21:16.767]controlled G2107班电脑(Us-9CrDlIkWUwBqdAAAR) into
+[21:51:45.121]controlled G2102班电脑(C5W5ZW6gz3RvjFj7AAAT) into
+[22:31:02.611]controlled G2106班电脑(CARWlbd0jzOJ7r2oAAAC) leave
+[22:34:48.253]controlled G2107班电脑(Us-9CrDlIkWUwBqdAAAR) leave
+[22:35:00.851]controlled G2102班电脑(C5W5ZW6gz3RvjFj7AAAT) leave
+[22:57:25.882]controlled G328(KfGPI3cMaVdVJJtvAAAF) leave
