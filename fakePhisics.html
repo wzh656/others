@@ -1,0 +1,91 @@
+<canvas id="c" width="500" height="300" style="transform: rotateX(-180deg)"></canvas>
+<script>
+const ctx = c.getContext("2d");
+
+const HEIGHT = 0.3;
+let x1 = 1;
+let x2 = 2.8 + 1;
+let v1 = 0;
+let v2 = -4;
+let stop = true;
+
+ctx.scale(100, 100);
+
+let t0 = +new Date();
+function render(){
+	const delta = (+new Date() - t0) / 1000/10;
+	t0 = +new Date();
+	
+	requestAnimationFrame(render);
+	if (stop) return;
+	
+	let a1 = a2 = 0;
+	if (v2 < v1){
+		a2 = 3;
+		a1 = -9;
+	}else if (v2 > v1){
+		a2 = -3;
+		a1 = 9;
+	}
+	
+	console.log({
+		x1: Math.round(x1*100)/100,
+		v1: Math.round(v1*100)/100,
+		a1: Math.round(a1*100)/100
+	}, {
+		x2: Math.round(x2*100)/100,
+		v2: Math.round(v2*100)/100,
+		a2: Math.round(a2*100)/100
+	});
+	
+	let _v1 = v1 + a1 * delta;
+	v1 = _v1;
+	x1 += (_v1 + v1) / 2 * delta;
+	if (x1 < 0){
+		x1 = -x1;
+		v1 = -v1;
+	}
+	
+	let _v2 = v2 + a2 * delta;
+	v2 = _v2;
+	x2 += (_v2 + v2) / 2 * delta;
+	
+	if (v2 > v1){
+		console.warn({v2, v1})
+		v2 = v1 = (v2 + v1) / 2;
+	}
+	
+	
+	ctx.clearRect(0, 0, 500, 300);
+	
+	ctx.beginPath();
+	ctx.lineWidth = 1/100;
+	ctx.strokeStyle = "black";
+	ctx.moveTo(0, 0);
+	ctx.lineTo(0, 3);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.lineWidth = 1/100;
+	ctx.strokeStyle = "black";
+	ctx.moveTo(0, 0);
+	ctx.lineTo(5, 0);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.fillStyle = "red";
+	ctx.rect(x1, HEIGHT, 2.8, HEIGHT);
+	ctx.fill();
+	
+	ctx.beginPath();
+	ctx.fillStyle = "blue";
+	ctx.rect(x2 - HEIGHT, 2*HEIGHT, HEIGHT, HEIGHT);
+	ctx.fill();
+}
+
+stop = false;
+render();
+stop = true;
+
+window.onclick = ()=>{stop = !stop;}
+</script>
